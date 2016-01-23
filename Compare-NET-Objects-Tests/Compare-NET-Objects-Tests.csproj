@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{060A9EDD-A1D8-4593-9605-F85932168B92}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KellermanSoftware.CompareNetObjectsTests</RootNamespace>
+    <AssemblyName>KellermanSoftware.Compare-Net-Objects-Tests</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>http://localhost/KellermanSoftware.Compare-NET-Objects-Tests/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.4.0.2, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\CompareIgnoreAttribute.cs" />
+    <Compile Include="Attributes\ExcludeFromEquality.cs" />
+    <Compile Include="BugTests.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="CompareClassTests.cs" />
+    <Compile Include="CompareDataRowTests.cs" />
+    <Compile Include="CompareDatasetTests.cs" />
+    <Compile Include="CompareDataTableTests.cs" />
+    <Compile Include="CompareDoubleTests.cs" />
+    <Compile Include="CompareDateTimeTests.cs" />
+    <Compile Include="CompareDictionaryTests.cs" />
+    <Compile Include="CompareEnumeratorTests.cs" />
+    <Compile Include="CompareEnumTests.cs" />
+    <Compile Include="CompareHashsetTests.cs" />
+    <Compile Include="CompareIListTests.cs" />
+    <Compile Include="CompareIndexerTests.cs" />
+    <Compile Include="CompareFontTests.cs" />
+    <Compile Include="CompareIpEndPointTests.cs" />
+    <Compile Include="CompareObjectsTests.cs" />
+    <Compile Include="CompareRuntimeTypeTests.cs" />
+    <Compile Include="CompareSimpleTypeTests.cs" />
+    <Compile Include="CompareStructTests.cs" />
+    <Compile Include="CompareTimespan.cs" />
+    <Compile Include="CompareUriTests.cs" />
+    <Compile Include="ComparisonResultTests.cs" />
+    <Compile Include="CompareDateTimeOffsets.cs" />
+    <Compile Include="ConfigTests.cs" />
+    <Compile Include="CompareStringTests.cs" />
+    <Compile Include="CustomComparerTests.cs" />
+    <Compile Include="LogicEqualityComparerTests.cs" />
+    <Compile Include="MyCustomComparer.cs" />
+    <Compile Include="IgnoreOrderTests.cs" />
+    <Compile Include="ParentObjectTests.cs" />
+    <Compile Include="PerformanceTests.cs" />
+    <Compile Include="PointComparerTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportTests.cs" />
+    <Compile Include="TestClasses\BaseMedia.cs" />
+    <Compile Include="TestClasses\BigElchie.cs" />
+    <Compile Include="TestClasses\ClassWithGuid.cs" />
+    <Compile Include="TestClasses\Element.cs" />
+    <Compile Include="TestClasses\Entity.cs" />
+    <Compile Include="TestClasses\EntityWithEquality.cs" />
+    <Compile Include="TestClasses\EnumerableTestEntity.cs" />
+    <Compile Include="TestClasses\FontClass.cs" />
+    <Compile Include="TestClasses\Person2.cs" />
+    <Compile Include="TestClasses\Reservation.cs" />
+    <Compile Include="TestClasses\ThreadFoo.cs" />
+    <Compile Include="TestClasses\IName.cs" />
+    <Compile Include="TestClasses\ObjectTypeClass.cs" />
+    <Compile Include="TestClasses\Officer.cs" />
+    <Compile Include="TestClasses\Shipment.cs" />
+    <Compile Include="TestClasses\TankName.cs" />
+    <Compile Include="TestClasses\TankPerson.cs" />
+    <Compile Include="TestClasses\WilliamCWarner\ILabTest.cs" />
+    <Compile Include="TestClasses\WilliamCWarner\ILabTestAlias.cs" />
+    <Compile Include="TestClasses\WilliamCWarner\ILabTestCode.cs" />
+    <Compile Include="TestClasses\WilliamCWarner\ILabTestImage.cs" />
+    <Compile Include="TestClasses\WilliamCWarner\ILabTestInstructionLink.cs" />
+    <Compile Include="TestClasses\WilliamCWarner\ILabTestInstructions.cs" />
+    <Compile Include="TestClasses\WilliamCWarner\ILabTestMethod.cs" />
+    <Compile Include="TestClasses\WilliamCWarner\ILabTestPanel.cs" />
+    <Compile Include="TestClasses\WilliamCWarner\ILabTestPerformingLab.cs" />
+    <Compile Include="TestClasses\WilliamCWarner\ILabTestSpecimenStability.cs" />
+    <Compile Include="TestClasses\WilliamCWarner\LabTest.cs" />
+    <Compile Include="TestClasses\WilliamCWarner\LabTestAlias.cs" />
+    <Compile Include="TestClasses\WilliamCWarner\LabTestCode.cs" />
+    <Compile Include="TestClasses\WilliamCWarner\LabTestImage.cs" />
+    <Compile Include="TestClasses\WilliamCWarner\LabTestInstructions.cs" />
+    <Compile Include="TestClasses\WilliamCWarner\LabTestPanel.cs" />
+    <Compile Include="TestClasses\WilliamCWarner\LabTestPerformingLab.cs" />
+    <Compile Include="TestClasses\WilliamCWarner\LabTestSpecimenStability.cs" />
+    <Compile Include="TestClasses\SpecificTenant.cs" />
+    <Compile Include="TestClasses\HashSetClass.cs" />
+    <Compile Include="TestClasses\HashSetWrapper.cs" />
+    <Compile Include="TestClasses\IndianRecipeDetail.cs" />
+    <Compile Include="TestClasses\Movie.cs" />
+    <Compile Include="TestClasses\StructWithStaticProperty.cs" />
+    <Compile Include="TestClasses\Deck.cs" />
+    <Compile Include="TestClasses\GenericEntity.cs" />
+    <Compile Include="TestClasses\IEntity.cs" />
+    <Compile Include="TestClasses\ListClass.cs" />
+    <Compile Include="TestClasses\Point.cs" />
+    <Compile Include="TestClasses\RecipeDetail.cs" />
+    <Compile Include="TestClasses\Person.cs" />
+    <Compile Include="TestClasses\PrimitiveFields.cs" />
+    <Compile Include="TestClasses\PrimitiveFieldsNullable.cs" />
+    <Compile Include="TestClasses\PrimitiveProperties.cs" />
+    <Compile Include="TestClasses\PrimitivePropertiesNullable.cs" />
+    <Compile Include="TestClasses\Size.cs" />
+    <Compile Include="TestClasses\SpecialFields.cs" />
+    <Compile Include="TestClasses\Table.cs" />
+    <Compile Include="ThreadSafeTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Compare-NET-Objects\Compare-NET-Objects.csproj">
+      <Project>{94F1F5F2-6BC4-464B-AC51-FBDB4FA3F3AD}</Project>
+      <Name>Compare-NET-Objects</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ExternalAssemblies\nunit.framework.dll" />
+    <Content Include="ExternalAssemblies\nunit.framework.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

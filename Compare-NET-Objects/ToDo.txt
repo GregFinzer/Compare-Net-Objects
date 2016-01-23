@@ -1,0 +1,11 @@
+﻿To Do
+* Attribute Caching
+* JSON File Configuration
+* Documentation
+	- Comparing Different Types
+	- Ignoring Order
+	- Performance
+	- Using the results
+	- The parent object
+	- Multi-threaded
+* Compare DataTable by primary key or composite key

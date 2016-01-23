@@ -1,0 +1,1030 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DocumentXProject Id="98dea772-2319-4961-8be6-33c2fa11fed9" Version="2011.1">
+  <Features>
+    <Feature>Document! X</Feature>
+  </Features>
+  <SeparateFiles>false</SeparateFiles>
+  <Flags>
+    <Flag Id="{46CEF21D-3301-4517-A875-A0906828390E}" HighlightColor="#FFA1FFD0">Exclude from Online</Flag>
+    <Flag Id="{4AAE0FD4-7313-4FEE-A25F-0785B885F736}" HighlightColor="#FFFFFFA1">Exclude from Booklet</Flag>
+  </Flags>
+  <PropertyDefinitions />
+  <PropertyDefinitionValues />
+  <Title />
+  <ContentFiles>
+    <ContentFile FileName="KellermanSoftware.Compare-NET-Objects.dxc" Moniker="..\bin\Debug\KellermanSoftware.Compare-NET-Objects.dll" DocType="DX.NET" />
+  </ContentFiles>
+  <AutoDocFiles />
+  <ContentFromProjectPlugin />
+  <Filters>
+    <ExcludedItems />
+  </Filters>
+  <JavascriptProjectPlugin />
+  <ComProjectPlugin />
+  <AjaxProjectPlugin />
+  <DotNetAssemblies>
+    <Assembly FileName="..\bin\Debug\KellermanSoftware.Compare-NET-Objects.dll" RootTypeName="" />
+  </DotNetAssemblies>
+  <DatabaseProjectPlugin>
+    <Databases />
+  </DatabaseProjectPlugin>
+  <XsdProjectPlugin>
+    <XsdSchemas />
+  </XsdProjectPlugin>
+  <GlossaryProjectPlugin>
+    <IsGlossaryOutputEnabled>true</IsGlossaryOutputEnabled>
+    <Glossary>
+      <GlossaryItems />
+      <Title />
+    </Glossary>
+  </GlossaryProjectPlugin>
+  <WebServiceProjectPlugin>
+    <WebServices />
+  </WebServiceProjectPlugin>
+  <HelpProjectPlugin ShowGettingStartedPage="true" />
+  <OtherFilesProjectPlugin>
+    <OtherFiles>
+      <OtherFile Id="52d9a1dc-5d1d-4c42-8c7e-cf5647bf1900" FileName="images\logo.png" SourceData="" BuildFlags="" />
+      <OtherFile Id="00ed0446-0cd1-4264-b706-b22e749e40da" FileName="images\PoweredByNDepend.png" SourceData="" BuildFlags="" />
+    </OtherFiles>
+    <DefaultStylesheet></DefaultStylesheet>
+    <DefaultCaptureDirectory></DefaultCaptureDirectory>
+  </OtherFilesProjectPlugin>
+  <SourceControlProjectPlugin />
+  <TasksProjectPlugin>
+    <Tasks>
+      <TaskItems />
+    </Tasks>
+  </TasksProjectPlugin>
+  <TableOfContents>
+    <TocLayout Id="c7552482-a1ae-44a2-a9fc-c757d62b5073">
+      <Name />
+      <Description />
+      <RootNodes>
+        <TocNode Name="" Id="d14f3c31-0f83-4397-9187-595c10cdbe96" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+          <CaptionTemplate />
+          <ChildNodes />
+          <TargetItemId>7a032303-9805-4638-b34c-69a6db868ffc</TargetItemId>
+          <TargetItemBookmark></TargetItemBookmark>
+        </TocNode>
+        <TocNode Name="" Id="2c68e977-fbec-49c6-92c3-3f669453e3ae" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+          <CaptionTemplate />
+          <ChildNodes />
+          <TargetItemId>10fb8965-c607-4150-be93-4219657192f9</TargetItemId>
+          <TargetItemBookmark></TargetItemBookmark>
+        </TocNode>
+        <TocNode Name="" Id="7e21f9ff-4099-45b3-8d8a-406e4d6a96be" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+          <CaptionTemplate />
+          <ChildNodes />
+          <TargetItemId>8aaa1a6f-70a8-4a3d-8b69-dc429b86377a</TargetItemId>
+          <TargetItemBookmark></TargetItemBookmark>
+        </TocNode>
+        <TocNode Name="" Id="01ece035-226a-4221-88a3-4d1f482a2ae1" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+          <CaptionTemplate />
+          <ChildNodes />
+          <TargetItemId>7ceb9cfa-d0df-4c9c-b9df-ab271bccb7f7</TargetItemId>
+          <TargetItemBookmark></TargetItemBookmark>
+        </TocNode>
+        <TocNode Name="" Id="3bedbffd-3149-4a97-a40d-ddb9f401c449" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+          <CaptionTemplate />
+          <ChildNodes />
+          <TargetItemId>6e4dfa3a-41cc-4f4f-933d-acc4ea832f0b</TargetItemId>
+          <TargetItemBookmark></TargetItemBookmark>
+        </TocNode>
+        <TocNode Name="" Id="174df32c-f0a0-40f4-85e7-b32b69d9ec26" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+          <CaptionTemplate />
+          <ChildNodes />
+          <TargetItemId>cb91e07d-611c-4efa-84e5-a92187c24b81</TargetItemId>
+          <TargetItemBookmark></TargetItemBookmark>
+        </TocNode>
+        <TocNode Name="" Id="415ddafd-6abe-496d-bf3a-fe2fea631e78" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
+          <CaptionTemplate m="2014-03-15T13:39:48.9170288Z">Using Compare .NET Objects</CaptionTemplate>
+          <ChildNodes>
+            <TocNode Name="" Id="106302ae-e61c-4c9b-b1cb-a0dfd0ac16af" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+              <CaptionTemplate />
+              <ChildNodes />
+              <TargetItemId>5380cb06-997d-4df1-8129-cfa28761d20f</TargetItemId>
+              <TargetItemBookmark></TargetItemBookmark>
+            </TocNode>
+            <TocNode Name="" Id="ab2c65b5-2dba-4db3-aab2-55354758200c" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+              <CaptionTemplate />
+              <ChildNodes />
+              <TargetItemId>b3f5ba5b-0359-4a92-b95c-8d4e952b3c5f</TargetItemId>
+              <TargetItemBookmark></TargetItemBookmark>
+            </TocNode>
+            <TocNode Name="" Id="063891a5-aa22-4ca6-8fdc-9db4e59d0642" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+              <CaptionTemplate />
+              <ChildNodes />
+              <TargetItemId>c669abc0-d388-48b8-ac62-15d9e7b5c797</TargetItemId>
+              <TargetItemBookmark></TargetItemBookmark>
+            </TocNode>
+            <TocNode Name="" Id="027783e9-5e77-46f5-bcd4-8a935295bc5b" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+              <CaptionTemplate />
+              <ChildNodes />
+              <TargetItemId>ebeae5b6-88ec-43e3-a898-92db1bcc4ba0</TargetItemId>
+              <TargetItemBookmark></TargetItemBookmark>
+            </TocNode>
+            <TocNode Name="" Id="7cf2aba0-b454-496c-bcff-b87b0cad4bba" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+              <CaptionTemplate />
+              <ChildNodes />
+              <TargetItemId>eb1abafe-c230-45d7-b8dc-7bf3f5c20140</TargetItemId>
+              <TargetItemBookmark></TargetItemBookmark>
+            </TocNode>
+            <TocNode Name="" Id="82da3fa6-c782-4ae1-8a0f-32556675614a" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+              <CaptionTemplate />
+              <ChildNodes />
+              <TargetItemId>0d9294fc-870e-4eb0-8d4e-a2fc0feef44f</TargetItemId>
+              <TargetItemBookmark></TargetItemBookmark>
+            </TocNode>
+            <TocNode Name="" Id="86372fa6-3ddf-4dd4-a063-84dd1a2aa5f5" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
+              <CaptionTemplate m="2015-03-12T00:38:43.6122635Z">Reports</CaptionTemplate>
+              <ChildNodes>
+                <TocNode Name="" Id="857684b9-a68e-4fee-b692-77b505c30508" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate />
+                  <ChildNodes />
+                  <TargetItemId>0d061814-6a12-4d44-bb74-a2809f19fce6</TargetItemId>
+                  <TargetItemBookmark></TargetItemBookmark>
+                </TocNode>
+                <TocNode Name="" Id="acf63ffd-ad72-45f1-ad4c-7df6b3ed9000" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate />
+                  <ChildNodes />
+                  <TargetItemId>a6674676-6015-4a01-a478-a0ea8fe0510a</TargetItemId>
+                  <TargetItemBookmark></TargetItemBookmark>
+                </TocNode>
+                <TocNode Name="" Id="1ea50faa-04c4-43d5-b1c8-da97e6b7efab" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate />
+                  <ChildNodes />
+                  <TargetItemId>c5780969-16a4-48b1-8dac-34c0292912df</TargetItemId>
+                  <TargetItemBookmark></TargetItemBookmark>
+                </TocNode>
+                <TocNode Name="" Id="cb98183e-82a4-4a37-92f7-57619f6011e4" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate />
+                  <ChildNodes />
+                  <TargetItemId>eee6a46b-ecf1-47b6-8a06-6f7e574c06ae</TargetItemId>
+                  <TargetItemBookmark></TargetItemBookmark>
+                </TocNode>
+              </ChildNodes>
+            </TocNode>
+          </ChildNodes>
+        </TocNode>
+        <TocNode Name="" Id="90a8eb0b-3585-46f0-8ee3-2980c003ead8" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" DependsOnItemTypeName="" NodeType="ALLTEMPLATETOCS">
+          <ChildNodes />
+        </TocNode>
+      </RootNodes>
+    </TocLayout>
+  </TableOfContents>
+  <TopicsProjectPlugin>
+    <TopicCategories>
+      <TopicCategory Id="-" AutoIndex="false">
+        <Caption m="2009-09-11T10:57:19.7639331Z">(Un-categorized)</Caption>
+        <ChildTopicCategories />
+        <Topics>
+          <Topic Id="6e4dfa3a-41cc-4f4f-933d-acc4ea832f0b" Status="New Topic" CreatedOn="2012-07-20T18:29:22.51644Z" ModifiedOn="2013-10-04T20:13:49.4937868Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Licensing" BuildFlags="">
+            <Title />
+            <ContentsTitle />
+            <Notes></Notes>
+            <TopicSections>
+              <TopicSection Name="BodyText">
+                <Content m="2013-10-04T20:13:49.4937868Z">&lt;P&gt;This software is provided free of charge from Kellerman Software.&lt;BR&gt;It may be used in any project, including commercial for sale projects.&lt;/P&gt;
+&lt;P&gt;Check out our other great software at &lt;A href="http://www.kellermansoftware.com"&gt;www.kellermansoftware.com&lt;/A&gt;:&lt;BR&gt;*&amp;nbsp; Free Quick Reference Pack for Developers&lt;BR&gt;*&amp;nbsp; Free Sharp Zip Wrapper&lt;BR&gt;*&amp;nbsp; NUnit Test Generator&lt;BR&gt;* .NET Caching Library&lt;BR&gt;* .NET Email Validation Library&lt;BR&gt;* .NET FTP Library&lt;BR&gt;* .NET Encryption Library&lt;BR&gt;* .NET Logging Library&lt;BR&gt;* Themed Winform Wizard&lt;BR&gt;* Unused Stored Procedures&lt;BR&gt;* AccessDiff&lt;BR&gt;* .NET SFTP Library&lt;BR&gt;* Ninja Database Pro (Object database for .NET, Silverlight, Windows Phone 7)&lt;BR&gt;* Ninja WinRT Database (Object database for Windows 8 Runtime, Windows Phone 8)&lt;BR&gt;* Knight Data Access Layer (ORM, LINQ Provider, Generator)&lt;BR&gt;* CSV Reports (CSV Reader, Writer)&lt;BR&gt;* What's Changed? (Compare words, strings, streams, and text files)&lt;BR&gt;* Excel Reports&amp;nbsp;&lt;BR&gt;* Word Reports&lt;/P&gt;
+&lt;P&gt;&lt;BR&gt;Microsoft Public License (Ms-PL)&lt;/P&gt;
+&lt;P&gt;This license governs use of the accompanying software. If you use the software, you accept this license. If you do not accept the license, do not use the software.&lt;/P&gt;
+&lt;P&gt;1. Definitions&lt;/P&gt;
+&lt;P&gt;The terms "reproduce," "reproduction," "derivative works," and "distribution" have the same meaning here as under U.S. copyright law.&lt;/P&gt;
+&lt;P&gt;A "contribution" is the original software, or any additions or changes to the software.&lt;/P&gt;
+&lt;P&gt;A "contributor" is any person that distributes its contribution under this license.&lt;/P&gt;
+&lt;P&gt;"Licensed patents" are a contributor's patent claims that read directly on its contribution.&lt;/P&gt;
+&lt;P&gt;2. Grant of Rights&lt;/P&gt;
+&lt;P&gt;(A) Copyright Grant- Subject to the terms of this license, including the license conditions and limitations in section 3, each contributor grants you a non-exclusive, worldwide, royalty-free copyright license to reproduce its contribution, prepare derivative works of its contribution, and distribute its contribution or any derivative works that you create.&lt;/P&gt;
+&lt;P&gt;(B) Patent Grant- Subject to the terms of this license, including the license conditions and limitations in section 3, each contributor grants you a non-exclusive, worldwide, royalty-free license under its licensed patents to make, have made, use, sell, offer for sale, import, and/or otherwise dispose of its contribution in the software or derivative works of the contribution in the software.&lt;/P&gt;
+&lt;P&gt;3. Conditions and Limitations&lt;/P&gt;
+&lt;P&gt;(A) No Trademark License- This license does not grant you rights to use any contributors' name, logo, or trademarks.&lt;/P&gt;
+&lt;P&gt;(B) If you bring a patent claim against any contributor over patents that you claim are infringed by the software, your patent license from such contributor to the software ends automatically.&lt;/P&gt;
+&lt;P&gt;(C) If you distribute any portion of the software, you must retain all copyright, patent, trademark, and attribution notices that are present in the software.&lt;/P&gt;
+&lt;P&gt;(D) If you distribute any portion of the software in source code form, you may do so only under this license by including a complete copy of this license with your distribution. If you distribute any portion of the software in compiled or object code form, you may only do so under a license that complies with this license.&lt;/P&gt;
+&lt;P&gt;(E) The software is licensed "as-is." You bear the risk of using it. The contributors give no express warranties, guarantees or conditions. You may have additional consumer rights under your local laws which this license cannot change. To the extent permitted under your local laws, the contributors exclude the implied warranties of merchantability, fitness for a particular purpose and non-infringement.&lt;/P&gt;</Content>
+              </TopicSection>
+            </TopicSections>
+            <TopicLinks />
+            <TopicKeywords />
+            <PropertyDefinitionValues />
+            <ExcludedOtherFiles />
+          </Topic>
+          <Topic Id="7ceb9cfa-d0df-4c9c-b9df-ab271bccb7f7" Status="New Topic" CreatedOn="2014-03-15T12:48:55.8369047Z" ModifiedOn="2015-03-13T00:41:04.2899241Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="What's New In 2.0" BuildFlags="">
+            <Title m="2015-03-13T00:40:30.3099805Z">What's New?</Title>
+            <ContentsTitle m="2015-03-13T00:40:36.7243474Z">What's New?</ContentsTitle>
+            <Notes></Notes>
+            <TopicSections>
+              <TopicSection Name="BodyText">
+                <Content m="2015-03-13T00:41:04.2899241Z">&lt;H1&gt;Breaking Changes&lt;/H1&gt;
+&lt;UL&gt;
+&lt;LI&gt;
+&lt;DIV&gt;Obsolete warnings from version 1.x have been changed to errors &lt;/DIV&gt;&lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;H1&gt;Bug fixes&lt;/H1&gt;
+&lt;UL&gt;
+&lt;LI&gt;Null Indexer&lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;H1&gt;New Features&lt;/H1&gt;
+&lt;UL&gt;
+&lt;LI&gt;Allow overriding of DatasetComparer and DataTableComparer with a Custom Comparer 
+&lt;LI&gt;Allow overriding the DataRowComparer with a custom comparer 
+&lt;LI&gt;Ability to have date differences within a range 
+&lt;LI&gt;Precision for double&lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+              </TopicSection>
+            </TopicSections>
+            <TopicLinks />
+            <TopicKeywords />
+            <PropertyDefinitionValues />
+            <ExcludedOtherFiles />
+          </Topic>
+          <Topic Id="8aaa1a6f-70a8-4a3d-8b69-dc429b86377a" Status="New Topic" CreatedOn="2014-03-15T13:01:59.7667617Z" ModifiedOn="2014-03-15T13:35:58.8075097Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="System Requirements" BuildFlags="">
+            <Title />
+            <ContentsTitle />
+            <Notes></Notes>
+            <TopicSections>
+              <TopicSection Name="BodyText">
+                <Content m="2014-03-15T13:35:58.8075097Z">&lt;H1&gt;For Use&lt;/H1&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;.NET Framework 3.5 and higher
+&lt;LI&gt;Portable Class Library Version can be used with .NET 4.0+, Silverlight 5+, Windows Phone 8+, Windows RT 8+&lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;H1&gt;For Development&lt;/H1&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;Visual Studio 2013 and higher
+&lt;LI&gt;NUnit 2.4 and higher&lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;</Content>
+              </TopicSection>
+            </TopicSections>
+            <TopicLinks />
+            <TopicKeywords />
+            <PropertyDefinitionValues />
+            <ExcludedOtherFiles />
+          </Topic>
+          <Topic Id="10fb8965-c607-4150-be93-4219657192f9" Status="New Topic" CreatedOn="2014-03-15T13:20:09.1017442Z" ModifiedOn="2015-03-12T00:53:45.8758701Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Getting Started" BuildFlags="">
+            <Title />
+            <ContentsTitle />
+            <Notes></Notes>
+            <TopicSections>
+              <TopicSection Name="BodyText">
+                <Content m="2015-03-12T00:53:45.8758701Z">&lt;H1&gt;Important&lt;/H1&gt;
+&lt;UL&gt;
+&lt;LI&gt;By default for performance reasons, Compare .NET Objects only detects the first difference.&amp;nbsp; To capture all differences set Config.MaxDifferences to the maximum differences desired. 
+&lt;LI&gt;After the comparison, the differences are in the Differences list or in the DifferencesString properties. 
+&lt;LI&gt;By default, a deep comparison is performed.&amp;nbsp; To perform a shallow comparison, set Config.CompareChildren = false 
+&lt;LI&gt;By default, private and internal properties and fields are not compared.&amp;nbsp; Set ComparePrivateProperties and ComparePrivateFields to true to override this behavior. 
+&lt;LI&gt;By default an exception is thrown when class types are different.&amp;nbsp; To ignore object types, set Config.IgnoreObjectTypes to true&lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;H1&gt;C# Example&lt;/H1&gt;
+&lt;P&gt;//This is the comparison class&lt;BR&gt;CompareLogic compareLogic = new CompareLogic();&lt;/P&gt;
+&lt;P&gt;//Create a couple objects to compare&lt;BR&gt;Person person1 = new Person();&lt;BR&gt;person1.DateCreated = DateTime.Now;&lt;BR&gt;person1.Name = "Greg";&lt;/P&gt;
+&lt;P&gt;Person person2 = new Person();&lt;BR&gt;person2.Name = "John";&lt;BR&gt;person2.DateCreated = person1.DateCreated;&lt;/P&gt;
+&lt;P&gt;ComparisonResult result = compareLogic.Compare(person1, person2);&lt;/P&gt;
+&lt;P&gt;//These will be different, write out the differences&lt;BR&gt;if (result.AreEqual)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Console.WriteLine(result.Differences);&lt;BR&gt;&amp;nbsp;&lt;/P&gt;
+&lt;H1&gt;VB.NET Example&lt;/H1&gt;
+&lt;P&gt;'This is the comparison class&lt;BR&gt;Dim compareLogic As New CompareLogic()&lt;/P&gt;
+&lt;P&gt;'Create a couple objects to compare&lt;BR&gt;Dim person1 As New Person()&lt;BR&gt;person1.DateCreated = Date.Now&lt;BR&gt;person1.Name = "Greg"&lt;/P&gt;
+&lt;P&gt;Dim person2 As New Person()&lt;BR&gt;person2.Name = "John"&lt;BR&gt;person2.DateCreated = person1.DateCreated&lt;/P&gt;
+&lt;P&gt;Dim result As ComparisonResult = compareLogic.Compare(person1, person2)&lt;/P&gt;
+&lt;P&gt;'These will be different, write out the differences&lt;BR&gt;If result.AreEqual Then&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Console.WriteLine(result.Differences)&lt;BR&gt;End If&lt;/P&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;P&gt;&lt;/P&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;P&gt;&lt;/P&gt;</Content>
+              </TopicSection>
+            </TopicSections>
+            <TopicLinks />
+            <TopicKeywords />
+            <PropertyDefinitionValues />
+            <ExcludedOtherFiles />
+          </Topic>
+          <Topic Id="7a032303-9805-4638-b34c-69a6db868ffc" Status="New Topic" CreatedOn="2014-03-15T13:36:14.1740066Z" ModifiedOn="2015-10-10T23:24:14.4236492Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Introduction" BuildFlags="">
+            <Title />
+            <ContentsTitle />
+            <Notes></Notes>
+            <TopicSections>
+              <TopicSection Name="BodyText">
+                <Content m="2015-10-10T23:24:14.4236492Z">&lt;A href="http://www.kellermansoftware.com"&gt;&lt;/A&gt;
+&lt;DIV class=wikidoc&gt;&lt;BR&gt;&lt;IMG border=0 alt="" src="images/logo.png"&gt;&lt;/DIV&gt;
+&lt;DIV class=wikidoc&gt;&amp;nbsp;&lt;/DIV&gt;
+&lt;DIV class=wikidoc&gt;&lt;IMG border=0 alt="" src="images/PoweredByNDepend.png"&gt;&lt;BR&gt;&lt;BR&gt;&lt;B&gt;Project Description&lt;/B&gt;&lt;BR&gt;What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.&lt;BR&gt;&lt;BR&gt;&lt;B&gt;Compatiblity&lt;/B&gt;&lt;BR&gt;Compatible with .NET Framework 3.5 and higher. Portable Class Library version works with .NET 4.0+, Silverlight 5+, Windows Phone 8+, Windows RT 8+, Xamarin iOS, and Xamarin Droid&lt;BR&gt;&lt;BR&gt;&lt;B&gt;NuGet Package&lt;/B&gt;&lt;BR&gt;&lt;A href="http://www.nuget.org/packages/CompareNETObjects"&gt;&lt;FONT color=#0066cc&gt;http://www.nuget.org/packages/CompareNETObjects&lt;/FONT&gt;&lt;/A&gt;&lt;BR&gt;&lt;BR&gt;Features &lt;/DIV&gt;
+&lt;DIV class=wikidoc&gt;
+&lt;UL&gt;
+&lt;LI&gt;Compare Children (on by default) 
+&lt;LI&gt;Handling for Trees with Children Pointing To Parents 
+&lt;LI&gt;Compare Primitive Types 
+&lt;LI&gt;Compare Structs 
+&lt;LI&gt;Compare IList Objects 
+&lt;LI&gt;Compare Single and Multi-Dimensional Arrays 
+&lt;LI&gt;Compare IDictionary Objects 
+&lt;LI&gt;Compare Publicly visible Class Fields and Properties 
+&lt;LI&gt;Compare Private Fields and Properties (off by default) 
+&lt;LI&gt;Compare Enums 
+&lt;LI&gt;Compare Timespans 
+&lt;LI&gt;Compare Guids 
+&lt;LI&gt;Compare Classes that Implement IList with Indexers 
+&lt;LI&gt;Compare DataSet Data 
+&lt;LI&gt;Compare DataTable Data 
+&lt;LI&gt;Compare DataRow Data 
+&lt;LI&gt;Compare LinearGradient 
+&lt;LI&gt;Compare HashSet 
+&lt;LI&gt;Compare URI 
+&lt;LI&gt;Compare IPEndPoint 
+&lt;LI&gt;Compare Types of Type (RuntimeType) 
+&lt;LI&gt;Source code in C# 
+&lt;LI&gt;NUnit Test Project Included 
+&lt;LI&gt;Ability to load settings from a config file for use with powershell 
+&lt;LI&gt;Several configuration options for comparing private elements, ignoring specific elements, including specific elements. 
+&lt;LI&gt;Property and Field Info reflection caching for increased performance 
+&lt;LI&gt;Rich Differences List or simple DifferencesString 
+&lt;LI&gt;Supports custom comparison functions 
+&lt;LI&gt;ElapsedMilliseconds indicates how long the comparison took 
+&lt;LI&gt;Ability to IgnoreCollectionOrder 
+&lt;LI&gt;Thread Safe 
+&lt;LI&gt;Ability to pass in the configuration 
+&lt;LI&gt;Ability to ignore indexer comparison 
+&lt;LI&gt;Interface member filtering 
+&lt;LI&gt;Ability to treat string.empty and null as equal&lt;/LI&gt;&lt;/UL&gt;&lt;/DIV&gt;</Content>
+              </TopicSection>
+            </TopicSections>
+            <TopicLinks />
+            <TopicKeywords />
+            <PropertyDefinitionValues />
+            <ExcludedOtherFiles />
+          </Topic>
+          <Topic Id="5380cb06-997d-4df1-8129-cfa28761d20f" Status="New Topic" CreatedOn="2014-03-15T13:39:52.3802348Z" ModifiedOn="2014-03-15T13:52:14.8376504Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Configuration" BuildFlags="">
+            <Title />
+            <ContentsTitle />
+            <Notes></Notes>
+            <TopicSections>
+              <TopicSection Name="BodyText">
+                <Content m="2014-03-15T13:52:14.8376504Z">&lt;P&gt;The Compare .NET Objects Library has the ability to do different configurations.&amp;nbsp; &lt;/P&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;H1&gt;Default Configuration&lt;/H1&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;P&gt;CompareLogic logic = new CompareLogic();&lt;/P&gt;
+&lt;P&gt;logic.Config.MaxDifferences = 100;&lt;/P&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;H1&gt;Pass in the Configuration&lt;/H1&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;P&gt;ComparisonConfig config = new ComparisonConfig();&lt;/P&gt;
+&lt;P&gt;config.MaxDifferences = 100;&lt;/P&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;P&gt;CompareLogic logic = new CompareLogic(config);&lt;/P&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;H1&gt;Application Settings Configuration&lt;/H1&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;P&gt;Edit the resource file for the application settings&lt;/P&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;</Content>
+              </TopicSection>
+            </TopicSections>
+            <TopicLinks />
+            <TopicKeywords />
+            <PropertyDefinitionValues />
+            <ExcludedOtherFiles />
+          </Topic>
+          <Topic Id="ebeae5b6-88ec-43e3-a898-92db1bcc4ba0" Status="New Topic" CreatedOn="2014-03-15T13:43:40.1094319Z" ModifiedOn="2014-03-15T13:56:09.761768Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Ignoring Types" BuildFlags="">
+            <Title />
+            <ContentsTitle />
+            <Notes></Notes>
+            <TopicSections>
+              <TopicSection Name="BodyText">
+                <Content m="2014-03-15T13:56:09.761768Z">&lt;P&gt;By default, the Compare .NET Objects Library will throw an exception if the class types are different.&amp;nbsp; To compare classes that are different types, set Config.IgnoreObjectTypes = true&lt;/P&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;H1&gt;Example&lt;/H1&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;P&gt;RecipeDetail detail1 = new RecipeDetail(true, "Toffee");&lt;BR&gt;detail1.Ingredient = "Crunchy Chocolate";&lt;/P&gt;
+&lt;P&gt;IndianRecipeDetail detail2 = new IndianRecipeDetail(true, "Toffee");&lt;BR&gt;detail2.Ingredient = "Crunchy Chocolate";&lt;/P&gt;
+&lt;P&gt;CompareLogic compareLogic = new CompareLogic();&lt;BR&gt;compareLogic.Config.IgnoreObjectTypes = true;&lt;BR&gt;var result = compareLogic.Compare(detail1, detail2);&lt;/P&gt;
+&lt;P&gt;Assert.IsTrue(result.AreEqual, result.DifferencesString);&lt;/P&gt;</Content>
+              </TopicSection>
+            </TopicSections>
+            <TopicLinks />
+            <TopicKeywords />
+            <PropertyDefinitionValues />
+            <ExcludedOtherFiles />
+          </Topic>
+          <Topic Id="c669abc0-d388-48b8-ac62-15d9e7b5c797" Status="New Topic" CreatedOn="2014-03-15T13:47:37.8222585Z" ModifiedOn="2014-03-15T13:52:14.8376504Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Custom Comparers" BuildFlags="">
+            <Title />
+            <ContentsTitle />
+            <Notes></Notes>
+            <TopicSections>
+              <TopicSection Name="BodyText">
+                <Content m="2014-03-15T13:52:14.8376504Z">&lt;P&gt;To add a custom comparer, implement BaseTypeComparer and add to the Config.CustomComparers collection.&amp;nbsp; Custom comparers are run before the built in comparers.&amp;nbsp; &lt;/P&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;H1&gt;Example&lt;/H1&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;P&gt;public class MyCustomComparer : BaseTypeComparer&lt;BR&gt;{&lt;BR&gt;&amp;nbsp;public MyCustomComparer(RootComparer rootComparer) : base(rootComparer)&lt;BR&gt;&amp;nbsp;{&lt;BR&gt;&amp;nbsp;}&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;public override bool IsTypeMatch(Type type1, Type type2)&lt;BR&gt;&amp;nbsp;{&lt;BR&gt;&amp;nbsp;&amp;nbsp;return type1 == typeof (SpecificTenant);&lt;BR&gt;&amp;nbsp;}&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;public override void CompareType(ComparisonResult result, object object1, object object2, string breadCrumb)&lt;BR&gt;&amp;nbsp;{&lt;BR&gt;&amp;nbsp;&amp;nbsp;var st1 = (SpecificTenant)object1;&lt;BR&gt;&amp;nbsp;&amp;nbsp;var st2 = (SpecificTenant)object2;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&amp;nbsp;if (st1.Name != st2.Name || st1.Amount &amp;gt; 100 || st2.Amount &amp;lt; 100)&lt;BR&gt;&amp;nbsp;&amp;nbsp;{&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Difference difference = new Difference&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;PropertyName = breadCrumb,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Object1Value = object1.ToString(),&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Object2Value = object2.ToString()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;};&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;result.Differences.Add(difference);&lt;BR&gt;&amp;nbsp;&amp;nbsp;}&lt;BR&gt;&amp;nbsp;}&lt;BR&gt;}&lt;/P&gt;
+&lt;P&gt;&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt;&lt;BR&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;/P&gt;
+&lt;H1&gt;Usage&lt;/H1&gt;
+&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;P&gt;&lt;FONT size=2 face=Consolas&gt;SpecificTenant tenant1 = new SpecificTenant();&lt;BR&gt;tenant1.Name = "wire";&lt;BR&gt;tenant1.Amount = 37;&lt;/FONT&gt;&lt;/P&gt;
+&lt;P&gt;&lt;FONT size=2 face=Consolas&gt;SpecificTenant tenant2 = new SpecificTenant();&lt;BR&gt;tenant2.Name = "wire";&lt;BR&gt;tenant2.Amount = 155;&lt;/FONT&gt;&lt;/P&gt;
+&lt;P&gt;&lt;FONT size=2 face=Consolas&gt;//No Custom Comparer&lt;BR&gt;CompareLogic compareLogic = new CompareLogic();&lt;BR&gt;Assert.IsFalse(compareLogic.Compare(tenant1, tenant2).AreEqual);&lt;/FONT&gt;&lt;/P&gt;
+&lt;P&gt;&lt;FONT size=2 face=Consolas&gt;//specify custom selector&lt;BR&gt;compareLogic.Config.CustomComparers.Add(new MyCustomComparer(RootComparerFactory.GetRootComparer()));&lt;/FONT&gt;&lt;/P&gt;
+&lt;P&gt;&lt;FONT size=2 face=Consolas&gt;Assert.IsTrue(compareLogic.Compare(tenant1, tenant2).AreEqual);&lt;/FONT&gt;&lt;/P&gt;
+&lt;P&gt;&lt;FONT size=2 face=Consolas&gt;tenant2.Amount = 42;&lt;BR&gt;Assert.IsFalse(compareLogic.Compare(tenant1, tenant2).AreEqual);&lt;/FONT&gt;&lt;/P&gt;</Content>
+              </TopicSection>
+            </TopicSections>
+            <TopicLinks />
+            <TopicKeywords />
+            <PropertyDefinitionValues />
+            <ExcludedOtherFiles />
+          </Topic>
+          <Topic Id="0d061814-6a12-4d44-bb74-a2809f19fce6" Status="New Topic" CreatedOn="2015-03-12T00:38:57.8040753Z" ModifiedOn="2015-03-12T00:41:48.9878664Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Beyond Compare" BuildFlags="">
+            <Title />
+            <ContentsTitle />
+            <Notes></Notes>
+            <TopicSections>
+              <TopicSection Name="BodyText">
+                <Content m="2015-03-12T00:41:48.9878664Z">&lt;P&gt;Beyond Compare Report&lt;/P&gt;
+&lt;P&gt;Compare .NET objects offers the ability to output the results as text files and then launch the third party difference tool Beyond Compare.&amp;nbsp; &lt;/P&gt;
+&lt;P&gt;&lt;A href="http://www.scootersoftware.com/index.php"&gt;http://www.scootersoftware.com/index.php&lt;/A&gt;&lt;/P&gt;
+&lt;P&gt;Example&lt;/P&gt;
+&lt;P&gt;[Test]&lt;BR&gt;public void BeyondCompareReportTest()&lt;BR&gt;{&lt;BR&gt;&amp;nbsp;if (File.Exists("beyondExpected.txt"))&lt;BR&gt;&amp;nbsp;&amp;nbsp;File.Delete("beyondExpected.txt");&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;if (File.Exists("beyondActual.txt"))&lt;BR&gt;&amp;nbsp;&amp;nbsp;File.Delete("beyondActual.txt");&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;Movie beyondExpected = new Movie();&lt;BR&gt;&amp;nbsp;beyondExpected.Name = "Oblivion";&lt;BR&gt;&amp;nbsp;beyondExpected.PaymentForTomCruise = 2000000M;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;Movie beyondActual = new Movie();&lt;BR&gt;&amp;nbsp;beyondActual.Name = "Edge of Tomorrow";&lt;BR&gt;&amp;nbsp;beyondActual.PaymentForTomCruise = 3000000M;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;CompareLogic compareLogic = new CompareLogic();&lt;BR&gt;&amp;nbsp;compareLogic.Config.MaxDifferences = Int32.MaxValue;&lt;BR&gt;&amp;nbsp;ComparisonResult result = compareLogic.Compare(beyondExpected, beyondActual);&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;BeyondCompareReport beyondCompare = new BeyondCompareReport();&lt;BR&gt;&amp;nbsp;beyondCompare.OutputFiles(result.Differences, "beyondExpected.txt", "beyondActual.txt");&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;Assert.IsTrue(File.Exists("beyondExpected.txt"));&lt;BR&gt;&amp;nbsp;Assert.IsTrue(File.Exists("beyondActual.txt"));&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;beyondCompare.LaunchApplication("beyondExpected.txt", "beyondActual.txt");&lt;BR&gt;}&lt;/P&gt;</Content>
+              </TopicSection>
+            </TopicSections>
+            <TopicLinks />
+            <TopicKeywords />
+            <PropertyDefinitionValues />
+            <ExcludedOtherFiles />
+          </Topic>
+          <Topic Id="eee6a46b-ecf1-47b6-8a06-6f7e574c06ae" Status="New Topic" CreatedOn="2015-03-12T00:40:02.5567789Z" ModifiedOn="2015-03-12T00:41:49.0018672Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="WinMerge Report" BuildFlags="">
+            <Title />
+            <ContentsTitle />
+            <Notes></Notes>
+            <TopicSections>
+              <TopicSection Name="BodyText">
+                <Content m="2015-03-12T00:41:49.0018672Z">&lt;P&gt;WinMerge Report &lt;/P&gt;
+&lt;P&gt;Compare .NET objects offers the ability to output the results as text files and then launch the third party difference tool WinMerge. &lt;/P&gt;
+&lt;P&gt;&lt;A href="http://winmerge.org/"&gt;http://winmerge.org/&lt;/A&gt;&lt;/P&gt;
+&lt;P&gt;Example&lt;/P&gt;
+&lt;P&gt;[Test]&lt;BR&gt;public void WinMergeReportTest()&lt;BR&gt;{&lt;BR&gt;&amp;nbsp;if (File.Exists("winMergeExpected.txt"))&lt;BR&gt;&amp;nbsp;&amp;nbsp;File.Delete("winMergeExpected.txt");&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;if (File.Exists("winMergeActual.txt"))&lt;BR&gt;&amp;nbsp;&amp;nbsp;File.Delete("winMergeActual.txt");&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;Movie winMergeExpected = new Movie();&lt;BR&gt;&amp;nbsp;winMergeExpected.Name = "Oblivion";&lt;BR&gt;&amp;nbsp;winMergeExpected.PaymentForTomCruise = 2000000M;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;Movie winMergeActual = new Movie();&lt;BR&gt;&amp;nbsp;winMergeActual.Name = "Edge of Tomorrow";&lt;BR&gt;&amp;nbsp;winMergeActual.PaymentForTomCruise = 3000000M;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;CompareLogic compareLogic = new CompareLogic();&lt;BR&gt;&amp;nbsp;compareLogic.Config.MaxDifferences = Int32.MaxValue;&lt;BR&gt;&amp;nbsp;ComparisonResult result = compareLogic.Compare(winMergeExpected, winMergeActual);&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;WinMergeReport winMergeReport = new WinMergeReport();&lt;BR&gt;&amp;nbsp;winMergeReport.OutputFiles(result.Differences, "winMergeExpected.txt", "winMergeActual.txt");&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;Assert.IsTrue(File.Exists("winMergeExpected.txt"));&lt;BR&gt;&amp;nbsp;Assert.IsTrue(File.Exists("winMergeActual.txt"));&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;winMergeReport.LaunchApplication("winMergeExpected.txt", "winMergeActual.txt");&lt;BR&gt;}&lt;/P&gt;</Content>
+              </TopicSection>
+            </TopicSections>
+            <TopicLinks />
+            <TopicKeywords />
+            <PropertyDefinitionValues />
+            <ExcludedOtherFiles />
+          </Topic>
+          <Topic Id="a6674676-6015-4a01-a478-a0ea8fe0510a" Status="New Topic" CreatedOn="2015-03-12T00:40:34.2605923Z" ModifiedOn="2015-03-12T00:41:49.0088676Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CSV Report" BuildFlags="">
+            <Title />
+            <ContentsTitle />
+            <Notes></Notes>
+            <TopicSections>
+              <TopicSection Name="BodyText">
+                <Content m="2015-03-12T00:41:49.0088676Z">&lt;P&gt;CSV Report&lt;/P&gt;
+&lt;P&gt;The CSV Reports outputs the results to a comma separated value file.&amp;nbsp; The launch portion will open the file using whatever application is associated with the .csv extension.&amp;nbsp; Normally this is Excel.&lt;/P&gt;
+&lt;P&gt;Example&lt;/P&gt;
+&lt;P&gt;[Test]&lt;BR&gt;public void CsvReportTest()&lt;BR&gt;{&lt;BR&gt;&amp;nbsp;if (File.Exists("movie.csv"))&lt;BR&gt;&amp;nbsp;&amp;nbsp;File.Delete("movie.csv");&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;Movie movie1 = new Movie();&lt;BR&gt;&amp;nbsp;movie1.Name = "Oblivion";&lt;BR&gt;&amp;nbsp;movie1.PaymentForTomCruise = 2000000M;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;Movie movie2 = new Movie();&lt;BR&gt;&amp;nbsp;movie2.Name = "Edge of Tomorrow";&lt;BR&gt;&amp;nbsp;movie2.PaymentForTomCruise = 3000000M;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;CompareLogic compareLogic = new CompareLogic();&lt;BR&gt;&amp;nbsp;compareLogic.Config.MaxDifferences = Int32.MaxValue;&lt;BR&gt;&amp;nbsp;ComparisonResult result = compareLogic.Compare(movie1, movie2);&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;CsvReport csvReport = new CsvReport();&lt;BR&gt;&amp;nbsp;csvReport.OutputFile(result.Differences, "movie.csv");&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;Assert.IsTrue(File.Exists("movie.csv"));&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;csvReport.LaunchApplication("movie.csv");&lt;BR&gt;}&lt;/P&gt;</Content>
+              </TopicSection>
+            </TopicSections>
+            <TopicLinks />
+            <TopicKeywords />
+            <PropertyDefinitionValues />
+            <ExcludedOtherFiles />
+          </Topic>
+          <Topic Id="c5780969-16a4-48b1-8dac-34c0292912df" Status="New Topic" CreatedOn="2015-03-12T00:41:08.1625313Z" ModifiedOn="2015-03-12T00:41:49.0108677Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="User Friendly Report" BuildFlags="">
+            <Title />
+            <ContentsTitle />
+            <Notes></Notes>
+            <TopicSections>
+              <TopicSection Name="BodyText">
+                <Content m="2015-03-12T00:41:49.0108677Z">&lt;P&gt;Sometimes you want to show the differences of an object to a user before they submit their changes to the database.&amp;nbsp; The User Friendly report can be used to do this:&lt;/P&gt;
+&lt;P&gt;Example&lt;/P&gt;
+&lt;P&gt;[Test]&lt;BR&gt;public void UserFriendlyReportTest()&lt;BR&gt;{&lt;BR&gt;&amp;nbsp;if (File.Exists("movie.txt"))&lt;BR&gt;&amp;nbsp;&amp;nbsp;File.Delete("movie.txt");&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;Movie movie1 = new Movie();&lt;BR&gt;&amp;nbsp;movie1.Name = "Oblivion";&lt;BR&gt;&amp;nbsp;movie1.PaymentForTomCruise = 2000000M;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;Movie movie2 = new Movie();&lt;BR&gt;&amp;nbsp;movie2.Name = "Edge of Tomorrow";&lt;BR&gt;&amp;nbsp;movie2.PaymentForTomCruise = 3000000M;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;CompareLogic compareLogic = new CompareLogic();&lt;BR&gt;&amp;nbsp;compareLogic.Config.MaxDifferences = Int32.MaxValue;&lt;BR&gt;&amp;nbsp;ComparisonResult result = compareLogic.Compare(movie1, movie2);&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;UserFriendlyReport friendlyReport = new UserFriendlyReport();&lt;BR&gt;&amp;nbsp;friendlyReport.OutputFile(result.Differences, "movie.txt");&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;Assert.IsTrue(File.Exists("movie.txt"));&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;Console.WriteLine(friendlyReport.OutputString(result.Differences));&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;friendlyReport.LaunchApplication("movie.txt");&lt;BR&gt;}&lt;/P&gt;</Content>
+              </TopicSection>
+            </TopicSections>
+            <TopicLinks />
+            <TopicKeywords />
+            <PropertyDefinitionValues />
+            <ExcludedOtherFiles />
+          </Topic>
+          <Topic Id="eb1abafe-c230-45d7-b8dc-7bf3f5c20140" Status="New Topic" CreatedOn="2015-03-12T00:42:28.7681417Z" ModifiedOn="2015-03-12T00:51:01.3224581Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Ignoring The Order" BuildFlags="">
+            <Title />
+            <ContentsTitle />
+            <Notes></Notes>
+            <TopicSections>
+              <TopicSection Name="BodyText">
+                <Content m="2015-03-12T00:51:01.3224581Z">&lt;P&gt;Ignoring the Order&lt;/P&gt;
+&lt;P&gt;Sometimes lists, arrays, and dictionaries are equal to each other but they are in a different order.&amp;nbsp; The Config.IgnoreCollectionOrder property can be used to compare lists that are not only out of order but also of different lengths.&amp;nbsp; There is a huge performance decrease when Ignoring the Collection Order.&amp;nbsp; This may be okay if you are comparing a few hundred&amp;nbsp; objects at a time.&amp;nbsp; By default all the simple type properties are used as a key for an object.&amp;nbsp; To minimize the perforance impact, define a Config.CollectionMatchingSpec.&amp;nbsp; This defines the key for the object.&amp;nbsp; &lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;Example:&lt;/STRONG&gt;&lt;/P&gt;
+&lt;P&gt;CompareLogic logic = new CompareLogic();&lt;BR&gt;logic.Config.IgnoreCollectionOrder = true;&lt;/P&gt;
+&lt;P&gt;var spec = new Dictionary&amp;lt;Type, IEnumerable&amp;lt;string&amp;gt;&amp;gt;();&lt;BR&gt;spec.Add(typeof(Customer), new string[] { "CustomerId" });&lt;BR&gt;logic.Config.CollectionMatchingSpec = spec;&lt;/P&gt;</Content>
+              </TopicSection>
+            </TopicSections>
+            <TopicLinks />
+            <TopicKeywords />
+            <PropertyDefinitionValues />
+            <ExcludedOtherFiles />
+          </Topic>
+          <Topic Id="cb91e07d-611c-4efa-84e5-a92187c24b81" Status="New Topic" CreatedOn="2015-03-12T00:43:50.4488136Z" ModifiedOn="2015-03-12T00:51:01.3254583Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="FAQ" BuildFlags="">
+            <Title />
+            <ContentsTitle />
+            <Notes></Notes>
+            <TopicSections>
+              <TopicSection Name="BodyText">
+                <Content m="2015-03-12T00:51:01.3254583Z">&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;Q:&amp;nbsp; I would like to report a defect.&amp;nbsp; I have an object with many differences and it is only reporting one difference.&lt;BR&gt;A:&amp;nbsp; By default for performance reasons, Compare .NET Objects only detects the first difference.&amp;nbsp; To capture all differences set Config.MaxDifferences to the maximum differences desired. &lt;/P&gt;
+&lt;P&gt;Q:&amp;nbsp; I want to show all the differences in my list of objects.&amp;nbsp; If the lists are different counts, it doesn't compare everything.&amp;nbsp; How can I compare it?&lt;BR&gt;A:&amp;nbsp; Set Config.MaxDifferences to the maximum difference desired.&amp;nbsp; Set Config.IgnoreCollectionOrder to true.&amp;nbsp; If you have a primary key for the class, make sure to define a Config.CollectionMatchingSpec.&lt;/P&gt;
+&lt;P&gt;Q:&amp;nbsp; What if I don't want to compare everything?&lt;BR&gt;A:&amp;nbsp; Add the names of class types to the Config.ClassTypesToIgnore or add the names of members to the Config.MembersToIgnore.&amp;nbsp; If you need something more complex, you can always implement your own custom comparer.&amp;nbsp; See Custom Comparers.&lt;/P&gt;
+&lt;P&gt;Q:&amp;nbsp; What can I use this thing for?&lt;BR&gt;A:&amp;nbsp; See the Uses topic.&lt;/P&gt;</Content>
+              </TopicSection>
+            </TopicSections>
+            <TopicLinks />
+            <TopicKeywords />
+            <PropertyDefinitionValues />
+            <ExcludedOtherFiles />
+          </Topic>
+          <Topic Id="b3f5ba5b-0359-4a92-b95c-8d4e952b3c5f" Status="New Topic" CreatedOn="2015-03-12T00:49:01.5686086Z" ModifiedOn="2015-03-12T00:51:01.3304586Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Comparing Lists and Arrays" BuildFlags="">
+            <Title />
+            <ContentsTitle />
+            <Notes></Notes>
+            <TopicSections>
+              <TopicSection Name="BodyText">
+                <Content m="2015-03-12T00:51:01.3304586Z">&lt;P&gt;How are lists, arrays, dictionaries compared?&lt;/P&gt;
+&lt;P&gt;Lists of items are compared by looping through the enumerators.&amp;nbsp; For performance reasons, it is assumed that the lists are in the same order.&amp;nbsp; If the counts are different the comparison will exit as soon as it reaches the end of one of the lists.&amp;nbsp; To compare all items in the list, ignore the order.&amp;nbsp; See Ignoring Order for more information.&lt;/P&gt;</Content>
+              </TopicSection>
+            </TopicSections>
+            <TopicLinks />
+            <TopicKeywords />
+            <PropertyDefinitionValues />
+            <ExcludedOtherFiles />
+          </Topic>
+          <Topic Id="0d9294fc-870e-4eb0-8d4e-a2fc0feef44f" Status="New Topic" CreatedOn="2015-03-12T00:50:08.6274442Z" ModifiedOn="2015-03-12T00:51:01.3324587Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Uses" BuildFlags="">
+            <Title />
+            <ContentsTitle />
+            <Notes></Notes>
+            <TopicSections>
+              <TopicSection Name="BodyText">
+                <Content m="2015-03-12T00:51:01.3324587Z">&lt;P&gt;What can I use this thing for?&lt;/P&gt;
+&lt;P&gt;Verify ORM Mappings&lt;BR&gt;Get a list of changes and log it to the database&lt;BR&gt;Determine if an object is dirty&lt;BR&gt;Verify all the data is being saved to the database by doing a save and then load.&lt;BR&gt;Verify end to end translation for services.&lt;/P&gt;</Content>
+              </TopicSection>
+            </TopicSections>
+            <TopicLinks />
+            <TopicKeywords />
+            <PropertyDefinitionValues />
+            <ExcludedOtherFiles />
+          </Topic>
+        </Topics>
+      </TopicCategory>
+    </TopicCategories>
+    <CustomTopicPropertyDefinitions />
+    <PropertyDefinitionValues />
+    <AutoNameDigits>0</AutoNameDigits>
+    <AutoNameLastNumber>0</AutoNameLastNumber>
+    <AutoNameEnabled>false</AutoNameEnabled>
+    <AutoNamePrefix></AutoNamePrefix>
+    <IncludeTopicNameInTitle>false</IncludeTopicNameInTitle>
+    <TopicEditorState>
+      <Attributes>
+        <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
+      </Attributes>
+    </TopicEditorState>
+  </TopicsProjectPlugin>
+  <WidgetsProjectPlugin>
+    <WidgetTypes Version="2011.1" />
+  </WidgetsProjectPlugin>
+  <TemplateFileFeaturesProjectPlugin />
+  <ProjectSearchProjectPlugin>
+    <ProjectSearchDefinitions />
+  </ProjectSearchProjectPlugin>
+  <ContentSources />
+  <Publishing />
+  <ProjectProfiles>
+    <ProjectProfile Id="39caa9b0-295d-4fcc-9037-4bc5f2195e31" Name="2010 Style">
+      <DefaultItemQualifiedName>Introduction</DefaultItemQualifiedName>
+      <StripMetadata>false</StripMetadata>
+      <AlwaysCopyTemplateFiles>true</AlwaysCopyTemplateFiles>
+      <OutputFileExtension>.html</OutputFileExtension>
+      <Title m="2012-07-20T18:31:44.0845372Z">Compare .NET Objects</Title>
+      <ClearOutputDirectoryBeforeBuild>false</ClearOutputDirectoryBeforeBuild>
+      <IsNewIndicatorEnabled>true</IsNewIndicatorEnabled>
+      <IsNewDateTime></IsNewDateTime>
+      <PublishingTargets />
+      <PropertyDefinitionValues>
+        <PropertyDefinitionValue PropertyDefinitionId="fb0b069e-0e70-4bdb-8fc3-6fdb9ef927b3">
+          <PropertyValue m="2014-03-15T02:39:32.2492883Z">&amp;copy; Kellerman Software %%year%% All Rights Reserved.</PropertyValue>
+        </PropertyDefinitionValue>
+        <PropertyDefinitionValue PropertyDefinitionId="76de16a8-8dcb-462c-b636-b20ff0b3c3a1">
+          <PropertyValue m="2014-03-15T02:39:50.5453348Z">&lt;a href="mailto:support@kellermansoftware.com?subject=Documentation Feedback: %%FileName%%"&gt;Send Feedback&lt;/a&gt;</PropertyValue>
+        </PropertyDefinitionValue>
+        <PropertyDefinitionValue PropertyDefinitionId="dfae4477-6a1c-4fa6-82bb-d2f487f5b99b">
+          <PropertyValue m="2014-03-15T02:40:02.7450326Z">&amp;copy; Kellerman Software %%year%%. All Rights Reserved.</PropertyValue>
+        </PropertyDefinitionValue>
+        <PropertyDefinitionValue PropertyDefinitionId="2f9f3fe0-f813-47cd-ba2e-ed8c50f24abc">
+          <PropertyValue m="2014-03-15T02:40:16.7138315Z">&lt;a href="mailto:support@kellermansoftware.com?subject=Documentation Feedback: %%FileName%%"&gt;Send Feedback&lt;/a&gt;</PropertyValue>
+        </PropertyDefinitionValue>
+      </PropertyDefinitionValues>
+      <IsTidyXhtmlEnabled>false</IsTidyXhtmlEnabled>
+      <CommunityOptions UseLocalProxyUrl="false" Enabled="false">
+        <ServerType>PublicEvaluation</ServerType>
+        <LocalProxyUrl></LocalProxyUrl>
+        <HostingAccessKey></HostingAccessKey>
+        <PrivateServerUrl></PrivateServerUrl>
+        <PrivateServerAccessKey></PrivateServerAccessKey>
+        <ProjectKey />
+      </CommunityOptions>
+      <DotNet>
+        <IncludeRelationshipDiagrams>true</IncludeRelationshipDiagrams>
+        <IncludeInheritanceHierarchies>true</IncludeInheritanceHierarchies>
+        <IncludeSystemObjectMembers>false</IncludeSystemObjectMembers>
+        <InterfacesToIgnoreInSyntax>System.*</InterfacesToIgnoreInSyntax>
+        <NoInheritedMemberTopicsInternal>true</NoInheritedMemberTopicsInternal>
+        <LinkToExternalDocs>false</LinkToExternalDocs>
+        <UseXmlCommentFile>true</UseXmlCommentFile>
+        <UseExternalXmlCommentFiles>false</UseExternalXmlCommentFiles>
+        <NoInheritedMemberTopicsExternal>false</NoInheritedMemberTopicsExternal>
+        <NoInheritedInLists>false</NoInheritedInLists>
+        <ExcludeEditorBrowsable>true</ExcludeEditorBrowsable>
+        <ExcludeBrowsableFalse>false</ExcludeBrowsableFalse>
+        <ExcludeObsolete>false</ExcludeObsolete>
+        <ExcludeCompilerGenerated>false</ExcludeCompilerGenerated>
+        <ExcludeDebuggerNonUserCode>false</ExcludeDebuggerNonUserCode>
+        <GenerateXmlCommentFile>false</GenerateXmlCommentFile>
+        <IncludeBreadcrumbs>true</IncludeBreadcrumbs>
+        <IncludeAssemblyBreadcrumb>false</IncludeAssemblyBreadcrumb>
+        <IncludePrivateMembers>false</IncludePrivateMembers>
+        <IncludeFriendMembers>false</IncludeFriendMembers>
+        <IncludeProtectedFriendMembers>false</IncludeProtectedFriendMembers>
+        <IncludeProtectedMembers>true</IncludeProtectedMembers>
+        <IncludeAttributes>true</IncludeAttributes>
+        <AttributeFilterType>Exclude</AttributeFilterType>
+        <AttributeFilter></AttributeFilter>
+        <XmlIsland></XmlIsland>
+        <IdentifyAccessInTitles>false</IdentifyAccessInTitles>
+        <XmlCommentUsage>Merge</XmlCommentUsage>
+        <DiagramSettings OverviewNestingLevels="0" PageNestingLevels="0" DiagramStyleSource="Template">
+          <SuppressSingleObjectDiagrams>false</SuppressSingleObjectDiagrams>
+          <DiagramStyle>
+            <CommonStyle OuterMargin="10" ShareSize="true">
+              <IsNewBrush>#FFFF0000</IsNewBrush>
+              <IsNewSize>10</IsNewSize>
+              <UseDropShadow>false</UseDropShadow>
+              <DropShadowOpacity>0.3</DropShadowOpacity>
+              <DropShadowDepth>3</DropShadowDepth>
+              <DropShadowColor>#FF000000</DropShadowColor>
+              <DropShadowDirection>300</DropShadowDirection>
+              <Connector Brush="#FF808080" Thickness="1.5" StyleName="Solid" Indent="30" />
+            </CommonStyle>
+            <ObjectItemStyle Font="Tahoma" FontSize="12" FontBrush="#FF000000" FontWeight="Normal" FontStyle="Normal" TextPadding="5" HorizontalAlignment="Left" BackgroundBrush="#FFADD8E6" BorderBrush="#FF808080" BorderThickness="0" EndCap="Rounded" />
+            <CollectionItemStyle Font="Tahoma" FontSize="12" FontBrush="#FF000000" FontWeight="Normal" FontStyle="Normal" TextPadding="5" HorizontalAlignment="Left" BackgroundBrush="#FFADD8E6" BorderBrush="#FF808080" BorderThickness="0" EndCap="Rounded" />
+          </DiagramStyle>
+          <DiagramRelationshipsFrom>All</DiagramRelationshipsFrom>
+          <IncludeFields>false</IncludeFields>
+          <DiagramDefaultCollectionMemberOnly>false</DiagramDefaultCollectionMemberOnly>
+        </DiagramSettings>
+        <IncludeVbNetDefaultConstructor>false</IncludeVbNetDefaultConstructor>
+        <UseOverloadSummaryForMasterSummary>true</UseOverloadSummaryForMasterSummary>
+        <LinkOverriddenMembersToBaseImplementation>false</LinkOverriddenMembersToBaseImplementation>
+        <GenericIndicator>ArgumentsInBrackets</GenericIndicator>
+        <RootAssemblyName></RootAssemblyName>
+        <IncludeConstructorsOnAbstractTypes>false</IncludeConstructorsOnAbstractTypes>
+        <TemplateName>Visual Studio 2008 Style</TemplateName>
+        <ExcludeAllPrivateTypes>true</ExcludeAllPrivateTypes>
+        <ExcludeAllFriendTypes>true</ExcludeAllFriendTypes>
+        <ExcludeAllProtectedTypes>false</ExcludeAllProtectedTypes>
+        <ExcludeAllProtectedFriendTypes>false</ExcludeAllProtectedFriendTypes>
+        <SyntaxSectionStyle>TemplateDefault</SyntaxSectionStyle>
+        <IsVbSyntaxMerged>true</IsVbSyntaxMerged>
+        <IncludeMemberIndexKeywords>false</IncludeMemberIndexKeywords>
+        <IncludeCodeContracts>false</IncludeCodeContracts>
+        <GroupExamples>false</GroupExamples>
+        <ColorizeSyntax>false</ColorizeSyntax>
+        <IncludeExtensionMethods>false</IncludeExtensionMethods>
+        <UseContentFromBaseMember>false</UseContentFromBaseMember>
+        <ExcludedLanguages>
+          <ExcludedLanguage>Delphi</ExcludedLanguage>
+          <ExcludedLanguage>JScript</ExcludedLanguage>
+          <ExcludedLanguage>CPP2005</ExcludedLanguage>
+        </ExcludedLanguages>
+      </DotNet>
+      <Javascript>
+        <IsBrowserCompatibilityIncluded>true</IsBrowserCompatibilityIncluded>
+        <IsBrowserCompatibilityIncludedOnEveryPage>true</IsBrowserCompatibilityIncludedOnEveryPage>
+        <UseDollarPrefix>true</UseDollarPrefix>
+        <WrapInDomReady>false</WrapInDomReady>
+        <IsIncludeParametersInUsageSyntaxEnabled>true</IsIncludeParametersInUsageSyntaxEnabled>
+        <IsGenerateTypeMemberPagesEnabled>false</IsGenerateTypeMemberPagesEnabled>
+        <SyntaxIndentParametersLength>60</SyntaxIndentParametersLength>
+        <IncludeRelationshipDiagrams>true</IncludeRelationshipDiagrams>
+        <IncludeInheritanceHierarchies>true</IncludeInheritanceHierarchies>
+        <NoInheritedMemberTopicsInternal>true</NoInheritedMemberTopicsInternal>
+        <UseXmlCommentFile>true</UseXmlCommentFile>
+        <NoInheritedInLists>false</NoInheritedInLists>
+        <IncludeBreadcrumbs>true</IncludeBreadcrumbs>
+        <IncludeComponentBreadcrumb>false</IncludeComponentBreadcrumb>
+        <XmlIsland></XmlIsland>
+        <XmlCommentUsage>Merge</XmlCommentUsage>
+        <DiagramSettings OverviewNestingLevels="0" PageNestingLevels="0" DiagramStyleSource="Template">
+          <SuppressSingleObjectDiagrams>true</SuppressSingleObjectDiagrams>
+          <DiagramStyle>
+            <CommonStyle OuterMargin="10" ShareSize="true">
+              <IsNewBrush>#FFFF0000</IsNewBrush>
+              <IsNewSize>10</IsNewSize>
+              <UseDropShadow>false</UseDropShadow>
+              <DropShadowOpacity>0.3</DropShadowOpacity>
+              <DropShadowDepth>3</DropShadowDepth>
+              <DropShadowColor>#FF000000</DropShadowColor>
+              <DropShadowDirection>300</DropShadowDirection>
+              <Connector Brush="#FF808080" Thickness="1.5" StyleName="Solid" Indent="30" />
+            </CommonStyle>
+            <ObjectItemStyle Font="Tahoma" FontSize="12" FontBrush="#FF000000" FontWeight="Normal" FontStyle="Normal" TextPadding="5" HorizontalAlignment="Left" BackgroundBrush="#FFADD8E6" BorderBrush="#FF808080" BorderThickness="0" EndCap="Rounded" />
+            <CollectionItemStyle Font="Tahoma" FontSize="12" FontBrush="#FF000000" FontWeight="Normal" FontStyle="Normal" TextPadding="5" HorizontalAlignment="Left" BackgroundBrush="#FFADD8E6" BorderBrush="#FF808080" BorderThickness="0" EndCap="Rounded" />
+          </DiagramStyle>
+          <DiagramRelationshipsFrom>All</DiagramRelationshipsFrom>
+          <IncludeFields>false</IncludeFields>
+          <DiagramDefaultCollectionMemberOnly>false</DiagramDefaultCollectionMemberOnly>
+        </DiagramSettings>
+        <RootComponentName></RootComponentName>
+        <IncludeConstructorsOnAbstractTypes>false</IncludeConstructorsOnAbstractTypes>
+        <TemplateName>2012 Style</TemplateName>
+        <ExcludeAllPrivateTypes>true</ExcludeAllPrivateTypes>
+        <ExcludeAllFriendTypes>true</ExcludeAllFriendTypes>
+        <ExcludeAllProtectedTypes>false</ExcludeAllProtectedTypes>
+        <ExcludeAllProtectedFriendTypes>false</ExcludeAllProtectedFriendTypes>
+        <IncludeMemberIndexKeywords>false</IncludeMemberIndexKeywords>
+        <GroupExamples>false</GroupExamples>
+        <ColorizeSyntax>true</ColorizeSyntax>
+      </Javascript>
+      <Ajax>
+        <IncludeRelationshipDiagrams>false</IncludeRelationshipDiagrams>
+        <IncludeInheritanceHierarchies>true</IncludeInheritanceHierarchies>
+        <NoInheritedMemberTopicsInternal>true</NoInheritedMemberTopicsInternal>
+        <UseXmlCommentFile>true</UseXmlCommentFile>
+        <NoInheritedInLists>false</NoInheritedInLists>
+        <IncludeBreadcrumbs>true</IncludeBreadcrumbs>
+        <IncludeComponentBreadcrumb>false</IncludeComponentBreadcrumb>
+        <XmlIsland></XmlIsland>
+        <XmlCommentUsage>Merge</XmlCommentUsage>
+        <DiagramSettings OverviewNestingLevels="0" PageNestingLevels="0" DiagramStyleSource="Template">
+          <SuppressSingleObjectDiagrams>false</SuppressSingleObjectDiagrams>
+          <DiagramStyle>
+            <CommonStyle OuterMargin="10" ShareSize="true">
+              <IsNewBrush>#FFFF0000</IsNewBrush>
+              <IsNewSize>10</IsNewSize>
+              <UseDropShadow>false</UseDropShadow>
+              <DropShadowOpacity>0.3</DropShadowOpacity>
+              <DropShadowDepth>3</DropShadowDepth>
+              <DropShadowColor>#FF000000</DropShadowColor>
+              <DropShadowDirection>300</DropShadowDirection>
+              <Connector Brush="#FF808080" Thickness="1.5" StyleName="Solid" Indent="30" />
+            </CommonStyle>
+            <ObjectItemStyle Font="Tahoma" FontSize="12" FontBrush="#FF000000" FontWeight="Normal" FontStyle="Normal" TextPadding="5" HorizontalAlignment="Left" BackgroundBrush="#FFADD8E6" BorderBrush="#FF808080" BorderThickness="0" EndCap="Rounded" />
+            <CollectionItemStyle Font="Tahoma" FontSize="12" FontBrush="#FF000000" FontWeight="Normal" FontStyle="Normal" TextPadding="5" HorizontalAlignment="Left" BackgroundBrush="#FFADD8E6" BorderBrush="#FF808080" BorderThickness="0" EndCap="Rounded" />
+          </DiagramStyle>
+          <DiagramRelationshipsFrom>All</DiagramRelationshipsFrom>
+          <IncludeFields>false</IncludeFields>
+          <DiagramDefaultCollectionMemberOnly>false</DiagramDefaultCollectionMemberOnly>
+        </DiagramSettings>
+        <RootComponentName></RootComponentName>
+        <IncludeConstructorsOnAbstractTypes>false</IncludeConstructorsOnAbstractTypes>
+        <TemplateName>Visual Studio 2008 Style</TemplateName>
+        <ExcludeAllPrivateTypes>true</ExcludeAllPrivateTypes>
+        <ExcludeAllFriendTypes>true</ExcludeAllFriendTypes>
+        <ExcludeAllProtectedTypes>false</ExcludeAllProtectedTypes>
+        <ExcludeAllProtectedFriendTypes>false</ExcludeAllProtectedFriendTypes>
+        <IncludeMemberIndexKeywords>true</IncludeMemberIndexKeywords>
+        <GroupExamples>false</GroupExamples>
+        <ColorizeSyntax>false</ColorizeSyntax>
+      </Ajax>
+      <Com>
+        <IncludeRelationshipDiagrams>true</IncludeRelationshipDiagrams>
+        <UseHelpStrings>true</UseHelpStrings>
+        <IncludeBreadcrumbs>true</IncludeBreadcrumbs>
+        <IncludeProjectBreadcrumb>false</IncludeProjectBreadcrumb>
+        <IncludePrivateMembers>false</IncludePrivateMembers>
+        <HelpStringUsage>Merge</HelpStringUsage>
+        <DiagramSettings OverviewNestingLevels="2" PageNestingLevels="3" DiagramStyleSource="Template">
+          <SuppressSingleObjectDiagrams>true</SuppressSingleObjectDiagrams>
+          <DiagramStyle>
+            <CommonStyle OuterMargin="10" ShareSize="true">
+              <IsNewBrush>#FFFF0000</IsNewBrush>
+              <IsNewSize>10</IsNewSize>
+              <UseDropShadow>false</UseDropShadow>
+              <DropShadowOpacity>0.3</DropShadowOpacity>
+              <DropShadowDepth>3</DropShadowDepth>
+              <DropShadowColor>#FF000000</DropShadowColor>
+              <DropShadowDirection>300</DropShadowDirection>
+              <Connector Brush="#FF808080" Thickness="1.5" StyleName="Solid" Indent="30" />
+            </CommonStyle>
+            <ObjectItemStyle Font="Tahoma" FontSize="12" FontBrush="#FF000000" FontWeight="Normal" FontStyle="Normal" TextPadding="5" HorizontalAlignment="Left" BackgroundBrush="#FFADD8E6" BorderBrush="#FF808080" BorderThickness="0" EndCap="Rounded" />
+            <CollectionItemStyle Font="Tahoma" FontSize="12" FontBrush="#FF000000" FontWeight="Normal" FontStyle="Normal" TextPadding="5" HorizontalAlignment="Left" BackgroundBrush="#FFADD8E6" BorderBrush="#FF808080" BorderThickness="0" EndCap="Rounded" />
+          </DiagramStyle>
+          <DiagramRelationshipsFrom>All</DiagramRelationshipsFrom>
+          <IncludeFields>false</IncludeFields>
+          <DiagramDefaultCollectionMemberOnly>true</DiagramDefaultCollectionMemberOnly>
+        </DiagramSettings>
+        <RootProjectName></RootProjectName>
+        <IncludeConstructorsOnAbstractTypes>false</IncludeConstructorsOnAbstractTypes>
+        <TemplateName>Visual Studio 2008 Style</TemplateName>
+        <ExcludeAllPrivateTypes>true</ExcludeAllPrivateTypes>
+        <IncludeMemberIndexKeywords>true</IncludeMemberIndexKeywords>
+        <GroupExamples>false</GroupExamples>
+        <ColorizeSyntax>false</ColorizeSyntax>
+      </Com>
+      <Database>
+        <TemplateName>Visual Studio 2008 Style</TemplateName>
+        <IncludeSqlServerSystemObjects>false</IncludeSqlServerSystemObjects>
+        <IncludeSourceForViews>true</IncludeSourceForViews>
+        <IncludeSourceForTriggers>true</IncludeSourceForTriggers>
+        <IncludeSourceForUserDefinedFunctions>true</IncludeSourceForUserDefinedFunctions>
+        <IncludeSourceForStoredProcedures>true</IncludeSourceForStoredProcedures>
+        <IncludeScriptForTables>true</IncludeScriptForTables>
+        <IncludeScriptForOtherItems>true</IncludeScriptForOtherItems>
+        <RemoveTaggedCommentsFromSource>true</RemoveTaggedCommentsFromSource>
+        <IncludeBreadcrumbs>true</IncludeBreadcrumbs>
+        <IncludeSchemaInformation>true</IncludeSchemaInformation>
+        <CheckAllExtendedProperties>false</CheckAllExtendedProperties>
+        <SourceContentUsage>Merge</SourceContentUsage>
+        <UseSourceContent>true</UseSourceContent>
+        <MaximumDependencyLevel>5</MaximumDependencyLevel>
+        <UseSqlServerDataTypeNames>false</UseSqlServerDataTypeNames>
+      </Database>
+      <Xsd>
+        <IncludeOverview>true</IncludeOverview>
+        <IncludeOverviewReferencedChildren>false</IncludeOverviewReferencedChildren>
+        <OverviewLevels>5</OverviewLevels>
+        <DiagramStyle>
+          <DefaultTextOptions></DefaultTextOptions>
+          <Options></Options>
+        </DiagramStyle>
+        <IncludeAttributesInDiagrams>true</IncludeAttributesInDiagrams>
+        <SuppressSingleObjectDiagrams>false</SuppressSingleObjectDiagrams>
+        <DiagramItemMaxExtendedRecurse>3</DiagramItemMaxExtendedRecurse>
+        <DiagramItemMaxRecurse>3</DiagramItemMaxRecurse>
+        <GenerateDiagrams>true</GenerateDiagrams>
+        <IsOverrideTemplateDiagramStyleEnabled>false</IsOverrideTemplateDiagramStyleEnabled>
+        <TemplateName>Visual Studio 2008 Style</TemplateName>
+        <IncludeBreadcrumbs>true</IncludeBreadcrumbs>
+        <SourceContentUsage>Merge</SourceContentUsage>
+        <UseSourceContent>true</UseSourceContent>
+      </Xsd>
+      <Filters />
+      <WebService>
+        <GroupExamples>true</GroupExamples>
+        <IncludeRequestBodyDiagram>true</IncludeRequestBodyDiagram>
+        <IncludeResponseBodyDiagram>true</IncludeResponseBodyDiagram>
+        <IncludeRequestBodyOverview>true</IncludeRequestBodyOverview>
+        <IncludeResponseBodyOverview>true</IncludeResponseBodyOverview>
+        <IncludeRequestBodySampleData>true</IncludeRequestBodySampleData>
+        <IncludeResponseBodySampleData>true</IncludeResponseBodySampleData>
+        <IsSampleDataColorized>true</IsSampleDataColorized>
+        <ImplyJsonSchemas>true</ImplyJsonSchemas>
+        <IsGroupedByResource>false</IsGroupedByResource>
+        <IncludeFullResourceUriInOperationPages>true</IncludeFullResourceUriInOperationPages>
+        <UseAbsolutePathForResourcePaths>true</UseAbsolutePathForResourcePaths>
+        <TemplateName>2012 Style</TemplateName>
+        <IncludeBreadcrumbs>true</IncludeBreadcrumbs>
+        <SourceContentUsage>Merge</SourceContentUsage>
+        <UseSourceContent>true</UseSourceContent>
+      </WebService>
+      <HelpCompiler CompileHelpFile="true" IsWebOutputEnabled="false" IsMarkOfTheWebEnabled="false">
+        <MarkOfTheWebDomain>(0014)about:internet</MarkOfTheWebDomain>
+        <HelpFileVersion>HtmlHelp1</HelpFileVersion>
+        <Help2Namespace>default</Help2Namespace>
+        <Help2FileId>2010Style</Help2FileId>
+        <Help2PluginToNamespaces></Help2PluginToNamespaces>
+        <Help2Plugin>false</Help2Plugin>
+        <RuntimeMerge></RuntimeMerge>
+        <IncludeTextPopupFile>false</IncludeTextPopupFile>
+        <Help3BuildIdentifier></Help3BuildIdentifier>
+        <Help3VendorName></Help3VendorName>
+        <Help3CatalogName>VS</Help3CatalogName>
+        <Help3CatalogVersion>100</Help3CatalogVersion>
+        <Help3CatalogLocaleText>en-US</Help3CatalogLocaleText>
+        <Help3TemplateName></Help3TemplateName>
+        <Help3ProductName></Help3ProductName>
+        <Help3BookName></Help3BookName>
+        <IsHelp3CreateRegistrationScriptEnabled>true</IsHelp3CreateRegistrationScriptEnabled>
+        <IsHelp3RegisterLocallyEnabled>true</IsHelp3RegisterLocallyEnabled>
+        <IsHelp3SigningEnabled>false</IsHelp3SigningEnabled>
+        <IsHelp3ValidationEnabled>false</IsHelp3ValidationEnabled>
+        <IsHelp3KeywordsEnabled>false</IsHelp3KeywordsEnabled>
+        <BrowserHelpTemplateName>Default</BrowserHelpTemplateName>
+        <IsCustomHtmlHelpWindowSettings>false</IsCustomHtmlHelpWindowSettings>
+        <CustomHtmlHelpWindowSettings>
+          <IsExpandVisible>true</IsExpandVisible>
+          <IsBackVisible>true</IsBackVisible>
+          <IsForwardVisible>true</IsForwardVisible>
+          <IsStopVisible>false</IsStopVisible>
+          <IsRefreshVisible>false</IsRefreshVisible>
+          <IsHomeVisible>false</IsHomeVisible>
+          <IsLocateVisible>true</IsLocateVisible>
+          <IsOptionsVisible>true</IsOptionsVisible>
+          <IsPrintVisible>true</IsPrintVisible>
+          <IsZoomVisible>false</IsZoomVisible>
+          <IsPreviousVisible>false</IsPreviousVisible>
+          <IsNextVisible>false</IsNextVisible>
+          <NavigationPaneWidth>200</NavigationPaneWidth>
+          <IsNavigationPaneInitiallyClosed>false</IsNavigationPaneInitiallyClosed>
+          <IsAutoSyncWithTocEnabled>true</IsAutoSyncWithTocEnabled>
+          <IsSearchTabVisible>true</IsSearchTabVisible>
+          <IsHistoryTabVisible>false</IsHistoryTabVisible>
+          <IsFavoritesTabVisible>true</IsFavoritesTabVisible>
+          <DefaultTab>Contents</DefaultTab>
+          <IsSaveUserWindowSettingsEnabled>true</IsSaveUserWindowSettingsEnabled>
+          <WindowSizeHeight>400</WindowSizeHeight>
+          <WindowSizeWidth>600</WindowSizeWidth>
+          <WindowLocationLeft>0</WindowLocationLeft>
+          <WindowLocationTop>0</WindowLocationTop>
+        </CustomHtmlHelpWindowSettings>
+        <HelpFileName>..\..\Compare-NET-Objects-Help\Compare-NET-Objects-Help.chm</HelpFileName>
+      </HelpCompiler>
+      <RuleEngine>
+        <Rules Caption="" IsReadOnly="false" MatchType="All" Id="root">
+          <Rules>
+            <RuleGroup Caption="" IsReadOnly="false" MatchType="All" Id="standard">
+              <Rules>
+                <Rule Caption="" IsReadOnly="false" MatchType="All" Id="outputtype">
+                  <Conditions>
+                    <RuleCondition Caption="" IsReadOnly="false" BuildFlagMatchType="None" Id="1fc3260b-c5d0-40f7-87b1-8b0a4a4db059" Designer="BUILDFLAGS">
+                      <BuildFlags>{46CEF21D-3301-4517-A875-A0906828390E}</BuildFlags>
+                    </RuleCondition>
+                  </Conditions>
+                </Rule>
+              </Rules>
+            </RuleGroup>
+            <RuleGroup Caption="" IsReadOnly="false" MatchType="All" Id="custom">
+              <Rules />
+            </RuleGroup>
+          </Rules>
+        </Rules>
+      </RuleEngine>
+      <ShortFileNames GenerateShortFileNames="false" />
+      <TopicsProjectProfilePlugin>
+        <TemplateName>Visual Studio 2008 Style</TemplateName>
+        <IncludeBreadcrumbs>true</IncludeBreadcrumbs>
+        <AutoGenerateTopicIndexEntries>true</AutoGenerateTopicIndexEntries>
+        <AutoGenerateCategoryIndexEntries>true</AutoGenerateCategoryIndexEntries>
+        <IncludeOnlyCompletedTopics>false</IncludeOnlyCompletedTopics>
+        <IsNewSource>CreationDateTime</IsNewSource>
+        <IsNewCustomTopicPropertyId></IsNewCustomTopicPropertyId>
+        <IsAnchorParsingEnabled>false</IsAnchorParsingEnabled>
+      </TopicsProjectProfilePlugin>
+      <WidgetsProjectProfilePlugin>
+        <IsIncludeInThisTopicWidgetEnabled>false</IsIncludeInThisTopicWidgetEnabled>
+        <InThisTopicWidgetHeadingsMinimum>5</InThisTopicWidgetHeadingsMinimum>
+        <InThisTopicWidgetTagName>H1</InThisTopicWidgetTagName>
+        <InThisTopicWidgetPrefix>$$In_This_Topic$$</InThisTopicWidgetPrefix>
+        <WidgetTypes Version="2011.1" />
+      </WidgetsProjectProfilePlugin>
+      <OtherFiles>
+        <IsLogoEnabled>false</IsLogoEnabled>
+        <LogoOtherFileName></LogoOtherFileName>
+        <IsGoogleAnalyticsEnabled>false</IsGoogleAnalyticsEnabled>
+        <GoogleAnalyticsId></GoogleAnalyticsId>
+        <IsOtherHeadContentEnabled>false</IsOtherHeadContentEnabled>
+        <OtherHeadContent></OtherHeadContent>
+      </OtherFiles>
+      <Publishing />
+      <OutputDirectory>build\Compare .NET Objects Help</OutputDirectory>
+    </ProjectProfile>
+  </ProjectProfiles>
+  <HelpContextIDHeaderFile></HelpContextIDHeaderFile>
+  <PrimaryLocale CultureId="-">
+    <ExportDateTime></ExportDateTime>
+    <Dictionary></Dictionary>
+    <Notes></Notes>
+    <PhraseCultureId></PhraseCultureId>
+    <EncodingCulture></EncodingCulture>
+    <IsEnhancedWordBreakAnalysisEnabled>false</IsEnhancedWordBreakAnalysisEnabled>
+  </PrimaryLocale>
+  <JavaProjectPlugin />
+</DocumentXProject>

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentFile Version="2010" Moniker="..\bin\Debug\KellermanSoftware.Compare-NET-Objects.dll" DocType="DX.NET" IsLocalizationDisabled="false">
+  <RelatedProject>documentation.dxp</RelatedProject>
+  <State>
+    <Attributes>
+      <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
+      <Attribute key="inheritedMembers" valuetype="string">on</Attribute>
+      <Attribute key="protectedMembers" valuetype="string">on</Attribute>
+    </Attributes>
+  </State>
+  <LastSelectedItem>KellermanSoftware.Compare-NET-Objects</LastSelectedItem>
+  <item qn="KellermanSoftware.Compare-NET-Objects">
+    <project_introduction ChangeDateTime="2012-07-20T18:35:02.4868852Z">&lt;DIV class=wikidoc&gt;&lt;A href="http://www.kellermansoftware.com"&gt;&lt;IMG style="BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-TOP: medium none; BORDER-RIGHT: medium none" title="Kellerman Software Logo" alt="Kellerman Software Logo" src="http://www.kellermansoftware.com/images/logo.gif"&gt;&lt;/A&gt;&lt;BR&gt;&lt;BR&gt;&lt;B&gt;Project Description&lt;/B&gt;&lt;BR&gt;What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects. &lt;BR&gt;&lt;BR&gt;&lt;B&gt;NuGet Package&lt;/B&gt;&lt;BR&gt;&lt;A href="http://www.nuget.org/packages/CompareNETObjects"&gt;&lt;FONT color=#0066cc&gt;http://www.nuget.org/packages/CompareNETObjects&lt;/FONT&gt;&lt;/A&gt;&lt;BR&gt;&lt;BR&gt;Features 
+&lt;UL&gt;
+&lt;LI&gt;Compare Primitive Types 
+&lt;LI&gt;Compare Structs 
+&lt;LI&gt;Compare IList Objects 
+&lt;LI&gt;Compare Single and Multi-Dimensional Arrays 
+&lt;LI&gt;Compare IDictionary Objects 
+&lt;LI&gt;Compare Publicly visible Class Fields and Properties 
+&lt;LI&gt;Compare Children 
+&lt;LI&gt;Handling for Trees with Children Pointing To Parents 
+&lt;LI&gt;Compare Enums 
+&lt;LI&gt;Compare Timespans 
+&lt;LI&gt;Compare Guids 
+&lt;LI&gt;Compare Classes that Implement IList with Indexers 
+&lt;LI&gt;Compare DataSet Data 
+&lt;LI&gt;Compare DataTable Data 
+&lt;LI&gt;Compare DataRow Data 
+&lt;LI&gt;Compare LinearGradient 
+&lt;LI&gt;Compare HashSet 
+&lt;LI&gt;Compare URI 
+&lt;LI&gt;Compare Types of Type (RuntimeType) 
+&lt;LI&gt;Source code in both C# and in VB.NET 
+&lt;LI&gt;NUnit Test Project Included 
+&lt;LI&gt;Ability to load settings from a config file for use with powershell 
+&lt;LI&gt;Several configuration options for comparing private elements, and ignoring specific elements. 
+&lt;LI&gt;Property and Field Info reflection caching for increased performance&lt;/LI&gt;&lt;/UL&gt;&lt;/DIV&gt;</project_introduction>
+    <project_gettingstarted ChangeDateTime="2012-12-21T18:22:31.6648108Z">&lt;P class=wikidoc&gt;&lt;STRONG&gt;Important&lt;/STRONG&gt;&lt;/P&gt;
+&lt;DIV class=wikidoc&gt;
+&lt;UL&gt;
+&lt;LI&gt;By default for performance reasons, Compare .NET Objects only detects the first difference.&amp;nbsp; To capture all differences set MaxDifferences to the maximum differences desired. 
+&lt;LI&gt;After the comparison, the differences are in the Differences list or in the DifferencesString properties. 
+&lt;LI&gt;By default, a deep comparison is performed.&amp;nbsp; To perform a shallow comparison, set CompareChildren = false 
+&lt;LI&gt;By default, private properties and fields are not compared.&amp;nbsp; Set ComparePrivateProperties and ComparePrivateFields to true to override this behavior. &lt;/LI&gt;&lt;/UL&gt;&lt;/DIV&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;C# Example&lt;/STRONG&gt;&lt;/P&gt;
+&lt;DIV style="BACKGROUND-COLOR: white; COLOR: black"&gt;&lt;PRE&gt;&lt;SPAN style="COLOR: green"&gt;//This is the comparison class&lt;/SPAN&gt;
+CompareObjects compareObjects = &lt;SPAN style="COLOR: blue"&gt;new&lt;/SPAN&gt; CompareObjects();
+
+&lt;SPAN style="COLOR: green"&gt;//Create a couple objects to compare&lt;/SPAN&gt;
+Person person1 = &lt;SPAN style="COLOR: blue"&gt;new&lt;/SPAN&gt; Person();
+person1.DateCreated = DateTime.Now;
+person1.Name = &lt;SPAN style="COLOR: #a31515"&gt;"Greg"&lt;/SPAN&gt;;
+
+Person person2 = &lt;SPAN style="COLOR: blue"&gt;new&lt;/SPAN&gt; Person();
+person2.Name = &lt;SPAN style="COLOR: #a31515"&gt;"John"&lt;/SPAN&gt;;
+person2.DateCreated = person1.DateCreated;
+
+&lt;SPAN style="COLOR: green"&gt;//These will be different, write out the differences&lt;/SPAN&gt;
+&lt;SPAN style="COLOR: blue"&gt;if&lt;/SPAN&gt; (!compareObjects.Compare(person1, person2))
+    Console.WriteLine(compareObjects.DifferencesString);
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;P&gt;&lt;STRONG&gt;&lt;/STRONG&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;VB.NET Example&lt;/STRONG&gt;&lt;/P&gt;
+&lt;DIV style="BACKGROUND-COLOR: white; COLOR: black"&gt;&lt;PRE&gt;&lt;SPAN style="COLOR: green"&gt;'This is the comparison class&lt;/SPAN&gt;
+&lt;SPAN style="COLOR: blue"&gt;Dim&lt;/SPAN&gt; compareObjects &lt;SPAN style="COLOR: blue"&gt;As&lt;/SPAN&gt; &lt;SPAN style="COLOR: blue"&gt;New&lt;/SPAN&gt; CompareObjects()
+
+&lt;SPAN style="COLOR: green"&gt;'Create a couple objects to compare&lt;/SPAN&gt;
+&lt;SPAN style="COLOR: blue"&gt;Dim&lt;/SPAN&gt; person1 &lt;SPAN style="COLOR: blue"&gt;As&lt;/SPAN&gt; &lt;SPAN style="COLOR: blue"&gt;New&lt;/SPAN&gt; Person()&lt;BR&gt;person1.DateCreated = &lt;SPAN style="COLOR: blue"&gt;Date&lt;/SPAN&gt;.Now
+person1.Name = &lt;SPAN style="COLOR: #a31515"&gt;"Greg"&lt;/SPAN&gt;
+
+&lt;SPAN style="COLOR: blue"&gt;Dim&lt;/SPAN&gt; person2 &lt;SPAN style="COLOR: blue"&gt;As&lt;/SPAN&gt; &lt;SPAN style="COLOR: blue"&gt;New&lt;/SPAN&gt; Person()
+person2.Name = &lt;SPAN style="COLOR: #a31515"&gt;"John"&lt;/SPAN&gt;
+person2.DateCreated = person1.DateCreated
+
+&lt;SPAN style="COLOR: green"&gt;'These will be different, write out the differences&lt;/SPAN&gt;
+&lt;SPAN style="COLOR: blue"&gt;If&lt;/SPAN&gt; &lt;SPAN style="COLOR: blue"&gt;Not&lt;/SPAN&gt; compareObjects.Compare(person1, person2) &lt;SPAN style="COLOR: blue"&gt;Then&lt;/SPAN&gt;
+	Console.WriteLine(compareObjects.DifferencesString)
+&lt;SPAN style="COLOR: blue"&gt;End&lt;/SPAN&gt; &lt;SPAN style="COLOR: blue"&gt;If&lt;/SPAN&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;</project_gettingstarted>
+  </item>
+  <item qn="KellermanSoftware.Compare-NET-Objects~KellermanSoftware.CompareNetObjects_namespace">
+    <summary ChangeDateTime="2012-07-20T18:37:25.5550682Z">Compare .NET Objects</summary>
+  </item>
+  <Filters>
+    <CONTENTSTORECOMMON>
+      <IsIncludedItemsOnly>true</IsIncludedItemsOnly>
+    </CONTENTSTORECOMMON>
+    <CONTENTSTORELOCALIZATION>
+      <IsPrimaryLocaleContentPreviewEnabled>true</IsPrimaryLocaleContentPreviewEnabled>
+    </CONTENTSTORELOCALIZATION>
+    <DX.NETCONTENTSTOREFILTER>
+      <ShowProtectedMembers>true</ShowProtectedMembers>
+      <ShowProtectedFriendMembers>true</ShowProtectedFriendMembers>
+      <ShowFriendMembers>false</ShowFriendMembers>
+      <ShowPrivateMembers>false</ShowPrivateMembers>
+      <ShowInheritedMembers>false</ShowInheritedMembers>
+      <IsSourceCodeContentVisible>true</IsSourceCodeContentVisible>
+    </DX.NETCONTENTSTOREFILTER>
+  </Filters>
+</ContentFile>

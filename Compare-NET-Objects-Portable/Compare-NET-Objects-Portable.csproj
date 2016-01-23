@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D8A78AFB-2C88-4A10-8555-210533F769E3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KellermanSoftware.CompareNetObjects</RootNamespace>
+    <AssemblyName>KellermanSoftware.Compare-NET-Objects-Portable</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile136</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;PORTABLE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\KellermanSoftware.Compare-NET-Objects-Portable.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;PORTABLE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>MyStrongName.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <None Include="MyStrongName.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Compare-NET-Objects\Cache.cs">
+      <Link>Cache.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\CompareLogic.cs">
+      <Link>CompareLogic.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\CompareObjects.cs">
+      <Link>CompareObjects.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\CompareParms.cs">
+      <Link>CompareParms.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\ComparisonConfig.cs">
+      <Link>ComparisonConfig.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\ComparisonResult.cs">
+      <Link>ComparisonResult.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\Difference.cs">
+      <Link>Difference.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\ExcludeLogic.cs">
+      <Link>ExcludeLogic.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\ICompareLogic.cs">
+      <Link>ICompareLogic.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\IgnoreOrderTypes\IgnoreOrderLogic.cs">
+      <Link>IgnoreOrderTypes\IgnoreOrderLogic.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\IgnoreOrderTypes\IndexerCollectionLooper.cs">
+      <Link>IgnoreOrderTypes\IndexerCollectionLooper.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\Reports\CsvReport.cs">
+      <Link>Reports\CsvReport.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\Reports\ISingleFileReport.cs">
+      <Link>Reports\ISingleFileReport.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\Reports\UserFriendlyReport.cs">
+      <Link>Reports\UserFriendlyReport.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\RootComparer.cs">
+      <Link>RootComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\RootComparerFactory.cs">
+      <Link>RootComparerFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\StringHelper.cs">
+      <Link>StringHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\BaseComparer.cs">
+      <Link>TypeComparers\BaseComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\BaseTypeComparer.cs">
+      <Link>TypeComparers\BaseTypeComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\ByteArrayComparer.cs">
+      <Link>TypeComparers\ByteArrayComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\ClassComparer.cs">
+      <Link>TypeComparers\ClassComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\DateComparer.cs">
+      <Link>TypeComparers\DateComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\DateTimeOffsetComparer.cs">
+      <Link>TypeComparers\DateTimeOffsetComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\DictionaryComparer.cs">
+      <Link>TypeComparers\DictionaryComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\DoubleComparer.cs">
+      <Link>TypeComparers\DoubleComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\EnumComparer.cs">
+      <Link>TypeComparers\EnumComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\EnumerableComparer.cs">
+      <Link>TypeComparers\EnumerableComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\FieldComparer.cs">
+      <Link>TypeComparers\FieldComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\HashSetComparer.cs">
+      <Link>TypeComparers\HashSetComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\IndexerComparer.cs">
+      <Link>TypeComparers\IndexerComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\ListComparer.cs">
+      <Link>TypeComparers\ListComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\PointerComparer.cs">
+      <Link>TypeComparers\PointerComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\PropertyComparer.cs">
+      <Link>TypeComparers\PropertyComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\RuntimeTypeComparer.cs">
+      <Link>TypeComparers\RuntimeTypeComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\SimpleTypeComparer.cs">
+      <Link>TypeComparers\SimpleTypeComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\StringComparer.cs">
+      <Link>TypeComparers\StringComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\StructComparer.cs">
+      <Link>TypeComparers\StructComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\TimespanComparer.cs">
+      <Link>TypeComparers\TimespanComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\UriComparer.cs">
+      <Link>TypeComparers\UriComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeHelper.cs">
+      <Link>TypeHelper.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
