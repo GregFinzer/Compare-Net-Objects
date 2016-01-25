@@ -1,5 +1,5 @@
-![Kellerman Software Logo](logo.png)
-Format: ![Kellerman Software Logo](www.kellermansoftware.com)
+[<img src="https://github.com/GregFinzer/comparenetobjects/blob/master/logo.png">](http://www.kellermansoftware.com)
+[<img src="https://github.com/GregFinzer/comparenetobjects/blob/master/PoweredByNDepend.png">](http://www.ndepend.com)
 
 #Project Description
 What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.
