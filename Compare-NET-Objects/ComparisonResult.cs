@@ -68,7 +68,7 @@ namespace KellermanSoftware.CompareNetObjects
         {
             get
             {
-                if (String.IsNullOrEmpty(_differencesString)
+                if (String.IsNullOrEmpty(_differencesString))
                 {
                     StringBuilder sb = new StringBuilder(4096);
 

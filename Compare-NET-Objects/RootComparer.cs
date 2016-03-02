@@ -26,36 +26,47 @@ namespace KellermanSoftware.CompareNetObjects
         /// </summary>
         public bool Compare(CompareParms parms)
         {
-            if (parms.Object1 == null && parms.Object2 == null)
-                return true;
-
-            Type t1 = parms.Object1 != null ? parms.Object1.GetType() : null;
-            Type t2 = parms.Object2 != null ? parms.Object2.GetType() : null;           
-
-            BaseTypeComparer customComparer = parms.Config.CustomComparers.FirstOrDefault(o => o.IsTypeMatch(t1, t2));
-
-            if (customComparer != null)
+            try
             {
-                customComparer.CompareType(parms);
-            }
-            else
-            {
-                BaseTypeComparer typeComparer = TypeComparers.FirstOrDefault(o => o.IsTypeMatch(t1, t2));
+                if (parms.Object1 == null && parms.Object2 == null)
+                    return true;
 
-                if (typeComparer != null)
+                Type t1 = parms.Object1 != null ? parms.Object1.GetType() : null;
+                Type t2 = parms.Object2 != null ? parms.Object2.GetType() : null;
+
+                BaseTypeComparer customComparer = parms.Config.CustomComparers.FirstOrDefault(o => o.IsTypeMatch(t1, t2));
+
+                if (customComparer != null)
                 {
-                    if (parms.Config.IgnoreObjectTypes || !TypesDifferent(parms, t1, t2))
-                    {
-                        typeComparer.CompareType(parms);
-                    }
+                    customComparer.CompareType(parms);
                 }
                 else
                 {
-                    if (EitherObjectIsNull(parms)) return false;
+                    BaseTypeComparer typeComparer = TypeComparers.FirstOrDefault(o => o.IsTypeMatch(t1, t2));
 
-                    if (!parms.Config.IgnoreObjectTypes && t1 != null)
-                        throw new NotSupportedException("Cannot compare object of type " + t1.Name);
+                    if (typeComparer != null)
+                    {
+                        if (parms.Config.IgnoreObjectTypes || !TypesDifferent(parms, t1, t2))
+                        {
+                            typeComparer.CompareType(parms);
+                        }
+                    }
+                    else
+                    {
+                        if (EitherObjectIsNull(parms)) return false;
+
+                        if (!parms.Config.IgnoreObjectTypes && t1 != null)
+                            throw new NotSupportedException("Cannot compare object of type " + t1.Name);
+                    }
                 }
+
+            }
+            catch (ObjectDisposedException)
+            {
+                if (!parms.Config.IgnoreObjectDisposedException)
+                    throw;
+
+                return true;
             }
 
             return parms.Result.AreEqual;

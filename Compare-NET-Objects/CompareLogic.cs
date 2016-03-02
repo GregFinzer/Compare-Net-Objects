@@ -159,7 +159,8 @@ namespace KellermanSoftware.CompareNetObjects
             Config.Caching = Settings.Default.Caching;
             Config.AutoClearCache = Settings.Default.AutoClearCache;
             Config.MaxDifferences = Settings.Default.MaxDifferences;
-            Config.IgnoreUnknownObjectTypes = Settings.Default.IgnoreUnknownObjectTypes;   
+            Config.IgnoreUnknownObjectTypes = Settings.Default.IgnoreUnknownObjectTypes;
+            Config.IgnoreObjectDisposedException = Settings.Default.IgnoreObjectDisposedException;
         }
 #endif
 

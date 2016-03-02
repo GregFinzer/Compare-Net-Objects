@@ -27,6 +27,11 @@ namespace KellermanSoftware.CompareNetObjects
         #region Properties
 
         /// <summary>
+        /// Ignore exceptions when objects are disposed
+        /// </summary>
+        public bool IgnoreObjectDisposedException { get; set; }
+
+        /// <summary>
         /// Ignore millisecond differences between DateTime values or DateTimeOffset values.  The default is 0 (any time difference will be shown).
         /// </summary>
         public int MaxMillisecondsDateDifference { get; set; }

@@ -80,25 +80,36 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             if (ilist2 == null)
                 throw new ArgumentException("parms.Object2");
 
-            //Objects must be the same length
-            if (ilist1.Count != ilist2.Count)
+            try
             {
-                Difference difference = new Difference
+                //Objects must be the same length
+                if (ilist1.Count != ilist2.Count)
                 {
-                    ParentObject1 = new WeakReference(parms.ParentObject1),
-                    ParentObject2 = new WeakReference(parms.ParentObject2),
-                    PropertyName = parms.BreadCrumb,
-                    Object1Value = ilist1.Count.ToString(CultureInfo.InvariantCulture),
-                    Object2Value = ilist2.Count.ToString(CultureInfo.InvariantCulture),
-                    ChildPropertyName = "Count",
-                    Object1 = new WeakReference(ilist1),
-                    Object2 = new WeakReference(ilist2)
-                };
+                    Difference difference = new Difference
+                    {
+                        ParentObject1 = new WeakReference(parms.ParentObject1),
+                        ParentObject2 = new WeakReference(parms.ParentObject2),
+                        PropertyName = parms.BreadCrumb,
+                        Object1Value = ilist1.Count.ToString(CultureInfo.InvariantCulture),
+                        Object2Value = ilist2.Count.ToString(CultureInfo.InvariantCulture),
+                        ChildPropertyName = "Count",
+                        Object1 = new WeakReference(ilist1),
+                        Object2 = new WeakReference(ilist2)
+                    };
 
-                AddDifference(parms.Result, difference);
+                    AddDifference(parms.Result, difference);
+
+                    return true;
+                }
+            }
+            catch (ObjectDisposedException)
+            {
+                if (!parms.Config.IgnoreObjectDisposedException)
+                    throw;
 
                 return true;
             }
+
             return false;
         }
 
