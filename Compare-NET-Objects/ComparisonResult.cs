@@ -10,6 +10,8 @@ namespace KellermanSoftware.CompareNetObjects
     /// </summary>
     public class ComparisonResult
     {
+        private string _differencesString = null;
+
         #region Constructors
         /// <summary>
         /// Set the configuration for the comparison
@@ -66,20 +68,26 @@ namespace KellermanSoftware.CompareNetObjects
         {
             get
             {
-                StringBuilder sb = new StringBuilder(4096);
-
-                sb.AppendLine();
-                sb.AppendFormat("Begin Differences ({0} differences):{1}", Differences.Count, Environment.NewLine);
-
-                foreach (Difference item in Differences)
+                if (String.IsNullOrEmpty(_differencesString)
                 {
-                    sb.AppendLine(item.ToString());
+                    StringBuilder sb = new StringBuilder(4096);
+
+                    sb.AppendLine();
+                    sb.AppendFormat("Begin Differences ({0} differences):{1}", Differences.Count, Environment.NewLine);
+
+                    foreach (Difference item in Differences)
+                    {
+                        sb.AppendLine(item.ToString());
+                    }
+
+                    sb.AppendFormat("End Differences (Maximum of {0} differences shown).", Config.MaxDifferences);
+
+                    _differencesString = sb.ToString();
                 }
 
-                sb.AppendFormat("End Differences (Maximum of {0} differences shown).", Config.MaxDifferences);
-
-                return sb.ToString();
+                return _differencesString;
             }
+            set { _differencesString = value; }
         }
 
         /// <summary>
