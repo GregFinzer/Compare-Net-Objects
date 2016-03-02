@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using KellermanSoftware.CompareNetObjects.TypeComparers;
 
 namespace KellermanSoftware.CompareNetObjects
@@ -227,11 +226,6 @@ namespace KellermanSoftware.CompareNetObjects
 
         #region Methods
 
-        //internal bool HasSpec(Type type)
-        //{
-        //    return CollectionMatchingSpec.Keys.Contains(type)
-        //           && CollectionMatchingSpec.First(p => p.Key == type).Value.Any();
-        //}
 
         /// <summary>
         /// Reset the configuration to the default values

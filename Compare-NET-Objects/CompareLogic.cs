@@ -20,6 +20,14 @@
 // * Knight Data Access Layer (ORM, LINQ Provider, Generator)
 // * CSV Reports (CSV Reader, Writer)
 // * What's Changed? (Compare words, strings, streams, and text files)
+// * .NET Excel Reports (Create Excel reports without excel being installed)
+// * .NET Word Reports (Create reports based on Microsoft Word files without having Microsoft Word installed)
+// * Config Helper Pro (Read and write to the registry, config files, and INI files with 100% managed code)
+// * Connection String Creator
+// * USPS Street Standardization Library
+// * .NET Link Tracker
+// * .NET PGP Library
+
 #region Includes
 
 using System;

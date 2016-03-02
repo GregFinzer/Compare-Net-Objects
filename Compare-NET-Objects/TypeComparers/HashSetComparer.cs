@@ -43,6 +43,9 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 Type t1 = parms.Object1.GetType();
                 parms.Object1Type = t1;
 
+                Type t2 = parms.Object2.GetType();
+                parms.Object2Type = t2;
+
                 bool countsDifferent = HashSetsDifferentCount(parms);
 
                 if (parms.Result.ExceededDifferences)
@@ -70,9 +73,11 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             int count = 0;
 
             //Get enumerators by reflection
-            MethodInfo methodInfo = Cache.GetMethod(parms.Object1Type, "GetEnumerator");
-            IEnumerator enumerator1 = (IEnumerator) methodInfo.Invoke(parms.Object1, null);
-            IEnumerator enumerator2 = (IEnumerator) methodInfo.Invoke(parms.Object2, null);
+            MethodInfo method1Info = Cache.GetMethod(parms.Object1Type, "GetEnumerator");
+            IEnumerator enumerator1 = (IEnumerator)method1Info.Invoke(parms.Object1, null);
+
+            MethodInfo method2Info = Cache.GetMethod(parms.Object2Type, "GetEnumerator");
+            IEnumerator enumerator2 = (IEnumerator) method2Info.Invoke(parms.Object2, null);
 
             while (enumerator1.MoveNext() && enumerator2.MoveNext())
             {
@@ -102,7 +107,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         {
             //Get count by reflection since we can't cast it to HashSet<>
             int hashSet1Count = (int) Cache.GetPropertyValue(parms.Result, parms.Object1Type, parms.Object1, "Count");
-            int hashSet2Count = (int) Cache.GetPropertyValue(parms.Result, parms.Object1Type, parms.Object2, "Count");
+            int hashSet2Count = (int)Cache.GetPropertyValue(parms.Result, parms.Object2Type, parms.Object2, "Count");
 
             //Objects must be the same length
             if (hashSet1Count != hashSet2Count)

@@ -10,7 +10,7 @@ namespace KellermanSoftware.CompareNetObjects
     /// </summary>
     public class ComparisonResult
     {
-        private string _differencesString = null;
+        private string _differencesString;
 
         #region Constructors
         /// <summary>

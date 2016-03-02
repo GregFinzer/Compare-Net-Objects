@@ -69,6 +69,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
                     Id = 11,
                     Obrigatorio = EnumSimNao.SIM,
                     Ordem = 11,
+                    SecaoId = 112,
                     Secao = new DtoSecao { Id = 112 },
                     Sumario = "Sumario1",
                     Titulo = "Titulo1"
