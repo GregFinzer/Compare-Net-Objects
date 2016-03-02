@@ -93,6 +93,7 @@
     <Compile Include="LogicEqualityComparerTests.cs" />
     <Compile Include="MyCustomComparer.cs" />
     <Compile Include="IgnoreOrderTests.cs" />
+    <Compile Include="OnlyIceTests.cs" />
     <Compile Include="ParentObjectTests.cs" />
     <Compile Include="PerformanceTests.cs" />
     <Compile Include="PointComparerTests.cs" />
@@ -106,6 +107,18 @@
     <Compile Include="TestClasses\EntityWithEquality.cs" />
     <Compile Include="TestClasses\EnumerableTestEntity.cs" />
     <Compile Include="TestClasses\FontClass.cs" />
+    <Compile Include="TestClasses\OnlyIce\DtoFormulario.cs" />
+    <Compile Include="TestClasses\OnlyIce\DtoMetaCampo.cs" />
+    <Compile Include="TestClasses\OnlyIce\DtoPadrao.cs" />
+    <Compile Include="TestClasses\OnlyIce\DtoSecao.cs" />
+    <Compile Include="TestClasses\OnlyIce\DtoTipoFormulario.cs" />
+    <Compile Include="TestClasses\OnlyIce\EnumSimNao.cs" />
+    <Compile Include="TestClasses\OnlyIce\EnumSituacaoFormulario.cs" />
+    <Compile Include="TestClasses\OnlyIce\EnumTipoSecao.cs" />
+    <Compile Include="TestClasses\OnlyIce\Formulario.cs" />
+    <Compile Include="TestClasses\OnlyIce\MetaCampo.cs" />
+    <Compile Include="TestClasses\OnlyIce\ObjetoPersistido.cs" />
+    <Compile Include="TestClasses\OnlyIce\Secao.cs" />
     <Compile Include="TestClasses\Person2.cs" />
     <Compile Include="TestClasses\Reservation.cs" />
     <Compile Include="TestClasses\ThreadFoo.cs" />
