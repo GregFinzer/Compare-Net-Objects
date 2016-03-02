@@ -280,6 +280,7 @@ namespace KellermanSoftware.CompareNetObjects
             }
 
             return type.IsPrimitive
+                   || type.IsEnum
                    || type == typeof(DateTime)
                    || type == typeof(decimal)
                    || type == typeof(string)
