@@ -243,7 +243,8 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                 }
                 else
                 {
-                    sb.AppendFormat("{0}:{1},", item, propertyValue);
+                    string formatString = string.Format("{{0}}:{{1{0}}},", info.PropertyType.Name == "Decimal" ? ":N" : string.Empty);
+                    sb.Append(string.Format(formatString, item, propertyValue));
                 }
             }
 
