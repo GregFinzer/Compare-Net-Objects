@@ -1,18 +1,16 @@
-Hey cool developer, thanks for installing Compare .NET Objects.
+Hey cool developer, thanks for installing Compare .NET Objects from www.kellermansoftware.com
 
 We have some other cool stuff you might like:
-*  Free Quick Reference Pack for Developers
-*  Free Sharp Zip Wrapper
-*  NUnit Test Generator
-* .NET Caching Library
-* .NET Email Validation Library
+* .NET SFTP Library
 * .NET FTP Library
 * .NET Encryption Library
+* .NET Email Validation Library
 * .NET Logging Library
+*  NUnit Test Generator
+* .NET Caching Library
 * Themed Winform Wizard
 * Unused Stored Procedures
 * AccessDiff
-* .NET SFTP Library
 * Ninja Database Pro (Object database for .NET, Silverlight, Windows Phone 7)
 * Ninja WinRT Database (Object database for Windows 8 Runtime, Windows Phone 8)
 * Knight Data Access Layer (ORM, LINQ Provider, Generator)

@@ -32,66 +32,80 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
             foreach (PropertyInfo info in currentProperties)
             {
-                //If we can't read it, skip it
-                if (info.CanRead == false)
-                    continue;
-
-                //Skip if this is a shallow compare
-                if (!parms.Config.CompareChildren && TypeHelper.CanHaveChildren(info.PropertyType))
-                    continue;
-
-                //Skip if it should be excluded based on the configuration
-                if (ExcludeLogic.ShouldExcludeMember(parms.Config, info))
-                    continue;    
-
-                //If we should ignore read only, skip it
-                if (!parms.Config.CompareReadOnly && info.CanWrite == false)
-                    continue;
-
-                //If we ignore types then we must get correct PropertyInfo object
-                var secondObjectInfo = GetSecondObjectInfo(parms, info);
-
-                object objectValue1;
-                object objectValue2;
-                if (!IsValidIndexer(parms.Config, info, parms.BreadCrumb))
-                {
-                    objectValue1 = info.GetValue(parms.Object1, null);
-                    objectValue2 = secondObjectInfo != null ? secondObjectInfo.GetValue(parms.Object2, null) : null;
-                }
-                else
-                {
-                    _indexerComparer.CompareIndexer(parms, info);
-                    continue;
-                }
-
-                bool object1IsParent = objectValue1 != null && (objectValue1 == parms.Object1 || parms.Result.Parents.ContainsKey(objectValue1.GetHashCode()));
-                bool object2IsParent = objectValue2 != null && (objectValue2 == parms.Object2 || parms.Result.Parents.ContainsKey(objectValue2.GetHashCode()));
-
-                //Skip properties where both point to the corresponding parent
-                if ((TypeHelper.IsClass(info.PropertyType) || TypeHelper.IsInterface(info.PropertyType) || TypeHelper.IsStruct(info.PropertyType)) 
-                    && (object1IsParent && object2IsParent))
-                {
-                    continue;
-                }
-
-                string currentBreadCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb, info.Name);
-
-                CompareParms childParms = new CompareParms
-                {
-                    Result = parms.Result,
-                    Config = parms.Config,
-                    ParentObject1 = parms.Object1,
-                    ParentObject2 = parms.Object2,
-                    Object1 = objectValue1,
-                    Object2 = objectValue2,
-                    BreadCrumb = currentBreadCrumb
-                };
-
-                _rootComparer.Compare(childParms);
+                CompareProperty(parms, info);
 
                 if (parms.Result.ExceededDifferences)
                     return;
             }
+        }
+
+        /// <summary>
+        /// Compare a single property of a class
+        /// </summary>
+        /// <param name="parms"></param>
+        /// <param name="info"></param>
+        private void CompareProperty(CompareParms parms, PropertyInfo info)
+        {
+            //If we can't read it, skip it
+            if (info.CanRead == false)
+                return;
+
+            //Skip if this is a shallow compare
+            if (!parms.Config.CompareChildren && TypeHelper.CanHaveChildren(info.PropertyType))
+                return;
+
+            //Skip if it should be excluded based on the configuration
+            if (ExcludeLogic.ShouldExcludeMember(parms.Config, info))
+                return;
+
+            //If we should ignore read only, skip it
+            if (!parms.Config.CompareReadOnly && info.CanWrite == false)
+                return;
+
+            //If we ignore types then we must get correct PropertyInfo object
+            PropertyInfo secondObjectInfo = GetSecondObjectInfo(parms, info);
+
+            //If the property does not exist, and we are ignoring the object types, skip it
+            if (parms.Config.IgnoreObjectTypes && secondObjectInfo == null)
+                return;
+
+            object objectValue1;
+            object objectValue2;
+            if (!IsValidIndexer(parms.Config, info, parms.BreadCrumb))
+            {
+                objectValue1 = info.GetValue(parms.Object1, null);
+                objectValue2 = secondObjectInfo != null ? secondObjectInfo.GetValue(parms.Object2, null) : null;
+            }
+            else
+            {
+                _indexerComparer.CompareIndexer(parms, info);
+                return;
+            }
+
+            bool object1IsParent = objectValue1 != null && (objectValue1 == parms.Object1 || parms.Result.Parents.ContainsKey(objectValue1.GetHashCode()));
+            bool object2IsParent = objectValue2 != null && (objectValue2 == parms.Object2 || parms.Result.Parents.ContainsKey(objectValue2.GetHashCode()));
+
+            //Skip properties where both point to the corresponding parent
+            if ((TypeHelper.IsClass(info.PropertyType) || TypeHelper.IsInterface(info.PropertyType) || TypeHelper.IsStruct(info.PropertyType))
+                && (object1IsParent && object2IsParent))
+            {
+                return;
+            }
+
+            string currentBreadCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb, info.Name);
+
+            CompareParms childParms = new CompareParms
+            {
+                Result = parms.Result,
+                Config = parms.Config,
+                ParentObject1 = parms.Object1,
+                ParentObject2 = parms.Object2,
+                Object1 = objectValue1,
+                Object2 = objectValue2,
+                BreadCrumb = currentBreadCrumb
+            };
+
+            _rootComparer.Compare(childParms);
         }
 
         private static PropertyInfo GetSecondObjectInfo(CompareParms parms, PropertyInfo info)
@@ -99,7 +113,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             PropertyInfo secondObjectInfo = null;
             if (parms.Config.IgnoreObjectTypes)
             {
-                var secondObjectPropertyInfos = Cache.GetPropertyInfo(parms.Result, parms.Object2Type);
+                IEnumerable<PropertyInfo> secondObjectPropertyInfos = Cache.GetPropertyInfo(parms.Result, parms.Object2Type);
 
                 foreach (var propertyInfo in secondObjectPropertyInfos)
                 {
