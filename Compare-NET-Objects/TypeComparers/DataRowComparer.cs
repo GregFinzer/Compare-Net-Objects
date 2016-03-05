@@ -68,7 +68,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                         ParentObject2 = new WeakReference(parms.ParentObject2),
                         PropertyName = currentBreadCrumb,
                         Object1Value = "(null)",
-                        Object2Value = NiceString(parms.Object2),
+                        Object2Value = NiceString(dataRow2[i]),
                         Object1 = new WeakReference(parms.Object1),
                         Object2 = new WeakReference(parms.Object2)
                     };
@@ -84,7 +84,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                         ParentObject1 = new WeakReference(parms.ParentObject1),
                         ParentObject2 = new WeakReference(parms.ParentObject2),
                         PropertyName = currentBreadCrumb,
-                        Object1Value = NiceString(parms.Object1),
+                        Object1Value = NiceString(dataRow1[i]),
                         Object2Value = "(null)",
                         Object1 = new WeakReference(parms.Object1),
                         Object2 = new WeakReference(parms.Object2)
