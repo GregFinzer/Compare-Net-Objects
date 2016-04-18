@@ -91,6 +91,7 @@
     <Compile Include="RootComparer.cs" />
     <Compile Include="RootComparerFactory.cs" />
     <Compile Include="StringHelper.cs" />
+    <Compile Include="TypeBackwardsCompatibilityExtensions.cs" />
     <Compile Include="TypeComparers\BaseComparer.cs" />
     <Compile Include="TypeComparers\ByteArrayComparer.cs" />
     <Compile Include="TypeComparers\ClassComparer.cs" />

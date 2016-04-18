@@ -33,7 +33,7 @@
 using System;
 using System.Collections.Generic;
 
-#if !PORTABLE
+#if !PORTABLE && !NEWPCL
 using KellermanSoftware.CompareNetObjects.Properties;
 #endif
 
@@ -125,7 +125,7 @@ namespace KellermanSoftware.CompareNetObjects
             Config = config;
         }
 
-        #if !PORTABLE
+        #if !PORTABLE && !NEWPCL
 
         /// <summary>
         /// Set up defaults for the comparison
@@ -189,7 +189,7 @@ namespace KellermanSoftware.CompareNetObjects
         {
             ComparisonResult result = new ComparisonResult(Config);
 
-            #if !PORTABLE
+            #if !PORTABLE && !NEWPCL
                 result.Watch.Start();
             #endif
 
@@ -209,7 +209,7 @@ namespace KellermanSoftware.CompareNetObjects
             if (Config.AutoClearCache)
                 ClearCache();
 
-            #if !PORTABLE
+            #if !PORTABLE && !NEWPCL
                 result.Watch.Stop();
             #endif
 

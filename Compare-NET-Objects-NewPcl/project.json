@@ -1,0 +1,41 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "Compare-Net-Objects-NewPcl Class Library",
+  "authors": [ "Stephenh" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "compile": [ "../Compare-NET-Objects/*.cs", "../Compare-NET-Objects/**/*.cs" ],
+  "compileExclude": [
+    "../Compare-NET-Objects/FileHelper.cs",
+    "../Compare-NET-Objects/ProcessHelper.cs",
+    "../Compare-NET-Objects/Properties/*",
+    "../Compare-NET-Objects/Reports/BaseDualFileReport.cs",
+    "../Compare-NET-Objects/Reports/BeyondCompareReport.cs",
+    "../Compare-NET-Objects/Reports/WinMergeReport.cs",
+    "../Compare-NET-Objects/TypeComparers/DataRowComparer.cs",
+    "../Compare-NET-Objects/TypeComparers/DatasetComparer.cs",
+    "../Compare-NET-Objects/TypeComparers/DataTableComparer.cs",
+    "../Compare-NET-Objects/TypeComparers/FontComparer.cs",
+    "../Compare-NET-Objects/TypeComparers/IpEndPointComparer.cs"
+  ],
+  "frameworks": {
+    "net451": {
+      "compilationOptions": {
+        "define": [ "NEWPCL" ]
+      }
+    },
+    "dotnet5.4": {
+      "compilationOptions": {
+        "define": [ "NEWPCL" ]
+      },
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Collections": "4.0.11-beta-23516",
+        "System.Linq": "4.0.1-beta-23516",
+        "System.Runtime": "4.0.21-beta-23516",
+        "System.Threading": "4.0.11-beta-23516"
+      }
+    }
+  }
+}

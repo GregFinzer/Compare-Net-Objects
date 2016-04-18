@@ -58,7 +58,7 @@ namespace KellermanSoftware.CompareNetObjects
             }
 
             //The class is ignored by an attribute
-            if (IgnoredByAttribute(config, t1))
+            if (IgnoredByAttribute(config, t1.GetTypeInfo()))
                 return true;
 
             return false;
