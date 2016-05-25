@@ -101,7 +101,9 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                             ParentObject2 = enumerator2.Current,
                             Object1 = enumerator1.Current,
                             Object2 = enumerator2.Current,
-                            BreadCrumb = currentBreadCrumb
+                            BreadCrumb = currentBreadCrumb,
+                            NeedsApproval = parms.NeedsApproval,
+                            DisplayName=parms.DisplayName
                         };
 
                         _rootComparer.Compare(childParms);
@@ -183,7 +185,9 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                             ParentObject2 = parms.Object2,
                             Object1 = enumerator1.Current,
                             Object2 = enumerator2.Current,
-                            BreadCrumb = currentBreadCrumb
+                            BreadCrumb = currentBreadCrumb,
+                            NeedsApproval = parms.NeedsApproval,
+                            DisplayName = parms.DisplayName
                         };
 
                         _rootComparer.Compare(childParms);
@@ -207,7 +211,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                         Object2 = reverseCompare ? new WeakReference(enumerator1) : null
                     };
 
-                    AddDifference(parms.Result, difference);                    
+                    AddDifference(parms, difference);                    
                 }
                 if (parms.Result.ExceededDifferences)
                     return;
@@ -243,6 +247,10 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                 }
                 else
                 {
+                    if (item == "ID" || item == "Id")
+                    {
+                        return propertyValue.ToString();
+                    }
                     string formatString = string.Format("{{0}}:{{1{0}}},", info.PropertyType.Name == "Decimal" ? ":N" : string.Empty);
                     sb.Append(string.Format(formatString, item, propertyValue));
                 }

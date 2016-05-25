@@ -97,7 +97,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                         Object2 = new WeakReference(ilist2)
                     };
 
-                    AddDifference(parms.Result, difference);
+                    AddDifference(parms, difference);
 
                     return true;
                 }
@@ -131,8 +131,9 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                                               ParentObject2 = parms.Object2,
                                               Object1 = enumerator1.Current,
                                               Object2 = enumerator2.Current,
-                                              BreadCrumb = currentBreadCrumb
-                                          };
+                                              BreadCrumb = currentBreadCrumb,
+                    NeedsApproval = parms.NeedsApproval
+                };
 
                 RootComparer.Compare(childParms);
 

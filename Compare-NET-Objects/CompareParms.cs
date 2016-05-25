@@ -52,5 +52,15 @@ namespace KellermanSoftware.CompareNetObjects
         /// The breadcrumb in the tree
         /// </summary>
         public string BreadCrumb { get; set; }
+
+
+        /// <summary>
+        /// If a difference is found we need to know if it is an approved change or not
+        /// </summary>
+        public bool NeedsApproval { get; set; }
+        /// <summary>
+        /// Userfriendly display name for the property type or class
+        /// </summary>
+        public string DisplayName { get; set; }
     }
 }

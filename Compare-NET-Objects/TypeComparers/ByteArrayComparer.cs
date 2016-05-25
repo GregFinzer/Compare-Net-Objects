@@ -70,7 +70,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                     Object2 = new WeakReference(ilist2)
                 };
 
-                AddDifference(parms.Result, difference);
+                AddDifference(parms, difference);
 
                 if (parms.Result.ExceededDifferences)
                     return true;
@@ -105,7 +105,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                         Object2 = new WeakReference(b2)
                     };
 
-                    AddDifference(parms.Result, difference);
+                    AddDifference(parms, difference);
                     differenceCount++;
 
                     if (differenceCount >= parms.Result.Config.MaxByteArrayDifferences)

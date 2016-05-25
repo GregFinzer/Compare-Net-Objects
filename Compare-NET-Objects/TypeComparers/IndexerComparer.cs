@@ -50,7 +50,9 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                     ParentObject2 = parms.Object2,
                     Object1 = enumerable1,
                     Object2 = enumerable2,
-                    BreadCrumb = parms.BreadCrumb
+                    BreadCrumb = parms.BreadCrumb,
+                    NeedsApproval = parms.NeedsApproval,
+                    DisplayName=parms.DisplayName
                 };
 
                 IgnoreOrderLogic logic = new IgnoreOrderLogic(_rootComparer);
@@ -78,7 +80,9 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                         ParentObject2 = parms.Object2,
                         Object1 = objectValue1,
                         Object2 = objectValue2,
-                        BreadCrumb = currentCrumb
+                        BreadCrumb = currentCrumb,
+                        NeedsApproval = parms.NeedsApproval,
+                        DisplayName=parms.DisplayName
                     };
 
                     _rootComparer.Compare(childParms);
@@ -137,7 +141,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                                                 Object2 = new WeakReference(parms.Object2)
                                             };
 
-                AddDifference(parms.Result, difference);
+                AddDifference(parms, difference);
                 
                 return true;
             }

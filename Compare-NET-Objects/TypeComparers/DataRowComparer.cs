@@ -73,7 +73,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                         Object2 = new WeakReference(parms.Object2)
                     };
 
-                    AddDifference(parms.Result, difference);
+                    AddDifference(parms, difference);
                     return;
                 }
 
@@ -90,7 +90,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                         Object2 = new WeakReference(parms.Object2)
                     };
 
-                    AddDifference(parms.Result, difference);
+                    AddDifference(parms, difference);
                     return;
                 }
 
@@ -106,9 +106,10 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                         Object2Value = dataRow2.RowState.ToString(),
                         Object1 = new WeakReference(parms.Object1),
                         Object2 = new WeakReference(parms.Object2)
+                        
                     };
 
-                    AddDifference(parms.Result, difference);
+                    AddDifference(parms, difference);
                     return;
                 }
 
@@ -120,6 +121,8 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 childParms.Object1 = dataRow1[i];
                 childParms.Object2 = dataRow2[i];
                 childParms.BreadCrumb = currentBreadCrumb;
+                childParms.NeedsApproval = parms.NeedsApproval;
+                childParms.DisplayName = parms.DisplayName;
 
                 RootComparer.Compare(childParms);
 
