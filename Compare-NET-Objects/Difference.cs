@@ -42,7 +42,10 @@ namespace KellermanSoftware.CompareNetObjects
                 return string.Empty;
             }
         }
-
+        /// <summary>
+        /// User friendly display name for the difference
+        /// </summary>
+        public string DisplayName { get; set; }
         /// <summary>
         /// The breadcrumb of the property leading up to the value
         /// </summary>
@@ -99,9 +102,14 @@ namespace KellermanSoftware.CompareNetObjects
         public string MessagePrefix { get; set; }
 
         /// <summary>
+        /// True if the difference needs approval afterwards
+        /// </summary>
+        public bool ApprovalDifference { get; set; } = false;
+        /// <summary>
         /// Item and property name only
         /// </summary>
         /// <returns></returns>
+        /// 
         public string GetShortItem()
         {
             string message;
@@ -146,16 +154,13 @@ namespace KellermanSoftware.CompareNetObjects
             {
                 if (String.IsNullOrEmpty(ChildPropertyName))
                 {
-                    message = String.Format("Types [{3},{4}], Item {0}.{2} != {1}.{2}",
-                        ExpectedName,
-                        ActualName,
-                        PropertyName,
-                        Object1TypeName,
-                        Object2TypeName);
+                    message = String.Format("{0} != {0}",                       
+                        PropertyName
+                       );
                 }
                 else
                 {
-                    message = String.Format("Types [{4},{5}], Item {0}.{2}.{3} != {1}.{2}.{3}",
+                    message = String.Format("{0}.{2}.{3} != {1}.{2}.{3}",
                         ExpectedName,
                         ActualName,
                         PropertyName,
@@ -166,20 +171,17 @@ namespace KellermanSoftware.CompareNetObjects
             }
             else if (!String.IsNullOrEmpty(ChildPropertyName))
             {
-                message = String.Format("Types [{2}.{4},{3}.{4}], Item {0} != {1}",
+                message = String.Format("{0} != {1}",
                         ExpectedName,
-                        ActualName,
-                        Object1TypeName,
-                        Object2TypeName,
+                        ActualName,                       
                         ChildPropertyName);
             }
             else
             {
-                message = String.Format("Types [{2},{3}], Item {0} != {1}",
+                message = String.Format("{0} != {1}",
                     ExpectedName,
-                    ActualName,
-                    Object1TypeName,
-                    Object2TypeName);
+                    ActualName
+                   );
             }
 
             if (!String.IsNullOrEmpty(MessagePrefix))

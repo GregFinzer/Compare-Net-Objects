@@ -66,7 +66,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                                                 Object2 = new WeakReference(ipEndPoint2)
                                             };
 
-                AddDifference(parms.Result, difference);
+                AddDifference(parms, difference);
             }
         }
 
@@ -86,7 +86,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                     Object2 = new WeakReference(ipEndPoint2)
                 };
 
-                AddDifference(parms.Result, difference);
+                AddDifference(parms, difference);
             }
         }
     }

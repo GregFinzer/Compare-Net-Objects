@@ -65,7 +65,9 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 ParentObject2 = parms.Object2,
                 Object1 = prop1,
                 Object2 = prop2,
-                BreadCrumb = currentBreadCrumb
+                BreadCrumb = currentBreadCrumb,
+                NeedsApproval = parms.NeedsApproval,
+                DisplayName=parms.DisplayName
             };
 
             RootComparer.Compare(childParms);

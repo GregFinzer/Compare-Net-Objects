@@ -161,6 +161,12 @@ namespace KellermanSoftware.CompareNetObjects
         public List<Type> AttributesToIgnore { get; set; }
 
         /// <summary>
+        /// A list of attributes to include a class, property or field
+        /// </summary>
+        /// <example>AttributesToInclude.Add(typeof(XmlIgnoreAttribute));</example>
+        public List<Type> AttributesToInclude { get; set; }
+
+        /// <summary>
         /// If true, objects will be compared ignore their type diferences.  The default is false.
         /// </summary>
         public bool IgnoreObjectTypes { get; set; }
@@ -175,6 +181,15 @@ namespace KellermanSoftware.CompareNetObjects
         /// </summary>
         public string ActualName { get; set; }
 
+        /// <summary>
+        /// Attribute that contains approval logic, must have NeedsApproval(bool) property to work properly
+        /// </summary>
+        public Type ApprovalAttribute { get; set; }
+
+        /// <summary>
+        /// Attribute that contains display name , must have Name(string) property to work properly
+        /// </summary>
+        public Type DisplayAttribute { get; set; }
         /// <summary>
         /// Callback invoked each time the comparer finds a difference. The default is no call back.
         /// </summary>
@@ -232,6 +247,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// </summary>
         public void Reset()
         {
+            AttributesToInclude = new List<Type>();
             AttributesToIgnore = new List<Type>();
             _differenceCallback = d => { };
 

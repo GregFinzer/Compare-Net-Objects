@@ -97,7 +97,10 @@ namespace KellermanSoftware.CompareNetObjects
         {
             get { return Differences.Count == 0; }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool NeedsApproval { get; set; } = false;
         /// <summary>
         /// Returns true if the number of differences has reached the maximum
         /// </summary>

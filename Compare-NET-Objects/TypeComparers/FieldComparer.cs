@@ -46,7 +46,26 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             //Skip if it should be excluded based on the configuration
             if (ExcludeLogic.ShouldExcludeMember(parms.Config, item))
                 return;
-
+            //Only skip if not present in Include List
+            if (parms.Config.AttributesToInclude.Count > 0)
+            {
+                if (!IncludeLogic.ShouldIncludeMember(parms.Config, item))
+                    return;
+            }
+            if (parms.Config.ApprovalAttribute != null)
+            {
+                dynamic attr = Convert.ChangeType(item.GetCustomAttribute(parms.Config.ApprovalAttribute), parms.Config.ApprovalAttribute);
+                if (attr != null && parms.Config.ApprovalAttribute.GetProperty("NeedsApproval") != null)
+                    parms.NeedsApproval = attr.NeedsApproval;
+            }
+            if (parms.Config.DisplayAttribute != null)
+            {
+                dynamic dAttr = Convert.ChangeType(item.GetCustomAttribute(parms.Config.DisplayAttribute), parms.Config.DisplayAttribute);
+                if (dAttr != null && parms.Config.DisplayAttribute.GetProperty("Name") != null)
+                    parms.DisplayName = dAttr.Name;
+                else
+                    parms.DisplayName = string.Empty;
+            }
             //If we ignore types then we must get correct FieldInfo object
             FieldInfo secondFieldInfo = GetSecondFieldInfo(parms, item);
 
@@ -77,7 +96,9 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 ParentObject2 = parms.Object2,
                 Object1 = objectValue1,
                 Object2 = objectValue2,
-                BreadCrumb = currentBreadCrumb
+                BreadCrumb = currentBreadCrumb,
+                NeedsApproval = parms.NeedsApproval,
+                DisplayName=parms.DisplayName
             };
 
             _rootComparer.Compare(childParms);

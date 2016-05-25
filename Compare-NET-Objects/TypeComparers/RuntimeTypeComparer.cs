@@ -49,7 +49,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                     Object2 = new WeakReference(parms.Object2)
                 };
 
-                AddDifference(parms.Result, difference);
+                AddDifference(parms, difference);
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-
+using System.Reflection;
 
 namespace KellermanSoftware.CompareNetObjects.TypeComparers
 {
@@ -58,7 +58,26 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 //Check if the class type should be excluded based on the configuration
                 if (ExcludeLogic.ShouldExcludeClassType(parms.Config, t1, t2))
                     return;
-
+                //Only skip if not present in Include List
+                if (parms.Config.AttributesToInclude.Count > 0)
+                {
+                    if (!IncludeLogic.ShouldIncludeClassType(parms.Config, t1))
+                        return;
+                }
+                if (parms.Config.ApprovalAttribute != null)
+                {
+                    dynamic attr = Convert.ChangeType(t1.GetCustomAttribute(parms.Config.ApprovalAttribute), parms.Config.ApprovalAttribute);
+                    if (attr != null && parms.Config.ApprovalAttribute.GetProperty("NeedsApproval") != null)
+                        parms.NeedsApproval = attr.NeedsApproval;
+                }
+                if (parms.Config.DisplayAttribute != null)
+                {
+                    dynamic attr = Convert.ChangeType(t1.GetCustomAttribute(parms.Config.DisplayAttribute), parms.Config.DisplayAttribute);
+                    if (attr != null && parms.Config.DisplayAttribute.GetProperty("Name") != null)
+                        parms.DisplayName = attr.Name;
+                    else
+                        parms.DisplayName = string.Empty;
+                }
                 parms.Object1Type = t1;
                 parms.Object2Type = t2;
 

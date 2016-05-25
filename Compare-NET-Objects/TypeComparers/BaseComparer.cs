@@ -62,8 +62,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             sb.Append(existing);
 
             if (useName)
-            {
-                sb.AppendFormat(".");
+            {               
                 sb.Append(name);
             }
 
@@ -90,8 +89,8 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         protected void AddDifference(CompareParms parameters)
         {
             if (parameters == null)
-                throw new ArgumentNullException("parameters");
-
+                throw new ArgumentNullException("parameters");          
+           
             Difference difference = new Difference
             {
                 ParentObject1 = new WeakReference(parameters.ParentObject1),
@@ -100,36 +99,40 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 Object1Value = NiceString(parameters.Object1),
                 Object2Value = NiceString(parameters.Object2),
                 Object1 = new WeakReference(parameters.Object1),
-                Object2 = new WeakReference(parameters.Object2)
+                Object2 = new WeakReference(parameters.Object2),               
             };
-
-            AddDifference(parameters.Result,difference);
+            parameters.Result.NeedsApproval = parameters.Result.NeedsApproval ? true : parameters.NeedsApproval;
+            difference.ApprovalDifference = parameters.NeedsApproval;
+            difference.DisplayName = parameters.DisplayName;
+            AddDifference(parameters,difference);
         }
 
         /// <summary>
         /// Add a difference to the result
         /// </summary>
         /// <param name="difference">The difference to add to the result</param>
-        /// <param name="result">The comparison result</param>
-        protected void AddDifference(ComparisonResult result, Difference difference)
+        /// <param name="parms">The comparison parameters</param>
+        protected void AddDifference(CompareParms parms, Difference difference)
         {
-            if (result == null)
+            if (parms.Result == null)
                 throw new ArgumentNullException("result");
 
             if (difference == null)
                 throw new ArgumentNullException("difference");
-
-            difference.ActualName = result.Config.ActualName;
-            difference.ExpectedName = result.Config.ExpectedName;
+            difference.ApprovalDifference = parms.NeedsApproval;
+            difference.DisplayName = parms.DisplayName;
+            parms.Result.NeedsApproval = parms.Result.NeedsApproval ? true : parms.NeedsApproval;
+            difference.ActualName = parms.Result.Config.ActualName;
+            difference.ExpectedName = parms.Result.Config.ExpectedName;
 
             difference.Object1TypeName = difference.Object1 != null && difference.Object1.Target != null 
                 ? difference.Object1.Target.GetType().Name : "null";
 
             difference.Object2TypeName = difference.Object2 != null && difference.Object2.Target != null 
-                ? difference.Object2.Target.GetType().Name : "null";    
+                ? difference.Object2.Target.GetType().Name : "null";
 
-            result.Differences.Add(difference);
-            result.Config.DifferenceCallback(difference);
+            parms.Result.Differences.Add(difference);
+            parms.Result.Config.DifferenceCallback(difference);
         }
 
 

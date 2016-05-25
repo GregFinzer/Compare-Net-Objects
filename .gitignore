@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Compare-NET-Objects-Tests/bin/Debug
+/Compare-NET-Objects-Tests/obj/Debug
+/Compare-NET-Objects/obj/Debug
+/Compare-NET-Objects/bin/Debug

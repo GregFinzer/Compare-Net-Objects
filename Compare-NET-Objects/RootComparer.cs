@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using KellermanSoftware.CompareNetObjects.TypeComparers;
+using System.Reflection;
 
 namespace KellermanSoftware.CompareNetObjects
 {
@@ -33,7 +34,7 @@ namespace KellermanSoftware.CompareNetObjects
 
                 Type t1 = parms.Object1 != null ? parms.Object1.GetType() : null;
                 Type t2 = parms.Object2 != null ? parms.Object2.GetType() : null;
-
+                
                 BaseTypeComparer customComparer = parms.Config.CustomComparers.FirstOrDefault(o => o.IsTypeMatch(t1, t2));
 
                 if (customComparer != null)
@@ -43,7 +44,7 @@ namespace KellermanSoftware.CompareNetObjects
                 else
                 {
                     BaseTypeComparer typeComparer = TypeComparers.FirstOrDefault(o => o.IsTypeMatch(t1, t2));
-
+                   
                     if (typeComparer != null)
                     {
                         if (parms.Config.IgnoreObjectTypes || !TypesDifferent(parms, t1, t2))
@@ -93,7 +94,7 @@ namespace KellermanSoftware.CompareNetObjects
                     Object2 = new WeakReference(parms.Object2)
                 };
 
-                AddDifference(parms.Result, difference);
+                AddDifference(parms, difference);
                 return true;
             }
 

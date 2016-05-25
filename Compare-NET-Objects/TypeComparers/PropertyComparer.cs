@@ -61,6 +61,27 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             //If we should ignore read only, skip it
             if (!parms.Config.CompareReadOnly && info.CanWrite == false)
                 return;
+            //Only skip if not present in Include List
+            if (parms.Config.AttributesToInclude.Count > 0)
+            {
+                if (!IncludeLogic.ShouldIncludeMember(parms.Config, info))
+                    return;
+            }
+
+            if (parms.Config.ApprovalAttribute != null)
+            {
+                dynamic attr = Convert.ChangeType(info.GetCustomAttribute(parms.Config.ApprovalAttribute), parms.Config.ApprovalAttribute);
+                if (attr != null && parms.Config.ApprovalAttribute.GetProperty("NeedsApproval") != null)
+                    parms.NeedsApproval = attr.NeedsApproval;
+            }
+            if (parms.Config.DisplayAttribute != null)
+            {
+                dynamic displayAttr = Convert.ChangeType(info.GetCustomAttribute(parms.Config.DisplayAttribute), parms.Config.DisplayAttribute);
+                if (displayAttr != null && parms.Config.DisplayAttribute.GetProperty("Name") != null)
+                    parms.DisplayName = displayAttr.Name;
+                else
+                    parms.DisplayName = string.Empty;
+            }
 
             //If we ignore types then we must get correct PropertyInfo object
             PropertyInfo secondObjectInfo = GetSecondObjectInfo(parms, info);
@@ -92,8 +113,8 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 return;
             }
 
-            string currentBreadCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb, info.Name);
-
+            string currentBreadCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb, info.Name);            
+           
             CompareParms childParms = new CompareParms
             {
                 Result = parms.Result,
@@ -102,7 +123,9 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 ParentObject2 = parms.Object2,
                 Object1 = objectValue1,
                 Object2 = objectValue2,
-                BreadCrumb = currentBreadCrumb
+                BreadCrumb = currentBreadCrumb,
+                NeedsApproval = parms.NeedsApproval,
+                DisplayName=parms.DisplayName
             };
 
             _rootComparer.Compare(childParms);
