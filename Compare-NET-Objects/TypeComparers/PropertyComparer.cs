@@ -180,7 +180,12 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 throw new Exception("Cannot compare objects with a non integer indexer for object " + breadCrumb);
             }
 
-            if (info.ReflectedType == null)
+#if !NEWPCL
+            var type = info.ReflectedType;
+#else
+            var type = info.DeclaringType;
+#endif
+            if (type == null)
             {
                 if (config.SkipInvalidIndexers)
                     return false;
@@ -188,8 +193,8 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 throw new Exception("Cannot compare objects with a null indexer for object " + breadCrumb);
             }
 
-            if (info.ReflectedType.GetProperty("Count") == null
-                || info.ReflectedType.GetProperty("Count").PropertyType != typeof(Int32))
+            if (type.GetProperty("Count") == null
+                || type.GetProperty("Count").PropertyType != typeof(Int32))
             {
                 if (config.SkipInvalidIndexers)
                     return false;

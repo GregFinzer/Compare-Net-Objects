@@ -9,7 +9,7 @@ namespace KellermanSoftware.CompareNetObjects.Reports
     /// </summary>
     public interface ISingleFileReport
     {
-        #if !PORTABLE
+        #if !PORTABLE && !NEWPCL
         /// <summary>
         /// Output the differences to a file
         /// </summary>
@@ -32,7 +32,7 @@ namespace KellermanSoftware.CompareNetObjects.Reports
         /// <returns>A string</returns>
         string OutputString(List<Difference> differences);
 
-        #if !PORTABLE
+        #if !PORTABLE && !NEWPCL
         /// <summary>
         /// Launch the application for showing the file
         /// </summary>

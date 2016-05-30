@@ -1,0 +1,4 @@
+*.suo
+[Dd]ebug/
+*.user
+Compare-NET-Objects-NewPcl-Tests/TestResult.xml

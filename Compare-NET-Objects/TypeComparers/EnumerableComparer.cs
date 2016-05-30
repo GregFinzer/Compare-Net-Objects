@@ -62,7 +62,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             Type enumerableGenArg = null;
             foreach (var inter in type.GetInterfaces())
             {
-                if (inter.IsGenericType && inter.GetGenericTypeDefinition() == typeof(IEnumerable<>))
+                if (inter.GetTypeInfo().IsGenericType && inter.GetGenericTypeDefinition() == typeof(IEnumerable<>))
                 {
                     enumerableGenArg = inter.GetGenericArguments()[0];
                     break;
@@ -71,7 +71,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
             if (enumerableGenArg == null)
             {
-#if PORTABLE
+#if PORTABLE || NEWPCL
                 throw new Exception("Cannot get IEnumerable definition");
 #else
                 throw new ApplicationException("Cannot get IEnumerable definition");

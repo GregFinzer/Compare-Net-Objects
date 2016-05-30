@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 
-#if !PORTABLE
+#if !PORTABLE && !NEWPCL
 using System.Data;
 using System.Drawing;
 #endif
@@ -26,7 +27,12 @@ namespace KellermanSoftware.CompareNetObjects
             if (!IsIList(type))
                 return false;
 
-            if (type.UnderlyingSystemType.FullName.Contains("System.Byte"))
+#if !NEWPCL
+            var fullName = type.UnderlyingSystemType.FullName;
+#else
+            var fullName = type.FullName;
+#endif
+            if (fullName.Contains("System.Byte"))
                 return true;
 
             return false;
@@ -78,7 +84,7 @@ namespace KellermanSoftware.CompareNetObjects
             if (type == null)
                 return false;
 
-            return type.IsValueType && !IsSimpleType(type);
+            return type.GetTypeInfo().IsValueType && !IsSimpleType(type);
         }
 
         /// <summary>
@@ -104,7 +110,7 @@ namespace KellermanSoftware.CompareNetObjects
             if (type == null)
                 return false;
 
-            return type.IsClass;
+            return type.GetTypeInfo().IsClass;
         }
 
         /// <summary>
@@ -117,7 +123,7 @@ namespace KellermanSoftware.CompareNetObjects
             if (type == null)
                 return false;
 
-            return type.IsInterface;
+            return type.GetTypeInfo().IsInterface;
         }
 
         /// <summary>
@@ -156,7 +162,7 @@ namespace KellermanSoftware.CompareNetObjects
             if (type == null)
                 return false;
 
-            return type.IsEnum;
+            return type.GetTypeInfo().IsEnum;
         }
 
         /// <summary>
@@ -182,8 +188,8 @@ namespace KellermanSoftware.CompareNetObjects
             if (type == null)
                 return false;
 
-            return type.IsGenericType
-                && type.GetGenericTypeDefinition() == typeof(HashSet<>);
+            return type.GetTypeInfo().IsGenericType
+                && type.GetTypeInfo().GetGenericTypeDefinition() == typeof(HashSet<>);
         }
 
         /// <summary>
@@ -208,9 +214,12 @@ namespace KellermanSoftware.CompareNetObjects
         {
             if (type == null)
                 return false;
-
-            return type.ReflectedType != null
-              && type.ReflectedType == typeof(Enumerable);
+#if !NEWPCL
+            var toCheck = type.ReflectedType;
+#else
+            var toCheck = type.DeclaringType;
+#endif
+            return toCheck != null && toCheck == typeof(Enumerable);
         }
 
         /// <summary>
@@ -274,13 +283,12 @@ namespace KellermanSoftware.CompareNetObjects
             if (type == null)
                 return false;
 
-            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+            if (type.GetTypeInfo().IsGenericType && type.GetTypeInfo().GetGenericTypeDefinition() == typeof(Nullable<>))
             {
                 type = Nullable.GetUnderlyingType(type);
             }
 
-            return type.IsPrimitive
-                   || type.IsEnum
+            return type.GetTypeInfo().IsPrimitive
                    || type == typeof(DateTime)
                    || type == typeof(decimal)
                    || type == typeof(string)
@@ -301,7 +309,7 @@ namespace KellermanSoftware.CompareNetObjects
             return (typeof(Type).IsAssignableFrom(type));
         }
 
-#if !PORTABLE
+#if !PORTABLE && !NEWPCL
         /// <summary>
         /// Returns true if the type is an IPEndPoint
         /// </summary>
