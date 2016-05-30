@@ -112,7 +112,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// Add parent, handle references count
         /// </summary>
         /// <param name="hash"></param>
-        internal void AddParent(int hash)
+        protected internal void AddParent(int hash)
         {
             if (hash == 0)
             {
@@ -135,7 +135,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// Remove parent, handle references count
         /// </summary>
         /// <param name="hash"></param>
-        internal void RemoveParent(int hash)
+        protected internal void RemoveParent(int hash)
         {
             if (Parents.ContainsKey(hash))
             {
