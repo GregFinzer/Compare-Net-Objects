@@ -36,6 +36,11 @@ namespace KellermanSoftware.CompareNetObjects
         public int MaxMillisecondsDateDifference { get; set; }
 
         /// <summary>
+        /// When comparing DateTimeOffsets, offsets will be compared as well as the UtcDateTimes. The default is false.
+        /// </summary>
+        public bool CompareDateTimeOffsetWithOffsets  { get; set; }
+
+        /// <summary>
         /// When comparing struct, the depth to compare for children.  The default is 2
         /// </summary>
         public int MaxStructDepth { get; set; }
@@ -249,6 +254,7 @@ namespace KellermanSoftware.CompareNetObjects
             CompareChildren = true;
             CompareReadOnly = true;
             CompareFields = true;
+            CompareDateTimeOffsetWithOffsets = false;
             IgnoreCollectionOrder = false;
             CompareProperties = true;
             Caching = true;
