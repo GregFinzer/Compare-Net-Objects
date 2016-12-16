@@ -8,7 +8,7 @@ namespace KellermanSoftware.CompareNetObjects
     /// <summary>
     /// Exclude types depending upon the configuration
     /// </summary>
-    internal static class ExcludeLogic 
+    public static class ExcludeLogic 
     {
         /// <summary>
         /// Returns true if the property or field should be excluded
