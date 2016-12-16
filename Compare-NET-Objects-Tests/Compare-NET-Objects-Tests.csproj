@@ -66,6 +66,7 @@
     <Compile Include="BugTests.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="CompareClassTests.cs" />
+    <Compile Include="CompareDataColumnTests.cs" />
     <Compile Include="CompareDataRowTests.cs" />
     <Compile Include="CompareDatasetTests.cs" />
     <Compile Include="CompareDataTableTests.cs" />

@@ -69,7 +69,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
 
         [Test]
-        public void DatasetNegativeColumnTest()
+        public void DatasetNegativeColumnCountTest()
         {
             DataSet ds1 = CreateMockDataset();
             DataSet ds2 = Common.CloneWithSerialization(ds1);

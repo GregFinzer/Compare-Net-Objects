@@ -59,6 +59,25 @@ namespace KellermanSoftware.CompareNetObjectsTests
             ds2.Tables[0].Rows[2][0] = "Chunky Chocolate Heaven";
             Assert.IsFalse(_compare.Compare(ds1.Tables[0], ds2.Tables[0]).AreEqual);
         }
+
+        [Test]
+        public void DataTableNegativeColumnNameTest()
+        {
+            DataSet ds1 = CreateMockDataset();
+            DataSet ds2 = Common.CloneWithSerialization(ds1);
+            ds2.Tables[0].Columns[0].ColumnName = "Flavour";
+            Assert.IsFalse(_compare.Compare(ds1.Tables[0], ds2.Tables[0]).AreEqual);
+        }
+
+        [Test]
+        public void DataTableNegativeMultipleColumnNameTest()
+        {
+            DataSet ds1 = CreateMockDataset();
+            DataSet ds2 = Common.CloneWithSerialization(ds1);
+            ds2.Tables[0].Columns[0].ColumnName = "Flavour";
+            ds2.Tables[0].Columns[1].ColumnName = "Prix";
+            Assert.IsFalse(_compare.Compare(ds1.Tables[0], ds2.Tables[0]).AreEqual);
+        }
         #endregion
 
         #region Supporting Methods
