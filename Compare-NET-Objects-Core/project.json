@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "3.06.0.0",
   "description": "Compare-Net-Objects-Core",
   "authors": [ "GregFinzer" ],
@@ -59,6 +59,7 @@
       "../Compare-NET-Objects/TypeComparers/TimespanComparer.cs",
       "../Compare-NET-Objects/TypeComparers/UriComparer.cs",
       "../Compare-NET-Objects/TypeHelper.cs"
-    ]
+    ],
+    "xmlDoc": true
   }
 }

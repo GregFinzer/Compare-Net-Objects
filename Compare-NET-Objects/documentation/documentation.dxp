@@ -130,6 +130,12 @@
               <TargetItemId>eb1abafe-c230-45d7-b8dc-7bf3f5c20140</TargetItemId>
               <TargetItemBookmark></TargetItemBookmark>
             </TocNode>
+            <TocNode Name="" Id="0c7107e5-89f1-4f1d-a513-709c9d3ffdd1" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+              <CaptionTemplate />
+              <ChildNodes />
+              <TargetItemId>2169f8f6-cac4-40ca-93b2-f02fefe798a9</TargetItemId>
+              <TargetItemBookmark></TargetItemBookmark>
+            </TocNode>
             <TocNode Name="" Id="82da3fa6-c782-4ae1-8a0f-32556675614a" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
               <CaptionTemplate />
               <ChildNodes />
@@ -210,27 +216,26 @@
             <PropertyDefinitionValues />
             <ExcludedOtherFiles />
           </Topic>
-          <Topic Id="7ceb9cfa-d0df-4c9c-b9df-ab271bccb7f7" Status="New Topic" CreatedOn="2014-03-15T12:48:55.8369047Z" ModifiedOn="2015-03-13T00:41:04.2899241Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="What's New In 2.0" BuildFlags="">
+          <Topic Id="7ceb9cfa-d0df-4c9c-b9df-ab271bccb7f7" Status="New Topic" CreatedOn="2014-03-15T12:48:55.8369047Z" ModifiedOn="2016-12-16T21:44:42.078474Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="What's New In 2.0" BuildFlags="">
             <Title m="2015-03-13T00:40:30.3099805Z">What's New?</Title>
             <ContentsTitle m="2015-03-13T00:40:36.7243474Z">What's New?</ContentsTitle>
             <Notes></Notes>
             <TopicSections>
               <TopicSection Name="BodyText">
-                <Content m="2015-03-13T00:41:04.2899241Z">&lt;H1&gt;Breaking Changes&lt;/H1&gt;
+                <Content m="2016-12-16T21:44:42.078474Z">&lt;H1&gt;Breaking Changes&lt;/H1&gt;
 &lt;UL&gt;
 &lt;LI&gt;
-&lt;DIV&gt;Obsolete warnings from version 1.x have been changed to errors &lt;/DIV&gt;&lt;/LI&gt;&lt;/UL&gt;
+&lt;DIV&gt;None&lt;/DIV&gt;&lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;&lt;BR&gt;&lt;/P&gt;
 &lt;H1&gt;Bug fixes&lt;/H1&gt;
 &lt;UL&gt;
-&lt;LI&gt;Null Indexer&lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;None&lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;&lt;BR&gt;&lt;/P&gt;
 &lt;H1&gt;New Features&lt;/H1&gt;
 &lt;UL&gt;
-&lt;LI&gt;Allow overriding of DatasetComparer and DataTableComparer with a Custom Comparer 
-&lt;LI&gt;Allow overriding the DataRowComparer with a custom comparer 
-&lt;LI&gt;Ability to have date differences within a range 
-&lt;LI&gt;Precision for double&lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;DataColumn Differences 
+&lt;LI&gt;.NET Core / .NET Standard 1.6 Capability 
+&lt;LI&gt;Ignore Type.Member&lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
               </TopicSection>
             </TopicSections>
@@ -239,22 +244,23 @@
             <PropertyDefinitionValues />
             <ExcludedOtherFiles />
           </Topic>
-          <Topic Id="8aaa1a6f-70a8-4a3d-8b69-dc429b86377a" Status="New Topic" CreatedOn="2014-03-15T13:01:59.7667617Z" ModifiedOn="2014-03-15T13:35:58.8075097Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="System Requirements" BuildFlags="">
+          <Topic Id="8aaa1a6f-70a8-4a3d-8b69-dc429b86377a" Status="New Topic" CreatedOn="2014-03-15T13:01:59.7667617Z" ModifiedOn="2016-12-16T21:44:42.0764739Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="System Requirements" BuildFlags="">
             <Title />
             <ContentsTitle />
             <Notes></Notes>
             <TopicSections>
               <TopicSection Name="BodyText">
-                <Content m="2014-03-15T13:35:58.8075097Z">&lt;H1&gt;For Use&lt;/H1&gt;
+                <Content m="2016-12-16T21:44:42.0764739Z">&lt;H1&gt;For Use&lt;/H1&gt;
 &lt;P&gt;&lt;BR&gt;&lt;/P&gt;
 &lt;UL&gt;
-&lt;LI&gt;.NET Framework 3.5 and higher
-&lt;LI&gt;Portable Class Library Version can be used with .NET 4.0+, Silverlight 5+, Windows Phone 8+, Windows RT 8+&lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;.NET Framework 3.5 and higher 
+&lt;LI&gt;Portable Class Library Version can be used with .NET 4.0+, Silverlight 5+, Windows Phone 8+, Windows RT 8+ 
+&lt;LI&gt;DotNetCore or .NET Standard 1.6&lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;&lt;BR&gt;&lt;/P&gt;
 &lt;H1&gt;For Development&lt;/H1&gt;
 &lt;P&gt;&lt;BR&gt;&lt;/P&gt;
 &lt;UL&gt;
-&lt;LI&gt;Visual Studio 2013 and higher
+&lt;LI&gt;Visual Studio 2013 and higher 
 &lt;LI&gt;NUnit 2.4 and higher&lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;&lt;BR&gt;&lt;/P&gt;
 &lt;P&gt;&lt;BR&gt;&lt;/P&gt;</Content>
@@ -303,16 +309,16 @@
             <PropertyDefinitionValues />
             <ExcludedOtherFiles />
           </Topic>
-          <Topic Id="7a032303-9805-4638-b34c-69a6db868ffc" Status="New Topic" CreatedOn="2014-03-15T13:36:14.1740066Z" ModifiedOn="2015-10-10T23:24:14.4236492Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Introduction" BuildFlags="">
+          <Topic Id="7a032303-9805-4638-b34c-69a6db868ffc" Status="New Topic" CreatedOn="2014-03-15T13:36:14.1740066Z" ModifiedOn="2016-12-16T21:44:42.0744738Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Introduction" BuildFlags="">
             <Title />
             <ContentsTitle />
             <Notes></Notes>
             <TopicSections>
               <TopicSection Name="BodyText">
-                <Content m="2015-10-10T23:24:14.4236492Z">&lt;A href="http://www.kellermansoftware.com"&gt;&lt;/A&gt;
+                <Content m="2016-12-16T21:44:42.0744738Z">&lt;A href="http://www.kellermansoftware.com"&gt;&lt;/A&gt;
 &lt;DIV class=wikidoc&gt;&lt;BR&gt;&lt;IMG border=0 alt="" src="images/logo.png"&gt;&lt;/DIV&gt;
-&lt;DIV class=wikidoc&gt;&amp;nbsp;&lt;/DIV&gt;
-&lt;DIV class=wikidoc&gt;&lt;IMG border=0 alt="" src="images/PoweredByNDepend.png"&gt;&lt;BR&gt;&lt;BR&gt;&lt;B&gt;Project Description&lt;/B&gt;&lt;BR&gt;What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.&lt;BR&gt;&lt;BR&gt;&lt;B&gt;Compatiblity&lt;/B&gt;&lt;BR&gt;Compatible with .NET Framework 3.5 and higher. Portable Class Library version works with .NET 4.0+, Silverlight 5+, Windows Phone 8+, Windows RT 8+, Xamarin iOS, and Xamarin Droid&lt;BR&gt;&lt;BR&gt;&lt;B&gt;NuGet Package&lt;/B&gt;&lt;BR&gt;&lt;A href="http://www.nuget.org/packages/CompareNETObjects"&gt;&lt;FONT color=#0066cc&gt;http://www.nuget.org/packages/CompareNETObjects&lt;/FONT&gt;&lt;/A&gt;&lt;BR&gt;&lt;BR&gt;Features &lt;/DIV&gt;
+&lt;DIV class=wikidoc&gt; &lt;/DIV&gt;
+&lt;DIV class=wikidoc&gt;&lt;IMG border=0 alt="" src="images/PoweredByNDepend.png"&gt;&lt;BR&gt;&lt;BR&gt;&lt;B&gt;Project Description&lt;/B&gt;&lt;BR&gt;What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.&lt;BR&gt;&lt;BR&gt;&lt;B&gt;Compatiblity&lt;/B&gt;&lt;BR&gt;Compatible with .NET Framework 3.5 and higher. Portable Class Library version works with .NET 4.0+, Silverlight 5+, Windows Phone 8+, Windows RT 8+, Xamarin iOS, and Xamarin Droid.&amp;nbsp; It supports .NET Standard 1.6 and DotNetCore applications too.&lt;BR&gt;&lt;BR&gt;&lt;B&gt;NuGet Package&lt;/B&gt;&lt;BR&gt;&lt;A href="http://www.nuget.org/packages/CompareNETObjects"&gt;&lt;FONT color=#0066cc&gt;http://www.nuget.org/packages/CompareNETObjects&lt;/FONT&gt;&lt;/A&gt;&lt;BR&gt;&lt;BR&gt;Features &lt;/DIV&gt;
 &lt;DIV class=wikidoc&gt;
 &lt;UL&gt;
 &lt;LI&gt;Compare Children (on by default) 
@@ -331,6 +337,7 @@
 &lt;LI&gt;Compare DataSet Data 
 &lt;LI&gt;Compare DataTable Data 
 &lt;LI&gt;Compare DataRow Data 
+&lt;LI&gt;Compare DataColumn Differences 
 &lt;LI&gt;Compare LinearGradient 
 &lt;LI&gt;Compare HashSet 
 &lt;LI&gt;Compare URI 
@@ -602,6 +609,31 @@
             <PropertyDefinitionValues />
             <ExcludedOtherFiles />
           </Topic>
+          <Topic Id="2169f8f6-cac4-40ca-93b2-f02fefe798a9" Status="New Topic" CreatedOn="2016-12-16T21:45:56.3407215Z" ModifiedOn="2016-12-16T21:46:16.9208987Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Ignore Members" BuildFlags="">
+            <Title />
+            <ContentsTitle />
+            <Notes></Notes>
+            <TopicSections>
+              <TopicSection Name="BodyText">
+                <Content m="2016-12-16T21:46:16.9208987Z">&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt;
+&lt;P&gt;[&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;Test&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt;]&lt;/P&gt;
+&lt;P&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT color=#0000ff size=2 face=Consolas&gt;&lt;FONT color=#0000ff size=2 face=Consolas&gt;&lt;FONT color=#0000ff size=2 face=Consolas&gt;public&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt; &lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT color=#0000ff size=2 face=Consolas&gt;&lt;FONT color=#0000ff size=2 face=Consolas&gt;&lt;FONT color=#0000ff size=2 face=Consolas&gt;void&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt; IgnoreTypeMember()&lt;/P&gt;
+&lt;P&gt;{&lt;/P&gt;
+&lt;P&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;ComparisonConfig&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt; config = &lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT color=#0000ff size=2 face=Consolas&gt;&lt;FONT color=#0000ff size=2 face=Consolas&gt;&lt;FONT color=#0000ff size=2 face=Consolas&gt;new&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt; &lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;ComparisonConfig&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt;();&lt;/P&gt;
+&lt;P&gt;config.MembersToIgnore.Add(&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT color=#a31515 size=2 face=Consolas&gt;&lt;FONT color=#a31515 size=2 face=Consolas&gt;&lt;FONT color=#a31515 size=2 face=Consolas&gt;"Person.Name"&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt;);&lt;/P&gt;
+&lt;P&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;Person&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt; person1 = &lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT color=#0000ff size=2 face=Consolas&gt;&lt;FONT color=#0000ff size=2 face=Consolas&gt;&lt;FONT color=#0000ff size=2 face=Consolas&gt;new&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt; &lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;Person&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt;() {Name=&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT color=#a31515 size=2 face=Consolas&gt;&lt;FONT color=#a31515 size=2 face=Consolas&gt;&lt;FONT color=#a31515 size=2 face=Consolas&gt;"Darth Vader"&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt;};&lt;/P&gt;
+&lt;P&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;Person&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt; person2 = &lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT color=#0000ff size=2 face=Consolas&gt;&lt;FONT color=#0000ff size=2 face=Consolas&gt;&lt;FONT color=#0000ff size=2 face=Consolas&gt;new&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt; &lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;Person&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt;() { Name = &lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT color=#a31515 size=2 face=Consolas&gt;&lt;FONT color=#a31515 size=2 face=Consolas&gt;&lt;FONT color=#a31515 size=2 face=Consolas&gt;"Anakin Skywalker"&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt; };&lt;/P&gt;
+&lt;P&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;CompareLogic&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt; compare = &lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT color=#0000ff size=2 face=Consolas&gt;&lt;FONT color=#0000ff size=2 face=Consolas&gt;&lt;FONT color=#0000ff size=2 face=Consolas&gt;new&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt; &lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;CompareLogic&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt;(config);&lt;/P&gt;
+&lt;P&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT color=#0000ff size=2 face=Consolas&gt;&lt;FONT color=#0000ff size=2 face=Consolas&gt;&lt;FONT color=#0000ff size=2 face=Consolas&gt;var&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt; result = compare.Compare(person1,person2);&lt;/P&gt;
+&lt;P&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;&lt;FONT color=#2b91af size=2 face=Consolas&gt;Assert&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;FONT size=2 face=Consolas&gt;&lt;FONT size=2 face=Consolas&gt;.IsTrue(result.AreEqual);&lt;/P&gt;
+&lt;P&gt;}&lt;/P&gt;&lt;/FONT&gt;&lt;/FONT&gt;</Content>
+              </TopicSection>
+            </TopicSections>
+            <TopicLinks />
+            <TopicKeywords />
+            <PropertyDefinitionValues />
+            <ExcludedOtherFiles />
+          </Topic>
         </Topics>
       </TopicCategory>
     </TopicCategories>
@@ -625,7 +657,10 @@
   <ProjectSearchProjectPlugin>
     <ProjectSearchDefinitions />
   </ProjectSearchProjectPlugin>
-  <ContentSources />
+  <ContentSources>
+    <DefaultQuipAccessToken></DefaultQuipAccessToken>
+  </ContentSources>
+  <ShortFileNames IsSaveMappingsEnabled="false" MappingProvider="DEFAULT" IsLengthLimitationEnabled="false" LengthLimit="0" />
   <Publishing />
   <ProjectProfiles>
     <ProjectProfile Id="39caa9b0-295d-4fcc-9037-4bc5f2195e31" Name="2010 Style">
@@ -661,6 +696,9 @@
         <PrivateServerAccessKey></PrivateServerAccessKey>
         <ProjectKey />
       </CommunityOptions>
+      <CommunityProjectProfilePlugin IsEnabled="false">
+        <IsCompiledHelpReadinessWarningDisabled>false</IsCompiledHelpReadinessWarningDisabled>
+      </CommunityProjectProfilePlugin>
       <DotNet>
         <IncludeRelationshipDiagrams>true</IncludeRelationshipDiagrams>
         <IncludeInheritanceHierarchies>true</IncludeInheritanceHierarchies>
@@ -729,6 +767,7 @@
         <ColorizeSyntax>false</ColorizeSyntax>
         <IncludeExtensionMethods>false</IncludeExtensionMethods>
         <UseContentFromBaseMember>false</UseContentFromBaseMember>
+        <IsEnumValuesEnabled>false</IsEnumValuesEnabled>
         <ExcludedLanguages>
           <ExcludedLanguage>Delphi</ExcludedLanguage>
           <ExcludedLanguage>JScript</ExcludedLanguage>
@@ -750,6 +789,7 @@
         <NoInheritedInLists>false</NoInheritedInLists>
         <IncludeBreadcrumbs>true</IncludeBreadcrumbs>
         <IncludeComponentBreadcrumb>false</IncludeComponentBreadcrumb>
+        <IncludePrivateMembers>false</IncludePrivateMembers>
         <XmlIsland></XmlIsland>
         <XmlCommentUsage>Merge</XmlCommentUsage>
         <DiagramSettings OverviewNestingLevels="0" PageNestingLevels="0" DiagramStyleSource="Template">
@@ -774,7 +814,7 @@
         </DiagramSettings>
         <RootComponentName></RootComponentName>
         <IncludeConstructorsOnAbstractTypes>false</IncludeConstructorsOnAbstractTypes>
-        <TemplateName>2012 Style</TemplateName>
+        <TemplateName>Classic</TemplateName>
         <ExcludeAllPrivateTypes>true</ExcludeAllPrivateTypes>
         <ExcludeAllFriendTypes>true</ExcludeAllFriendTypes>
         <ExcludeAllProtectedTypes>false</ExcludeAllProtectedTypes>
@@ -791,6 +831,7 @@
         <NoInheritedInLists>false</NoInheritedInLists>
         <IncludeBreadcrumbs>true</IncludeBreadcrumbs>
         <IncludeComponentBreadcrumb>false</IncludeComponentBreadcrumb>
+        <IncludePrivateMembers>false</IncludePrivateMembers>
         <XmlIsland></XmlIsland>
         <XmlCommentUsage>Merge</XmlCommentUsage>
         <DiagramSettings OverviewNestingLevels="0" PageNestingLevels="0" DiagramStyleSource="Template">
@@ -910,7 +951,7 @@
         <IsGroupedByResource>false</IsGroupedByResource>
         <IncludeFullResourceUriInOperationPages>true</IncludeFullResourceUriInOperationPages>
         <UseAbsolutePathForResourcePaths>true</UseAbsolutePathForResourcePaths>
-        <TemplateName>2012 Style</TemplateName>
+        <TemplateName>Classic</TemplateName>
         <IncludeBreadcrumbs>true</IncludeBreadcrumbs>
         <SourceContentUsage>Merge</SourceContentUsage>
         <UseSourceContent>true</UseSourceContent>
@@ -965,6 +1006,7 @@
           <WindowLocationLeft>0</WindowLocationLeft>
           <WindowLocationTop>0</WindowLocationTop>
         </CustomHtmlHelpWindowSettings>
+        <IsWebOutputRootPageLinkEnabled>false</IsWebOutputRootPageLinkEnabled>
         <HelpFileName>..\..\Compare-NET-Objects-Help\Compare-NET-Objects-Help.chm</HelpFileName>
       </HelpCompiler>
       <RuleEngine>
