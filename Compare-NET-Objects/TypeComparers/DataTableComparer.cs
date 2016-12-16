@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Globalization;
-
+using System.Linq;
 
 namespace KellermanSoftware.CompareNetObjects.TypeComparers
 {
@@ -71,12 +71,12 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                     return;
             }
 
-            if (ColumnCountsDifferent(parms)) return;
+            if (ColumnsDifferent(parms)) return;
 
             CompareEachRow(parms);
         }
 
-        private bool ColumnCountsDifferent(CompareParms parms)
+        private bool ColumnsDifferent(CompareParms parms)
         {
             DataTable dataTable1 = parms.Object1 as DataTable;
             DataTable dataTable2 = parms.Object2 as DataTable;
@@ -106,6 +106,28 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 if (parms.Result.ExceededDifferences)
                     return true;
             }
+
+            foreach (var i in Enumerable.Range(0, dataTable1.Columns.Count))
+            {
+                string currentBreadCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb, "Columns", string.Empty, i);
+
+                CompareParms childParms = new CompareParms
+                {
+                    Result = parms.Result,
+                    Config = parms.Config,
+                    ParentObject1 = parms.Object1,
+                    ParentObject2 = parms.Object2,
+                    Object1 = dataTable1.Columns[i],
+                    Object2 = dataTable2.Columns[i],
+                    BreadCrumb = currentBreadCrumb
+                };
+
+                RootComparer.Compare(childParms);
+
+                if (parms.Result.ExceededDifferences)
+                    return true;
+            }
+
             return false;
         }
 
