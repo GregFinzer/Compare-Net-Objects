@@ -180,7 +180,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 throw new Exception("Cannot compare objects with a non integer indexer for object " + breadCrumb);
             }
 
-#if !NEWPCL
+#if !DNCORE
             var type = info.ReflectedType;
 #else
             var type = info.DeclaringType;

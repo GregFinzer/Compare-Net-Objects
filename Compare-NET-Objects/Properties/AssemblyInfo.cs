@@ -6,13 +6,13 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Compare-NET-Objects")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Easily compare objects")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Kellerman Software")]
 [assembly: AssemblyProduct("Compare-NET-Objects")]
-[assembly: AssemblyCopyright("Copyright © 2015")]
+[assembly: AssemblyCopyright("Copyright © 2016")]
 [assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyCulture("en-US")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
@@ -31,6 +31,6 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("3.05.0.0")]
-[assembly: AssemblyFileVersion("3.05.0.0")]
+[assembly: AssemblyVersion("3.06.0.0")]
+[assembly: AssemblyFileVersion("3.06.0.0")]
 [assembly: CLSCompliant(true)]

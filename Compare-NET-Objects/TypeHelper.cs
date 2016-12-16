@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 
-#if !PORTABLE && !NEWPCL
+#if !PORTABLE && !DNCORE
 using System.Data;
 using System.Drawing;
 #endif
@@ -27,7 +27,7 @@ namespace KellermanSoftware.CompareNetObjects
             if (!IsIList(type))
                 return false;
 
-#if !NEWPCL
+#if !DNCORE
             var fullName = type.UnderlyingSystemType.FullName;
 #else
             var fullName = type.FullName;
@@ -214,7 +214,7 @@ namespace KellermanSoftware.CompareNetObjects
         {
             if (type == null)
                 return false;
-#if !NEWPCL
+#if !DNCORE
             var toCheck = type.ReflectedType;
 #else
             var toCheck = type.DeclaringType;
@@ -309,7 +309,7 @@ namespace KellermanSoftware.CompareNetObjects
             return (typeof(Type).IsAssignableFrom(type));
         }
 
-#if !PORTABLE && !NEWPCL
+#if !PORTABLE && !DNCORE
         /// <summary>
         /// Returns true if the type is an IPEndPoint
         /// </summary>

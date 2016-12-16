@@ -89,7 +89,7 @@ namespace KellermanSoftware.CompareNetObjects
         public List<string> MembersToInclude { get; set; }
 
         //Security restriction in Silverlight prevents getting private properties and fields
-#if !PORTABLE && !NEWPCL
+#if !PORTABLE && !DNCORE
         /// <summary>
         /// If true, private properties and fields will be compared. The default is false.  Silverlight and WinRT restricts access to private variables.
         /// </summary>
@@ -247,7 +247,7 @@ namespace KellermanSoftware.CompareNetObjects
 
             CompareStaticFields = true;
             CompareStaticProperties = true;
-#if !PORTABLE && !NEWPCL
+#if !PORTABLE && !DNCORE
             ComparePrivateProperties = false;
             ComparePrivateFields = false;
 #endif

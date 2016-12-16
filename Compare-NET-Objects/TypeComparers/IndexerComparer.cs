@@ -28,7 +28,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         {
             if (info == null)
                 throw new ArgumentNullException("info");
-#if !NEWPCL
+#if !DNCORE
             var type = info.ReflectedType;
 #else
             var type = info.DeclaringType;
@@ -126,7 +126,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             if (info == null)
                 throw new ArgumentNullException("info");
 
-#if !NEWPCL
+#if !DNCORE
             var type = info.ReflectedType;
 #else
             var type = info.DeclaringType;

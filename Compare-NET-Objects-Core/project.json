@@ -1,5 +1,11 @@
 ﻿{
-  "version": "1.0.0-*",
+  "version": "3.06.0.0",
+  "description": "Compare-Net-Objects-Core",
+  "authors": [ "GregFinzer" ],
+  "packOptions": {
+    "projectUrl": "https://github.com/GregFinzer/Compare-Net-Objects",
+    "licenseUrl": "https://github.com/GregFinzer/Compare-Net-Objects/wiki/Licensing"
+  },
   "dependencies": {
     "NETStandard.Library": "1.6.0",
     "System.Reflection.TypeExtensions": "4.1.0"
@@ -10,6 +16,49 @@
     }
   },
   "buildOptions": {
-    "define": [ "NEWPCL" ]
+    "define": [ "DNCORE" ],
+    "compile": [
+      "../Compare-NET-Objects/Cache.cs",
+      "../Compare-NET-Objects/CompareLogic.cs",
+      "../Compare-NET-Objects/CompareObjects.cs",
+      "../Compare-NET-Objects/CompareParms.cs",
+      "../Compare-NET-Objects/ComparisonConfig.cs",
+      "../Compare-NET-Objects/ComparisonResult.cs",
+      "../Compare-NET-Objects/Difference.cs",
+      "../Compare-NET-Objects/ExcludeLogic.cs",
+      "../Compare-NET-Objects/ICompareLogic.cs",
+      "../Compare-NET-Objects/IgnoreOrderTypes/IgnoreOrderLogic.cs",
+      "../Compare-NET-Objects/IgnoreOrderTypes/IndexerCollectionLooper.cs",
+      "../Compare-NET-Objects/Reports/CsvReport.cs",
+      "../Compare-NET-Objects/Reports/ISingleFileReport.cs",
+      "../Compare-NET-Objects/Reports/UserFriendlyReport.cs",
+      "../Compare-NET-Objects/RootComparer.cs",
+      "../Compare-NET-Objects/RootComparerFactory.cs",
+      "../Compare-NET-Objects/StringHelper.cs",
+      "../Compare-NET-Objects/TypeBackwardsCompatibilityExtensions.cs",
+      "../Compare-NET-Objects/TypeComparers/BaseComparer.cs",
+      "../Compare-NET-Objects/TypeComparers/BaseTypeComparer.cs",
+      "../Compare-NET-Objects/TypeComparers/ByteArrayComparer.cs",
+      "../Compare-NET-Objects/TypeComparers/ClassComparer.cs",
+      "../Compare-NET-Objects/TypeComparers/DateComparer.cs",
+      "../Compare-NET-Objects/TypeComparers/DateTimeOffsetComparer.cs",
+      "../Compare-NET-Objects/TypeComparers/DictionaryComparer.cs",
+      "../Compare-NET-Objects/TypeComparers/DoubleComparer.cs",
+      "../Compare-NET-Objects/TypeComparers/EnumComparer.cs",
+      "../Compare-NET-Objects/TypeComparers/EnumerableComparer.cs",
+      "../Compare-NET-Objects/TypeComparers/FieldComparer.cs",
+      "../Compare-NET-Objects/TypeComparers/HashSetComparer.cs",
+      "../Compare-NET-Objects/TypeComparers/IndexerComparer.cs",
+      "../Compare-NET-Objects/TypeComparers/ListComparer.cs",
+      "../Compare-NET-Objects/TypeComparers/PointerComparer.cs",
+      "../Compare-NET-Objects/TypeComparers/PropertyComparer.cs",
+      "../Compare-NET-Objects/TypeComparers/RuntimeTypeComparer.cs",
+      "../Compare-NET-Objects/TypeComparers/SimpleTypeComparer.cs",
+      "../Compare-NET-Objects/TypeComparers/StringComparer.cs",
+      "../Compare-NET-Objects/TypeComparers/StructComparer.cs",
+      "../Compare-NET-Objects/TypeComparers/TimespanComparer.cs",
+      "../Compare-NET-Objects/TypeComparers/UriComparer.cs",
+      "../Compare-NET-Objects/TypeHelper.cs"
+    ]
   }
 }

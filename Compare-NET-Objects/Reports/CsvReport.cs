@@ -11,7 +11,7 @@ namespace KellermanSoftware.CompareNetObjects.Reports
     /// </summary>
     public class CsvReport : ISingleFileReport
     {
-        #if !PORTABLE && !NEWPCL
+        #if !PORTABLE && !DNCORE
         /// <summary>
         /// Output the differences to a file
         /// </summary>
@@ -72,7 +72,7 @@ namespace KellermanSoftware.CompareNetObjects.Reports
             return sb.ToString();
         }
 
-        #if !PORTABLE && !NEWPCL
+        #if !PORTABLE && !DNCORE
         /// <summary>
         /// Launch the WinMerge
         /// </summary>

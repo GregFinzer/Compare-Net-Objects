@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Compare-NET-Objects-Core": "3.06.0.0",
+    "NETStandard.Library": "1.6.0",
+    "NUnit": "3.5.0"
+  },
+  "buildOptions": {
+    "compile": [
+      "../Compare-NET-Objects-Tests/TestClasses/IName.cs",
+      "../Compare-NET-Objects-Tests/TestClasses/ListClass.cs",
+      "../Compare-NET-Objects-Tests/TestClasses/Person.cs"
+    ],
+    "define": [ "DNCORE" ]
+  },
+
+  "frameworks": {
+      "netstandard1.6": {
+        "imports": "dnxcore50"
+      }
+    }
+  }

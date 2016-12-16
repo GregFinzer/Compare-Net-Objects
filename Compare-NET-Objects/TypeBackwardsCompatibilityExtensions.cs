@@ -2,7 +2,7 @@
 
 namespace KellermanSoftware.CompareNetObjects
 {
-#if !NEWPCL
+#if !DNCORE
     /// <summary>
     /// Extensions for Type to provide backward compatibility between latest and older .net Framework APIs.
     /// </summary>

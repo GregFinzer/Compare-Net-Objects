@@ -146,7 +146,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 if (value == null)
                     return "(null)";
 
-                #if !PORTABLE && !NEWPCL
+                #if !PORTABLE && !DNCORE
                     if (value == DBNull.Value)
                         return "System.DBNull.Value";
                 #endif

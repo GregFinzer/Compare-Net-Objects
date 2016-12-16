@@ -71,7 +71,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
             if (enumerableGenArg == null)
             {
-#if PORTABLE || NEWPCL
+#if PORTABLE || DNCORE
                 throw new Exception("Cannot get IEnumerable definition");
 #else
                 throw new ApplicationException("Cannot get IEnumerable definition");
