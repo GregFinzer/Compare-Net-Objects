@@ -730,7 +730,7 @@
     "Microsoft.CSharp/4.0.1-beta-23516": {
       "type": "package",
       "serviceable": true,
-      "sha512": "fb+HO3nIjHao9lqsVVM0ne3GM/+1EfRQUoM58cxEOt+5biy/8DQ1nxIahZ9VaJKw7Wgb6XhRhsdwg8DkePEOJA==",
+      "sha512": "z/W5YaTGVQ8WX6TQDW8cCBAe2rBhHOD7NZHxLAnBIMoLWMI/upWDi+dxHYMDDWmGOM7a3di6evem2OzOdaB1fQ==",
       "files": [
         "lib/dotnet5.4/Microsoft.CSharp.dll",
         "lib/MonoAndroid10/_._",
@@ -780,7 +780,7 @@
     "runtime.win7.System.Threading/4.0.11-beta-23516": {
       "type": "package",
       "serviceable": true,
-      "sha512": "paSNXQ5Y6Exu3OpekooyMJFQ8mitn69fGO5Br3XLIfQ1KiMYVmRf+o6dMprC0SpPROVCiCxdUaJx5XkDEVL3uA==",
+      "sha512": "kKQ9uUB1g3S9eyK5njdwh5LO0HxJ9CN6cF9dXtp7uzdZvh2UoTgAZ0Jf+/TvzWcUsfcKIPQUGPPLOBLaQpXASg==",
       "files": [
         "ref/dotnet/_._",
         "runtime.win7.System.Threading.4.0.11-beta-23516.nupkg",
@@ -794,7 +794,7 @@
     "System.Collections/4.0.11-beta-23516": {
       "type": "package",
       "serviceable": true,
-      "sha512": "TDca4OETV0kkXdpkyivMw1/EKKD1Sa/NVAjirw+fA0LZ37jLDYX+KhPPUQxgkvhCe/SVvxETD5Viiudza2k7OQ==",
+      "sha512": "FSd5zsGfmG2pidC3CVizQPNGTK1Q3A2HEuRqwUPLU/AArjELLC5p4l6XIAlJ9ZBPdbp6V8vFQAxUHzkFfyVkYA==",
       "files": [
         "lib/DNXCore50/System.Collections.dll",
         "lib/MonoAndroid10/_._",
@@ -1019,7 +1019,7 @@
     "System.Linq/4.0.1-beta-23516": {
       "type": "package",
       "serviceable": true,
-      "sha512": "uNxm2RB+kMeiKnY26iPvOtJLzTzNaAF4A2qqyzev6j8x8w2Dr+gg7LF7BHCwC55N7OirhHrAWUb3C0n4oi9qYw==",
+      "sha512": "AJaoyeAHLpurbTWnmvOhK/QC2sswKJrIA5RlPea+UdfXpHOw3srPNEPpseZDMV/EviVqAwUfFNkc5QxpGZtsLA==",
       "files": [
         "lib/dotnet5.4/System.Linq.dll",
         "lib/net45/_._",
@@ -1310,7 +1310,7 @@
     "System.Runtime/4.0.21-beta-23516": {
       "type": "package",
       "serviceable": true,
-      "sha512": "R174ctQjJnCIVxA2Yzp1v68wfLfPSROZWrbaSBcnEzHAQbOjprBQi37aWdr5y05Pq2J/O7h6SjTsYhVOLdiRYQ==",
+      "sha512": "ToYWwDgwR8fR9/8aaV+7PMFBfG2tEgGWED0l9OC9DQieaKEMAzXV3c6fOkK8FTd9YPjFcYnvx73tg21w6GuNDA==",
       "files": [
         "lib/DNXCore50/System.Runtime.dll",
         "lib/MonoAndroid10/_._",
@@ -1533,7 +1533,7 @@
     "System.Threading/4.0.11-beta-23516": {
       "type": "package",
       "serviceable": true,
-      "sha512": "AiuvOzOo6CZpIIw3yGJZcs3IhiCZcy0P/ThubazmWExERHJZoOnD/jB+Bn2gxTAD0rc/ytrRdBur9PuX6DvvvA==",
+      "sha512": "vZNXMOIwejg9jS/AkkCs43BIDrzONbT43yhU7X2217Ypi9EZN5X16DwtqBD7eMjDBsA23IRZxuugzUnV8icaxQ==",
       "files": [
         "lib/MonoAndroid10/_._",
         "lib/MonoTouch10/_._",

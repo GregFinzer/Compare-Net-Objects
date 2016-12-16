@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compare-NET-Objects", "Compare-NET-Objects\Compare-NET-Objects.csproj", "{94F1F5F2-6BC4-464B-AC51-FBDB4FA3F3AD}"
 EndProject
@@ -17,6 +17,8 @@ EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Compare-NET-Objects-NewPcl", "Compare-NET-Objects-NewPcl\Compare-NET-Objects-NewPcl.xproj", "{C026FE8B-E72E-4C7B-A89A-30C2DB2F296A}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Compare-NET-Objects-NewPcl-Tests", "Compare-NET-Objects-NewPcl-Tests\Compare-NET-Objects-NewPcl-Tests.xproj", "{57BC44D1-5A46-4000-851A-D858DC98867E}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Compare-NET-Objects-Core", "Compare-NET-Objects-Core\Compare-NET-Objects-Core.xproj", "{0E6E568D-F8B5-45F1-BE02-F54E93FC2D1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -110,6 +112,22 @@ Global
 		{57BC44D1-5A46-4000-851A-D858DC98867E}.Release|x64.Build.0 = Release|Any CPU
 		{57BC44D1-5A46-4000-851A-D858DC98867E}.Release|x86.ActiveCfg = Release|Any CPU
 		{57BC44D1-5A46-4000-851A-D858DC98867E}.Release|x86.Build.0 = Release|Any CPU
+		{0E6E568D-F8B5-45F1-BE02-F54E93FC2D1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E6E568D-F8B5-45F1-BE02-F54E93FC2D1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E6E568D-F8B5-45F1-BE02-F54E93FC2D1F}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{0E6E568D-F8B5-45F1-BE02-F54E93FC2D1F}.Debug|ARM.Build.0 = Debug|Any CPU
+		{0E6E568D-F8B5-45F1-BE02-F54E93FC2D1F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0E6E568D-F8B5-45F1-BE02-F54E93FC2D1F}.Debug|x64.Build.0 = Debug|Any CPU
+		{0E6E568D-F8B5-45F1-BE02-F54E93FC2D1F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0E6E568D-F8B5-45F1-BE02-F54E93FC2D1F}.Debug|x86.Build.0 = Debug|Any CPU
+		{0E6E568D-F8B5-45F1-BE02-F54E93FC2D1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E6E568D-F8B5-45F1-BE02-F54E93FC2D1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E6E568D-F8B5-45F1-BE02-F54E93FC2D1F}.Release|ARM.ActiveCfg = Release|Any CPU
+		{0E6E568D-F8B5-45F1-BE02-F54E93FC2D1F}.Release|ARM.Build.0 = Release|Any CPU
+		{0E6E568D-F8B5-45F1-BE02-F54E93FC2D1F}.Release|x64.ActiveCfg = Release|Any CPU
+		{0E6E568D-F8B5-45F1-BE02-F54E93FC2D1F}.Release|x64.Build.0 = Release|Any CPU
+		{0E6E568D-F8B5-45F1-BE02-F54E93FC2D1F}.Release|x86.ActiveCfg = Release|Any CPU
+		{0E6E568D-F8B5-45F1-BE02-F54E93FC2D1F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
