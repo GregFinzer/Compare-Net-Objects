@@ -62,11 +62,19 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             Type enumerableGenArg = null;
             foreach (var inter in type.GetInterfaces())
             {
+#if PORTABLE
+                if (inter.IsGenericType && inter.GetGenericTypeDefinition() == typeof(IEnumerable<>))
+                {
+                    enumerableGenArg = inter.GetGenericArguments()[0];
+                    break;
+                }
+#else
                 if (inter.GetTypeInfo().IsGenericType && inter.GetGenericTypeDefinition() == typeof(IEnumerable<>))
                 {
                     enumerableGenArg = inter.GetGenericArguments()[0];
                     break;
                 }
+#endif
             }
 
             if (enumerableGenArg == null)

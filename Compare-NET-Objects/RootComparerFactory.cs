@@ -42,6 +42,7 @@ namespace KellermanSoftware.CompareNetObjects
             _rootComparer.TypeComparers.Add(new DatasetComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new DataTableComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new DataRowComparer(_rootComparer));
+            _rootComparer.TypeComparers.Add(new DataColumnComparer(_rootComparer));
 #endif
             _rootComparer.TypeComparers.Add(new EnumerableComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new ByteArrayComparer(_rootComparer));

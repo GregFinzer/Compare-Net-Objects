@@ -6,7 +6,7 @@
 What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.
 
 #Compatibility
-Compatible with .NET Framework 3.5 and higher. Portable Class Library version works with .NET 4.0+, Silverlight 5+, Windows Phone 8+, Windows RT 8+, Xamarin iOS, and Xamarin Droid
+Compatible with .NET Framework 3.5 and higher. Portable Class Library version works with .NET 4.0+, Silverlight 5+, Windows Phone 8+, Windows RT 8+, Xamarin iOS, and Xamarin Droid.  .NET Core too.
 
 #NuGet Package
 http://www.nuget.org/packages/CompareNETObjects
@@ -29,6 +29,7 @@ http://www.nuget.org/packages/CompareNETObjects
     * Compare DataSet Data
     * Compare DataTable Data
     * Compare DataRow Data
+	* Compare DataColumn Differences
     * Compare LinearGradient
     * Compare HashSet
     * Compare URI

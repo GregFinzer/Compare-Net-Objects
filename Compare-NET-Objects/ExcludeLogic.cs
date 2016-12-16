@@ -22,6 +22,12 @@ namespace KellermanSoftware.CompareNetObjects
             if (config.MembersToInclude.Count > 0 && !config.MembersToInclude.Contains(info.Name))
                 return true;
 
+            //Ignore by type.propertyname
+            if (config.MembersToIgnore.Count > 0
+                && info.DeclaringType != null
+                && config.MembersToIgnore.Contains(info.DeclaringType.Name + "." + info.Name))
+                return true;
+
             //If we should ignore it, skip it
             if (config.MembersToIgnore.Count > 0 && config.MembersToIgnore.Contains(info.Name))
                 return true;
@@ -58,8 +64,13 @@ namespace KellermanSoftware.CompareNetObjects
             }
 
             //The class is ignored by an attribute
+#if PORTABLE
+            if (IgnoredByAttribute(config, t1))
+                return true;
+#else
             if (IgnoredByAttribute(config, t1.GetTypeInfo()))
                 return true;
+#endif
 
             return false;
         }

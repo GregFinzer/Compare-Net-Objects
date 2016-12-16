@@ -95,6 +95,7 @@
     <Compile Include="TypeComparers\BaseComparer.cs" />
     <Compile Include="TypeComparers\ByteArrayComparer.cs" />
     <Compile Include="TypeComparers\ClassComparer.cs" />
+    <Compile Include="TypeComparers\DataColumnComparer.cs" />
     <Compile Include="TypeComparers\DataRowComparer.cs" />
     <Compile Include="TypeComparers\DatasetComparer.cs" />
     <Compile Include="TypeComparers\DataTableComparer.cs" />

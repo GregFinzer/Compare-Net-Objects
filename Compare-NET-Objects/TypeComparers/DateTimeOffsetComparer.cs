@@ -39,7 +39,6 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             DateTimeOffset date1 = (DateTimeOffset)parms.Object1;
             DateTimeOffset date2 = (DateTimeOffset)parms.Object2;
 
-
             if (Math.Abs((date1 - date2).TotalMilliseconds) > parms.Config.MaxMillisecondsDateDifference 
                 && (!parms.Config.CompareDateTimeOffsetWithOffsets || date1.Offset == date2.Offset))
                 AddDifference(parms);

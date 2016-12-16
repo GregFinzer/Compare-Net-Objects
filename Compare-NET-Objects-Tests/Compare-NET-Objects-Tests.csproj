@@ -53,7 +53,9 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.4.0.2, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
+    <Reference Include="nunit.framework">
+      <HintPath>$(SolutionDir)packages\NUnit.3.5.0\lib\net35\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -91,6 +93,7 @@
     <Compile Include="ConfigTests.cs" />
     <Compile Include="CompareStringTests.cs" />
     <Compile Include="CustomComparerTests.cs" />
+    <Compile Include="IgnoreTests.cs" />
     <Compile Include="LogicEqualityComparerTests.cs" />
     <Compile Include="MyCustomComparer.cs" />
     <Compile Include="IgnoreOrderTests.cs" />
@@ -171,16 +174,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Compare-NET-Objects\Compare-NET-Objects.csproj">
       <Project>{94F1F5F2-6BC4-464B-AC51-FBDB4FA3F3AD}</Project>
       <Name>Compare-NET-Objects</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ExternalAssemblies\nunit.framework.dll" />
-    <Content Include="ExternalAssemblies\nunit.framework.xml" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

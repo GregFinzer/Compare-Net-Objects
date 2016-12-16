@@ -9,7 +9,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
     /// Compare all rows in a data table
     /// </summary>
     public class DataTableComparer : BaseTypeComparer
-    {      
+    {
         /// <summary>
         /// Constructor that takes a root comparer
         /// </summary>

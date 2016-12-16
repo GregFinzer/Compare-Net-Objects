@@ -11,14 +11,18 @@ namespace KellermanSoftware.CompareNetObjectsTests
     [TestFixture]
     public class ReportTests
     {
+
         [Test]
         public void BeyondCompareReportTest()
         {
-            if (File.Exists("beyondExpected.txt"))
-                File.Delete("beyondExpected.txt");
+            string expected = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "beyondExpected.txt");
+            string actual = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "beyondActual.txt");
 
-            if (File.Exists("beyondActual.txt"))
-                File.Delete("beyondActual.txt");
+            if (File.Exists(expected))
+                File.Delete(expected);
+
+            if (File.Exists(actual))
+                File.Delete(actual);
 
             Movie beyondExpected = new Movie();
             beyondExpected.Name = "Oblivion";
@@ -33,23 +37,26 @@ namespace KellermanSoftware.CompareNetObjectsTests
             ComparisonResult result = compareLogic.Compare(beyondExpected, beyondActual);
 
             BeyondCompareReport beyondCompare = new BeyondCompareReport();
-            beyondCompare.OutputFiles(result.Differences, "beyondExpected.txt", "beyondActual.txt");
+            beyondCompare.OutputFiles(result.Differences, expected, actual);
 
-            Assert.IsTrue(File.Exists("beyondExpected.txt"));
-            Assert.IsTrue(File.Exists("beyondActual.txt"));
+            Assert.IsTrue(File.Exists(expected));
+            Assert.IsTrue(File.Exists(actual));
 
             if (!string.IsNullOrEmpty(beyondCompare.FindBeyondCompare()))
-                beyondCompare.LaunchApplication("beyondExpected.txt", "beyondActual.txt");
+                beyondCompare.LaunchApplication(expected, actual);
         }
 
         [Test]
         public void WinMergeReportTest()
         {
-            if (File.Exists("winMergeExpected.txt"))
-                File.Delete("winMergeExpected.txt");
+            string expected = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "winMergeExpected.txt");
+            string actual = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "winMergeActual.txt");
 
-            if (File.Exists("winMergeActual.txt"))
-                File.Delete("winMergeActual.txt");
+            if (File.Exists(expected))
+                File.Delete(expected);
+
+            if (File.Exists(actual))
+                File.Delete(actual);
 
             Movie winMergeExpected = new Movie();
             winMergeExpected.Name = "Oblivion";
@@ -64,20 +71,22 @@ namespace KellermanSoftware.CompareNetObjectsTests
             ComparisonResult result = compareLogic.Compare(winMergeExpected, winMergeActual);
 
             WinMergeReport winMergeReport = new WinMergeReport();
-            winMergeReport.OutputFiles(result.Differences, "winMergeExpected.txt", "winMergeActual.txt");
+            winMergeReport.OutputFiles(result.Differences, expected, actual);
 
-            Assert.IsTrue(File.Exists("winMergeExpected.txt"));
-            Assert.IsTrue(File.Exists("winMergeActual.txt"));
+            Assert.IsTrue(File.Exists(expected));
+            Assert.IsTrue(File.Exists(actual));
 
             if (!string.IsNullOrEmpty(winMergeReport.FindWinMerge()))
-                winMergeReport.LaunchApplication("winMergeExpected.txt", "winMergeActual.txt");
+                winMergeReport.LaunchApplication(expected,actual);
         }
 
         [Test]
         public void CsvReportTest()
         {
-            if (File.Exists("movie.csv"))
-                File.Delete("movie.csv");
+            string expected = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "movie.csv");
+
+            if (File.Exists(expected))
+                File.Delete(expected);
 
             Movie movie1 = new Movie();
             movie1.Name = "Oblivion";
@@ -92,18 +101,20 @@ namespace KellermanSoftware.CompareNetObjectsTests
             ComparisonResult result = compareLogic.Compare(movie1, movie2);
 
             CsvReport csvReport = new CsvReport();
-            csvReport.OutputFile(result.Differences, "movie.csv");
+            csvReport.OutputFile(result.Differences, expected);
 
-            Assert.IsTrue(File.Exists("movie.csv"));
+            Assert.IsTrue(File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, expected)));
 
-            csvReport.LaunchApplication("movie.csv");
+            csvReport.LaunchApplication(expected);
         }
 
         [Test]
         public void UserFriendlyReportTest()
         {
-            if (File.Exists("movie.txt"))
-                File.Delete("movie.txt");
+            string expected = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "movie.txt");
+
+            if (File.Exists(expected))
+                File.Delete(expected);
 
             Movie movie1 = new Movie();
             movie1.Name = "Oblivion";
@@ -118,18 +129,23 @@ namespace KellermanSoftware.CompareNetObjectsTests
             ComparisonResult result = compareLogic.Compare(movie1, movie2);
 
             UserFriendlyReport friendlyReport = new UserFriendlyReport();
-            friendlyReport.OutputFile(result.Differences, "movie.txt");
+            friendlyReport.OutputFile(result.Differences, expected);
 
-            Assert.IsTrue(File.Exists("movie.txt"));
+            Assert.IsTrue(File.Exists(expected));
 
             Console.WriteLine(friendlyReport.OutputString(result.Differences));
 
-            friendlyReport.LaunchApplication("movie.txt");
+            friendlyReport.LaunchApplication(expected);
         }
 
         [Test]
         public void UserFriendlyReportTreeTest()
         {
+            string expected = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "entityTree.txt");
+
+            if (File.Exists(expected))
+                File.Delete(expected);
+
             List<Entity> entityTree = new List<Entity>();
 
             //Brave Sir Robin Security Company
@@ -197,12 +213,12 @@ namespace KellermanSoftware.CompareNetObjectsTests
             ComparisonResult result = compareLogic.Compare(entityTree, entityTreeCopy);
 
             UserFriendlyReport friendlyReport = new UserFriendlyReport();
-            friendlyReport.OutputFile(result.Differences, "entityTree.txt");
+            friendlyReport.OutputFile(result.Differences, expected);
 
-            Assert.IsTrue(File.Exists("entityTree.txt"));
+            Assert.IsTrue(File.Exists(expected));
 
             Console.WriteLine(friendlyReport.OutputString(result.Differences));
-            friendlyReport.LaunchApplication("entityTree.txt");
+            friendlyReport.LaunchApplication(expected);
         }
     }
 }

@@ -485,6 +485,27 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #endregion
 
         #region List Tests
+
+        [Test]
+        public void CompareListsTwoDifferentTypes()
+        {
+            List<Person> list1 = new List<Person>();
+            list1.Add(new Person(){Name="Logan 5"});
+            list1.Add(new Person(){Name="Francis 7"});
+
+            List<Officer> list2 = new List<Officer>();
+            list2.Add(new Officer() { Name = "Logan 5" });
+            list2.Add(new Officer() { Name = "Francis 7" });
+
+            ComparisonConfig config = new ComparisonConfig();
+            config.IgnoreObjectTypes = true;
+
+            CompareLogic compareLogic = new CompareLogic(config);
+            var result = compareLogic.Compare(list1, list2);
+            Assert.IsTrue(result.AreEqual);
+
+        }
+
         [Test]
         public void ListOfNullObjects()
         {

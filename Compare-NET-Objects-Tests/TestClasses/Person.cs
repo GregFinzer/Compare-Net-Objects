@@ -4,12 +4,11 @@ using System.Text;
 
 namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
 {
-#if !DNCORE
     [Serializable]
-#endif
-
     public class Person : IName
     {
+        public int ID { get; set; }
+
         public DateTime DateCreated;
 
         public string Name

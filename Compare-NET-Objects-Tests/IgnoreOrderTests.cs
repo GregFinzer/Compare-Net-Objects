@@ -56,6 +56,31 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
+        public void CompareListsIgnoreOrderTwoDifferentTypes()
+        {
+            List<Person> list1 = new List<Person>();
+            list1.Add(new Person() {ID = 1, Name = "Logan 5"});
+            list1.Add(new Person() { ID = 2, Name = "Francis 7" });
+
+            List<Officer> list2 = new List<Officer>();
+            list2.Add(new Officer() { ID = 2, Name = "Francis 7" });
+            list2.Add(new Officer() { ID = 1, Name = "Logan 5" });
+
+            ComparisonConfig config = new ComparisonConfig();
+            Dictionary<Type, IEnumerable<string>> collectionSpec = new Dictionary<Type, IEnumerable<string>>();
+            collectionSpec.Add(typeof(Person), new string[] { "ID" });
+            collectionSpec.Add(typeof(Officer), new string[] { "ID" });
+
+            config.IgnoreObjectTypes = true;
+            config.IgnoreCollectionOrder = true;
+            config.CollectionMatchingSpec = collectionSpec;
+
+            CompareLogic compareLogic = new CompareLogic(config);
+            var result = compareLogic.Compare(list1, list2);
+            Assert.IsTrue(result.AreEqual);
+        }
+
+        [Test]
         public void IgnoreOrderSecondListHigherCount()
         {
             List<Reservation> list1 = new List<Reservation>();

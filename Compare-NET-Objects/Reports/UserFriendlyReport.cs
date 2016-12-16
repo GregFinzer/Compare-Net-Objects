@@ -32,6 +32,9 @@ namespace KellermanSoftware.CompareNetObjects.Reports
         /// <param name="filePath">The file path</param>
         public void OutputFile(List<Difference> differences, string filePath)
         {
+            if (String.IsNullOrEmpty(Path.GetDirectoryName(filePath)))
+                filePath = Path.Combine(FileHelper.GetCurrentDirectory(), filePath);
+
             using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
             {
                 using (TextWriter writer = new StreamWriter(fileStream))
