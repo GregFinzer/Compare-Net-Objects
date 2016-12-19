@@ -10,6 +10,7 @@ Compatible with .NET Framework 3.5 and higher. Portable Class Library version wo
 
 #NuGet Package
 [![NuGet](http://img.shields.io/nuget/v/CompareNETObjects.svg)](https://www.nuget.org/packages/CompareNETObjects/)
+
 http://www.nuget.org/packages/CompareNETObjects
 
 ##Features
