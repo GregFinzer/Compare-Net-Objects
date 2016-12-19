@@ -9,6 +9,7 @@ What you have been waiting for. Perform a deep compare of any two .NET objects u
 Compatible with .NET Framework 3.5 and higher. Portable Class Library version works with .NET 4.0+, Silverlight 5+, Windows Phone 8+, Windows RT 8+, Xamarin iOS, and Xamarin Droid.  .NET Core too.
 
 #NuGet Package
+[![NuGet](http://img.shields.io/nuget/v/CompareNETObjects.svg)](https://www.nuget.org/packages/CompareNETObjects/)
 http://www.nuget.org/packages/CompareNETObjects
 
 ##Features
