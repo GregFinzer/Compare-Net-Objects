@@ -264,11 +264,18 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                 return result.Config.CollectionMatchingSpec.First(p => p.Key == type).Value.ToList();
             }
 
+            Type[] typeInterfaces = type.GetInterfaces();
+            bool matchingInterfacePresent = result.Config.CollectionMatchingSpec.Keys.Any(k => typeInterfaces.Any(t => t == k));
+            if (matchingInterfacePresent)
+            {
+                return result.Config.CollectionMatchingSpec.First(p => typeInterfaces.Contains(p.Key)).Value.ToList();
+            }
+
             //Make a key out of primative types, date, decimal, string, guid, and enum of the class
             List<string> list = Cache.GetPropertyInfo(result, type)
                 .Where(o => o.CanWrite && (TypeHelper.IsSimpleType(o.PropertyType) || TypeHelper.IsEnum(o.PropertyType)))
                 .Select(o => o.Name).ToList();
-
+            
             //Remove members to ignore in the key
             foreach (var member in result.Config.MembersToIgnore)
             {

@@ -1020,6 +1020,80 @@ namespace KellermanSoftware.CompareNetObjectsTests
             Assert.IsTrue(result.Differences.Where(d => d.Object1Value == "(null)" || d.Object2Value == "(null)").ToArray().Length == 0);
 
         }
+
+        [Test]
+        public void CollectionMatchingSpecBasedOnInterfaceTest()
+        {
+            IEntity entityToModify = new Entity {Id = 101, Description = "Desription 2"};
+            IEntity entity1 = new Entity
+            {
+                Id = 1,
+                Children = new List<IEntity>
+                {
+                    new Entity
+                    {
+                        Id = 10,
+                        Children = new List<IEntity>
+                        {
+                            new Entity {Id = 100, Description = "Description 1"}
+                        }
+                    },
+                    new Entity
+                    {
+                        Id = 11,
+                        Children = new List<IEntity>
+                        {
+                            entityToModify,
+                            new Entity {Id = 102, Description = "Description 3"}
+                        }
+                    }
+
+                }
+            };
+            IEntity newlyAddedEntity = new Entity {Id = 103, Description = "Description 4"};
+            IEntity modifiedEntity = new Entity {Id = 101, Description = "Desription 5"};
+            IEntity entity2 = new Entity
+            {
+                Id = 1,
+                Children = new List<IEntity>
+                {
+                    new Entity
+                    {
+                        Id = 10,
+                        Children = new List<IEntity>
+                        {
+                            new Entity {Id = 100, Description = "Description 1"},
+                            newlyAddedEntity
+                        }
+                    },
+                    new Entity
+                    {
+                        Id = 11,
+                        Children = new List<IEntity>
+                        {
+                            new Entity {Id = 102, Description = "Description 3"},
+                            modifiedEntity
+                        }
+                    }
+
+                }
+            };
+
+            ComparisonConfig config = new ComparisonConfig
+            {
+                IgnoreCollectionOrder = true,
+                MaxDifferences = int.MaxValue,
+                CollectionMatchingSpec = new Dictionary<Type, IEnumerable<string>> { { typeof(IEntity), new string[] { "Id" } } }
+            };
+            _compare.Config = config;
+
+            var result = _compare.Compare(entity1, entity2);
+            Assert.AreEqual(result.Differences.Count, 3);
+            Assert.AreEqual(result.Differences[0].PropertyName, ".Children[Id:10].Children");
+            Assert.AreEqual(result.Differences[1].PropertyName, ".Children[Id:10].Children[Id:103]");
+            Assert.AreEqual(result.Differences[2].PropertyName, ".Children[Id:11].Children[Id:101].Description");
+        }
+
         #endregion
     }
 }

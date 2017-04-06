@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
 {
-    public enum Level 
+    public enum Level
     {
         Company,
         Division,
@@ -38,6 +38,12 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
         {
             get { return _children; }
             set { _children = value; }
+        }
+
+        public int Id
+        {
+            get;
+            set;
         }
 
         //can be circular refs, so bye bye for now

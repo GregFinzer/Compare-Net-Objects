@@ -29,5 +29,11 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             get;
             set;
         }
+
+        int Id
+        {
+            get;
+            set;
+        }
     }
 }
