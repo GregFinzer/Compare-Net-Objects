@@ -249,12 +249,24 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
             }
 
             if (sb.Length == 0)
-                sb.Append(currentObject);
+                sb.Append(RespectNumberToString(currentObject));
 
             return sb.ToString().TrimEnd(',');
         }
 
-
+        private static string RespectNumberToString(object o)
+        {
+            switch (Type.GetTypeCode(o.GetType()))
+            {
+                case TypeCode.Decimal:
+                    return ((decimal) o).ToString("G29");
+                case TypeCode.Double:
+                case TypeCode.Single:
+                    return ((double)o).ToString("G");
+                default:
+                    return o.ToString();
+            }
+        }
 
         private List<string> GetMatchingSpec(ComparisonResult result,Type type)
         {
