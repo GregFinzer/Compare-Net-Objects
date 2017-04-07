@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compare-NET-Objects", "Compare-NET-Objects\Compare-NET-Objects.csproj", "{94F1F5F2-6BC4-464B-AC51-FBDB4FA3F3AD}"
 EndProject
@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compare-NET-Objects-Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compare-NET-Objects-Portable", "Compare-NET-Objects-Portable\Compare-NET-Objects-Portable.csproj", "{D8A78AFB-2C88-4A10-8555-210533F769E3}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Compare-NET-Objects-Core", "Compare-NET-Objects-Core\Compare-NET-Objects-Core.xproj", "{0E6E568D-F8B5-45F1-BE02-F54E93FC2D1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Compare-NET-Objects-Core", "Compare-NET-Objects-Core\Compare-NET-Objects-Core.csproj", "{0E6E568D-F8B5-45F1-BE02-F54E93FC2D1F}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Compare-NET-Objects-Core-Tests", "Compare-NET-Objects-Core-Tests\Compare-NET-Objects-Core-Tests.xproj", "{16184909-233A-4678-87CE-8C474C5630AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Compare-NET-Objects-Core-Tests", "Compare-NET-Objects-Core-Tests\Compare-NET-Objects-Core-Tests.csproj", "{16184909-233A-4678-87CE-8C474C5630AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

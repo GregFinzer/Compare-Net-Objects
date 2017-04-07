@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Kellerman Software")]
-[assembly: AssemblyProduct("Compare_NET_Objects_Core")]
+[assembly: AssemblyProduct("Compare NET Objects Core")]
 [assembly: AssemblyTrademark("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -17,3 +17,4 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("0e6e568d-f8b5-45f1-be02-f54e93fc2d1f")]
+

@@ -1,0 +1,78 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Easily compare objects in .NET</Description>
+    <VersionPrefix>3.06.0.0</VersionPrefix>
+    <Authors>GregFinzer</Authors>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <DefineConstants>$(DefineConstants);DNCORE</DefineConstants>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AssemblyName>KellermanSoftware.Compare-NET-Objects-Core</AssemblyName>
+    <PackageId>Compare-NET-Objects-Core</PackageId>
+    <PackageProjectUrl>https://github.com/GregFinzer/Compare-Net-Objects</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/GregFinzer/Compare-Net-Objects/wiki/Licensing</PackageLicenseUrl>
+    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <RootNamespace>KellermanSoftware.CompareNetObjects</RootNamespace>
+    <Version>3.07.0.0</Version>
+    <Copyright>Copyright © 2017</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Compare-NET-Objects\Cache.cs;..\Compare-NET-Objects\CompareLogic.cs;..\Compare-NET-Objects\CompareObjects.cs;..\Compare-NET-Objects\CompareParms.cs;..\Compare-NET-Objects\ComparisonConfig.cs;..\Compare-NET-Objects\ComparisonResult.cs;..\Compare-NET-Objects\Difference.cs;..\Compare-NET-Objects\ExcludeLogic.cs;..\Compare-NET-Objects\ICompareLogic.cs;..\Compare-NET-Objects\IgnoreOrderTypes\IgnoreOrderLogic.cs;..\Compare-NET-Objects\IgnoreOrderTypes\IndexerCollectionLooper.cs;..\Compare-NET-Objects\Reports\CsvReport.cs;..\Compare-NET-Objects\Reports\ISingleFileReport.cs;..\Compare-NET-Objects\Reports\UserFriendlyReport.cs;..\Compare-NET-Objects\RootComparer.cs;..\Compare-NET-Objects\RootComparerFactory.cs;..\Compare-NET-Objects\StringHelper.cs;..\Compare-NET-Objects\TypeBackwardsCompatibilityExtensions.cs;..\Compare-NET-Objects\TypeComparers\BaseComparer.cs;..\Compare-NET-Objects\TypeComparers\BaseTypeComparer.cs;..\Compare-NET-Objects\TypeComparers\ByteArrayComparer.cs;..\Compare-NET-Objects\TypeComparers\ClassComparer.cs;..\Compare-NET-Objects\TypeComparers\DateComparer.cs;..\Compare-NET-Objects\TypeComparers\DateTimeOffsetComparer.cs;..\Compare-NET-Objects\TypeComparers\DictionaryComparer.cs;..\Compare-NET-Objects\TypeComparers\DoubleComparer.cs;..\Compare-NET-Objects\TypeComparers\EnumComparer.cs;..\Compare-NET-Objects\TypeComparers\EnumerableComparer.cs;..\Compare-NET-Objects\TypeComparers\FieldComparer.cs;..\Compare-NET-Objects\TypeComparers\HashSetComparer.cs;..\Compare-NET-Objects\TypeComparers\IndexerComparer.cs;..\Compare-NET-Objects\TypeComparers\ListComparer.cs;..\Compare-NET-Objects\TypeComparers\PointerComparer.cs;..\Compare-NET-Objects\TypeComparers\PropertyComparer.cs;..\Compare-NET-Objects\TypeComparers\RuntimeTypeComparer.cs;..\Compare-NET-Objects\TypeComparers\SimpleTypeComparer.cs;..\Compare-NET-Objects\TypeComparers\StringComparer.cs;..\Compare-NET-Objects\TypeComparers\StructComparer.cs;..\Compare-NET-Objects\TypeComparers\TimespanComparer.cs;..\Compare-NET-Objects\TypeComparers\UriComparer.cs;..\Compare-NET-Objects\TypeHelper.cs" Exclude="bin\**;obj\**;**\*.xproj;packages\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="IgnoreOrderTypes\" />
+    <Folder Include="TypeComparers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="..\Compare-NET-Objects\Cache.cs" Link="Cache.cs" />
+    <Compile Update="..\Compare-NET-Objects\CompareLogic.cs" Link="CompareLogic.cs" />
+    <Compile Update="..\Compare-NET-Objects\CompareObjects.cs" Link="CompareObjects.cs" />
+    <Compile Update="..\Compare-NET-Objects\CompareParms.cs" Link="CompareParms.cs" />
+    <Compile Update="..\Compare-NET-Objects\ComparisonConfig.cs" Link="ComparisonConfig.cs" />
+    <Compile Update="..\Compare-NET-Objects\ComparisonResult.cs" Link="ComparisonResult.cs" />
+    <Compile Update="..\Compare-NET-Objects\Difference.cs" Link="Difference.cs" />
+    <Compile Update="..\Compare-NET-Objects\ExcludeLogic.cs" Link="ExcludeLogic.cs" />
+    <Compile Update="..\Compare-NET-Objects\ICompareLogic.cs" Link="ICompareLogic.cs" />
+    <Compile Update="..\Compare-NET-Objects\IgnoreOrderTypes\IgnoreOrderLogic.cs" Link="IgnoreOrderTypes\IgnoreOrderLogic.cs" />
+    <Compile Update="..\Compare-NET-Objects\IgnoreOrderTypes\IndexerCollectionLooper.cs" Link="IgnoreOrderTypes\IndexerCollectionLooper.cs" />
+    <Compile Update="..\Compare-NET-Objects\RootComparer.cs" Link="RootComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\RootComparerFactory.cs" Link="RootComparerFactory.cs" />
+    <Compile Update="..\Compare-NET-Objects\StringHelper.cs" Link="StringHelper.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeBackwardsCompatibilityExtensions.cs" Link="TypeBackwardsCompatibilityExtensions.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\BaseComparer.cs" Link="TypeComparers\BaseComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\BaseTypeComparer.cs" Link="TypeComparers\BaseTypeComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\ByteArrayComparer.cs" Link="TypeComparers\ByteArrayComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\ClassComparer.cs" Link="TypeComparers\ClassComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\DateComparer.cs" Link="TypeComparers\DateComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\DateTimeOffsetComparer.cs" Link="TypeComparers\DateTimeOffsetComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\DictionaryComparer.cs" Link="TypeComparers\DictionaryComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\DoubleComparer.cs" Link="TypeComparers\DoubleComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\EnumComparer.cs" Link="TypeComparers\EnumComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\EnumerableComparer.cs" Link="TypeComparers\EnumerableComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\FieldComparer.cs" Link="TypeComparers\FieldComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\HashSetComparer.cs" Link="TypeComparers\HashSetComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\IndexerComparer.cs" Link="TypeComparers\IndexerComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\ListComparer.cs" Link="TypeComparers\ListComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\PointerComparer.cs" Link="TypeComparers\PointerComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\PropertyComparer.cs" Link="TypeComparers\PropertyComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\RuntimeTypeComparer.cs" Link="TypeComparers\RuntimeTypeComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\SimpleTypeComparer.cs" Link="TypeComparers\SimpleTypeComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\StringComparer.cs" Link="TypeComparers\StringComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\StructComparer.cs" Link="TypeComparers\StructComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\TimespanComparer.cs" Link="TypeComparers\TimespanComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeComparers\UriComparer.cs" Link="TypeComparers\UriComparer.cs" />
+    <Compile Update="..\Compare-NET-Objects\TypeHelper.cs" Link="TypeHelper.cs" />
+  </ItemGroup>
+
+</Project>
