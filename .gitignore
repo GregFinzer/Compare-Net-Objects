@@ -2,5 +2,3 @@
 [Dd]ebug/
 *.user
 Compare-NET-Objects-NewPcl-Tests/TestResult.xml
-/packages/NUnit.3.5.0
-/UpgradeLog.htm

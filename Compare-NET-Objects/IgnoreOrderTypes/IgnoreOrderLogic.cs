@@ -276,7 +276,6 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                 return result.Config.CollectionMatchingSpec.First(p => p.Key == type).Value.ToList();
             }
 
-            //The user specified an interface for the order
             Type[] typeInterfaces = type.GetInterfaces();
             bool matchingInterfacePresent = result.Config.CollectionMatchingSpec.Keys.Any(k => typeInterfaces.Any(t => t == k));
             if (matchingInterfacePresent)
