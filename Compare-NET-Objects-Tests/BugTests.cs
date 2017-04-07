@@ -60,6 +60,16 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
+        public void DbNullTest()
+        {
+            CompareLogic compareLogic = new CompareLogic();
+
+            ComparisonResult result = compareLogic.Compare(DBNull.Value, DBNull.Value);
+            if (!result.AreEqual)
+                Console.WriteLine(result.DifferencesString);
+        }
+
+        [Test]
         public void PropertyComparerFailsWithObjectNullException()
         {
             //This is the comparison class
