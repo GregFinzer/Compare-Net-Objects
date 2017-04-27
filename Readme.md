@@ -2,18 +2,18 @@
 
 [<img src="https://github.com/GregFinzer/comparenetobjects/blob/master/PoweredByNDepend.png">](http://www.ndepend.com)
 
-#Project Description
+# Project Description
 What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.
 
-#Compatibility
+# Compatibility
 Compatible with .NET Framework 3.5 and higher. Portable Class Library version works with .NET 4.0+, Silverlight 5+, Windows Phone 8+, Windows RT 8+, Xamarin iOS, and Xamarin Droid.  .NET Core too.
 
-#NuGet Package
+# NuGet Package
 [![NuGet](http://img.shields.io/nuget/v/CompareNETObjects.svg)](https://www.nuget.org/packages/CompareNETObjects/)
 
 http://www.nuget.org/packages/CompareNETObjects
 
-##Features
+# Features
 
     * Compare Children (on by default)
     * Handling for Trees with Children Pointing To Parents (Circular References)
