@@ -15,44 +15,44 @@ http://www.nuget.org/packages/CompareNETObjects
 
 # Features
 
-    * Compare Children (on by default)
-    * Handling for Trees with Children Pointing To Parents (Circular References)
-    * Compare Primitive Types
-    * Compare Structs
-    * Compare IList Objects
-    * Compare Single and Multi-Dimensional Arrays
-    * Compare IDictionary Objects
-    * Compare Publicly visible Class Fields and Properties
-    * Compare Private Fields and Properties (off by default)
-    * Compare Enums
-    * Compare Timespans
-    * Compare Guids
-    * Compare Classes that Implement IList with Indexers
-    * Compare DataSet Data
-    * Compare DataTable Data
-    * Compare DataRow Data
-	* Compare DataColumn Differences
-    * Compare LinearGradient
-    * Compare HashSet
-    * Compare URI
-    * Compare IPEndPoint
-    * Compare Types of Type (RuntimeType)
-    * Source code in C#
-    * NUnit Test Project Included
-    * Ability to load settings from a config file for use with powershell
-    * Several configuration options for comparing private elements, ignoring specific elements, including specific elements.
-    * Property and Field Info reflection caching for increased performance
-    * Rich Differences List or simple DifferencesString
-    * Supports custom comparison functions
-    * ElapsedMilliseconds indicates how long the comparison took
-    * Ability to IgnoreCollectionOrder
-    * Thread Safe
-    * Ability to pass in the configuration
-    * Ability to ignore indexer comparison
-    * Ability to ignore types
-    * Interface member filtering
-    * Ability to treat string.empty and null as equal
-    * Beyond Compare Report
-    * WinMerge Report
-    * CSV Report
-    * User Friendly Report 
+* Compare Children (on by default)
+* Handling for Trees with Children Pointing To Parents (Circular References)
+* Compare Primitive Types
+* Compare Structs
+* Compare IList Objects
+* Compare Single and Multi-Dimensional Arrays
+* Compare IDictionary Objects
+* Compare Publicly visible Class Fields and Properties
+* Compare Private Fields and Properties (off by default)
+* Compare Enums
+* Compare Timespans
+* Compare Guids
+* Compare Classes that Implement IList with Indexers
+* Compare DataSet Data
+* Compare DataTable Data
+* Compare DataRow Data
+* Compare DataColumn Differences
+* Compare LinearGradient
+* Compare HashSet
+* Compare URI
+* Compare IPEndPoint
+* Compare Types of Type (RuntimeType)
+* Source code in C#
+* NUnit Test Project Included
+* Ability to load settings from a config file for use with powershell
+* Several configuration options for comparing private elements, ignoring specific elements, including specific elements.
+* Property and Field Info reflection caching for increased performance
+* Rich Differences List or simple DifferencesString
+* Supports custom comparison functions
+* ElapsedMilliseconds indicates how long the comparison took
+* Ability to IgnoreCollectionOrder
+* Thread Safe
+* Ability to pass in the configuration
+* Ability to ignore indexer comparison
+* Ability to ignore types
+* Interface member filtering
+* Ability to treat string.empty and null as equal
+* Beyond Compare Report
+* WinMerge Report
+* CSV Report
+* User Friendly Report 
