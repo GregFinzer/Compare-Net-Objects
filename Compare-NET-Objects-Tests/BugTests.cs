@@ -60,6 +60,35 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
+        public void DictionaryWithIgnoreOrder()
+        {
+            var bar1 = new List<Dictionary<string, string>>
+            {
+                new Dictionary<string, string>
+                {
+                    {"a", "b"},
+                    {"c", "d"},
+                    {"e", "f"},
+                    {"g", "h"},
+                }
+            };
+
+            var bar2 = new List<Dictionary<string, string>>
+            {
+                new Dictionary<string, string>
+                {
+                    {"e", "f"},
+                    {"g", "h"},
+                    {"c", "d"},
+                    {"a", "b"},
+                }
+            };
+
+            var comparer = new CompareLogic { Config = { IgnoreCollectionOrder = true } };
+            var res = comparer.Compare(bar1, bar2);
+        }
+
+        [Test]
         public void DbNullTest()
         {
             CompareLogic compareLogic = new CompareLogic();
