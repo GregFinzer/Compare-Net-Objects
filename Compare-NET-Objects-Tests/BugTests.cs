@@ -60,7 +60,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
-        public void DictionaryWithIgnoreOrder()
+        public void ListOfDictionariesWithIgnoreOrder()
         {
             var bar1 = new List<Dictionary<string, string>>
             {
@@ -86,6 +86,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             var comparer = new CompareLogic { Config = { IgnoreCollectionOrder = true } };
             var res = comparer.Compare(bar1, bar2);
+            Assert.IsTrue(res.AreEqual,res.DifferencesString);
         }
 
         [Test]
