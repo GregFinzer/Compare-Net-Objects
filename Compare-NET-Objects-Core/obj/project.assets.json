@@ -4024,7 +4024,7 @@
     "C:\\Users\\gfinz\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "3.7.0",
+    "version": "3.8.0",
     "restore": {
       "projectUniqueName": "C:\\svn\\Compare-Net-Objects\\Compare-NET-Objects-Core\\Compare-NET-Objects-Core.csproj",
       "projectName": "Compare-NET-Objects-Core",
