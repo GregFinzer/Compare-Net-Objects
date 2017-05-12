@@ -51,7 +51,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 if (parms.Result.ExceededDifferences)
                     return;
 
-                if (parms.Config.IgnoreCollectionOrder)
+                if (parms.Config.IgnoreCollectionOrder && !ChildIsListOrDictionary(parms))
                 {
                     IgnoreOrderLogic ignoreOrderLogic = new IgnoreOrderLogic(RootComparer);
                     ignoreOrderLogic.CompareEnumeratorIgnoreOrder(parms, countsDifferent);
@@ -108,6 +108,21 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                     throw;
 
                 return true;
+            }
+
+            return false;
+        }
+
+        private bool ChildIsListOrDictionary(CompareParms parms)
+        {
+            IEnumerator enumerator1 = ((IList)parms.Object1).GetEnumerator();
+
+            enumerator1.MoveNext();
+
+            if (enumerator1.Current != null)
+            {
+                Type type = enumerator1.Current.GetType();
+                return TypeHelper.IsIDictionary(type) || TypeHelper.IsIList(type);
             }
 
             return false;

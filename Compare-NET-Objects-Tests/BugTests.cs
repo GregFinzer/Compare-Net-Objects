@@ -60,6 +60,46 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
+        public void ListOfDictionariesWithIgnoreOrder()
+        {
+            var bar1 = new List<Dictionary<string, string>>
+            {
+                new Dictionary<string, string>
+                {
+                    {"a", "b"},
+                    {"c", "d"},
+                    {"e", "f"},
+                    {"g", "h"},
+                }
+            };
+
+            var bar2 = new List<Dictionary<string, string>>
+            {
+                new Dictionary<string, string>
+                {
+                    {"e", "f"},
+                    {"g", "h"},
+                    {"c", "d"},
+                    {"a", "b"},
+                }
+            };
+
+            var comparer = new CompareLogic { Config = { IgnoreCollectionOrder = true } };
+            var res = comparer.Compare(bar1, bar2);
+            Assert.IsTrue(res.AreEqual,res.DifferencesString);
+        }
+
+        [Test]
+        public void DbNullTest()
+        {
+            CompareLogic compareLogic = new CompareLogic();
+
+            ComparisonResult result = compareLogic.Compare(DBNull.Value, DBNull.Value);
+            if (!result.AreEqual)
+                Console.WriteLine(result.DifferencesString);
+        }
+
+        [Test]
         public void PropertyComparerFailsWithObjectNullException()
         {
             //This is the comparison class
@@ -262,6 +302,16 @@ namespace KellermanSoftware.CompareNetObjectsTests
             LinearGradientBrush brush2 = new LinearGradientBrush(new Point(), new Point(0, 10), Color.Red, Color.Blue);
 
             Assert.IsFalse(_compare.Compare(brush1, brush2).AreEqual);
+        }
+
+        [Test]
+        public void DecimalCollectionWhenOrderIgnored()
+        {
+            var compare = new CompareLogic(new ComparisonConfig
+            {
+                IgnoreCollectionOrder = true
+            });
+            Assert.IsTrue(compare.Compare(new decimal[] { 10, 1 }, new [] { 10.0m, 1.0m }).AreEqual);
         }
 
         #endregion

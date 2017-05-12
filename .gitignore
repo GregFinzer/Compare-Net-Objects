@@ -2,3 +2,7 @@
 [Dd]ebug/
 *.user
 Compare-NET-Objects-NewPcl-Tests/TestResult.xml
+/packages/
+/UpgradeLog.htm
+/Backup
+/obj/

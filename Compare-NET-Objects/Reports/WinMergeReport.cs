@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using Microsoft.Win32;
 
 namespace KellermanSoftware.CompareNetObjects.Reports
 {
@@ -41,38 +42,17 @@ namespace KellermanSoftware.CompareNetObjects.Reports
         /// <returns>The path or null if not found</returns>
         public string FindWinMerge()
         {
-            //It should be in the Program Files (x86) directory
-            string programFilesPath = Environment.GetEnvironmentVariable("ProgramFiles(x86)");
+            RegistryKey registryKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\WinMergeU.exe");
 
-            if (!String.IsNullOrEmpty(programFilesPath))
-            {
-                string[] directories = Directory.GetDirectories(programFilesPath, "WinMerge");
+            if (registryKey == null)
+                return null;
 
-                foreach (var directory in directories.OrderByDescending(o => o))
-                {
-                    string[] files = Directory.GetFiles(directory, APPLICATION_NAME);
+            object value = registryKey.GetValue("");
 
-                    if (files.Any())
-                        return files.First();
-                }
-            }
+            if (value == null)
+                return null;
 
-            programFilesPath = Environment.GetEnvironmentVariable("ProgramFiles");
-
-            if (!String.IsNullOrEmpty(programFilesPath))
-            {
-                string[] directories = Directory.GetDirectories(programFilesPath, "WinMerge");
-
-                foreach (var directory in directories.OrderByDescending(o => o))
-                {
-                    string[] files = Directory.GetFiles(directory, APPLICATION_NAME);
-
-                    if (files.Any())
-                        return files.First();
-                }
-            }
-
-            return null;            
+            return value.ToString();
         }
     }
 }
