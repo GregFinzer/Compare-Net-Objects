@@ -117,9 +117,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         {
             IEnumerator enumerator1 = ((IList)parms.Object1).GetEnumerator();
 
-            enumerator1.MoveNext();
-
-            if (enumerator1.Current != null)
+            if (enumerator1.MoveNext() && enumerator1.Current != null)
             {
                 Type type = enumerator1.Current.GetType();
                 return TypeHelper.IsIDictionary(type) || TypeHelper.IsIList(type);
