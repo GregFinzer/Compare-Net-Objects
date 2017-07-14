@@ -14,5 +14,15 @@ namespace Compare_NET_Objects_Core_Tests
             var compare = new CompareLogic();
             Assert.IsTrue(compare.Compare(value1, value1).AreEqual);
         }
+
+        [Test]
+        public void DecimalCollectionWhenOrderIgnored()
+        {
+            var compare = new CompareLogic(new ComparisonConfig
+            {
+                IgnoreCollectionOrder = true
+            });
+            Assert.IsTrue(compare.Compare(new decimal[] { 10, 1 }, new[] { 10.0m, 1.0m }).AreEqual);
+        }
     }
 }

@@ -4,7 +4,7 @@
     <Description>Easily compare objects in .NET</Description>
     <VersionPrefix>3.08.0.0</VersionPrefix>
     <Authors>GregFinzer</Authors>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard1.3</TargetFramework>
     <DefineConstants>$(DefineConstants);DNCORE</DefineConstants>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>KellermanSoftware.Compare-NET-Objects-Core</AssemblyName>
@@ -22,7 +22,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard1.6\KellermanSoftware.Compare-NET-Objects-Core.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netstandard1.1\KellermanSoftware.Compare-NET-Objects-Core.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

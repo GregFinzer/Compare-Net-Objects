@@ -256,16 +256,32 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
 
         private static string RespectNumberToString(object o)
         {
+
+#if DNCORE
+            string typeString = o.GetType().Name;
+
+            switch (typeString)
+            {
+                case "Decimal":
+                    return ((decimal)o).ToString("G29");
+                case "Double":
+                case "Single":
+                    return ((double)o).ToString("G");
+                default:
+                    return o.ToString();
+            }
+#else
             switch (Type.GetTypeCode(o.GetType()))
             {
                 case TypeCode.Decimal:
-                    return ((decimal) o).ToString("G29");
+                    return ((decimal)o).ToString("G29");
                 case TypeCode.Double:
                 case TypeCode.Single:
                     return ((double)o).ToString("G");
                 default:
                     return o.ToString();
             }
+#endif
         }
 
         private List<string> GetMatchingSpec(ComparisonResult result,Type type)

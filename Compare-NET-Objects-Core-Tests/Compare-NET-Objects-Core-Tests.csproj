@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard1.3</TargetFramework>
     <DefineConstants>$(DefineConstants);DNCORE</DefineConstants>
     <AssemblyName>Compare-NET-Objects-Core-Tests</AssemblyName>
     <PackageId>Compare-NET-Objects-Core-Tests</PackageId>
