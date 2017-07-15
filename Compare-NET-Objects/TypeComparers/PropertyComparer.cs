@@ -161,9 +161,6 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 return false;
             }
 
-            if (config.SkipInvalidIndexers)
-                return false;
-
             if (indexers.Length > 1)
             {
                 if (config.SkipInvalidIndexers)
