@@ -17,12 +17,12 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <RootNamespace>KellermanSoftware.CompareNetObjects</RootNamespace>
-    <Version>3.08.0.0</Version>
+    <Version>3.09.0.0</Version>
     <Copyright>Copyright © 2017</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard1.1\KellermanSoftware.Compare-NET-Objects-Core.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netstandard1.3\KellermanSoftware.Compare-NET-Objects-Core.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
