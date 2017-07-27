@@ -200,6 +200,21 @@ namespace KellermanSoftware.CompareNetObjectsTests
                 throw new Exception(result.DifferencesString);
         }
 
+        [Test]
+        public void CompareStructWithProperty()
+        {
+            var item1 = new StructWithProperty();
+            var item2 = new StructWithProperty();
+
+            item1.Property1 = 1;
+            item2.Property1 = 1;
+
+            _compare.Config.IgnoreObjectTypes = true;
+            ComparisonResult result = _compare.Compare(item1, item2);
+
+            if (!result.AreEqual)
+                throw new Exception(result.DifferencesString);
+        }
         #endregion
     }
 }
