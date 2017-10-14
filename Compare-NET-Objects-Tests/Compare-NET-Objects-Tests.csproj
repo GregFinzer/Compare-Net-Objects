@@ -84,6 +84,7 @@
     <Compile Include="CompareIndexerTests.cs" />
     <Compile Include="CompareFontTests.cs" />
     <Compile Include="CompareIpEndPointTests.cs" />
+    <Compile Include="CompareObjectHierarchyTests.cs" />
     <Compile Include="CompareObjectsTests.cs" />
     <Compile Include="CompareRuntimeTypeTests.cs" />
     <Compile Include="CompareSimpleTypeTests.cs" />
@@ -114,6 +115,13 @@
     <Compile Include="TestClasses\EntityWithEquality.cs" />
     <Compile Include="TestClasses\EnumerableTestEntity.cs" />
     <Compile Include="TestClasses\FontClass.cs" />
+    <Compile Include="TestClasses\ObjectHierarchy\Attribute.cs" />
+    <Compile Include="TestClasses\ObjectHierarchy\Bond.cs" />
+    <Compile Include="TestClasses\ObjectHierarchy\FundShare.cs" />
+    <Compile Include="TestClasses\ObjectHierarchy\Holding.cs" />
+    <Compile Include="TestClasses\ObjectHierarchy\HoldingsReport.cs" />
+    <Compile Include="TestClasses\ObjectHierarchy\Identifier.cs" />
+    <Compile Include="TestClasses\ObjectHierarchy\TestObjectFactory.cs" />
     <Compile Include="TestClasses\OnlyIce\DtoFormulario.cs" />
     <Compile Include="TestClasses\OnlyIce\DtoMetaCampo.cs" />
     <Compile Include="TestClasses\OnlyIce\DtoPadrao.cs" />
@@ -203,7 +211,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

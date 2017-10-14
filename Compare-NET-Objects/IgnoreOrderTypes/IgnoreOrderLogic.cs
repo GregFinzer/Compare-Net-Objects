@@ -70,8 +70,8 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                     return false;
                 }
 
-                if (matchingSpec == null)
-                    matchingSpec = GetMatchingSpec(parms.Result, enumerator1.Current.GetType());
+                // if (matchingSpec == null)
+                matchingSpec = GetMatchingSpec(parms.Result, enumerator1.Current.GetType());
 
                 string matchIndex1 = GetMatchIndex(parms.Result, matchingSpec, enumerator1.Current);
 
@@ -87,6 +87,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                         return false;
                     }
 
+                    matchingSpec = GetMatchingSpec(parms.Result, enumerator2.Current.GetType());
                     string matchIndex2 = GetMatchIndex(parms.Result, matchingSpec, enumerator2.Current);
 
                     if (matchIndex1 == matchIndex2)
@@ -142,7 +143,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                     continue;
                 }
 
-                if (matchingSpec == null)
+                // if (matchingSpec == null)
                     matchingSpec = GetMatchingSpec(parms.Result, enumerator1.Current.GetType());
 
                 string matchIndex1 = GetMatchIndex(parms.Result, matchingSpec, enumerator1.Current);
@@ -171,6 +172,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                         continue;
                     }
 
+                    matchingSpec = GetMatchingSpec(parms.Result, enumerator2.Current.GetType());
                     string matchIndex2 = GetMatchIndex(parms.Result, matchingSpec, enumerator2.Current);
 
                     if (matchIndex1 == matchIndex2)
