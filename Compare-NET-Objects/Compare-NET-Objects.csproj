@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>KellermanSoftware.CompareNetObjects</RootNamespace>
     <AssemblyName>KellermanSoftware.Compare-NET-Objects</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>MyStrongName.snk</AssemblyOriginatorKeyFile>
@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Cache.cs" />
     <Compile Include="CompareParms.cs" />
+    <Compile Include="PropertyEntity.cs" />
     <Compile Include="LogicEqualityComparer.cs" />
     <Compile Include="FileHelper.cs" />
     <Compile Include="ICompareLogic.cs" />

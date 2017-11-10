@@ -77,6 +77,9 @@
     <Compile Include="..\Compare-NET-Objects\IgnoreOrderTypes\IndexerCollectionLooper.cs">
       <Link>IgnoreOrderTypes\IndexerCollectionLooper.cs</Link>
     </Compile>
+    <Compile Include="..\Compare-NET-Objects\PropertyEntity.cs">
+      <Link>PropertyEntity.cs</Link>
+    </Compile>
     <Compile Include="..\Compare-NET-Objects\Reports\CsvReport.cs">
       <Link>Reports\CsvReport.cs</Link>
     </Compile>

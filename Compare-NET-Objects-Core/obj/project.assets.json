@@ -80,15 +80,6 @@
           "System.Xml.XDocument": "4.0.11"
         }
       },
-      "NUnit/3.5.0": {
-        "type": "package",
-        "compile": {
-          "lib/dotnet/nunit.framework.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/nunit.framework.dll": {}
-        }
-      },
       "runtime.native.System/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -806,14 +797,6 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
-      },
-      "Compare-NET-Objects-Core/3.9.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v1.3",
-        "dependencies": {
-          "NETStandard.Library": "1.6.0",
-          "System.Reflection.TypeExtensions": "4.1.0"
-        }
       }
     }
   },
@@ -889,31 +872,6 @@
         "dotnet_library_license.txt",
         "netstandard.library.1.6.0.nupkg.sha512",
         "netstandard.library.nuspec"
-      ]
-    },
-    "NUnit/3.5.0": {
-      "sha512": "z/03NfC+ci3/OzlIlClH+nd0LZ99OU3wS74nAtLVnPo1oq6nvd+CGxTHZAc8n8xxDLeLMofZ8AjahxlROEhf/Q==",
-      "type": "package",
-      "path": "nunit/3.5.0",
-      "files": [
-        "CHANGES.txt",
-        "LICENSE.txt",
-        "NOTICES.txt",
-        "NUnit.3.5.0.nupkg.sha512",
-        "NUnit.nuspec",
-        "lib/dotnet/nunit.framework.dll",
-        "lib/dotnet/nunit.framework.xml",
-        "lib/net20/NUnit.System.Linq.dll",
-        "lib/net20/nunit.framework.dll",
-        "lib/net20/nunit.framework.xml",
-        "lib/net35/nunit.framework.dll",
-        "lib/net35/nunit.framework.xml",
-        "lib/net40/nunit.framework.dll",
-        "lib/net40/nunit.framework.xml",
-        "lib/net45/nunit.framework.dll",
-        "lib/net45/nunit.framework.xml",
-        "lib/portable-net45+win8+wp8+wpa81+Xamarin.Mac+MonoAndroid10+MonoTouch10+Xamarin.iOS10/nunit.framework.dll",
-        "lib/portable-net45+win8+wp8+wpa81+Xamarin.Mac+MonoAndroid10+MonoTouch10+Xamarin.iOS10/nunit.framework.xml"
       ]
     },
     "runtime.native.System/4.0.0": {
@@ -3572,41 +3530,31 @@
         "system.xml.xdocument.4.0.11.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
-    },
-    "Compare-NET-Objects-Core/3.9.0": {
-      "type": "project",
-      "path": "../Compare-NET-Objects-Core/Compare-NET-Objects-Core.csproj",
-      "msbuildProject": "../Compare-NET-Objects-Core/Compare-NET-Objects-Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v1.3": [
-      "Compare-NET-Objects-Core >= 3.9.0",
       "NETStandard.Library >= 1.6.0",
-      "NUnit >= 3.5.0"
+      "System.Reflection.TypeExtensions >= 4.1.0"
     ]
   },
   "packageFolders": {
     "C:\\Users\\qxo1808\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "3.9.0",
     "restore": {
-      "projectUniqueName": "G:\\svn\\Compare-Net-Objects\\Compare-NET-Objects-Core-Tests\\Compare-NET-Objects-Core-Tests.csproj",
-      "projectName": "Compare-NET-Objects-Core-Tests",
-      "projectPath": "G:\\svn\\Compare-Net-Objects\\Compare-NET-Objects-Core-Tests\\Compare-NET-Objects-Core-Tests.csproj",
-      "outputPath": "G:\\svn\\Compare-Net-Objects\\Compare-NET-Objects-Core-Tests\\obj\\",
+      "projectUniqueName": "G:\\svn\\Compare-Net-Objects\\Compare-NET-Objects-Core\\Compare-NET-Objects-Core.csproj",
+      "projectName": "Compare-NET-Objects-Core",
+      "projectPath": "G:\\svn\\Compare-Net-Objects\\Compare-NET-Objects-Core\\Compare-NET-Objects-Core.csproj",
+      "outputPath": "G:\\svn\\Compare-Net-Objects\\Compare-NET-Objects-Core\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netstandard1.3"
       ],
       "frameworks": {
         "netstandard1.3": {
-          "projectReferences": {
-            "G:\\svn\\Compare-Net-Objects\\Compare-NET-Objects-Core\\Compare-NET-Objects-Core.csproj": {
-              "projectPath": "G:\\svn\\Compare-Net-Objects\\Compare-NET-Objects-Core\\Compare-NET-Objects-Core.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       }
     },
@@ -3618,9 +3566,9 @@
             "version": "1.6.0",
             "autoReferenced": true
           },
-          "NUnit": {
+          "System.Reflection.TypeExtensions": {
             "target": "Package",
-            "version": "3.5.0"
+            "version": "4.1.0"
           }
         },
         "imports": [

@@ -8,6 +8,7 @@ using System.Reflection;
 #if !PORTABLE && !DNCORE
 using System.Data;
 using System.Drawing;
+using System.Dynamic;
 #endif
 
 namespace KellermanSoftware.CompareNetObjects
@@ -17,6 +18,20 @@ namespace KellermanSoftware.CompareNetObjects
     /// </summary>
     public static class TypeHelper
     {
+        /// <summary>
+        /// Returns true if it is a dynamic object
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool IsDynamicObject(Type type)
+        {
+#if !PORTABLE && !DNCORE
+            return typeof(IDynamicMetaObjectProvider).IsAssignableFrom(type);
+#else
+            return false;
+#endif
+        }
+
         /// <summary>
         /// Returns true if it is a byte array
         /// </summary>
