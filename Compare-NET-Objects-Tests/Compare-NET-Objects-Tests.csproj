@@ -104,6 +104,7 @@
     <Compile Include="CustomComparerTests.cs" />
     <Compile Include="IgnoreTests.cs" />
     <Compile Include="LogicEqualityComparerTests.cs" />
+    <Compile Include="Micke3rdTests.cs" />
     <Compile Include="MyCustomComparer.cs" />
     <Compile Include="IgnoreOrderTests.cs" />
     <Compile Include="OnlyIceTests.cs" />

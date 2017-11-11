@@ -10,6 +10,8 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
     /// </summary>
     public class ListComparer : BaseTypeComparer
     {
+        private readonly PropertyComparer _propertyComparer;
+        private readonly FieldComparer _fieldComparer;
 
         /// <summary>
         /// Constructor that takes a root comparer
@@ -17,7 +19,8 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         /// <param name="rootComparer"></param>
         public ListComparer(RootComparer rootComparer) : base(rootComparer)
         {
-            
+            _propertyComparer = new PropertyComparer(rootComparer);
+            _fieldComparer = new FieldComparer(rootComparer);
         }
 
         /// <summary>
@@ -51,6 +54,11 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 if (parms.Result.ExceededDifferences)
                     return;
 
+                Type t1 = parms.Object1.GetType();
+                Type t2 = parms.Object2.GetType();
+                parms.Object1Type = t1;
+                parms.Object2Type = t2;
+
                 if (parms.Config.IgnoreCollectionOrder && !ChildIsListOrDictionary(parms))
                 {
                     IgnoreOrderLogic ignoreOrderLogic = new IgnoreOrderLogic(RootComparer);
@@ -60,6 +68,10 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 {
                     CompareItems(parms);
                 }
+
+                //Properties on the root of a collection
+                CompareProperties(parms);
+                CompareFields(parms);
             }
             finally
             {
@@ -67,6 +79,22 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 parms.Result.RemoveParent(parms.Object2.GetHashCode());
             }
 
+        }
+
+        private void CompareFields(CompareParms parms)
+        {
+            if (parms.Config.CompareFields)
+            {
+                _fieldComparer.PerformCompareFields(parms);
+            }
+        }
+
+        private void CompareProperties(CompareParms parms)
+        {
+            if (parms.Config.CompareProperties)
+            {
+                _propertyComparer.PerformCompareProperties(parms);
+            }            
         }
 
         private bool ListsHaveDifferentCounts(CompareParms parms)

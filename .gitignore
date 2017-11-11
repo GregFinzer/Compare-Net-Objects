@@ -10,3 +10,7 @@ obj/
 Assemblies/
 .vs
 build/
+documentation/flash/
+documentation/images/
+documentation/script/
+documentation/stylesheets/
