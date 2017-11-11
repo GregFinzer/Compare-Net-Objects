@@ -16,6 +16,7 @@
     <OutputPath>.\Help</OutputPath>
     <CleanupOutputPath>true</CleanupOutputPath>
     <HelpFileName>Compare-NET-Objects</HelpFileName>
+    <HelpFileNamingMethod>MemberName</HelpFileNamingMethod>
     <ImageFolderPath />
     <Theme />
     <HtmlFormats>

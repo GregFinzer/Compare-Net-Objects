@@ -149,7 +149,13 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
                 if (propertyEntity.Indexers.Count == 0)
                 {
-                    propertyEntity.Value = property.GetValue(objectValue, null);
+                    try
+                    {
+                        propertyEntity.Value = property.GetValue(objectValue, null);
+                    }
+                    catch (System.Reflection.TargetInvocationException)
+                    {
+                    }
                 }
 
                 propertyEntity.PropertyInfo = property;
