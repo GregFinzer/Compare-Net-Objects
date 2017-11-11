@@ -127,14 +127,14 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             {
                 Difference difference = new Difference
                                             {
-                                                ParentObject1 = new WeakReference(parms.ParentObject1),
-                                                ParentObject2 = new WeakReference(parms.ParentObject2),
+                                                ParentObject1 = parms.ParentObject1,
+                                                ParentObject2 = parms.ParentObject2,
                                                 PropertyName = parms.BreadCrumb,
                                                 Object1Value = iDict1.Count.ToString(CultureInfo.InvariantCulture),
                                                 Object2Value = iDict2.Count.ToString(CultureInfo.InvariantCulture),
                                                 ChildPropertyName = "Count",
-                                                Object1 = new WeakReference(iDict1),
-                                                Object2 = new WeakReference(iDict2)
+                                                Object1 = iDict1,
+                                                Object2 = iDict2
                                             };
 
                 AddDifference(parms.Result, difference);

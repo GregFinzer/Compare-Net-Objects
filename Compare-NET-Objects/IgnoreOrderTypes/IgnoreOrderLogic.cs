@@ -197,14 +197,14 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                 {
                     Difference difference = new Difference
                     {
-                        ParentObject1 = new WeakReference(parms.ParentObject1),
-                        ParentObject2 = new WeakReference(parms.ParentObject2),
+                        ParentObject1 = parms.ParentObject1,
+                        ParentObject2 = parms.ParentObject2,
                         PropertyName = currentBreadCrumb,
                         Object1Value = reverseCompare ? "(null)" : NiceString(enumerator1.Current),
                         Object2Value = reverseCompare ? NiceString(enumerator1.Current) : "(null)",
                         ChildPropertyName = "Item",
-                        Object1 = reverseCompare ? null : new WeakReference(enumerator1),
-                        Object2 = reverseCompare ? new WeakReference(enumerator1) : null
+                        Object1 = reverseCompare ? null : enumerator1,
+                        Object2 = reverseCompare ? enumerator1 : null
                     };
 
                     AddDifference(parms.Result, difference);                    

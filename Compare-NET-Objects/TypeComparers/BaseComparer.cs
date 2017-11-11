@@ -94,13 +94,13 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
             Difference difference = new Difference
             {
-                ParentObject1 = new WeakReference(parameters.ParentObject1),
-                ParentObject2 = new WeakReference(parameters.ParentObject2),
+                ParentObject1 = parameters.ParentObject1,
+                ParentObject2 = parameters.ParentObject2,
                 PropertyName = parameters.BreadCrumb,
                 Object1Value = NiceString(parameters.Object1),
                 Object2Value = NiceString(parameters.Object2),
-                Object1 = new WeakReference(parameters.Object1),
-                Object2 = new WeakReference(parameters.Object2)
+                Object1 = parameters.Object1,
+                Object2 = parameters.Object2
             };
 
             AddDifference(parameters.Result,difference);
@@ -122,11 +122,11 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             difference.ActualName = result.Config.ActualName;
             difference.ExpectedName = result.Config.ExpectedName;
 
-            difference.Object1TypeName = difference.Object1 != null && difference.Object1.Target != null 
-                ? difference.Object1.Target.GetType().Name : "null";
+            difference.Object1TypeName = difference.Object1 != null && difference.Object1 != null 
+                ? difference.Object1.GetType().Name : "null";
 
-            difference.Object2TypeName = difference.Object2 != null && difference.Object2.Target != null 
-                ? difference.Object2.Target.GetType().Name : "null";    
+            difference.Object2TypeName = difference.Object2 != null && difference.Object2 != null 
+                ? difference.Object2.GetType().Name : "null";    
 
             result.Differences.Add(difference);
             result.Config.DifferenceCallback(difference);
