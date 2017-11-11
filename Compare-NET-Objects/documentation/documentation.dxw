@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ApplicationWorkspace>
   <RecentItems>
+    <RecentItem Key="0d9294fc-870e-4eb0-8d4e-a2fc0feef44f.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
+      <HandlerName>TOPICS</HandlerName>
+      <Category>Topics</Category>
+    </RecentItem>
     <RecentItem Key="2169f8f6-cac4-40ca-93b2-f02fefe798a9.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
       <HandlerName>TOPICS</HandlerName>
       <Category>Topics</Category>
     </RecentItem>
-    <RecentItem Key="0d061814-6a12-4d44-bb74-a2809f19fce6.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
-      <HandlerName>TOPICS</HandlerName>
-      <Category>Topics</Category>
-    </RecentItem>
-    <RecentItem Key="0d9294fc-870e-4eb0-8d4e-a2fc0feef44f.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
+    <RecentItem Key="eb1abafe-c230-45d7-b8dc-7bf3f5c20140.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
       <HandlerName>TOPICS</HandlerName>
       <Category>Topics</Category>
     </RecentItem>
@@ -17,11 +17,19 @@
       <HandlerName>TOPICS</HandlerName>
       <Category>Topics</Category>
     </RecentItem>
-    <RecentItem Key="cb91e07d-611c-4efa-84e5-a92187c24b81.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
+    <RecentItem Key="c669abc0-d388-48b8-ac62-15d9e7b5c797.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
       <HandlerName>TOPICS</HandlerName>
       <Category>Topics</Category>
     </RecentItem>
-    <RecentItem Key="6e4dfa3a-41cc-4f4f-933d-acc4ea832f0b.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
+    <RecentItem Key="b3f5ba5b-0359-4a92-b95c-8d4e952b3c5f.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
+      <HandlerName>TOPICS</HandlerName>
+      <Category>Topics</Category>
+    </RecentItem>
+    <RecentItem Key="5380cb06-997d-4df1-8129-cfa28761d20f.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
+      <HandlerName>TOPICS</HandlerName>
+      <Category>Topics</Category>
+    </RecentItem>
+    <RecentItem Key="cb91e07d-611c-4efa-84e5-a92187c24b81.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
       <HandlerName>TOPICS</HandlerName>
       <Category>Topics</Category>
     </RecentItem>
@@ -41,19 +49,11 @@
       <HandlerName>TOPICS</HandlerName>
       <Category>Topics</Category>
     </RecentItem>
-    <RecentItem Key="eb1abafe-c230-45d7-b8dc-7bf3f5c20140.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
+    <RecentItem Key="0d061814-6a12-4d44-bb74-a2809f19fce6.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
       <HandlerName>TOPICS</HandlerName>
       <Category>Topics</Category>
     </RecentItem>
-    <RecentItem Key="c669abc0-d388-48b8-ac62-15d9e7b5c797.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
-      <HandlerName>TOPICS</HandlerName>
-      <Category>Topics</Category>
-    </RecentItem>
-    <RecentItem Key="b3f5ba5b-0359-4a92-b95c-8d4e952b3c5f.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
-      <HandlerName>TOPICS</HandlerName>
-      <Category>Topics</Category>
-    </RecentItem>
-    <RecentItem Key="5380cb06-997d-4df1-8129-cfa28761d20f.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
+    <RecentItem Key="6e4dfa3a-41cc-4f4f-933d-acc4ea832f0b.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
       <HandlerName>TOPICS</HandlerName>
       <Category>Topics</Category>
     </RecentItem>

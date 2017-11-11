@@ -216,16 +216,16 @@
             <PropertyDefinitionValues />
             <ExcludedOtherFiles />
           </Topic>
-          <Topic Id="7ceb9cfa-d0df-4c9c-b9df-ab271bccb7f7" Status="New Topic" CreatedOn="2014-03-15T12:48:55.8369047Z" ModifiedOn="2016-12-16T21:44:42.078474Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="What's New In 2.0" BuildFlags="">
+          <Topic Id="7ceb9cfa-d0df-4c9c-b9df-ab271bccb7f7" Status="New Topic" CreatedOn="2014-03-15T12:48:55.8369047Z" ModifiedOn="2017-11-11T03:19:37.2703183Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="What's New In 2.0" BuildFlags="">
             <Title m="2015-03-13T00:40:30.3099805Z">What's New?</Title>
             <ContentsTitle m="2015-03-13T00:40:36.7243474Z">What's New?</ContentsTitle>
             <Notes></Notes>
             <TopicSections>
               <TopicSection Name="BodyText">
-                <Content m="2016-12-16T21:44:42.078474Z">&lt;H1&gt;Breaking Changes&lt;/H1&gt;
+                <Content m="2017-11-11T03:19:37.2703183Z">&lt;H1&gt;Breaking Changes&lt;/H1&gt;
 &lt;UL&gt;
 &lt;LI&gt;
-&lt;DIV&gt;None&lt;/DIV&gt;&lt;/LI&gt;&lt;/UL&gt;
+&lt;DIV&gt;None &lt;/DIV&gt;&lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;&lt;BR&gt;&lt;/P&gt;
 &lt;H1&gt;Bug fixes&lt;/H1&gt;
 &lt;UL&gt;
@@ -233,9 +233,8 @@
 &lt;P&gt;&lt;BR&gt;&lt;/P&gt;
 &lt;H1&gt;New Features&lt;/H1&gt;
 &lt;UL&gt;
-&lt;LI&gt;DataColumn Differences 
-&lt;LI&gt;.NET Core / .NET Standard 1.6 Capability 
-&lt;LI&gt;Ignore Type.Member&lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;Compare Dynamic Objects 
+&lt;LI&gt;Compare Properties on the root of&amp;nbsp;a custom list&lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
               </TopicSection>
             </TopicSections>
@@ -244,19 +243,18 @@
             <PropertyDefinitionValues />
             <ExcludedOtherFiles />
           </Topic>
-          <Topic Id="8aaa1a6f-70a8-4a3d-8b69-dc429b86377a" Status="New Topic" CreatedOn="2014-03-15T13:01:59.7667617Z" ModifiedOn="2016-12-16T21:44:42.0764739Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="System Requirements" BuildFlags="">
+          <Topic Id="8aaa1a6f-70a8-4a3d-8b69-dc429b86377a" Status="New Topic" CreatedOn="2014-03-15T13:01:59.7667617Z" ModifiedOn="2017-11-11T03:19:37.2683182Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="System Requirements" BuildFlags="">
             <Title />
             <ContentsTitle />
             <Notes></Notes>
             <TopicSections>
               <TopicSection Name="BodyText">
-                <Content m="2016-12-16T21:44:42.0764739Z">&lt;H1&gt;For Use&lt;/H1&gt;
+                <Content m="2017-11-11T03:19:37.2683182Z">&lt;H1&gt;For Use&lt;/H1&gt;
 &lt;P&gt;&lt;BR&gt;&lt;/P&gt;
 &lt;UL&gt;
-&lt;LI&gt;.NET Framework 3.5 and higher 
+&lt;LI&gt;.NET Framework 4.0 and higher 
 &lt;LI&gt;Portable Class Library Version can be used with .NET 4.0+, Silverlight 5+, Windows Phone 8+, Windows RT 8+ 
-&lt;LI&gt;DotNetCore or .NET Standard 1.6&lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;&lt;BR&gt;&lt;/P&gt;
+&lt;LI&gt;DotNetCore 1.3 or higher&lt;BR&gt;&lt;/LI&gt;&lt;/UL&gt;
 &lt;H1&gt;For Development&lt;/H1&gt;
 &lt;P&gt;&lt;BR&gt;&lt;/P&gt;
 &lt;UL&gt;
@@ -309,20 +307,21 @@
             <PropertyDefinitionValues />
             <ExcludedOtherFiles />
           </Topic>
-          <Topic Id="7a032303-9805-4638-b34c-69a6db868ffc" Status="New Topic" CreatedOn="2014-03-15T13:36:14.1740066Z" ModifiedOn="2016-12-16T21:44:42.0744738Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Introduction" BuildFlags="">
+          <Topic Id="7a032303-9805-4638-b34c-69a6db868ffc" Status="New Topic" CreatedOn="2014-03-15T13:36:14.1740066Z" ModifiedOn="2017-11-11T03:19:37.2663181Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Introduction" BuildFlags="">
             <Title />
             <ContentsTitle />
             <Notes></Notes>
             <TopicSections>
               <TopicSection Name="BodyText">
-                <Content m="2016-12-16T21:44:42.0744738Z">&lt;A href="http://www.kellermansoftware.com"&gt;&lt;/A&gt;
+                <Content m="2017-11-11T03:19:37.2663181Z">&lt;A href="http://www.kellermansoftware.com"&gt;&lt;/A&gt;
 &lt;DIV class=wikidoc&gt;&lt;BR&gt;&lt;IMG border=0 alt="" src="images/logo.png"&gt;&lt;/DIV&gt;
-&lt;DIV class=wikidoc&gt; &lt;/DIV&gt;
+&lt;DIV class=wikidoc&gt;&lt;/DIV&gt;
 &lt;DIV class=wikidoc&gt;&lt;IMG border=0 alt="" src="images/PoweredByNDepend.png"&gt;&lt;BR&gt;&lt;BR&gt;&lt;B&gt;Project Description&lt;/B&gt;&lt;BR&gt;What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.&lt;BR&gt;&lt;BR&gt;&lt;B&gt;Compatiblity&lt;/B&gt;&lt;BR&gt;Compatible with .NET Framework 3.5 and higher. Portable Class Library version works with .NET 4.0+, Silverlight 5+, Windows Phone 8+, Windows RT 8+, Xamarin iOS, and Xamarin Droid.&amp;nbsp; It supports .NET Standard 1.6 and DotNetCore applications too.&lt;BR&gt;&lt;BR&gt;&lt;B&gt;NuGet Package&lt;/B&gt;&lt;BR&gt;&lt;A href="http://www.nuget.org/packages/CompareNETObjects"&gt;&lt;FONT color=#0066cc&gt;http://www.nuget.org/packages/CompareNETObjects&lt;/FONT&gt;&lt;/A&gt;&lt;BR&gt;&lt;BR&gt;Features &lt;/DIV&gt;
 &lt;DIV class=wikidoc&gt;
 &lt;UL&gt;
 &lt;LI&gt;Compare Children (on by default) 
 &lt;LI&gt;Handling for Trees with Children Pointing To Parents 
+&lt;LI&gt;Compare Dynamic Objects 
 &lt;LI&gt;Compare Primitive Types 
 &lt;LI&gt;Compare Structs 
 &lt;LI&gt;Compare IList Objects 
