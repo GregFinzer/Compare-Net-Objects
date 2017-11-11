@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
+using System.Net;
 
 namespace KellermanSoftware.CompareNetObjects.TypeComparers
 {
@@ -26,13 +27,18 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         /// <summary>
         /// Compare the properties of a class
         /// </summary>
-        public void PerformCompareProperties(CompareParms parms)
+        public void PerformCompareProperties(CompareParms parms, bool ignoreBaseList= false)
         {
+            string[] baseList = {"Count", "Capacity", "Item"};
+
             List<PropertyEntity> object1Properties = GetCurrentProperties(parms, parms.Object1, parms.Object1Type);
             List<PropertyEntity> object2Properties = GetCurrentProperties(parms, parms.Object2, parms.Object2Type);
 
             foreach (PropertyEntity propertyEntity in object1Properties)
             {
+                if (ignoreBaseList && baseList.Contains(propertyEntity.Name))
+                    continue;
+                    
                 CompareProperty(parms, propertyEntity, object2Properties);
 
                 if (parms.Result.ExceededDifferences)

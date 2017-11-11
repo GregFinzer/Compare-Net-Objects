@@ -93,7 +93,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         {
             if (parms.Config.CompareProperties)
             {
-                _propertyComparer.PerformCompareProperties(parms);
+                _propertyComparer.PerformCompareProperties(parms, true);
             }            
         }
 
