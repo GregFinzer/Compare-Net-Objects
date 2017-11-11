@@ -69,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlPeTests.cs" />
     <Compile Include="Attributes\CompareIgnoreAttribute.cs" />
     <Compile Include="Attributes\ExcludeFromEquality.cs" />
     <Compile Include="BugTests.cs" />

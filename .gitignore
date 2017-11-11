@@ -7,4 +7,6 @@ packages/
 Backup/
 bin/
 obj/
+Assemblies/
 .vs
+build/
