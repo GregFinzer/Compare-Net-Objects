@@ -289,16 +289,10 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
         private List<string> GetMatchingSpec(ComparisonResult result,Type type)
         {
             //The user defined a key for the order
-            if (result.Config.CollectionMatchingSpec.Keys.Contains(type))
+            var matchingBasePresent = result.Config.CollectionMatchingSpec.Keys.FirstOrDefault(k => k.IsAssignableFrom(type));
+            if (matchingBasePresent != null)
             {
-                return result.Config.CollectionMatchingSpec.First(p => p.Key == type).Value.ToList();
-            }
-
-            Type[] typeInterfaces = type.GetInterfaces();
-            bool matchingInterfacePresent = result.Config.CollectionMatchingSpec.Keys.Any(k => typeInterfaces.Any(t => t == k));
-            if (matchingInterfacePresent)
-            {
-                return result.Config.CollectionMatchingSpec.First(p => typeInterfaces.Contains(p.Key)).Value.ToList();
+                return result.Config.CollectionMatchingSpec.First(p => p.Key == matchingBasePresent).Value.ToList();
             }
 
             //Make a key out of primative types, date, decimal, string, guid, and enum of the class
