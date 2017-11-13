@@ -58,5 +58,11 @@ http://www.nuget.org/packages/CompareNETObjects
 * CSV Report
 * User Friendly Report 
 
+# Getting Started
+https://github.com/GregFinzer/Compare-Net-Objects/wiki/Documentation
+
 # Help File
 https://github.com/GregFinzer/Compare-Net-Objects/blob/master/Compare-NET-Objects-Help/Compare-NET-Objects-Help.chm?raw=true
+
+# Licensing
+https://github.com/GregFinzer/Compare-Net-Objects/wiki/Licensing
