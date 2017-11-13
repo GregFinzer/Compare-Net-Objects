@@ -57,3 +57,6 @@ http://www.nuget.org/packages/CompareNETObjects
 * WinMerge Report
 * CSV Report
 * User Friendly Report 
+
+# Help File
+https://github.com/GregFinzer/Compare-Net-Objects/blob/master/Compare-NET-Objects-Help/Compare-NET-Objects-Help.chm?raw=true
