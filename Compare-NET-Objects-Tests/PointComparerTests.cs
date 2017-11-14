@@ -13,23 +13,6 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
         #region Setup/Teardown
 
-        /// <summary>
-        /// Code that is run once for a suite of tests
-        /// </summary>
-        [TestFixtureSetUp]
-        public void TestFixtureSetup()
-        {
-
-        }
-
-        /// <summary>
-        /// Code that is run once after a suite of tests has finished executing
-        /// </summary>
-        [TestFixtureTearDown]
-        public void TestFixtureTearDown()
-        {
-
-        }
 
         /// <summary>
         /// Code that is run before each test

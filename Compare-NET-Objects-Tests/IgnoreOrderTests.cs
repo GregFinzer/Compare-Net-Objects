@@ -16,23 +16,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
         #region Setup/Teardown
 
-        /// <summary>
-        /// Code that is run once for a suite of tests
-        /// </summary>
-        [TestFixtureSetUp]
-        public void TestFixtureSetup()
-        {
 
-        }
-
-        /// <summary>
-        /// Code that is run once after a suite of tests has finished executing
-        /// </summary>
-        [TestFixtureTearDown]
-        public void TestFixtureTearDown()
-        {
-
-        }
 
         /// <summary>
         /// Code that is run before each test
@@ -1094,31 +1078,31 @@ namespace KellermanSoftware.CompareNetObjectsTests
             Assert.AreEqual(result.Differences[2].PropertyName, ".Children[Id:11].Children[Id:101].Description");
         }
 
-        [Test]
-        public void CompareListsIgnoreOrderMatchingSpecValueInBaseClass()
-        {
-            List<DeriveFromOfficer> list1 = new List<DeriveFromOfficer>();
-            list1.Add(new DeriveFromOfficer() { ID = 1, Name = "Logan 5" });
-            list1.Add(new DeriveFromOfficer() { ID = 2, Name = "Francis 7" });
+        //[Test]
+        //public void CompareListsIgnoreOrderMatchingSpecValueInBaseClass()
+        //{
+        //    List<DeriveFromOfficer> list1 = new List<DeriveFromOfficer>();
+        //    list1.Add(new DeriveFromOfficer() { ID = 1, Name = "Logan 5" });
+        //    list1.Add(new DeriveFromOfficer() { ID = 2, Name = "Francis 7" });
 
-            List<DeriveFromOfficer> list2 = new List<DeriveFromOfficer>();
-            list2.Add(new DeriveFromOfficer() { ID = 2, Name = "Francis 7" });
-            list2.Add(new DeriveFromOfficer() { ID = 1, Name = "Logan 4" });
+        //    List<DeriveFromOfficer> list2 = new List<DeriveFromOfficer>();
+        //    list2.Add(new DeriveFromOfficer() { ID = 2, Name = "Francis 7" });
+        //    list2.Add(new DeriveFromOfficer() { ID = 1, Name = "Logan 4" });
 
-            ComparisonConfig config = new ComparisonConfig();
-            Dictionary<Type, IEnumerable<string>> collectionSpec = new Dictionary<Type, IEnumerable<string>>();
-            collectionSpec.Add(typeof(Officer), new string[] { "ID" });
+        //    ComparisonConfig config = new ComparisonConfig();
+        //    Dictionary<Type, IEnumerable<string>> collectionSpec = new Dictionary<Type, IEnumerable<string>>();
+        //    collectionSpec.Add(typeof(Officer), new string[] { "ID" });
 
-            config.IgnoreCollectionOrder = true;
-            config.CollectionMatchingSpec = collectionSpec;
+        //    config.IgnoreCollectionOrder = true;
+        //    config.CollectionMatchingSpec = collectionSpec;
 
-            CompareLogic compareLogic = new CompareLogic(config);
-            var result = compareLogic.Compare(list1, list2);
-            Assert.IsFalse(result.AreEqual);
-            Assert.AreNotEqual(result.Differences.First().Object2, null);
-            Assert.AreEqual(result.Differences.First().Object1.Target, "Logan 5");
-            Assert.AreEqual(result.Differences.First().Object2.Target, "Logan 4");
-        }
+        //    CompareLogic compareLogic = new CompareLogic(config);
+        //    var result = compareLogic.Compare(list1, list2);
+        //    Assert.IsFalse(result.AreEqual);
+        //    Assert.AreNotEqual(result.Differences.First().Object2, null);
+        //    Assert.AreEqual(result.Differences.First().Object1.Target, "Logan 5");
+        //    Assert.AreEqual(result.Differences.First().Object2.Target, "Logan 4");
+        //}
 
         #endregion
     }

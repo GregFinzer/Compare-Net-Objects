@@ -60,14 +60,14 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             {
                 Difference difference = new Difference
                 {
-                    ParentObject1 = new WeakReference(parms.ParentObject1),
-                    ParentObject2 = new WeakReference(parms.ParentObject2),
+                    ParentObject1 = parms.ParentObject1,
+                    ParentObject2 = parms.ParentObject2,
                     PropertyName = parms.BreadCrumb,
                     Object1Value = ilist1.Count.ToString(CultureInfo.InvariantCulture),
                     Object2Value = ilist2.Count.ToString(CultureInfo.InvariantCulture),
                     ChildPropertyName = "Count",
-                    Object1 = new WeakReference(ilist1),
-                    Object2 = new WeakReference(ilist2)
+                    Object1 = ilist1,
+                    Object2 = ilist2
                 };
 
                 AddDifference(parms.Result, difference);
@@ -96,13 +96,13 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
                     Difference difference = new Difference
                     {
-                        ParentObject1 = new WeakReference(parms.Object1),
-                        ParentObject2 = new WeakReference(parms.Object2),
+                        ParentObject1 = parms.Object1,
+                        ParentObject2 = parms.Object2,
                         PropertyName = currentBreadCrumb,
                         Object1Value = NiceString(b1),
                         Object2Value = NiceString(b2),
-                        Object1 = new WeakReference(b1),
-                        Object2 = new WeakReference(b2)
+                        Object1 = b1,
+                        Object2 = b2
                     };
 
                     AddDifference(parms.Result, difference);

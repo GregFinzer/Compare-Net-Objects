@@ -101,6 +101,8 @@ namespace KellermanSoftware.CompareNetObjects
             }
         }
 
+
+
         /// <summary>
         /// Get the value of a property
         /// </summary>

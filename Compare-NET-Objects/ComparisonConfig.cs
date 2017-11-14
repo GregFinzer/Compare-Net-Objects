@@ -11,6 +11,7 @@ namespace KellermanSoftware.CompareNetObjects
     {
         #region Class Variables
         private Action<Difference> _differenceCallback;
+        private int _maxStructDepth;
         #endregion
 
         #region Constructors
@@ -41,9 +42,21 @@ namespace KellermanSoftware.CompareNetObjects
         public bool CompareDateTimeOffsetWithOffsets  { get; set; }
 
         /// <summary>
-        /// When comparing struct, the depth to compare for children.  The default is 2
+        /// When comparing struct, the depth to compare for children.  The default is 2, the max is 5
         /// </summary>
-        public int MaxStructDepth { get; set; }
+        public int MaxStructDepth
+        {
+            get { return _maxStructDepth; }
+            set
+            {
+                if (value < 1 || value > 5)
+                {
+                    throw new ArgumentOutOfRangeException("MaxStructDepth", "Cannot be less than 1 or greater than 5");
+                }
+
+                _maxStructDepth = value;
+            }
+        }
 
         /// <summary>
         /// If true, unknown object types will be ignored instead of throwing an exception.  The default is false.

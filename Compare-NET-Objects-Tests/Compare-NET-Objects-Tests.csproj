@@ -55,8 +55,12 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework">
-      <HintPath>$(SolutionDir)packages\NUnit.3.5.0\lib\net35\nunit.framework.dll</HintPath>
+    <Reference Include="Microsoft.CSharp, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETPortable\v4.0\Profile\Profile344\Microsoft.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.8.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.8.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -65,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlPeTests.cs" />
     <Compile Include="Attributes\CompareIgnoreAttribute.cs" />
     <Compile Include="Attributes\ExcludeFromEquality.cs" />
     <Compile Include="BugTests.cs" />
@@ -77,6 +82,7 @@
     <Compile Include="CompareDoubleTests.cs" />
     <Compile Include="CompareDateTimeTests.cs" />
     <Compile Include="CompareDictionaryTests.cs" />
+    <Compile Include="CompareDynamicTests.cs" />
     <Compile Include="CompareEnumeratorTests.cs" />
     <Compile Include="CompareEnumTests.cs" />
     <Compile Include="CompareHashsetTests.cs" />
@@ -84,6 +90,7 @@
     <Compile Include="CompareIndexerTests.cs" />
     <Compile Include="CompareFontTests.cs" />
     <Compile Include="CompareIpEndPointTests.cs" />
+    <Compile Include="CompareObjectHierarchyTests.cs" />
     <Compile Include="CompareObjectsTests.cs" />
     <Compile Include="CompareRuntimeTypeTests.cs" />
     <Compile Include="CompareSimpleTypeTests.cs" />
@@ -97,6 +104,7 @@
     <Compile Include="CustomComparerTests.cs" />
     <Compile Include="IgnoreTests.cs" />
     <Compile Include="LogicEqualityComparerTests.cs" />
+    <Compile Include="Micke3rdTests.cs" />
     <Compile Include="MyCustomComparer.cs" />
     <Compile Include="IgnoreOrderTests.cs" />
     <Compile Include="OnlyIceTests.cs" />
@@ -109,12 +117,18 @@
     <Compile Include="TestClasses\BigElchie.cs" />
     <Compile Include="TestClasses\ClassWithGuid.cs" />
     <Compile Include="TestClasses\ClassWithTuple.cs" />
-    <Compile Include="TestClasses\DeriveFromOfficer.cs" />
     <Compile Include="TestClasses\Element.cs" />
     <Compile Include="TestClasses\Entity.cs" />
     <Compile Include="TestClasses\EntityWithEquality.cs" />
     <Compile Include="TestClasses\EnumerableTestEntity.cs" />
     <Compile Include="TestClasses\FontClass.cs" />
+    <Compile Include="TestClasses\ObjectHierarchy\Attribute.cs" />
+    <Compile Include="TestClasses\ObjectHierarchy\Bond.cs" />
+    <Compile Include="TestClasses\ObjectHierarchy\FundShare.cs" />
+    <Compile Include="TestClasses\ObjectHierarchy\Holding.cs" />
+    <Compile Include="TestClasses\ObjectHierarchy\HoldingsReport.cs" />
+    <Compile Include="TestClasses\ObjectHierarchy\Identifier.cs" />
+    <Compile Include="TestClasses\ObjectHierarchy\TestObjectFactory.cs" />
     <Compile Include="TestClasses\OnlyIce\DtoFormulario.cs" />
     <Compile Include="TestClasses\OnlyIce\DtoMetaCampo.cs" />
     <Compile Include="TestClasses\OnlyIce\DtoPadrao.cs" />

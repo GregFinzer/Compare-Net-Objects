@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Description>Easily compare objects in .NET</Description>
-    <VersionPrefix>3.08.0.0</VersionPrefix>
+    <VersionPrefix>4.00.0.0</VersionPrefix>
     <Authors>GregFinzer</Authors>
     <TargetFramework>netstandard1.3</TargetFramework>
     <DefineConstants>$(DefineConstants);DNCORE</DefineConstants>
@@ -17,8 +17,10 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <RootNamespace>KellermanSoftware.CompareNetObjects</RootNamespace>
-    <Version>3.09.0.0</Version>
+    <Version>4.00.0.0</Version>
     <Copyright>Copyright © 2017</Copyright>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>mykeyfile.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -32,6 +34,7 @@
   <ItemGroup>
     <Compile Include="..\Compare-NET-Objects\Cache.cs;..\Compare-NET-Objects\CompareLogic.cs;..\Compare-NET-Objects\CompareObjects.cs;..\Compare-NET-Objects\CompareParms.cs;..\Compare-NET-Objects\ComparisonConfig.cs;..\Compare-NET-Objects\ComparisonResult.cs;..\Compare-NET-Objects\Difference.cs;..\Compare-NET-Objects\ExcludeLogic.cs;..\Compare-NET-Objects\ICompareLogic.cs;..\Compare-NET-Objects\IgnoreOrderTypes\IgnoreOrderLogic.cs;..\Compare-NET-Objects\IgnoreOrderTypes\IndexerCollectionLooper.cs;..\Compare-NET-Objects\Reports\CsvReport.cs;..\Compare-NET-Objects\Reports\ISingleFileReport.cs;..\Compare-NET-Objects\Reports\UserFriendlyReport.cs;..\Compare-NET-Objects\RootComparer.cs;..\Compare-NET-Objects\RootComparerFactory.cs;..\Compare-NET-Objects\StringHelper.cs;..\Compare-NET-Objects\TypeBackwardsCompatibilityExtensions.cs;..\Compare-NET-Objects\TypeComparers\BaseComparer.cs;..\Compare-NET-Objects\TypeComparers\BaseTypeComparer.cs;..\Compare-NET-Objects\TypeComparers\ByteArrayComparer.cs;..\Compare-NET-Objects\TypeComparers\ClassComparer.cs;..\Compare-NET-Objects\TypeComparers\DateComparer.cs;..\Compare-NET-Objects\TypeComparers\DateTimeOffsetComparer.cs;..\Compare-NET-Objects\TypeComparers\DictionaryComparer.cs;..\Compare-NET-Objects\TypeComparers\DoubleComparer.cs;..\Compare-NET-Objects\TypeComparers\EnumComparer.cs;..\Compare-NET-Objects\TypeComparers\EnumerableComparer.cs;..\Compare-NET-Objects\TypeComparers\FieldComparer.cs;..\Compare-NET-Objects\TypeComparers\HashSetComparer.cs;..\Compare-NET-Objects\TypeComparers\IndexerComparer.cs;..\Compare-NET-Objects\TypeComparers\ListComparer.cs;..\Compare-NET-Objects\TypeComparers\PointerComparer.cs;..\Compare-NET-Objects\TypeComparers\PropertyComparer.cs;..\Compare-NET-Objects\TypeComparers\RuntimeTypeComparer.cs;..\Compare-NET-Objects\TypeComparers\SimpleTypeComparer.cs;..\Compare-NET-Objects\TypeComparers\StringComparer.cs;..\Compare-NET-Objects\TypeComparers\StructComparer.cs;..\Compare-NET-Objects\TypeComparers\TimespanComparer.cs;..\Compare-NET-Objects\TypeComparers\UriComparer.cs;..\Compare-NET-Objects\TypeHelper.cs" Exclude="bin\**;obj\**;**\*.xproj;packages\**" />
     <Compile Include="..\Compare-NET-Objects\LogicEqualityComparer.cs" Link="LogicEqualityComparer.cs" />
+    <Compile Include="..\Compare-NET-Objects\PropertyEntity.cs" Link="PropertyEntity.cs" />
   </ItemGroup>
 
   <ItemGroup>

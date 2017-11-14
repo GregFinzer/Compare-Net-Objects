@@ -64,13 +64,13 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 {
                     Difference difference = new Difference
                     {
-                        ParentObject1 = new WeakReference(parms.ParentObject1),
-                        ParentObject2 = new WeakReference(parms.ParentObject2),
+                        ParentObject1 = parms.ParentObject1,
+                        ParentObject2 = parms.ParentObject2,
                         PropertyName = currentBreadCrumb,
                         Object1Value = "(null)",
                         Object2Value = NiceString(dataRow2[i]),
-                        Object1 = new WeakReference(parms.Object1),
-                        Object2 = new WeakReference(parms.Object2)
+                        Object1 = parms.Object1,
+                        Object2 = parms.Object2
                     };
 
                     AddDifference(parms.Result, difference);
@@ -81,13 +81,13 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 {
                     Difference difference = new Difference
                     {
-                        ParentObject1 = new WeakReference(parms.ParentObject1),
-                        ParentObject2 = new WeakReference(parms.ParentObject2),
+                        ParentObject1 = parms.ParentObject1,
+                        ParentObject2 = parms.ParentObject2,
                         PropertyName = currentBreadCrumb,
                         Object1Value = NiceString(dataRow1[i]),
                         Object2Value = "(null)",
-                        Object1 = new WeakReference(parms.Object1),
-                        Object2 = new WeakReference(parms.Object2)
+                        Object1 = parms.Object1,
+                        Object2 = parms.Object2
                     };
 
                     AddDifference(parms.Result, difference);
@@ -99,13 +99,13 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 {
                     Difference difference = new Difference
                     {
-                        ParentObject1 = new WeakReference(parms.ParentObject1),
-                        ParentObject2 = new WeakReference(parms.ParentObject2),
+                        ParentObject1 = parms.ParentObject1,
+                        ParentObject2 = parms.ParentObject2,
                         PropertyName = currentBreadCrumb,
                         Object1Value = dataRow1.RowState.ToString(),
                         Object2Value = dataRow2.RowState.ToString(),
-                        Object1 = new WeakReference(parms.Object1),
-                        Object2 = new WeakReference(parms.Object2)
+                        Object1 = parms.Object1,
+                        Object2 = parms.Object2
                     };
 
                     AddDifference(parms.Result, difference);

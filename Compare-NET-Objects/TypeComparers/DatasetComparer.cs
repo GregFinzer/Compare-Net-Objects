@@ -53,14 +53,14 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             {
                 Difference difference = new Difference
                                             {
-                                                ParentObject1 = new WeakReference(parms.ParentObject1),
-                                                ParentObject2 = new WeakReference(parms.ParentObject2),
+                                                ParentObject1 = parms.ParentObject1,
+                                                ParentObject2 = parms.ParentObject2,
                                                 PropertyName = parms.BreadCrumb,
                                                 Object1Value = dataSet1.Tables.Count.ToString(CultureInfo.InvariantCulture),
                                                 Object2Value = dataSet2.Tables.Count.ToString(CultureInfo.InvariantCulture),
                                                 ChildPropertyName = "Tables.Count",
-                                                Object1 = new WeakReference(parms.Object1),
-                                                Object2 = new WeakReference(parms.Object2)
+                                                Object1 = parms.Object1,
+                                                Object2 = parms.Object2
                                             };
 
                 AddDifference(parms.Result, difference);

@@ -44,8 +44,12 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 parms.Result.CurrentStructDepth++;
                 parms.Object1Type  = parms.Object1.GetType();
                 parms.Object2Type = parms.Object2.GetType();
-                _fieldComparer.PerformCompareFields(parms);
-                _propertyComparer.PerformCompareProperties(parms);
+
+                if (parms.Config.CompareFields)
+                    _fieldComparer.PerformCompareFields(parms);
+
+                if (parms.Config.CompareProperties)
+                    _propertyComparer.PerformCompareProperties(parms);
             }
             finally
             {

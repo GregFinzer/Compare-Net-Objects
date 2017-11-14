@@ -76,22 +76,22 @@ namespace KellermanSoftware.CompareNetObjects
         /// <summary>
         /// A reference to the parent of object1
         /// </summary>
-        public WeakReference ParentObject1 { get; set; }
+        public object ParentObject1 { get; set; }
 
         /// <summary>
         /// A reference to the parent of object2
         /// </summary>
-        public WeakReference ParentObject2 { get; set; }
+        public object ParentObject2 { get; set; }
 
         /// <summary>
         /// Object1 as a reference
         /// </summary>
-        public WeakReference Object1 { get; set; }
+        public object Object1 { get; set; }
 
         /// <summary>
         /// Object2 as a reference
         /// </summary>
-        public WeakReference Object2 { get; set; }
+        public object Object2 { get; set; }
 
         /// <summary>
         /// Prefix to put on the beginning of the message

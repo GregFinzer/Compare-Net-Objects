@@ -70,8 +70,8 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                     return false;
                 }
 
-                if (matchingSpec == null)
-                    matchingSpec = GetMatchingSpec(parms.Result, enumerator1.Current.GetType());
+                // if (matchingSpec == null)
+                matchingSpec = GetMatchingSpec(parms.Result, enumerator1.Current.GetType());
 
                 string matchIndex1 = GetMatchIndex(parms.Result, matchingSpec, enumerator1.Current);
 
@@ -87,6 +87,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                         return false;
                     }
 
+                    matchingSpec = GetMatchingSpec(parms.Result, enumerator2.Current.GetType());
                     string matchIndex2 = GetMatchIndex(parms.Result, matchingSpec, enumerator2.Current);
 
                     if (matchIndex1 == matchIndex2)
@@ -142,7 +143,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                     continue;
                 }
 
-                if (matchingSpec == null)
+                // if (matchingSpec == null)
                     matchingSpec = GetMatchingSpec(parms.Result, enumerator1.Current.GetType());
 
                 string matchIndex1 = GetMatchIndex(parms.Result, matchingSpec, enumerator1.Current);
@@ -171,6 +172,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                         continue;
                     }
 
+                    matchingSpec = GetMatchingSpec(parms.Result, enumerator2.Current.GetType());
                     string matchIndex2 = GetMatchIndex(parms.Result, matchingSpec, enumerator2.Current);
 
                     if (matchIndex1 == matchIndex2)
@@ -197,14 +199,14 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                 {
                     Difference difference = new Difference
                     {
-                        ParentObject1 = new WeakReference(parms.ParentObject1),
-                        ParentObject2 = new WeakReference(parms.ParentObject2),
+                        ParentObject1 = parms.ParentObject1,
+                        ParentObject2 = parms.ParentObject2,
                         PropertyName = currentBreadCrumb,
                         Object1Value = reverseCompare ? "(null)" : NiceString(enumerator1.Current),
                         Object2Value = reverseCompare ? NiceString(enumerator1.Current) : "(null)",
                         ChildPropertyName = "Item",
-                        Object1 = reverseCompare ? null : new WeakReference(enumerator1),
-                        Object2 = reverseCompare ? new WeakReference(enumerator1) : null
+                        Object1 = reverseCompare ? null : enumerator1,
+                        Object2 = reverseCompare ? enumerator1 : null
                     };
 
                     AddDifference(parms.Result, difference);                    
