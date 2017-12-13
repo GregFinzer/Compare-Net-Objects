@@ -61,7 +61,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
         {
             IEnumerator enumerator1 = ((IEnumerable) parms.Object1).GetEnumerator();
             IEnumerator enumerator2 = ((IEnumerable) parms.Object2).GetEnumerator();
-            List<string> matchingSpec = null;
+            List<string> matchingSpec;
 
             while (enumerator1.MoveNext())
             {
@@ -70,8 +70,14 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                     return false;
                 }
 
-                // if (matchingSpec == null)
-                matchingSpec = GetMatchingSpec(parms.Result, enumerator1.Current.GetType());
+                Type enumerator1Type = enumerator1.Current.GetType();
+
+                if (parms.Config.ClassTypesToIgnore.Contains(enumerator1Type))
+                {
+                    return false;
+                }
+
+                matchingSpec = GetMatchingSpec(parms.Result, enumerator1Type);
 
                 string matchIndex1 = GetMatchIndex(parms.Result, matchingSpec, enumerator1.Current);
 
@@ -87,7 +93,14 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                         return false;
                     }
 
-                    matchingSpec = GetMatchingSpec(parms.Result, enumerator2.Current.GetType());
+                    Type enumerator2Type = enumerator2.Current.GetType();
+
+                    if (parms.Config.ClassTypesToIgnore.Contains(enumerator2Type))
+                    {
+                        return false;
+                    }
+
+                    matchingSpec = GetMatchingSpec(parms.Result, enumerator2Type);
                     string matchIndex2 = GetMatchIndex(parms.Result, matchingSpec, enumerator2.Current);
 
                     if (matchIndex1 == matchIndex2)
@@ -125,7 +138,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
             bool reverseCompare)
         {
             IEnumerator enumerator1;
-            List<string> matchingSpec = null;
+            List<string> matchingSpec;
 
             if (!reverseCompare)
             {
@@ -143,8 +156,14 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                     continue;
                 }
 
-                // if (matchingSpec == null)
-                    matchingSpec = GetMatchingSpec(parms.Result, enumerator1.Current.GetType());
+                Type enumerator1Type = enumerator1.Current.GetType();
+
+                if (parms.Config.ClassTypesToIgnore.Contains(enumerator1Type))
+                {
+                    continue;
+                }
+
+                matchingSpec = GetMatchingSpec(parms.Result, enumerator1Type);
 
                 string matchIndex1 = GetMatchIndex(parms.Result, matchingSpec, enumerator1.Current);
 
@@ -172,7 +191,14 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                         continue;
                     }
 
-                    matchingSpec = GetMatchingSpec(parms.Result, enumerator2.Current.GetType());
+                    Type enumerator2Type = enumerator2.Current.GetType();
+
+                    if (parms.Config.ClassTypesToIgnore.Contains(enumerator2Type))
+                    {
+                        continue;
+                    }
+
+                    matchingSpec = GetMatchingSpec(parms.Result, enumerator2Type);
                     string matchIndex2 = GetMatchIndex(parms.Result, matchingSpec, enumerator2.Current);
 
                     if (matchIndex1 == matchIndex2)

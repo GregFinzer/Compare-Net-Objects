@@ -117,6 +117,7 @@
     <Compile Include="TestClasses\BigElchie.cs" />
     <Compile Include="TestClasses\ClassWithGuid.cs" />
     <Compile Include="TestClasses\ClassWithTuple.cs" />
+    <Compile Include="TestClasses\DeriveFromOfficer.cs" />
     <Compile Include="TestClasses\Element.cs" />
     <Compile Include="TestClasses\Entity.cs" />
     <Compile Include="TestClasses\EntityWithEquality.cs" />

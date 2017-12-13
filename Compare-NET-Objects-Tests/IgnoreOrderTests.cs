@@ -1078,32 +1078,88 @@ namespace KellermanSoftware.CompareNetObjectsTests
             Assert.AreEqual(result.Differences[2].PropertyName, ".Children[Id:11].Children[Id:101].Description");
         }
 
-        //[Test]
-        //public void CompareListsIgnoreOrderMatchingSpecValueInBaseClass()
-        //{
-        //    List<DeriveFromOfficer> list1 = new List<DeriveFromOfficer>();
-        //    list1.Add(new DeriveFromOfficer() { ID = 1, Name = "Logan 5" });
-        //    list1.Add(new DeriveFromOfficer() { ID = 2, Name = "Francis 7" });
+        [Test]
+        public void CompareListsIgnoreOrderMatchingSpecValueInBaseClass()
+        {
+            List<DeriveFromOfficer> list1 = new List<DeriveFromOfficer>();
+            list1.Add(new DeriveFromOfficer() { ID = 1, Name = "Logan 5" });
+            list1.Add(new DeriveFromOfficer() { ID = 2, Name = "Francis 7" });
 
-        //    List<DeriveFromOfficer> list2 = new List<DeriveFromOfficer>();
-        //    list2.Add(new DeriveFromOfficer() { ID = 2, Name = "Francis 7" });
-        //    list2.Add(new DeriveFromOfficer() { ID = 1, Name = "Logan 4" });
+            List<DeriveFromOfficer> list2 = new List<DeriveFromOfficer>();
+            list2.Add(new DeriveFromOfficer() { ID = 2, Name = "Francis 7" });
+            list2.Add(new DeriveFromOfficer() { ID = 1, Name = "Logan 4" });
 
-        //    ComparisonConfig config = new ComparisonConfig();
-        //    Dictionary<Type, IEnumerable<string>> collectionSpec = new Dictionary<Type, IEnumerable<string>>();
-        //    collectionSpec.Add(typeof(Officer), new string[] { "ID" });
+            ComparisonConfig config = new ComparisonConfig();
+            Dictionary<Type, IEnumerable<string>> collectionSpec = new Dictionary<Type, IEnumerable<string>>();
+            collectionSpec.Add(typeof(Officer), new string[] { "ID" });
 
-        //    config.IgnoreCollectionOrder = true;
-        //    config.CollectionMatchingSpec = collectionSpec;
+            config.IgnoreCollectionOrder = true;
+            config.CollectionMatchingSpec = collectionSpec;
 
-        //    CompareLogic compareLogic = new CompareLogic(config);
-        //    var result = compareLogic.Compare(list1, list2);
-        //    Assert.IsFalse(result.AreEqual);
-        //    Assert.AreNotEqual(result.Differences.First().Object2, null);
-        //    Assert.AreEqual(result.Differences.First().Object1.Target, "Logan 5");
-        //    Assert.AreEqual(result.Differences.First().Object2.Target, "Logan 4");
-        //}
+            CompareLogic compareLogic = new CompareLogic(config);
+            var result = compareLogic.Compare(list1, list2);
+            Assert.IsFalse(result.AreEqual);
+            Assert.AreNotEqual(result.Differences.First().Object2, null);
+            Assert.AreEqual(result.Differences.First().Object1, "Logan 5");
+            Assert.AreEqual(result.Differences.First().Object2, "Logan 4");
+        }
 
+        [Test]
+        public void ClassTypeInListIgnorePositive()
+        {
+            var comparisonConfig = new ComparisonConfig()
+            {
+                MaxDifferences = int.MaxValue,
+                MembersToIgnore = new List<string>() { "Type" },
+                ClassTypesToIgnore = new List<Type>() { typeof(Officer) },
+                CollectionMatchingSpec = new Dictionary<System.Type, IEnumerable<string>>()
+                {
+                    {
+                        typeof(Officer),
+                        new List<string>() { "ID" }
+                    },
+                    {
+                        typeof(Person),
+                        new List<string>() { "ID" }
+                    }
+                },
+                TreatStringEmptyAndNullTheSame = true,
+                IgnoreCollectionOrder = true
+            };
+
+            _compare.Config = comparisonConfig;
+
+            var list1 = new List<object>();
+            var list2 = new List<object>();
+
+            Officer p1 = new Officer();
+            p1.ID = 2;
+            p1.Name = "Greg";
+            p1.Type = Deck.AstroPhysics;
+
+            Officer p2 = new Officer();
+            p2.ID = 1;
+            p2.Name = "Leyla";
+            p2.Type = Deck.Engineering;
+
+            Person p3 = new Person();
+            p3.ID = 3;
+            p3.Name = "Henk";
+            p3.DateCreated = DateTime.Now;
+
+            Person p4 = new Person();
+            p4.ID = 3;
+            p4.Name = "Henk";
+            p4.DateCreated = p3.DateCreated;
+
+            list1.Add(p1);
+            list1.Add(p3);
+            list2.Add(p2);
+            list2.Add(p4);
+
+            var result = _compare.Compare(list1, list2);
+            Assert.IsTrue(result.AreEqual, result.DifferencesString);
+        }
         #endregion
     }
 }
