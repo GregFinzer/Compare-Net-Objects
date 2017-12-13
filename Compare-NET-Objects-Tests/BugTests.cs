@@ -42,6 +42,17 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
+        public void ShowBreadCrumbTest()
+        {
+            var people1 = new List<Person>() { new Person() { Name = "Joe" } };
+            var people2 = new List<Person>() { new Person() { Name = "Joe" } };
+            var group1 = new KeyValuePair<string, List<Person>>("People", people1);
+            var group2 = new KeyValuePair<string, List<Person>>("People", people2);
+            _compare.Config.ShowBreadcrumb = true;
+            var result = _compare.Compare(group1, group2);
+            Assert.IsTrue(result.AreEqual);
+        }
+        [Test]
         public void ListOfDictionariesWithIgnoreOrder()
         {
             var bar1 = new List<Dictionary<string, string>>

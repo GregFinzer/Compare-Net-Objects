@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading;
 using KellermanSoftware.CompareNetObjects;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses;
@@ -26,16 +23,23 @@ namespace KellermanSoftware.CompareNetObjectsTests
         [Test]
         public void ThreadPoolTest()
         {
-            for (int i = 0; i < 10000; i++)
+            var events = new List<ManualResetEvent>();
+
+            for (int i = 0; i < 64; i++)
             {
+                var resetEvent = new ManualResetEvent(false);
                 var o1 = ThreadFoo.Create(i);
                 var o2 = new ThreadFoo(o1);
                 ThreadPool.QueueUserWorkItem(state =>
                 {
                     var arr = state as ThreadFoo[];
                     CreateComparator().Compare(arr[0], arr[1]);
+                    resetEvent.Set();
                 }, new ThreadFoo[] { o1, o2 });
+                events.Add(resetEvent);
             }
+
+            WaitHandle.WaitAll(events.ToArray());
         }
     }
 }

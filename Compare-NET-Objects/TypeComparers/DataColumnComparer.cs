@@ -19,11 +19,21 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         {
         }
 
+        /// <summary>
+        /// Returns true if both types compared are a DataColumn
+        /// </summary>
+        /// <param name="type1"></param>
+        /// <param name="type2"></param>
+        /// <returns></returns>
         public override bool IsTypeMatch(Type type1, Type type2)
         {
             return TypeHelper.IsDataColumn(type1) && TypeHelper.IsDataColumn(type2);
         }
 
+        /// <summary>
+        /// Compare a Data Column
+        /// </summary>
+        /// <param name="parms"></param>
         public override void CompareType(CompareParms parms)
         {
             //This should never happen, null check happens one level up

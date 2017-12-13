@@ -424,6 +424,11 @@ namespace KellermanSoftware.CompareNetObjects
             return type == typeof(Font);
         }
 
+        /// <summary>
+        /// Returns true if the Type is Data Column
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public static bool IsDataColumn(Type type)
         {
             if (type == null)

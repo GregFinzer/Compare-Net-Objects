@@ -51,6 +51,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         /// </summary>
         /// <param name="parms"></param>
         /// <param name="info"></param>
+        /// <param name="object2Properties"></param>
         private void CompareProperty(CompareParms parms, PropertyEntity info, List<PropertyEntity> object2Properties)
         {
             //If we can't read it, skip it

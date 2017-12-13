@@ -78,7 +78,15 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             }
 
             if (config.ShowBreadcrumb)
-                Debug.WriteLine(sb.ToString());
+            {
+#if (DEBUG && !PORTABLE) || DNCORE
+                Console.WriteLine(sb.ToString());
+#endif
+
+#if !PORTABLE && !DNCORE && !DEBUG
+                Trace.WriteLine(sb.ToString());
+#endif
+            }
 
             return sb.ToString();
         }
