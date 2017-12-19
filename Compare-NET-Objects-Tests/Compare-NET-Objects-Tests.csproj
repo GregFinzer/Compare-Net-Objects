@@ -123,6 +123,7 @@
     <Compile Include="TestClasses\EntityWithEquality.cs" />
     <Compile Include="TestClasses\EnumerableTestEntity.cs" />
     <Compile Include="TestClasses\FontClass.cs" />
+    <Compile Include="TestClasses\Invoice.cs" />
     <Compile Include="TestClasses\ObjectHierarchy\Attribute.cs" />
     <Compile Include="TestClasses\ObjectHierarchy\Bond.cs" />
     <Compile Include="TestClasses\ObjectHierarchy\FundShare.cs" />
@@ -191,6 +192,7 @@
     <Compile Include="TestClasses\SpecialFields.cs" />
     <Compile Include="TestClasses\Table.cs" />
     <Compile Include="ThreadSafeTests.cs" />
+    <Compile Include="WildcardTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

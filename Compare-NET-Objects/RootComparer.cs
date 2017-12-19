@@ -34,6 +34,9 @@ namespace KellermanSoftware.CompareNetObjects
                 Type t1 = parms.Object1 != null ? parms.Object1.GetType() : null;
                 Type t2 = parms.Object2 != null ? parms.Object2.GetType() : null;
 
+                if (ExcludeLogic.ShouldExcludeType(parms.Config, t1, t2))
+                    return true;
+
                 BaseTypeComparer customComparer = parms.Config.CustomComparers.FirstOrDefault(o => o.IsTypeMatch(t1, t2));
 
                 if (customComparer != null)

@@ -52,6 +52,7 @@ namespace KellermanSoftware.CompareNetObjects
             _rootComparer.TypeComparers.Add(new EnumComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new PointerComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new UriComparer(_rootComparer));
+            _rootComparer.TypeComparers.Add(new StringBuilderComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new StringComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new DateComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new DateTimeOffSetComparer(_rootComparer));

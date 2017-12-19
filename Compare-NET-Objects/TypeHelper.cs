@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Reflection;
-
+using System.Text;
 #if !PORTABLE && !DNCORE
 using System.Data;
 using System.Drawing;
@@ -294,6 +294,19 @@ namespace KellermanSoftware.CompareNetObjects
                 return false;
 
             return type == typeof(DateTimeOffset);
+        }
+
+        /// <summary>
+        /// Return true if the type is a StringBuilder
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool IsStringBuilder(Type type)
+        {
+            if (type == null)
+                return false;
+
+            return type == typeof(StringBuilder);
         }
 
         /// <summary>

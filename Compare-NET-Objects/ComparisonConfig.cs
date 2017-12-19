@@ -27,6 +27,11 @@ namespace KellermanSoftware.CompareNetObjects
         #region Properties
 
         /// <summary>
+        /// When comparing strings or StringBuilder types, perform a case sensitive comparison.  The default is true.
+        /// </summary>
+        public bool CaseSensitive { get; set; }
+
+        /// <summary>
         /// Ignore exceptions when objects are disposed
         /// </summary>
         public bool IgnoreObjectDisposedException { get; set; }
@@ -87,12 +92,27 @@ namespace KellermanSoftware.CompareNetObjects
         /// <summary>
         /// Only these class types will be compared. The default is to compare all class types.
         /// </summary>
+        /// <remarks>If you specify a class type here no other class types will be compared unless it is in this list.</remarks>
         public List<Type> ClassTypesToInclude { get; set; }
+
+        /// <summary>
+        /// A list of types to be ignored in the comparison. The default is to compare all types.  A typical thing to not compare are GUIDs
+        /// </summary>
+        public List<Type> TypesToIgnore { get; set; }
+
+        /// <summary>
+        /// Only these types will be compared. The default is to compare all types.
+        /// </summary>
+        /// <remarks>If you specify a type here no others will be compared unless it is in this list.  You must specify ALL Types that you want to compare.</remarks>
+        public List<Type> TypesToInclude { get; set; }
 
         /// <summary>
         /// Ignore Data Table Names, Data Table Column Names, properties, or fields by name during the comparison. Case sensitive. The default is to compare all members.
         /// </summary>
-        /// <example>MembersToIgnore.Add("CreditCardNumber")</example>
+        /// <example>MembersToIgnore.Add("CreditCardNumber");
+        /// MembersToIgnore.Add("Invoice.InvoiceGuid");
+        /// MembersToIgnore.Add("*Id");
+        /// </example>
         public List<string> MembersToIgnore { get; set; }
 
         /// <summary>
@@ -257,6 +277,8 @@ namespace KellermanSoftware.CompareNetObjects
             MembersToInclude = new List<string>();
             ClassTypesToIgnore = new List<Type>();
             ClassTypesToInclude = new List<Type>();
+            TypesToIgnore = new List<Type>();
+            TypesToInclude = new List<Type>();
 
             CompareStaticFields = true;
             CompareStaticProperties = true;
@@ -284,6 +306,7 @@ namespace KellermanSoftware.CompareNetObjects
             CollectionMatchingSpec = new Dictionary<Type, IEnumerable<string>>();
             IgnoreUnknownObjectTypes = false;
             MaxStructDepth = 2;
+            CaseSensitive = true;
         }
         #endregion
     }

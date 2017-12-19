@@ -118,6 +118,7 @@
     <Compile Include="TypeComparers\RuntimeTypeComparer.cs" />
     <Compile Include="TypeComparers\BaseTypeComparer.cs" />
     <Compile Include="TypeComparers\SimpleTypeComparer.cs" />
+    <Compile Include="TypeComparers\StringBuilderComparer.cs" />
     <Compile Include="TypeComparers\StringComparer.cs" />
     <Compile Include="TypeComparers\StructComparer.cs" />
     <Compile Include="TypeComparers\TimespanComparer.cs" />
