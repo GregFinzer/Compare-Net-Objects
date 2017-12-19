@@ -56,7 +56,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 Type t2 = parms.Object2.GetType();
 
                 //Check if the class type should be excluded based on the configuration
-                if (ExcludeLogic.ShouldExcludeClassType(parms.Config, t1, t2))
+                if (ExcludeLogic.ShouldExcludeClass(parms.Config, t1, t2))
                     return;
 
                 parms.Object1Type = t1;

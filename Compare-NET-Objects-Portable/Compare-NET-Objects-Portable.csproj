@@ -155,6 +155,9 @@
     <Compile Include="..\Compare-NET-Objects\TypeComparers\SimpleTypeComparer.cs">
       <Link>TypeComparers\SimpleTypeComparer.cs</Link>
     </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\StringBuilderComparer.cs">
+      <Link>TypeComparers\StringBuilderComparer.cs</Link>
+    </Compile>
     <Compile Include="..\Compare-NET-Objects\TypeComparers\StringComparer.cs">
       <Link>TypeComparers\StringComparer.cs</Link>
     </Compile>
