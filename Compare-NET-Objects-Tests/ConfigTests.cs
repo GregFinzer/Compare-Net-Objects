@@ -258,5 +258,34 @@ namespace KellermanSoftware.CompareNetObjectsTests
             Assert.IsFalse(result.AreEqual, result.DifferencesString);
         }
         #endregion
+
+        #region Case Insensitive Tests
+
+        [Test]
+        public void CaseSensitiveTest()
+        {
+            //Arrange
+            _compare.Config.CaseSensitive = true;
+
+            //Act
+            var result = _compare.Compare("The quick brown fox jumps over the lazy dog.", "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.");
+
+            //Assert
+            Assert.IsFalse(result.AreEqual, result.DifferencesString);
+        }
+
+        [Test]
+        public void CaseInSensitiveTest()
+        {
+            //Arrange
+            _compare.Config.CaseSensitive = false;
+
+            //Act
+            var result = _compare.Compare("The quick brown fox jumps over the lazy dog.", "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.");
+
+            //Assert
+            Assert.IsTrue(result.AreEqual, result.DifferencesString);
+        }
+        #endregion
     }
 }
