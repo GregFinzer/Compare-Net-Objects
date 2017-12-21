@@ -44,6 +44,8 @@ dotnet add package CompareNETObjects
 * NUnit Test Project Included
 * Ability to load settings from a config file for use with powershell
 * Ability to pass in the configuration
+* Ability to save and load the configuration as json
+* Test Extensions .ShouldCompare and .ShouldNotCompare
 * Several configuration options for comparing private elements, ignoring specific elements, including specific elements.
 * Property and Field Info reflection caching for increased performance
 * Rich Differences List or simple DifferencesString
