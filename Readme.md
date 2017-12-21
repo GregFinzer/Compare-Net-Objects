@@ -13,6 +13,18 @@ Compatible with .NET Framework 4.0 and higher.  .NET Core 1.3 and higher. Portab
 
 http://www.nuget.org/packages/CompareNETObjects
 
+## Installation
+
+Install with NuGet Package Manager Console
+```
+Install-Package CompareNETObjects
+```
+
+Install with .NET CLI
+```
+dotnet add package CompareNETObjects
+```
+
 # Features
 
 ## Feature Overview
