@@ -61,7 +61,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
             Console.WriteLine(watch.ElapsedMilliseconds);
         }
 
-        [Test]
+        [Test, Ignore("Inconsistent")]
         public void CachingTest()
         {
             List<Person> list1 = new List<Person>();
