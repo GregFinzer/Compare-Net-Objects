@@ -11,11 +11,12 @@ Compatible with .NET Framework 4.0 and higher.  .NET Core 1.3 and higher. Portab
 # NuGet Package
 
 <a href="https://ci.appveyor.com/project/GregFinzer/compare-net-objects">
-  <img src="https://ci.appveyor.com/api/projects/status/pi60wxnpsre5gu3f?svg=true" alt="AppVeyor Status" width="200">
+  <img src="https://ci.appveyor.com/api/projects/status/pi60wxnpsre5gu3f?svg=true" alt="AppVeyor Status" height="50">
 </a>
 
+
 <a href="https://www.nuget.org/packages/CompareNETObjects">
-  <img src="http://img.shields.io/nuget/v/CompareNETObjects.svg" alt="NuGet Version" width="200">
+  <img src="http://img.shields.io/nuget/v/CompareNETObjects.svg" alt="NuGet Version" height="50">
 </a>
 
 http://www.nuget.org/packages/CompareNETObjects
