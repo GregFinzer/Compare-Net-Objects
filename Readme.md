@@ -9,7 +9,14 @@ What you have been waiting for. Perform a deep compare of any two .NET objects u
 Compatible with .NET Framework 4.0 and higher.  .NET Core 1.3 and higher. Portable Class Library version works with .NET 4.0+, Silverlight 5+, Windows Phone 8+, Windows RT 8+, Xamarin iOS, and Xamarin Droid.  
 
 # NuGet Package
-[![NuGet](http://img.shields.io/nuget/v/CompareNETObjects.svg)](https://www.nuget.org/packages/CompareNETObjects/)
+
+<a href="https://ci.appveyor.com/project/GregFinzer/compare-net-objects">
+  <img src="https://ci.appveyor.com/api/projects/status/pi60wxnpsre5gu3f?svg=true" alt="AppVeyor Status" width="200">
+</a>
+
+<a href="https://www.nuget.org/packages/CompareNETObjects">
+  <img src="http://img.shields.io/nuget/v/CompareNETObjects.svg" alt="NuGet Version" width="200">
+</a>
 
 http://www.nuget.org/packages/CompareNETObjects
 
