@@ -23,7 +23,9 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         /// <returns></returns>
         public override bool IsTypeMatch(Type type1, Type type2)
         {
-            return TypeHelper.IsStringBuilder(type1) && TypeHelper.IsStringBuilder(type2);
+            return (TypeHelper.IsStringBuilder(type1) && TypeHelper.IsStringBuilder(type2))
+                   || (TypeHelper.IsStringBuilder(type1) && type2 == null)
+                   || (TypeHelper.IsStringBuilder(type2) && type1 == null);
         }
 
         /// <summary>
@@ -32,6 +34,13 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         /// <param name="parms"></param>
         public override void CompareType(CompareParms parms)
         {
+            if (parms.Config.TreatStringEmptyAndNullTheSame
+                && ((parms.Object1 == null && parms.Object2 != null && parms.Object2.ToString() == string.Empty)
+                    || (parms.Object2 == null && parms.Object1 != null && parms.Object1.ToString() == string.Empty)))
+            {
+                return;
+            }
+
             string object1String = parms.Object1.ToString();
             string object2String = parms.Object2.ToString();
 
@@ -42,7 +51,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                     AddDifference(parms);
                 }
             }
-            if (object1String != object2String)
+            else if (object1String != object2String)
             {
                 AddDifference(parms);
             }

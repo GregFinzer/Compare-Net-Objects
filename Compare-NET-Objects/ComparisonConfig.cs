@@ -251,7 +251,7 @@ namespace KellermanSoftware.CompareNetObjects
         public List<BaseTypeComparer> CustomComparers { get; set; }
 
         /// <summary>
-        /// If true, string.empty and null will be treated as equal. The default is false.
+        /// If true, string.empty and null will be treated as equal for Strings and String Builder. The default is false.
         /// </summary>
         public bool TreatStringEmptyAndNullTheSame { get; set; }
 

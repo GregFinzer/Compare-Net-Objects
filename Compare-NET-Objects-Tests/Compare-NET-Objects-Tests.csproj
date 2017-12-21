@@ -95,6 +95,7 @@
     <Compile Include="CompareObjectsTests.cs" />
     <Compile Include="CompareRuntimeTypeTests.cs" />
     <Compile Include="CompareSimpleTypeTests.cs" />
+    <Compile Include="CompareStringBuilder.cs" />
     <Compile Include="CompareStructTests.cs" />
     <Compile Include="CompareTimespan.cs" />
     <Compile Include="CompareUriTests.cs" />
