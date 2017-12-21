@@ -1,4 +1,5 @@
 ﻿To Do
+* Re-profile the performance and put in minimum performance test
 * Attribute Caching
 * JSON File Configuration
 * Documentation
