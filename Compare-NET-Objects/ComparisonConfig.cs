@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using KellermanSoftware.CompareNetObjects.TypeComparers;
 
 namespace KellermanSoftware.CompareNetObjects
@@ -7,6 +8,7 @@ namespace KellermanSoftware.CompareNetObjects
     /// <summary>
     /// Configuration
     /// </summary>
+    [DataContract]
     public class ComparisonConfig
     {
         #region Class Variables
@@ -29,26 +31,31 @@ namespace KellermanSoftware.CompareNetObjects
         /// <summary>
         /// When comparing strings or StringBuilder types, perform a case sensitive comparison.  The default is true.
         /// </summary>
+        [DataMember]
         public bool CaseSensitive { get; set; }
 
         /// <summary>
         /// Ignore exceptions when objects are disposed
         /// </summary>
+        [DataMember]
         public bool IgnoreObjectDisposedException { get; set; }
 
         /// <summary>
         /// Ignore millisecond differences between DateTime values or DateTimeOffset values.  The default is 0 (any time difference will be shown).
         /// </summary>
+        [DataMember]
         public int MaxMillisecondsDateDifference { get; set; }
 
         /// <summary>
         /// When comparing DateTimeOffsets, offsets will be compared as well as the UtcDateTimes. The default is false.
         /// </summary>
+        [DataMember]
         public bool CompareDateTimeOffsetWithOffsets  { get; set; }
 
         /// <summary>
         /// When comparing struct, the depth to compare for children.  The default is 2, the max is 5
         /// </summary>
+        [DataMember]
         public int MaxStructDepth
         {
             get { return _maxStructDepth; }
@@ -66,44 +73,52 @@ namespace KellermanSoftware.CompareNetObjects
         /// <summary>
         /// If true, unknown object types will be ignored instead of throwing an exception.  The default is false.
         /// </summary>
+        [DataMember]
         public bool IgnoreUnknownObjectTypes { get; set; }
 
         /// <summary>
         /// If true, invalid indexers will be skipped.  The default is false.
         /// </summary>
+        [DataMember]
         public bool SkipInvalidIndexers { get; set; }
 
         /// <summary>
         /// If a class implements an interface then only members of the interface will be compared.  The default is all members are compared. 
         /// </summary>
-        public List<Type> InterfaceMembers { get; set; } 
+        [DataMember]
+        public List<Type> InterfaceMembers { get; set; }
 
         /// <summary>
         /// Show breadcrumb at each stage of the comparision.  The default is false.
         /// This is useful for debugging deep object graphs.
         /// </summary>
+        [DataMember]
         public bool ShowBreadcrumb { get; set; }
 
         /// <summary>
         /// A list of class types to be ignored in the comparison. The default is to compare all class types.
         /// </summary>
+        [DataMember]
         public List<Type> ClassTypesToIgnore { get; set; }
 
         /// <summary>
         /// Only these class types will be compared. The default is to compare all class types.
         /// </summary>
         /// <remarks>If you specify a class type here no other class types will be compared unless it is in this list.</remarks>
+        [DataMember]
         public List<Type> ClassTypesToInclude { get; set; }
 
         /// <summary>
         /// A list of types to be ignored in the comparison. The default is to compare all types.  A typical thing to not compare are GUIDs
         /// </summary>
+        [DataMember]
         public List<Type> TypesToIgnore { get; set; }
 
         /// <summary>
         /// Only these types will be compared. The default is to compare all types.
         /// </summary>
         /// <remarks>If you specify a type here no others will be compared unless it is in this list.  You must specify ALL Types that you want to compare.</remarks>
+        [DataMember]
         public List<Type> TypesToInclude { get; set; }
 
         /// <summary>
@@ -113,12 +128,14 @@ namespace KellermanSoftware.CompareNetObjects
         /// MembersToIgnore.Add("Invoice.InvoiceGuid");
         /// MembersToIgnore.Add("*Id");
         /// </example>
+        [DataMember]
         public List<string> MembersToIgnore { get; set; }
 
         /// <summary>
         /// Only compare elements by name for Data Table Names, Data Table Column Names, properties and fields. Case sensitive. The default is to compare all members.
         /// </summary>
         /// <example>MembersToInclude.Add("FirstName")</example>
+        [DataMember]
         public List<string> MembersToInclude { get; set; }
 
         //Security restriction in Silverlight prevents getting private properties and fields
@@ -126,91 +143,108 @@ namespace KellermanSoftware.CompareNetObjects
         /// <summary>
         /// If true, private properties and fields will be compared. The default is false.  Silverlight and WinRT restricts access to private variables.
         /// </summary>
+        [DataMember]
         public bool ComparePrivateProperties { get; set; }
 
         /// <summary>
         /// If true, private fields will be compared. The default is false.  Silverlight and WinRT restricts access to private variables.
         /// </summary>
+        [DataMember]
         public bool ComparePrivateFields { get; set; }
 #endif
 
         /// <summary>
         /// If true, static properties will be compared.  The default is true.
         /// </summary>
+        [DataMember]
         public bool CompareStaticProperties { get; set; }
 
         /// <summary>
         /// If true, static fields will be compared.  The default is true.
         /// </summary>
+        [DataMember]
         public bool CompareStaticFields { get; set; }
 
         /// <summary>
         /// If true, child objects will be compared. The default is true. 
         /// If false, and a list or array is compared list items will be compared but not their children.
         /// </summary>
+        [DataMember]
         public bool CompareChildren { get; set; }
 
         /// <summary>
         /// If true, compare read only properties (only the getter is implemented). The default is true.
         /// </summary>
+        [DataMember]
         public bool CompareReadOnly { get; set; }
 
         /// <summary>
         /// If true, compare fields of a class (see also CompareProperties).  The default is true.
         /// </summary>
+        [DataMember]
         public bool CompareFields { get; set; }
 
         /// <summary>
         /// If true, compare each item within a collection to every item in the other.  The default is false. WARNING: setting this to true significantly impacts performance.  
         /// </summary>
+        [DataMember]
         public bool IgnoreCollectionOrder { get; set; }
 
         /// <summary>
         /// If true, compare properties of a class (see also CompareFields).  The default is true.
         /// </summary>
+        [DataMember]
         public bool CompareProperties { get; set; }
 
         /// <summary>
         /// The maximum number of differences to detect.  The default is 1 for performance reasons.
         /// </summary>
+        [DataMember]
         public int MaxDifferences { get; set; }
 
         /// <summary>
         /// The maximum number of differences to detect when comparing byte arrays.  The default is 1.
         /// </summary>
+        [DataMember]
         public int MaxByteArrayDifferences { get; set; }
 
         /// <summary>
         /// Reflection properties and fields are cached. By default this cache is cleared after each compare.  Set to false to keep the cache for multiple compares.
         /// </summary>
         /// <seealso cref="Caching"/>
+        [DataMember]
         public bool AutoClearCache { get; set; }
 
         /// <summary>
         /// By default properties and fields for types are cached for each compare.  By default this cache is cleared after each compare.
         /// </summary>
         /// <seealso cref="AutoClearCache"/>
+        [DataMember]
         public bool Caching { get; set; }
 
         /// <summary>
         /// A list of attributes to ignore a class, property or field
         /// </summary>
         /// <example>AttributesToIgnore.Add(typeof(XmlIgnoreAttribute));</example>
+        [DataMember]
         public List<Type> AttributesToIgnore { get; set; }
 
         /// <summary>
         /// If true, objects will be compared ignore their type diferences.  The default is false.
         /// </summary>
+        [DataMember]
         public bool IgnoreObjectTypes { get; set; }
 
         /// <summary>
         /// In the differences string, this is the name for expected name. The default is: Expected 
         /// </summary>
+        [DataMember]
         public string ExpectedName { get; set; }
 
         /// <summary>
         /// In the differences string, this is the name for the actual name. The default is: Actual
         /// </summary>
+        [DataMember]
         public string ActualName { get; set; }
 
         /// <summary>
@@ -243,28 +277,32 @@ namespace KellermanSoftware.CompareNetObjects
         /// NOTE: types are looked up as exact.  e.g. if foo is an entry in the dictionary and bar is a 
         /// sub-class of foo, upon encountering a bar type, the comparer will not find the entry of foo
         /// </summary>
+        [DataMember]
         public Dictionary<Type, IEnumerable<string>> CollectionMatchingSpec { get; set; }
 
         /// <summary>
         /// A list of custom comparers that take priority over the built in comparers
         /// </summary>
+        [DataMember]
         public List<BaseTypeComparer> CustomComparers { get; set; }
 
         /// <summary>
         /// If true, string.empty and null will be treated as equal for Strings and String Builder. The default is false.
         /// </summary>
+        [DataMember]
         public bool TreatStringEmptyAndNullTheSame { get; set; }
 
         /// <summary>
         /// The precision to compare double values.  The default is 0.
         /// </summary>
+        [DataMember]
         public double DoublePrecision { get; set; }
 
         #endregion
 
         #region Methods
 
-
+        
         /// <summary>
         /// Reset the configuration to the default values
         /// </summary>

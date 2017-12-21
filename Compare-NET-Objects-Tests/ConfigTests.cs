@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using KellermanSoftware.CompareNetObjects;
 using KellermanSoftware.CompareNetObjectsTests.Attributes;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses;
@@ -285,6 +286,42 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             //Assert
             Assert.IsTrue(result.AreEqual, result.DifferencesString);
+        }
+        #endregion
+
+        #region Save and Load Configuration Tests
+
+        [Test]
+        public void SaveConfigurationTest()
+        {
+            //Arrange
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");
+
+            if (File.Exists(filePath))
+                File.Delete(filePath);
+
+            //Act
+            _compare.SaveConfiguration(filePath);
+
+            //Assert
+            Assert.IsTrue(File.Exists(filePath));
+        }
+
+        [Test]
+        public void LoadConfigurationTest()
+        {
+            //Arrange
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");
+
+            _compare.Config.CaseSensitive = false;
+            _compare.SaveConfiguration(filePath);
+
+            //Act
+            _compare.Config = new ComparisonConfig(); //Wipe out the current config
+            _compare.LoadConfiguration(filePath);
+
+            //Assert
+            Assert.IsFalse(_compare.Config.CaseSensitive);
         }
         #endregion
     }

@@ -32,7 +32,8 @@
 
 using System;
 using System.Collections.Generic;
-
+using System.IO;
+using System.Runtime.Serialization.Json;
 #if !PORTABLE && !DNCORE
 using KellermanSoftware.CompareNetObjects.Properties;
 #endif
@@ -224,7 +225,60 @@ namespace KellermanSoftware.CompareNetObjects
             Cache.ClearCache();
         }
 
-        #endregion
+        /// <summary>
+        /// Save the current configuration to the passed stream
+        /// </summary>
+        /// <param name="stream"></param>
+        public void SaveConfiguration(Stream stream)
+        {
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(ComparisonConfig));
+            ser.WriteObject(stream, Config);
+
+            if (stream.CanSeek && stream.Position > 0)
+                stream.Seek(0, SeekOrigin.Begin);
+        }
+
+        /// <summary>
+        /// Load the current configuration from a json stream
+        /// </summary>
+        /// <param name="stream"></param>
+        public void LoadConfiguration(Stream stream)
+        {
+            if (stream.CanSeek && stream.Position > 0)
+                stream.Seek(0, SeekOrigin.Begin);
+
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(ComparisonConfig));
+            Config = (ComparisonConfig)ser.ReadObject(stream);
+        }
+
+#if !PORTABLE && !DNCORE
+        /// <summary>
+        /// Load the current configuration from a json stream
+        /// </summary>
+        /// <param name="filePath"></param>
+        public void LoadConfiguration(string filePath)
+        {
+            using (FileStream stream = new FileStream(filePath, FileMode.Open))
+            {
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(ComparisonConfig));
+                Config = (ComparisonConfig)ser.ReadObject(stream);
+            }
+        }
+
+        /// <summary>
+        /// Save the current configuration to a json file
+        /// </summary>
+        /// <param name="filePath"></param>
+        public void SaveConfiguration(string filePath)
+        {
+            using (FileStream stream = new FileStream(filePath, FileMode.Create))
+            {
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(ComparisonConfig));
+                ser.WriteObject(stream, Config);
+            }
+        }
+#endif
+#endregion
 
     }
 }
