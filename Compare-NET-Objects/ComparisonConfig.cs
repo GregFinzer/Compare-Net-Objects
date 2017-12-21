@@ -1,22 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using KellermanSoftware.CompareNetObjects.TypeComparers;
+#if !DNCORE
+using System.Runtime.Serialization;
+#endif
 
 namespace KellermanSoftware.CompareNetObjects
 {
     /// <summary>
     /// Configuration
     /// </summary>
+#if !DNCORE
     [DataContract]
+#endif
     public class ComparisonConfig
     {
-        #region Class Variables
+#region Class Variables
         private Action<Difference> _differenceCallback;
         private int _maxStructDepth;
-        #endregion
+#endregion
 
-        #region Constructors
+#region Constructors
         /// <summary>
         /// Default Constructor
         /// </summary>
@@ -25,37 +29,47 @@ namespace KellermanSoftware.CompareNetObjects
             Reset();
         }
         #endregion
-        
+
         #region Properties
 
         /// <summary>
         /// When comparing strings or StringBuilder types, perform a case sensitive comparison.  The default is true.
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public bool CaseSensitive { get; set; }
 
         /// <summary>
         /// Ignore exceptions when objects are disposed
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public bool IgnoreObjectDisposedException { get; set; }
 
         /// <summary>
         /// Ignore millisecond differences between DateTime values or DateTimeOffset values.  The default is 0 (any time difference will be shown).
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public int MaxMillisecondsDateDifference { get; set; }
 
         /// <summary>
         /// When comparing DateTimeOffsets, offsets will be compared as well as the UtcDateTimes. The default is false.
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public bool CompareDateTimeOffsetWithOffsets  { get; set; }
 
         /// <summary>
         /// When comparing struct, the depth to compare for children.  The default is 2, the max is 5
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public int MaxStructDepth
         {
             get { return _maxStructDepth; }
@@ -73,52 +87,68 @@ namespace KellermanSoftware.CompareNetObjects
         /// <summary>
         /// If true, unknown object types will be ignored instead of throwing an exception.  The default is false.
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public bool IgnoreUnknownObjectTypes { get; set; }
 
         /// <summary>
         /// If true, invalid indexers will be skipped.  The default is false.
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public bool SkipInvalidIndexers { get; set; }
 
         /// <summary>
         /// If a class implements an interface then only members of the interface will be compared.  The default is all members are compared. 
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public List<Type> InterfaceMembers { get; set; }
 
         /// <summary>
         /// Show breadcrumb at each stage of the comparision.  The default is false.
         /// This is useful for debugging deep object graphs.
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public bool ShowBreadcrumb { get; set; }
 
         /// <summary>
         /// A list of class types to be ignored in the comparison. The default is to compare all class types.
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public List<Type> ClassTypesToIgnore { get; set; }
 
         /// <summary>
         /// Only these class types will be compared. The default is to compare all class types.
         /// </summary>
         /// <remarks>If you specify a class type here no other class types will be compared unless it is in this list.</remarks>
+#if !DNCORE
         [DataMember]
+#endif
         public List<Type> ClassTypesToInclude { get; set; }
 
         /// <summary>
         /// A list of types to be ignored in the comparison. The default is to compare all types.  A typical thing to not compare are GUIDs
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public List<Type> TypesToIgnore { get; set; }
 
         /// <summary>
         /// Only these types will be compared. The default is to compare all types.
         /// </summary>
         /// <remarks>If you specify a type here no others will be compared unless it is in this list.  You must specify ALL Types that you want to compare.</remarks>
+#if !DNCORE
         [DataMember]
+#endif
         public List<Type> TypesToInclude { get; set; }
 
         /// <summary>
@@ -128,14 +158,18 @@ namespace KellermanSoftware.CompareNetObjects
         /// MembersToIgnore.Add("Invoice.InvoiceGuid");
         /// MembersToIgnore.Add("*Id");
         /// </example>
+#if !DNCORE
         [DataMember]
+#endif
         public List<string> MembersToIgnore { get; set; }
 
         /// <summary>
         /// Only compare elements by name for Data Table Names, Data Table Column Names, properties and fields. Case sensitive. The default is to compare all members.
         /// </summary>
         /// <example>MembersToInclude.Add("FirstName")</example>
+#if !DNCORE
         [DataMember]
+#endif
         public List<string> MembersToInclude { get; set; }
 
         //Security restriction in Silverlight prevents getting private properties and fields
@@ -156,95 +190,125 @@ namespace KellermanSoftware.CompareNetObjects
         /// <summary>
         /// If true, static properties will be compared.  The default is true.
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public bool CompareStaticProperties { get; set; }
 
         /// <summary>
         /// If true, static fields will be compared.  The default is true.
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public bool CompareStaticFields { get; set; }
 
         /// <summary>
         /// If true, child objects will be compared. The default is true. 
         /// If false, and a list or array is compared list items will be compared but not their children.
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public bool CompareChildren { get; set; }
 
         /// <summary>
         /// If true, compare read only properties (only the getter is implemented). The default is true.
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public bool CompareReadOnly { get; set; }
 
         /// <summary>
         /// If true, compare fields of a class (see also CompareProperties).  The default is true.
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public bool CompareFields { get; set; }
 
         /// <summary>
         /// If true, compare each item within a collection to every item in the other.  The default is false. WARNING: setting this to true significantly impacts performance.  
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public bool IgnoreCollectionOrder { get; set; }
 
         /// <summary>
         /// If true, compare properties of a class (see also CompareFields).  The default is true.
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public bool CompareProperties { get; set; }
 
         /// <summary>
         /// The maximum number of differences to detect.  The default is 1 for performance reasons.
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public int MaxDifferences { get; set; }
 
         /// <summary>
         /// The maximum number of differences to detect when comparing byte arrays.  The default is 1.
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public int MaxByteArrayDifferences { get; set; }
 
         /// <summary>
         /// Reflection properties and fields are cached. By default this cache is cleared after each compare.  Set to false to keep the cache for multiple compares.
         /// </summary>
         /// <seealso cref="Caching"/>
+#if !DNCORE
         [DataMember]
+#endif
         public bool AutoClearCache { get; set; }
 
         /// <summary>
         /// By default properties and fields for types are cached for each compare.  By default this cache is cleared after each compare.
         /// </summary>
         /// <seealso cref="AutoClearCache"/>
+#if !DNCORE
         [DataMember]
+#endif
         public bool Caching { get; set; }
 
         /// <summary>
         /// A list of attributes to ignore a class, property or field
         /// </summary>
         /// <example>AttributesToIgnore.Add(typeof(XmlIgnoreAttribute));</example>
+#if !DNCORE
         [DataMember]
+#endif
         public List<Type> AttributesToIgnore { get; set; }
 
         /// <summary>
         /// If true, objects will be compared ignore their type diferences.  The default is false.
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public bool IgnoreObjectTypes { get; set; }
 
         /// <summary>
         /// In the differences string, this is the name for expected name. The default is: Expected 
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public string ExpectedName { get; set; }
 
         /// <summary>
         /// In the differences string, this is the name for the actual name. The default is: Actual
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public string ActualName { get; set; }
 
         /// <summary>
@@ -277,30 +341,38 @@ namespace KellermanSoftware.CompareNetObjects
         /// NOTE: types are looked up as exact.  e.g. if foo is an entry in the dictionary and bar is a 
         /// sub-class of foo, upon encountering a bar type, the comparer will not find the entry of foo
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public Dictionary<Type, IEnumerable<string>> CollectionMatchingSpec { get; set; }
 
         /// <summary>
         /// A list of custom comparers that take priority over the built in comparers
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public List<BaseTypeComparer> CustomComparers { get; set; }
 
         /// <summary>
         /// If true, string.empty and null will be treated as equal for Strings and String Builder. The default is false.
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public bool TreatStringEmptyAndNullTheSame { get; set; }
 
         /// <summary>
         /// The precision to compare double values.  The default is 0.
         /// </summary>
+#if !DNCORE
         [DataMember]
+#endif
         public double DoublePrecision { get; set; }
 
-        #endregion
+#endregion
 
-        #region Methods
+#region Methods
 
         
         /// <summary>
@@ -346,6 +418,6 @@ namespace KellermanSoftware.CompareNetObjects
             MaxStructDepth = 2;
             CaseSensitive = true;
         }
-        #endregion
+#endregion
     }
 }
