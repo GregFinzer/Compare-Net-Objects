@@ -65,6 +65,7 @@ http://www.nuget.org/packages/CompareNETObjects
 * URI
 * IPEndPoint
 * Types of Type (RuntimeType)
+* StringBuilder
 
 # Limitations
 * Custom Collections with Non-Integer Indexers cannot be compared.
