@@ -63,6 +63,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cache.cs" />
+    <Compile Include="CompareException.cs" />
+    <Compile Include="CompareExtensions.cs" />
     <Compile Include="CompareParms.cs" />
     <Compile Include="PropertyEntity.cs" />
     <Compile Include="LogicEqualityComparer.cs" />

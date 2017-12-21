@@ -2,7 +2,7 @@
 using KellermanSoftware.CompareNetObjects;
 using NUnit.Framework;
 
-namespace KellermanSoftware
+namespace KellermanSoftware.CompareNetObjectsTests
 {
     [TestFixture]
     public class Micke3rdTests

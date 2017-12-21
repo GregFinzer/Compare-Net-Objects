@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using KellermanSoftware.CompareNetObjects;
-using KellermanSoftware.CompareNetObjectsTests.TestClasses;
+﻿using KellermanSoftware.CompareNetObjects;
 using NUnit.Framework;
 
 namespace KellermanSoftware.CompareNetObjectsTests
