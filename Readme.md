@@ -59,7 +59,7 @@ http://www.nuget.org/packages/CompareNETObjects
 * User Friendly Report 
 
 # Getting Started
-https://github.com/GregFinzer/Compare-Net-Objects/wiki/Documentation
+https://github.com/GregFinzer/Compare-Net-Objects/wiki/Getting-Started
 
 # Help File
 https://github.com/GregFinzer/Compare-Net-Objects/blob/master/Compare-NET-Objects-Help/Compare-NET-Objects-Help.chm?raw=true
