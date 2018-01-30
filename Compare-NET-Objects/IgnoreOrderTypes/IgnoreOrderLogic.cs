@@ -231,8 +231,8 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                         Object1Value = reverseCompare ? "(null)" : NiceString(enumerator1.Current),
                         Object2Value = reverseCompare ? NiceString(enumerator1.Current) : "(null)",
                         ChildPropertyName = "Item",
-                        Object1 = reverseCompare ? null : enumerator1,
-                        Object2 = reverseCompare ? enumerator1 : null
+						Object1 = reverseCompare ? null : enumerator1.Current,
+						Object2 = reverseCompare ? enumerator1.Current : null
                     };
 
                     AddDifference(parms.Result, difference);                    
