@@ -125,6 +125,9 @@
     <Compile Include="..\Compare-NET-Objects\TypeComparers\DoubleComparer.cs">
       <Link>TypeComparers\DoubleComparer.cs</Link>
     </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\DecimalComparer.cs">
+      <Link>TypeComparers\DecimalComparer.cs</Link>
+    </Compile>
     <Compile Include="..\Compare-NET-Objects\TypeComparers\EnumComparer.cs">
       <Link>TypeComparers\EnumComparer.cs</Link>
     </Compile>

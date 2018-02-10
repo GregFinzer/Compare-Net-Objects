@@ -79,6 +79,7 @@
     <Compile Include="CompareDataRowTests.cs" />
     <Compile Include="CompareDatasetTests.cs" />
     <Compile Include="CompareDataTableTests.cs" />
+    <Compile Include="CompareDecimalTests.cs" />
     <Compile Include="CompareDoubleTests.cs" />
     <Compile Include="CompareDateTimeTests.cs" />
     <Compile Include="CompareDictionaryTests.cs" />

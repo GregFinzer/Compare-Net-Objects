@@ -369,12 +369,20 @@ namespace KellermanSoftware.CompareNetObjects
         [DataMember]
 #endif
         public double DoublePrecision { get; set; }
-
-#endregion
-
-#region Methods
-
         
+        /// <summary>
+        /// The precision to compare decimal values.  The default is 0.
+        /// </summary>
+#if !DNCORE
+        [DataMember]
+#endif
+        public decimal DecimalPrecision { get; set; }
+
+        #endregion
+
+        #region Methods
+
+
         /// <summary>
         /// Reset the configuration to the default values
         /// </summary>

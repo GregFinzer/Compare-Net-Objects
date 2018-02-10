@@ -272,6 +272,19 @@ namespace KellermanSoftware.CompareNetObjects
         }
 
         /// <summary>
+        /// Return true if the type is a Decimal
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool IsDecimal(Type type)
+        {
+            if (type == null)
+                return false;
+
+            return type == typeof(Decimal);
+        }
+
+        /// <summary>
         /// Return true if the type is a DateTime
         /// </summary>
         /// <param name="type"></param>
@@ -341,7 +354,6 @@ namespace KellermanSoftware.CompareNetObjects
             return type.IsPrimitive
                    || type.IsEnum
                    || type == typeof(DateTime)
-                   || type == typeof(decimal)
                    || type == typeof(string)
                    || type == typeof(Guid);
 #else
@@ -352,7 +364,6 @@ namespace KellermanSoftware.CompareNetObjects
 
             return type.GetTypeInfo().IsPrimitive
                    || type == typeof(DateTime)
-                   || type == typeof(decimal)
                    || type == typeof(string)
                    || type == typeof(Guid);
 #endif
