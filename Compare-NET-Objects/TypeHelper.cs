@@ -35,22 +35,12 @@ namespace KellermanSoftware.CompareNetObjects
         /// <summary>
         /// Returns true if it is a byte array
         /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
         public static bool IsByteArray(Type type)
         {
-            if (!IsIList(type))
-                return false;
-
-#if !DNCORE
-            var fullName = type.UnderlyingSystemType.FullName;
-#else
-            var fullName = type.FullName;
-#endif
-            if (fullName.Contains("System.Byte"))
-                return true;
-
-            return false;
+            return IsIList(type) && (
+                typeof(IEnumerable<byte>).IsAssignableFrom(type) ||
+                typeof(IEnumerable<byte?>).IsAssignableFrom(type)
+                );
         }
 
         /// <summary>
