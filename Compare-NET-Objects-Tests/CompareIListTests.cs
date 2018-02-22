@@ -489,6 +489,20 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
 
         [Test]
+        public void CompareListsOfStringBytePairs()
+        {
+            var list1 = new List<KeyValuePair<string, byte>> { new KeyValuePair<string, byte>("hello", 1) };
+            var list2 = new List<KeyValuePair<string, byte>> { new KeyValuePair<string, byte>("world", 2) };
+
+            ComparisonConfig config = new ComparisonConfig();
+            config.IgnoreObjectTypes = true;
+
+            CompareLogic compareLogic = new CompareLogic(config);
+            var result = compareLogic.Compare(list1, list2);
+            Assert.IsFalse(result.AreEqual);
+        }
+
+        [Test]
         public void ListOfNullObjects()
         {
             Person p1 = null;
