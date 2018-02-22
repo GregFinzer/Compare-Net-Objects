@@ -105,6 +105,7 @@
     <Compile Include="TypeComparers\DatasetComparer.cs" />
     <Compile Include="TypeComparers\DataTableComparer.cs" />
     <Compile Include="TypeComparers\DateTimeOffsetComparer.cs" />
+    <Compile Include="TypeComparers\DecimalComparer.cs" />
     <Compile Include="TypeComparers\DoubleComparer.cs" />
     <Compile Include="TypeComparers\DateComparer.cs" />
     <Compile Include="TypeComparers\DictionaryComparer.cs" />
