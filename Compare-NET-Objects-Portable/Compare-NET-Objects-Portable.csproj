@@ -113,6 +113,9 @@
     <Compile Include="..\Compare-NET-Objects\TypeComparers\ClassComparer.cs">
       <Link>TypeComparers\ClassComparer.cs</Link>
     </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\CollectionComparer.cs">
+      <Link>TypeComparers\CollectionComparer.cs</Link>
+    </Compile>
     <Compile Include="..\Compare-NET-Objects\TypeComparers\DateComparer.cs">
       <Link>TypeComparers\DateComparer.cs</Link>
     </Compile>
