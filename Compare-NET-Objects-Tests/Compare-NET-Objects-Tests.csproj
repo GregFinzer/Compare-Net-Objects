@@ -86,6 +86,7 @@
     <Compile Include="CompareEnumeratorTests.cs" />
     <Compile Include="CompareEnumTests.cs" />
     <Compile Include="CompareExtensionsTests.cs" />
+    <Compile Include="CompareCollectionsTests.cs" />
     <Compile Include="CompareHashsetTests.cs" />
     <Compile Include="CompareIListTests.cs" />
     <Compile Include="CompareIndexerTests.cs" />

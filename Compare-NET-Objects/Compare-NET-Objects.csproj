@@ -113,6 +113,7 @@
     <Compile Include="ExcludeLogic.cs" />
     <Compile Include="TypeComparers\FieldComparer.cs" />
     <Compile Include="TypeComparers\FontComparer.cs" />
+    <Compile Include="TypeComparers\CollectionComparer.cs" />
     <Compile Include="TypeComparers\HashSetComparer.cs" />
     <Compile Include="TypeComparers\ListComparer.cs" />
     <Compile Include="TypeComparers\IndexerComparer.cs" />

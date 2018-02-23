@@ -49,6 +49,7 @@ namespace KellermanSoftware.CompareNetObjects
             _rootComparer.TypeComparers.Add(new DictionaryComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new ListComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new HashSetComparer(_rootComparer));
+            _rootComparer.TypeComparers.Add(new CollectionComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new EnumComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new PointerComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new UriComparer(_rootComparer));
