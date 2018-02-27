@@ -77,7 +77,19 @@ namespace KellermanSoftware.CompareNetObjects
             return type.IsArray;
         }
 
+        /// <summary>
+        /// True if the type is an System.Collections.Immutable.ImmutableArray
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool IsImmutableArray(Type type)
+        {
+            if (type == null)
+                return false;
 
+            return type.Namespace == "System.Collections.Immutable" 
+                   && type.Name == "ImmutableArray`1";
+        }
 
         /// <summary>
         /// Returns true if it is a struct
@@ -90,9 +102,9 @@ namespace KellermanSoftware.CompareNetObjects
                 return false;
 
 #if PORTABLE
-            return type.IsValueType && !IsSimpleType(type);
+            return type.IsValueType && !IsSimpleType(type) && !IsImmutableArray(type);
 #else
-            return type.GetTypeInfo().IsValueType && !IsSimpleType(type);
+            return type.GetTypeInfo().IsValueType && !IsSimpleType(type) && !IsImmutableArray(type);
 #endif
         }
 
@@ -228,7 +240,7 @@ namespace KellermanSoftware.CompareNetObjects
             if (type == null)
                 return false;
 
-            return (typeof(IList).IsAssignableFrom(type));
+            return typeof(IList).IsAssignableFrom(type) && !IsImmutableArray(type);
         }
 
         /// <summary>

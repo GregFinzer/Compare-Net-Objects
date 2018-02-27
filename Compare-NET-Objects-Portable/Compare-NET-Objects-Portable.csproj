@@ -140,6 +140,9 @@
     <Compile Include="..\Compare-NET-Objects\TypeComparers\HashSetComparer.cs">
       <Link>TypeComparers\HashSetComparer.cs</Link>
     </Compile>
+    <Compile Include="..\Compare-NET-Objects\TypeComparers\ImmutableArrayComparer.cs">
+      <Link>TypeComparers\ImmutableArrayComparer.cs</Link>
+    </Compile>
     <Compile Include="..\Compare-NET-Objects\TypeComparers\IndexerComparer.cs">
       <Link>TypeComparers\IndexerComparer.cs</Link>
     </Compile>

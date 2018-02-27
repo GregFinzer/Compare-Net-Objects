@@ -56,7 +56,6 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -115,6 +114,7 @@
     <Compile Include="TypeComparers\FieldComparer.cs" />
     <Compile Include="TypeComparers\FontComparer.cs" />
     <Compile Include="TypeComparers\HashSetComparer.cs" />
+    <Compile Include="TypeComparers\ImmutableArrayComparer.cs" />
     <Compile Include="TypeComparers\ListComparer.cs" />
     <Compile Include="TypeComparers\IndexerComparer.cs" />
     <Compile Include="TypeComparers\IpEndPointComparer.cs" />
