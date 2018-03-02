@@ -1073,9 +1073,9 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             var result = _compare.Compare(entity1, entity2);
             Assert.AreEqual(result.Differences.Count, 3);
-            Assert.AreEqual(result.Differences[0].PropertyName, ".Children[Id:10].Children");
-            Assert.AreEqual(result.Differences[1].PropertyName, ".Children[Id:10].Children[Id:103]");
-            Assert.AreEqual(result.Differences[2].PropertyName, ".Children[Id:11].Children[Id:101].Description");
+            Assert.AreEqual(result.Differences[0].PropertyName, "Children[Id:10].Children");
+            Assert.AreEqual(result.Differences[1].PropertyName, "Children[Id:10].Children[Id:103]");
+            Assert.AreEqual(result.Differences[2].PropertyName, "Children[Id:11].Children[Id:101].Description");
         }
 
         [Test]

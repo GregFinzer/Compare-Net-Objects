@@ -42,6 +42,19 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
+        public void PropertyNameShouldNotHaveAPeriodInFrontOfIt()
+        {
+            Person person1 = new Person() {Name = "Luke Skywalker", DateCreated = DateTime.Today, ID = 1};
+            Person person2 = new Person() { Name = "Leia Skywalker", DateCreated = DateTime.Today, ID = 1 };
+
+            var result = _compare.Compare(person1, person2);
+
+            Assert.IsFalse(result.AreEqual, "Expected to be different");
+            Assert.IsFalse(result.Differences[0].PropertyName.StartsWith("."), "Expected not to start with period");
+
+        }
+
+        [Test]
         public void ShowBreadCrumbTest()
         {
             var people1 = new List<Person>() { new Person() { Name = "Joe" } };

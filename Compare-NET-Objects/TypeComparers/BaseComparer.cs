@@ -63,7 +63,12 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
             if (useName)
             {
-                sb.AppendFormat(".");
+                //Do not put a period at the beginning
+                if (sb.Length > 0)
+                {
+                    sb.AppendFormat(".");
+                }
+                
                 sb.Append(name);
             }
 
