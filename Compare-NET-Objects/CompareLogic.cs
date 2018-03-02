@@ -152,9 +152,9 @@ namespace KellermanSoftware.CompareNetObjects
 
             if (Settings.Default.MembersToIgnore != null)
             {
-                foreach (var attribute in Settings.Default.MembersToIgnore)
+                foreach (var member in Settings.Default.MembersToIgnore)
                 {
-                    Config.AttributesToIgnore.Add(Type.GetType(attribute));
+                    Config.MembersToIgnore.Add(member);
                 }
             }
 
@@ -177,9 +177,9 @@ namespace KellermanSoftware.CompareNetObjects
         }
 #endif
 
-#endregion
+        #endregion
 
-#region Public Methods
+        #region Public Methods
         /// <summary>
         /// Compare two objects of the same type to each other.
         /// </summary>
