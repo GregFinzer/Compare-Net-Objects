@@ -49,6 +49,7 @@ dotnet add package CompareNETObjects
 * Several configuration options for comparing private elements, ignoring specific elements, including specific elements.
 * Property and Field Info reflection caching for increased performance
 * Rich Differences List or simple DifferencesString
+* Difference Callback
 * Supports custom comparison functions
 * ElapsedMilliseconds indicates how long the comparison took
 * Thread Safe
@@ -65,6 +66,8 @@ dotnet add package CompareNETObjects
 * Interface member filtering
 * Ability to treat string.empty and null as equal
 * Case insensitive option for strings
+* Ignore millisecond differences between DateTime values or DateTimeOffset values
+* Precision for double or decimal values
 
 ## Supported Types
 * Classes
@@ -72,7 +75,9 @@ dotnet add package CompareNETObjects
 * Primitive Types (String, Int, Boolean, etc.)
 * Structs
 * IList Objects
+* Collections
 * Single and Multi-Dimensional Arrays
+* Immutable Arrays
 * IDictionary Objects
 * Enums
 * Timespans
