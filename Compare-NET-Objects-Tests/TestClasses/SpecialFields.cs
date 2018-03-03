@@ -44,7 +44,13 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
         private TimeSpan _timeSpanProperty = new TimeSpan(0);
         #endregion
 
+
         #region Properties
+
+        public decimal? NullableDecimalProperty { get; set; }
+
+        public double? NullableDoubleProperty { get; set; }
+
         /// <summary>
         /// Property Get/Set for String Property
         /// </summary>

@@ -42,6 +42,27 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
+        public void NullableDecimalWithCompareChildrenFalseShouldSendADifferenceCallback()
+        {
+            List<Difference> differences = new List<Difference>();
+
+            SpecialFields specialFields1 = new SpecialFields();
+            specialFields1.NullableDecimalProperty = 1000;
+
+            SpecialFields specialFields2 = new SpecialFields();
+            specialFields2.NullableDecimalProperty = 2000;
+
+            _compare.Config = new ComparisonConfig()
+            {
+                CompareChildren = false,
+                DifferenceCallback = difference => { differences.Add(difference); }
+            };
+
+            _compare.Compare(specialFields1, specialFields2);
+            Assert.That(differences.FirstOrDefault(), Is.Not.Null);
+        }
+
+        [Test]
         public void PropertyNameShouldNotHaveAPeriodInFrontOfIt()
         {
             Person person1 = new Person() {Name = "Luke Skywalker", DateCreated = DateTime.Today, ID = 1};
