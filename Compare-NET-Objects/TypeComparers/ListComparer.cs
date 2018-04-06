@@ -49,15 +49,20 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 parms.Result.AddParent(parms.Object1.GetHashCode());
                 parms.Result.AddParent(parms.Object2.GetHashCode());
 
-                bool countsDifferent = ListsHaveDifferentCounts(parms);
+                Type t1 = parms.Object1.GetType();
+                Type t2 = parms.Object2.GetType();
+
+                //Check if the class type should be excluded based on the configuration
+                if (ExcludeLogic.ShouldExcludeClass(parms.Config, t1, t2))
+                    return;
+
+                parms.Object1Type = t1;
+                parms.Object2Type = t2;
 
                 if (parms.Result.ExceededDifferences)
                     return;
 
-                Type t1 = parms.Object1.GetType();
-                Type t2 = parms.Object2.GetType();
-                parms.Object1Type = t1;
-                parms.Object2Type = t2;
+                bool countsDifferent = ListsHaveDifferentCounts(parms);
 
                 if (parms.Config.IgnoreCollectionOrder && !ChildIsListOrDictionary(parms))
                 {
