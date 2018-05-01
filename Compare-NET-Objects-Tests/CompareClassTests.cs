@@ -237,5 +237,26 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
         #endregion
 
+        #region Set-only Property Tests
+
+        [Test]
+        public void WriteOnlyPropertyTests()
+        {
+            WriteOnlyPropertyClass c1 = new WriteOnlyPropertyClass
+            {
+                Name = "Jim",
+                WriteOnly = 1
+            };
+
+            WriteOnlyPropertyClass c2 = new WriteOnlyPropertyClass
+            {
+                Name = "Jim",
+                WriteOnly = 2
+            };
+
+            Assert.IsTrue(_compare.Compare(c1, c2).AreEqual);            
+        }
+
+        #endregion
     }
 }

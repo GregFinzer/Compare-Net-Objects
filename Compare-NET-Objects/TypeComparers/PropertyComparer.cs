@@ -154,7 +154,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 propertyEntity.Indexers.AddRange(property.GetIndexParameters());
                 propertyEntity.DeclaringType = objectType;
 
-                if (propertyEntity.Indexers.Count == 0)
+                if (propertyEntity.CanRead && (propertyEntity.Indexers.Count == 0))
                 {
                     try
                     {
