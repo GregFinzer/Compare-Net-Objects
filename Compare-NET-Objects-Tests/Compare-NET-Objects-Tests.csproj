@@ -196,6 +196,7 @@
     <Compile Include="TestClasses\Size.cs" />
     <Compile Include="TestClasses\SpecialFields.cs" />
     <Compile Include="TestClasses\Table.cs" />
+    <Compile Include="TestClasses\WriteOnlyPropertyClass.cs" />
     <Compile Include="ThreadSafeTests.cs" />
     <Compile Include="WildcardTests.cs" />
   </ItemGroup>
