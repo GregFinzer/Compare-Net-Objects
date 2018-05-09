@@ -71,7 +71,8 @@ dotnet add package CompareNETObjects
 
 ## Supported Types
 * Classes
-* Dynamic Objects
+* Dynamic Objects (Expando)
+* Anonymous Types
 * Primitive Types (String, Int, Boolean, etc.)
 * Structs
 * IList Objects
