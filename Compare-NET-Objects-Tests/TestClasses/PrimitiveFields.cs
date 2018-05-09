@@ -24,6 +24,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
         public char CharField = '0';
         public double DoubleField= 0;
         public float FloatField = 0;
+        public decimal DecimalField = 0;
 
         //Static
         public static bool BooleanFieldStatic = false;
@@ -42,6 +43,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
         public static char CharFieldStatic = '0';
         public static double DoubleFieldStatic = 0;
         public static float FloatFieldStatic = 0;
+        public static decimal DecimalFieldStatic = 0;
 
         public void Setup()
         {
@@ -62,6 +64,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             CharField = '\0';
             DoubleField= 1 / 3;
             FloatField = 1 / 3;
+            DecimalField = 3.0M;
 
             //Static Fields Setup
             BooleanFieldStatic = true;
@@ -80,6 +83,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             CharFieldStatic = '\0';
             DoubleFieldStatic = 1 / 3;
             FloatFieldStatic = 1 / 3;
+            DecimalFieldStatic = 3.0M;
         }
     }
 }

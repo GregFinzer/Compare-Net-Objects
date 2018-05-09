@@ -357,7 +357,8 @@ namespace KellermanSoftware.CompareNetObjects
                    || type.IsEnum
                    || type == typeof(DateTime)
                    || type == typeof(string)
-                   || type == typeof(Guid);
+                   || type == typeof(Guid)
+                   || type == typeof(Decimal);
 #else
             if (type.GetTypeInfo().IsGenericType && type.GetTypeInfo().GetGenericTypeDefinition() == typeof(Nullable<>))
             {
@@ -367,7 +368,8 @@ namespace KellermanSoftware.CompareNetObjects
             return type.GetTypeInfo().IsPrimitive
                    || type == typeof(DateTime)
                    || type == typeof(string)
-                   || type == typeof(Guid);
+                   || type == typeof(Guid)
+                   || type == typeof(Decimal);
 #endif
 
         }

@@ -42,6 +42,77 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
+        public void DifferentNullableDecimalFieldsShouldNotBeEqualWhenCompareChildrenIsFalse()
+        {
+            CompareLogic compareLogic = new CompareLogic();
+            compareLogic.Config.CompareChildren = false;
+
+            PrimitiveFieldsNullable object1 = new PrimitiveFieldsNullable();
+            object1.DecimalField = 0;
+
+            PrimitiveFieldsNullable object2 = new PrimitiveFieldsNullable();
+            object2.DecimalField = 3.0M;
+
+            Assert.IsFalse(compareLogic.Compare(object1, object2).AreEqual);
+        }
+
+        [Test]
+        public void DifferentDecimalFieldsShouldNotBeEqualWhenCompareChildrenIsFalse()
+        {
+            CompareLogic compareLogic = new CompareLogic();
+            compareLogic.Config.CompareChildren = false;
+
+            PrimitiveFields object1 = new PrimitiveFields();
+            object1.DecimalField = 0;
+
+            PrimitiveFields object2 = new PrimitiveFields();
+            object2.DecimalField = 3.0M;
+
+            Assert.IsFalse(compareLogic.Compare(object1, object2).AreEqual);
+        }
+
+        [Test]
+        public void DifferentIntegersShouldNotBeEqualInsideAnAnonymousType()
+        {
+            CompareLogic compareLogic = new CompareLogic();
+
+            // try with integers
+            var int1 = new { MyNumber = (int)0 };
+            var int2 = new { MyNumber = (int)3 };
+
+            // test with CompareChildren = false
+            compareLogic.Config.CompareChildren = false;
+            ComparisonResult test3 = compareLogic.Compare(int1, int2);
+            Assert.IsFalse(test3.AreEqual, "int Test - CompareChildren = false");
+
+            // test with CompareChildren = true
+            compareLogic.Config.CompareChildren = true;
+            ComparisonResult test4 = compareLogic.Compare(int1, int2);
+            Assert.AreEqual(1, test4.Differences.Count);
+            Assert.IsFalse(test4.AreEqual, "int Test - CompareChildren = true");
+        }
+
+        [Test]
+        public void DifferentDecimalsShouldNotBeEqualInsideAnAnonymousType()
+        {
+            CompareLogic compareLogic = new CompareLogic();
+
+            // try with decimals
+            var dec1 = new { MyNumber = (decimal)0 };
+            var dec2 = new { MyNumber = (decimal)3.0 };
+
+            // test with CompareChildren = false
+            compareLogic.Config.CompareChildren = false;
+            ComparisonResult test1 = compareLogic.Compare(dec1, dec2);
+            Assert.IsFalse(test1.AreEqual, "Decimal Test - CompareChildren = false");
+
+            // test with CompareChildren = true
+            compareLogic.Config.CompareChildren = true;
+            ComparisonResult test2 = compareLogic.Compare(dec1, dec2);
+            Assert.IsFalse(test2.AreEqual, "Decimal Test - CompareChildren = true");
+        }
+
+        [Test]
         public void NullableDecimalWithCompareChildrenFalseShouldSendADifferenceCallback()
         {
             List<Difference> differences = new List<Difference>();
