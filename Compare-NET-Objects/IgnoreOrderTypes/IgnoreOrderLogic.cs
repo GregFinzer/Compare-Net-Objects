@@ -265,6 +265,15 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
 
                 var propertyValue = info.GetValue(currentObject, null);
 
+                if (result.Config.TreatStringEmptyAndNullTheSame && info.PropertyType == typeof(string) && propertyValue == null)
+                {
+                    propertyValue = string.Empty;
+                }
+                else if (result.Config.CaseSensitive == false && info.PropertyType == typeof(string))
+                {
+                    propertyValue = ((string)propertyValue).ToLowerInvariant();
+                }
+
                 if (propertyValue == null)
                 {
                     sb.AppendFormat("{0}:(null),",item);
