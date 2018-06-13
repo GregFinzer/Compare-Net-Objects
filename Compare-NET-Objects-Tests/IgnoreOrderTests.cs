@@ -1160,6 +1160,123 @@ namespace KellermanSoftware.CompareNetObjectsTests
             var result = _compare.Compare(list1, list2);
             Assert.IsTrue(result.AreEqual, result.DifferencesString);
         }
+
+        [Test]
+        public void CompareListsIgnoreOrderTypeAndNull()
+        {
+            List<Person> list1 = new List<Person>();
+            list1.Add(new Person() { ID = 1, Name = "Logan 5" });
+            list1.Add(new Person() { ID = 2, Name = "Francis 7" });
+            list1.Add(new Person() { ID = 3, Name = null });
+
+            List<Officer> list2 = new List<Officer>();
+            list2.Add(new Officer() { ID = 2, Name = "Francis 7" });
+            list2.Add(new Officer() { ID = 1, Name = "Logan 5" });
+            list2.Add(new Officer() { ID = 3, Name = string.Empty });
+
+            ComparisonConfig config = new ComparisonConfig();
+            Dictionary<Type, IEnumerable<string>> collectionSpec = new Dictionary<Type, IEnumerable<string>>();
+            collectionSpec.Add(typeof(Person), new string[] { "ID", "Name" });
+            collectionSpec.Add(typeof(Officer), new string[] { "ID", "Name" });
+
+            config.IgnoreObjectTypes = true;
+            config.IgnoreCollectionOrder = true;
+            config.TreatStringEmptyAndNullTheSame = true;
+            config.CollectionMatchingSpec = collectionSpec;
+
+            CompareLogic compareLogic = new CompareLogic(config);
+            var result = compareLogic.Compare(list1, list2);
+            Assert.IsTrue(result.AreEqual);
+        }
+
+        [Test]
+        public void CompareListsIgnoreOrderAndNull()
+        {
+            List<Person> list1 = new List<Person>();
+            list1.Add(new Person() { ID = 1, Name = "Logan 5" });
+            list1.Add(new Person() { ID = 2, Name = "Francis 7" });
+            list1.Add(new Person() { ID = 3, Name = null });
+
+            List<Person> list2 = new List<Person>();
+            list2.Add(new Person() { ID = 2, Name = "Francis 7" });
+            list2.Add(new Person() { ID = 1, Name = "Logan 5" });
+            list2.Add(new Person() { ID = 3, Name = string.Empty });
+
+            ComparisonConfig config = new ComparisonConfig();
+
+            config.IgnoreCollectionOrder = true;
+            config.TreatStringEmptyAndNullTheSame = true;
+
+            CompareLogic compareLogic = new CompareLogic(config);
+            var result = compareLogic.Compare(list1, list2);
+            Assert.IsTrue(result.AreEqual);
+        }
+
+        [Test]
+        public void CompareListsInOrderAndIgnoreNull()
+        {
+            List<Person> list1 = new List<Person>();
+            list1.Add(new Person() { ID = 1, Name = "Logan 5" });
+            list1.Add(new Person() { ID = 2, Name = "Francis 7" });
+            list1.Add(new Person() { ID = 3, Name = null });
+
+            List<Person> list2 = new List<Person>();
+            list2.Add(new Person() { ID = 1, Name = "Logan 5" });
+            list2.Add(new Person() { ID = 2, Name = "Francis 7" });
+            list2.Add(new Person() { ID = 3, Name = string.Empty });
+
+            ComparisonConfig config = new ComparisonConfig();
+
+            config.IgnoreCollectionOrder = true;
+            config.TreatStringEmptyAndNullTheSame = true;
+
+            CompareLogic compareLogic = new CompareLogic(config);
+            var result = compareLogic.Compare(list1, list2);
+            Assert.IsTrue(result.AreEqual);
+        }
+
+        [Test]
+        public void CompareListsIgnoreOrderAndCase()
+        {
+            List<Person> list1 = new List<Person>();
+            list1.Add(new Person() { ID = 1, Name = "Logan 5" });
+            list1.Add(new Person() { ID = 2, Name = "Francis 7" });
+
+            List<Person> list2 = new List<Person>();
+            list2.Add(new Person() { ID = 2, Name = "francis 7" });
+            list2.Add(new Person() { ID = 1, Name = "logan 5" });
+
+            ComparisonConfig config = new ComparisonConfig();
+
+            config.IgnoreCollectionOrder = true;
+            config.CaseSensitive = false;
+
+            CompareLogic compareLogic = new CompareLogic(config);
+            var result = compareLogic.Compare(list1, list2);
+            Assert.IsTrue(result.AreEqual);
+        }
+
+        [Test]
+        public void CompareListsInOrderAndIgnorCase()
+        {
+            List<Person> list1 = new List<Person>();
+            list1.Add(new Person() { ID = 1, Name = "Logan 5" });
+            list1.Add(new Person() { ID = 2, Name = "Francis 7" });
+
+            List<Person> list2 = new List<Person>();
+            list2.Add(new Person() { ID = 1, Name = "logan 5" });
+            list2.Add(new Person() { ID = 2, Name = "francis 7" });
+            
+
+            ComparisonConfig config = new ComparisonConfig();
+
+            config.IgnoreCollectionOrder = true;
+            config.CaseSensitive = false;
+
+            CompareLogic compareLogic = new CompareLogic(config);
+            var result = compareLogic.Compare(list1, list2);
+            Assert.IsTrue(result.AreEqual);
+        }
         #endregion
     }
 }
