@@ -138,7 +138,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         {
             List<PropertyEntity> currentProperties = new List<PropertyEntity>();
 
-            var properties = Cache.GetPropertyInfo(parms.Result, objectType);
+            var properties = Cache.GetPropertyInfo(parms.Result.Config, objectType);
 
             foreach (var property in properties)
             {
@@ -185,7 +185,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 {
                     if (interfaces.Contains(type))
                     {
-                        var properties = Cache.GetPropertyInfo(parms.Result, type);
+                        var properties = Cache.GetPropertyInfo(parms.Result.Config, type);
 
                         foreach (var property in properties)
                         {

@@ -106,52 +106,52 @@ namespace KellermanSoftware.CompareNetObjects
         /// <summary>
         /// Get the value of a property
         /// </summary>
-        /// <param name="result"> </param>
+        /// <param name="config"> </param>
         /// <param name="type"></param>
         /// <param name="objectValue"></param>
         /// <param name="propertyName"></param>
         /// <returns></returns>
-        public static object GetPropertyValue(ComparisonResult result, Type type, object objectValue, string propertyName)
+        public static object GetPropertyValue(ComparisonConfig config, Type type, object objectValue, string propertyName)
         {
             lock (_propertyCache)
-                return GetPropertyInfo(result, type).First(o => o.Name == propertyName).GetValue(objectValue, null);
+                return GetPropertyInfo(config, type).First(o => o.Name == propertyName).GetValue(objectValue, null);
         }
 
         /// <summary>
         /// Get a list of the properties in a type
         /// </summary>
-        /// <param name="result"> </param>
+        /// <param name="config"> </param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static IEnumerable<PropertyInfo> GetPropertyInfo(ComparisonResult result, Type type)
+        public static IEnumerable<PropertyInfo> GetPropertyInfo(ComparisonConfig config, Type type)
         {
             lock (_propertyCache)
             {
-                if (result.Config.Caching && _propertyCache.ContainsKey(type))
+                if (config.Caching && _propertyCache.ContainsKey(type))
                     return _propertyCache[type];
 
                 PropertyInfo[] currentProperties;
 
 #if PORTABLE || DNCORE
-            if (!result.Config.CompareStaticProperties)
+            if (!config.CompareStaticProperties)
                 currentProperties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
             else
                 currentProperties = type.GetProperties(); //Default is public instance and static
 #else
-                if (result.Config.ComparePrivateProperties && !result.Config.CompareStaticProperties)
+                if (config.ComparePrivateProperties && !config.CompareStaticProperties)
                     currentProperties =
                         type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                else if (result.Config.ComparePrivateProperties && result.Config.CompareStaticProperties)
+                else if (config.ComparePrivateProperties && config.CompareStaticProperties)
                     currentProperties =
                         type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic |
                                            BindingFlags.Static);
-                else if (!result.Config.CompareStaticProperties)
+                else if (!config.CompareStaticProperties)
                     currentProperties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
                 else
                     currentProperties = type.GetProperties(); //Default is public instance and static
 #endif
 
-                if (result.Config.Caching)
+                if (config.Caching)
                     _propertyCache.Add(type, currentProperties);
 
                 return currentProperties;

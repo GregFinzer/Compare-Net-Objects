@@ -125,6 +125,9 @@
     <Compile Include="PointComparerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportTests.cs" />
+    <Compile Include="TestClasses\Bal\Booking.cs" />
+    <Compile Include="TestClasses\Bal\Offer.cs" />
+    <Compile Include="TestClasses\Bal\BookingProduct.cs" />
     <Compile Include="TestClasses\BaseMedia.cs" />
     <Compile Include="TestClasses\BigElchie.cs" />
     <Compile Include="TestClasses\ClassWithGuid.cs" />
@@ -205,6 +208,7 @@
     <Compile Include="TestClasses\Table.cs" />
     <Compile Include="TestClasses\WriteOnlyPropertyClass.cs" />
     <Compile Include="ThreadSafeTests.cs" />
+    <Compile Include="VerifyConfigTests.cs" />
     <Compile Include="WildcardTests.cs" />
   </ItemGroup>
   <ItemGroup>

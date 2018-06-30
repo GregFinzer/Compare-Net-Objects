@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using KellermanSoftware.CompareNetObjects;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses;
+using KellermanSoftware.CompareNetObjectsTests.TestClasses.Bal;
 using NUnit.Framework;
 
 namespace KellermanSoftware.CompareNetObjectsTests
@@ -38,6 +39,77 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #endregion
 
         #region Tests
+
+        [Test]
+        public void NestedObjectShouldCompare()
+        {
+            //Arrange
+            var bookingOld = new Booking();
+            bookingOld.Offers.Add(new Offer
+            {
+                Id = 1,
+                Label = "Offer 1",
+                Order = 1
+            });
+            bookingOld.Offers[0].Products.Add(new BookingProduct
+            {
+                Id = 1,
+                ProductId = 1,
+                OfferId = 1,
+                Label = "Product 1",
+                Amount = 10
+            });
+            bookingOld.Offers[0].Products.Add(new BookingProduct
+            {
+                Id = 2,
+                ProductId = 2,
+                OfferId = 1,
+                Label = "Product 2",
+                Amount = 15
+            });
+
+            var bookingNew = new Booking();
+            bookingNew.Offers.Add(new Offer
+            {
+                Id = 1,
+                Label = "Change Label",
+                Order = 1
+            });
+            bookingNew.Offers[0].Products.Add(new BookingProduct
+            {
+                Id = 1,
+                ProductId = 1,
+                OfferId = 1,
+                Label = "Product 1",
+                Amount = 10
+            });
+            bookingNew.Offers[0].Products.Add(new BookingProduct
+            {
+                Id = 2,
+                ProductId = 3,
+                OfferId = 1,
+                Label = "Product 2 New",
+                Amount = 15
+            });
+
+            var spec = new Dictionary<Type, IEnumerable<string>>
+            {
+                {typeof(Offer), new[] {"Id"}},
+                {typeof(BookingProduct), new[] {"Id"}},
+            };
+
+            //Act
+            ComparisonConfig config = new ComparisonConfig { MaxDifferences = 100, IgnoreCollectionOrder = false, CollectionMatchingSpec = spec };
+
+            CompareLogic logic = new CompareLogic(config);
+            ComparisonResult result = logic.Compare(bookingOld, bookingNew);
+
+            //Assert
+            Console.WriteLine(result.DifferencesString);
+            Assert.False(result.AreEqual);
+            Difference offerDifference = result.Differences.FirstOrDefault(o => o.PropertyName == "Offers[0].Label");
+            Assert.IsNotNull(offerDifference, "Could not find an offer difference");
+        }
 
         [Test]
         public void CompareListsIgnoreOrderTwoDifferentTypes()

@@ -38,6 +38,7 @@
     <Compile Include="..\Compare-NET-Objects\TypeComparers\CollectionComparer.cs" Link="TypeComparers\CollectionComparer.cs" />
     <Compile Include="..\Compare-NET-Objects\TypeComparers\ImmutableArrayComparer.cs" Link="TypeComparers\ImmutableArrayComparer.cs" />
     <Compile Include="..\Compare-NET-Objects\TypeComparers\StringBuilderComparer.cs" Link="TypeComparers\StringBuilderComparer.cs" />
+    <Compile Include="..\Compare-NET-Objects\VerifyConfig.cs" Link="VerifyConfig.cs" />
   </ItemGroup>
 
   <ItemGroup>

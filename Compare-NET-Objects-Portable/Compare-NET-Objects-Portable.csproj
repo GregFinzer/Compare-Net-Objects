@@ -182,6 +182,9 @@
     <Compile Include="..\Compare-NET-Objects\TypeHelper.cs">
       <Link>TypeHelper.cs</Link>
     </Compile>
+    <Compile Include="..\Compare-NET-Objects\VerifyConfig.cs">
+      <Link>VerifyConfig.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

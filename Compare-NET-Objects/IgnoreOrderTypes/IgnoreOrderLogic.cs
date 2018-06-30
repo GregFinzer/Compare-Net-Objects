@@ -249,7 +249,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
 
         private string GetMatchIndex(ComparisonResult result, List<string> spec, object currentObject)
         {
-            List<PropertyInfo> properties = Cache.GetPropertyInfo(result, currentObject.GetType()).ToList();
+            List<PropertyInfo> properties = Cache.GetPropertyInfo(result.Config, currentObject.GetType()).ToList();
             StringBuilder sb = new StringBuilder();
 
             foreach (var item in spec)
@@ -331,7 +331,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
             }
 
             //Make a key out of primative types, date, decimal, string, guid, and enum of the class
-            List<string> list = Cache.GetPropertyInfo(result, type)
+            List<string> list = Cache.GetPropertyInfo(result.Config, type)
                 .Where(o => o.CanWrite && (TypeHelper.IsSimpleType(o.PropertyType) || TypeHelper.IsEnum(o.PropertyType)))
                 .Select(o => o.Name).ToList();
             

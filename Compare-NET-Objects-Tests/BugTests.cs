@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using KellermanSoftware.CompareNetObjects;
 using KellermanSoftware.CompareNetObjectsTests.Attributes;
@@ -7,6 +8,7 @@ using NUnit.Framework;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using KellermanSoftware.CompareNetObjectsTests.TestClasses.Bal;
 using Point = System.Drawing.Point;
 
 namespace KellermanSoftware.CompareNetObjectsTests

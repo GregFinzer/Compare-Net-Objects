@@ -106,8 +106,8 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         private bool HashSetsDifferentCount(CompareParms parms)
         {
             //Get count by reflection since we can't cast it to HashSet<>
-            int hashSet1Count = (int) Cache.GetPropertyValue(parms.Result, parms.Object1Type, parms.Object1, "Count");
-            int hashSet2Count = (int)Cache.GetPropertyValue(parms.Result, parms.Object2Type, parms.Object2, "Count");
+            int hashSet1Count = (int) Cache.GetPropertyValue(parms.Result.Config, parms.Object1Type, parms.Object1, "Count");
+            int hashSet2Count = (int)Cache.GetPropertyValue(parms.Result.Config, parms.Object2Type, parms.Object2, "Count");
 
             //Objects must be the same length
             if (hashSet1Count != hashSet2Count)

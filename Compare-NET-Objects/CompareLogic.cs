@@ -102,16 +102,29 @@ namespace KellermanSoftware.CompareNetObjects
     /// </example>
     public class CompareLogic : ICompareLogic
     {
-#region Properties
+        #region Class Variables
+        private ComparisonConfig _config;
+        #endregion
+
+        #region Properties
 
         /// <summary>
         /// The default configuration
         /// </summary>
-        public ComparisonConfig Config { get; set; }
+        public ComparisonConfig Config
+        {
+            get { return _config;}
+            set
+            {
+                _config = value; 
+                VerifyConfig verifyConfig = new VerifyConfig();
+                verifyConfig.Verify(value);
+            }
+        }
 
-#endregion
+        #endregion
 
-#region Constructor
+        #region Constructor
 
         /// <summary>
         /// Set up defaults for the comparison

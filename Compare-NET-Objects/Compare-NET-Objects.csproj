@@ -130,6 +130,7 @@
     <Compile Include="TypeComparers\TimespanComparer.cs" />
     <Compile Include="TypeComparers\UriComparer.cs" />
     <Compile Include="TypeHelper.cs" />
+    <Compile Include="VerifyConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

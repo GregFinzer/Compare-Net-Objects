@@ -18,9 +18,10 @@ namespace KellermanSoftware.CompareNetObjects
 #region Class Variables
         private Action<Difference> _differenceCallback;
         private int _maxStructDepth;
-#endregion
 
-#region Constructors
+        #endregion
+
+        #region Constructors
         /// <summary>
         /// Default Constructor
         /// </summary>
