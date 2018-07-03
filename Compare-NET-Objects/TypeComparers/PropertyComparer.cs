@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
-using System.Net;
 
 namespace KellermanSoftware.CompareNetObjects.TypeComparers
 {
@@ -129,17 +128,20 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
         private static List<PropertyEntity> GetCurrentProperties(CompareParms parms, object objectValue, Type objectType)
         {
-            return HandleDynamicObject(objectValue, objectType)
+            return HandleDynamicObject(parms.Config, objectValue, objectType)
                    ?? HandleInterfaceMembers(parms, objectValue, objectType)
                    ?? HandleNormalProperties(parms, objectValue, objectType);
         }
 
         private static List<PropertyEntity> HandleNormalProperties(CompareParms parms, object objectValue, Type objectType)
         {
+            IEnumerable<PropertyInfo> properties = Cache.GetPropertyInfo(parms.Result.Config, objectType);
+            return AddPropertyInfos(objectValue, objectType, properties);
+        }
+
+        private static List<PropertyEntity> AddPropertyInfos(object objectValue, Type objectType, IEnumerable<PropertyInfo> properties)
+        {
             List<PropertyEntity> currentProperties = new List<PropertyEntity>();
-
-            var properties = Cache.GetPropertyInfo(parms.Result.Config, objectType);
-
             foreach (var property in properties)
             {
                 PropertyEntity propertyEntity = new PropertyEntity();
@@ -216,38 +218,55 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             return currentProperties;
         }
 
-        private static List<PropertyEntity> HandleDynamicObject(object objectValue, Type objectType)
+        private static List<PropertyEntity> HandleDynamicObject(ComparisonConfig config, object objectValue, Type objectType)
         {
-            List<PropertyEntity> currentProperties = null;
-
             if (TypeHelper.IsDynamicObject(objectType))
             {
-                currentProperties = new List<PropertyEntity>();
-                IDictionary<string, object> propertyValues = (IDictionary<string, object>)objectValue;
-
-                foreach (var propertyValue in propertyValues)
+                if (TypeHelper.IsExpandoObject(objectValue))
                 {
-                    PropertyEntity propertyEntity = new PropertyEntity();
-                    propertyEntity.IsDynamic = true;
-                    propertyEntity.Name = propertyValue.Key;
-                    propertyEntity.Value = propertyValue.Value;
-                    propertyEntity.CanRead = true;
-                    propertyEntity.CanWrite = true;
-                    propertyEntity.DeclaringType = objectType;
-
-                    if (propertyValue.Value == null)
-                    {
-                        propertyEntity.PropertyType = null;
-                        propertyEntity.ReflectedType = null;
-                    }
-                    else
-                    {
-                        propertyEntity.PropertyType = propertyValue.GetType();
-                        propertyEntity.ReflectedType = propertyEntity.PropertyType;
-                    }
-
-                    currentProperties.Add(propertyEntity);
+                    return AddExpandoPropertyValues(objectValue, objectType);
                 }
+
+                string msg = @"Dynamic Objects Are Not Supported as TryGetMember requires Microsoft.CSharp which requires .NET Framework 4.5 and higher. ExpandoObjects are supported.  
+See https://github.com/GregFinzer/Compare-Net-Objects/issues/103";
+                throw new NotSupportedException(msg);
+            }
+
+            return null;
+        }
+
+
+
+        private static List<PropertyEntity> AddExpandoPropertyValues(Object objectValue, Type objectType)
+        {
+            IDictionary<string, object> expandoPropertyValues = objectValue as IDictionary<string, object>;
+
+            if (expandoPropertyValues == null)
+                return new List<PropertyEntity>();
+
+            List<PropertyEntity> currentProperties  = new List<PropertyEntity>();
+            foreach (var propertyValue in expandoPropertyValues)
+            {
+                PropertyEntity propertyEntity = new PropertyEntity();
+                propertyEntity.IsDynamic = true;
+                propertyEntity.Name = propertyValue.Key;
+                propertyEntity.Value = propertyValue.Value;
+                propertyEntity.CanRead = true;
+                propertyEntity.CanWrite = true;
+                propertyEntity.DeclaringType = objectType;
+
+                if (propertyValue.Value == null)
+                {
+                    propertyEntity.PropertyType = null;
+                    propertyEntity.ReflectedType = null;
+                }
+                else
+                {
+                    propertyEntity.PropertyType = propertyValue.GetType();
+                    propertyEntity.ReflectedType = propertyEntity.PropertyType;
+                }
+
+                currentProperties.Add(propertyEntity);
             }
 
             return currentProperties;

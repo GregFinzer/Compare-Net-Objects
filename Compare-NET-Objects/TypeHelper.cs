@@ -33,6 +33,24 @@ namespace KellermanSoftware.CompareNetObjects
         }
 
         /// <summary>
+        /// Determines whether the specified object is an expando object
+        /// </summary>
+        /// <param name="objectValue">The object value.</param>
+        public static bool IsExpandoObject(object objectValue)
+        {
+            if (objectValue == null)
+                return false;
+
+            if (IsDynamicObject(objectValue.GetType()))
+            {
+                IDictionary<string, object> expandoPropertyValues = objectValue as IDictionary<string, object>;
+                return expandoPropertyValues != null;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// Returns true if it is a byte array
         /// </summary>
         public static bool IsByteArray(Type type)
