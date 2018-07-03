@@ -71,7 +71,7 @@ dotnet add package CompareNETObjects
 
 ## Supported Types
 * Classes
-* Dynamic Objects (Expando)
+* Dynamic (Expando objects are supported but not DynamicObject)
 * Anonymous Types
 * Primitive Types (String, Int, Boolean, etc.)
 * Structs
@@ -97,6 +97,7 @@ dotnet add package CompareNETObjects
 
 # Limitations
 * Custom Collections with Non-Integer Indexers cannot be compared.
+* DynamicObject type is not supported but will be implemented in 2020 when the library is versioned to .NET Framework 4.5
 * When ignoring the collection order, the collection matching spec cannot be a field on a child class.  It has to be a property or field of the class.
 * The Portable and .NET Standard builds cannot compare private fields or properties on a classs.  This is a security restriction by Microsoft.
 * ElapsedMilliseconds does not work for Portable and .NET Standard builds as there is no StopWatch in those frameworks.
