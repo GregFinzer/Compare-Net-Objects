@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if !DNCORE
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using KellermanSoftware.CompareNetObjects;
@@ -222,3 +224,5 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
     }
 }
+
+#endif

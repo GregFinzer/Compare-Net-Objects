@@ -1,5 +1,6 @@
-﻿using System.Drawing;
+﻿#if !DNCORE
 
+using System.Drawing;
 
 namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
 {
@@ -10,3 +11,5 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
         public static Font StaticObject { get; set; }
     }
 }
+
+#endif

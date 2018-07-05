@@ -122,6 +122,8 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
         #endregion
 
+        #if !DNCORE
+
         #region Private Property Tests
         [Test]
         public void PrivatePropertyPositive()
@@ -213,6 +215,8 @@ namespace KellermanSoftware.CompareNetObjectsTests
             _compare.Config.ComparePrivateFields = false;
         }
         #endregion
+
+        #endif
 
         #region InterfaceMembers
         [Test]

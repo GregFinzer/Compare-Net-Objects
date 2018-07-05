@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+
+#if !DNCORE
+using System.Windows.Forms;
+#endif
 
 namespace KellermanSoftware.CompareNetObjectsTests
 {
@@ -66,6 +69,8 @@ namespace KellermanSoftware.CompareNetObjectsTests
             return AppDomain.CurrentDomain.BaseDirectory;
         }
 
+        #if !DNCORE
+
         /// <summary>
         /// Takes a screen shot saves it to the specified directory and returns the full file path
         /// </summary>
@@ -92,6 +97,8 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             return path;
         }
+
+        #endif
 
         /// <summary>
         /// Create a large file of 100 lines to upload

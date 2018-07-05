@@ -5,10 +5,12 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Text;
+#if !NETSTANDARD1
+using System.Dynamic;
+#endif
 #if !PORTABLE && !DNCORE
 using System.Data;
 using System.Drawing;
-using System.Dynamic;
 #endif
 
 namespace KellermanSoftware.CompareNetObjects
@@ -25,7 +27,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// <returns></returns>
         public static bool IsDynamicObject(Type type)
         {
-#if !PORTABLE && !DNCORE
+#if !NETSTANDARD1
             return typeof(IDynamicMetaObjectProvider).IsAssignableFrom(type);
 #else
             return false;
@@ -405,7 +407,8 @@ namespace KellermanSoftware.CompareNetObjects
             return (typeof(Type).IsAssignableFrom(type));
         }
 
-#if !PORTABLE && !DNCORE
+#if !DNCORE
+
         /// <summary>
         /// Returns true if the type is an IPEndPoint
         /// </summary>
@@ -459,18 +462,6 @@ namespace KellermanSoftware.CompareNetObjects
         }
 
         /// <summary>
-        /// Returns true if the type is a font
-        /// </summary>
-        /// <param name="type">The type1.</param>
-        public static bool IsFont(Type type)
-        {
-            if (type == null)
-                return false;
-
-            return type == typeof(Font);
-        }
-
-        /// <summary>
         /// Returns true if the Type is Data Column
         /// </summary>
         /// <param name="type"></param>
@@ -482,10 +473,20 @@ namespace KellermanSoftware.CompareNetObjects
 
             return type == typeof(DataColumn);
         }
+
+        /// <summary>
+        /// Returns true if the type is a font
+        /// </summary>
+        /// <param name="type">The type1.</param>
+        public static bool IsFont(Type type)
+        {
+            if (type == null)
+                return false;
+
+            return type == typeof(Font);
+        }
+
 #endif
-
-
 
     }
 }
-

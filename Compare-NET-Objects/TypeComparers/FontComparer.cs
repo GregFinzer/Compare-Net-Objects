@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if !DNCORE
+
+using System;
 using System.Drawing;
 
 
@@ -72,3 +74,5 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         }
     }
 }
+
+#endif

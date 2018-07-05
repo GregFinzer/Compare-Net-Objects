@@ -1,0 +1,15 @@
+<Project>
+
+  <PropertyGroup>
+    <Version>4.56.0.0</Version>
+    <Authors>GregFinzer</Authors>
+    <Description>Easily compare objects in .NET</Description>
+    <PackageProjectUrl>https://github.com/GregFinzer/Compare-Net-Objects</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/GregFinzer/Compare-Net-Objects/wiki/Licensing</PackageLicenseUrl>
+    <PackageIconUrl>http://www.kellermanstores.com/Content/images/NuGetIcon.png</PackageIconUrl>
+    <PackageTags>compare;comparison;equality;equal;deep;objects;difference;compareobjects;deepequal;deepequals</PackageTags>
+    <Copyright>Copyright © 2018 Kellerman Software</Copyright>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+</Project>

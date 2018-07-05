@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if !DNCORE
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -72,3 +74,5 @@ namespace KellermanSoftware.CompareNetObjects.Reports
         public abstract void LaunchApplication(string expectedFilePath, string actualFilePath);
     }
 }
+
+#endif

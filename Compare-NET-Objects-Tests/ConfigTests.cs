@@ -291,6 +291,8 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
         #region Save and Load Configuration Tests
 
+        #if !DNCORE
+
         [Test]
         public void SaveConfigurationTest()
         {
@@ -323,6 +325,9 @@ namespace KellermanSoftware.CompareNetObjectsTests
             //Assert
             Assert.IsFalse(_compare.Config.CaseSensitive);
         }
+
+        #endif
+
         #endregion
     }
 }
