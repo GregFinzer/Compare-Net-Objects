@@ -19,6 +19,10 @@ Compatible with .NET Framework 4.0 and higher.  .NET Core 1.3 and higher. Portab
   <img src="http://img.shields.io/nuget/v/CompareNETObjects.svg" alt="NuGet Version" height="50">
 </a>
 
+<a href="https://www.nuget.org/packages/CompareNETObjects">
+  <img src="https://img.shields.io/nuget/dt/CompareNETObjects.svg" alt="NuGet Downloads" height="50">
+</a>
+
 http://www.nuget.org/packages/CompareNETObjects
 
 ## Installation
