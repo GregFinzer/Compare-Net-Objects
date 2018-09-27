@@ -7,6 +7,7 @@ using KellermanSoftware.CompareNetObjectsTests.TestClasses;
 using NUnit.Framework;
 using System.Drawing;
 using System.Linq;
+using KellermanSoftware.CompareNetObjects.Reports;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses.Bal;
 using Point = System.Drawing.Point;
 
@@ -45,6 +46,42 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #endregion
 
         #region Tests
+
+        /// <summary>
+        /// https://github.com/GregFinzer/Compare-Net-Objects/issues/110
+        /// </summary>
+        [Test]
+        public void CsvReportWithCommaTest()
+        {
+            // set up data
+            Person person1 = new Person();
+            person1.Name = "Greg";
+            person1.LastName = "Miller";
+            person1.Age = 42;
+
+            Person person2 = new Person();
+            person2.Name = "Greg";
+            person2.LastName = "Miller";
+            person2.Age = 17;
+
+            // compare
+            var left = new List<Person> { person1 };
+            var right = new List<Person> { person2 };
+
+            CompareLogic compareLogic = new CompareLogic();
+            compareLogic.Config.IgnoreCollectionOrder = true;
+            compareLogic.Config.CollectionMatchingSpec.Add(
+                typeof(Person),
+                new string[] { "Name", "LastName" });   // specify two indexes
+
+            ComparisonResult result = compareLogic.Compare(left, right);
+
+            // write to csv
+            var csv = new CsvReport();
+            string output = csv.OutputString(result.Differences);
+            Console.WriteLine(output);
+            Assert.IsTrue(output.Contains("\"[Name:Greg,LastName:Miller].Age\""));
+        }
 
         [Test]
         public void DifferentNullableDecimalFieldsShouldNotBeEqualWhenCompareChildrenIsFalse()

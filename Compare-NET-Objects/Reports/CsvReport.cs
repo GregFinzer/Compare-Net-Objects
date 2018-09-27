@@ -31,8 +31,7 @@ namespace KellermanSoftware.CompareNetObjects.Reports
             }            
         }
 
-
-#endif
+        #endif
 
         private void WriteItOut(List<Difference> differences, TextWriter writer)
         {
@@ -40,7 +39,7 @@ namespace KellermanSoftware.CompareNetObjects.Reports
 
             foreach (var difference in differences)
             {
-                writer.Write("{0},", difference.GetShortItem());
+                writer.Write("{0},", EscapeString(difference.GetShortItem()));
                 writer.Write("{0},", EscapeString(difference.Object1Value));
                 writer.WriteLine("{0}", EscapeString(difference.Object2Value));
             }
