@@ -200,10 +200,10 @@ namespace KellermanSoftware.CompareNetObjects
         /// Check the Differences or DifferencesString Properties for the differences.
         /// Default MaxDifferences is 1 for performance
         /// </remarks>
-        /// <param name="object1"></param>
-        /// <param name="object2"></param>
+        /// <param name="expectedObject">The expected object value to compare</param>
+        /// <param name="actualObject">The actual object value to compare</param>
         /// <returns>True if they are equal</returns>
-        public ComparisonResult Compare(object object1, object object2)
+        public ComparisonResult Compare(object expectedObject, object actualObject)
         {
             ComparisonResult result = new ComparisonResult(Config);
 
@@ -217,8 +217,8 @@ namespace KellermanSoftware.CompareNetObjects
             {
                 Config = Config,
                 Result = result,
-                Object1 = object1,
-                Object2 = object2,
+                Object1 = expectedObject,
+                Object2 = actualObject,
                 BreadCrumb = string.Empty
             };
 

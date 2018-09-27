@@ -269,7 +269,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                 {
                     propertyValue = string.Empty;
                 }
-                else if (result.Config.CaseSensitive == false && info.PropertyType == typeof(string))
+                else if (propertyValue != null && result.Config.CaseSensitive == false && info.PropertyType == typeof(string))
                 {
                     propertyValue = ((string)propertyValue).ToLowerInvariant();
                 }
