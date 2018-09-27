@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if !DNCORE
+
+using System;
 using System.Data;
 using System.Globalization;
 
@@ -95,3 +97,5 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         }
     }
 }
+
+#endif

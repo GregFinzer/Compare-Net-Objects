@@ -461,7 +461,10 @@ namespace KellermanSoftware.CompareNetObjectsTests
             ComparisonResult result = _compare.Compare(entityTree, entityTreeCopy);
             Console.WriteLine(result.DifferencesString);
             Assert.IsFalse(result.AreEqual);
+
+            #if !DNCORE
             Console.WriteLine(result.ElapsedMilliseconds);
+            #endif
         }
 
         #endregion

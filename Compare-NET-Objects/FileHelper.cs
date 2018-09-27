@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if !DNCORE
+
+using System;
 using System.IO;
 
 namespace KellermanSoftware.CompareNetObjects
@@ -35,3 +37,5 @@ namespace KellermanSoftware.CompareNetObjects
         }
     }
 }
+
+#endif

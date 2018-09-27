@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if !DNCORE
+
+using System;
 using System.Drawing;
 using KellermanSoftware.CompareNetObjects;
 using NUnit.Framework;
@@ -62,3 +64,5 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #endregion
     }
 }
+
+#endif

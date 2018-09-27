@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if !DNCORE
+
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -76,3 +78,5 @@ namespace KellermanSoftware.CompareNetObjects.Reports
         }
     }
 }
+
+#endif

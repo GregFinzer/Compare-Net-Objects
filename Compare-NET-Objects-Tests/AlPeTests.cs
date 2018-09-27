@@ -4,10 +4,6 @@ using KellermanSoftware.CompareNetObjects;
 using KellermanSoftware.CompareNetObjectsTests.Attributes;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses;
 using NUnit.Framework;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using Point = System.Drawing.Point;
 
 namespace KellermanSoftware.CompareNetObjectsTests
 {

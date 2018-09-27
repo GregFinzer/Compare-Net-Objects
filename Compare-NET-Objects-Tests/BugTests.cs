@@ -6,10 +6,13 @@ using KellermanSoftware.CompareNetObjectsTests.Attributes;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses;
 using NUnit.Framework;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Linq;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses.Bal;
 using Point = System.Drawing.Point;
+
+#if !DNCORE
+using System.Drawing.Drawing2D;
+#endif
 
 namespace KellermanSoftware.CompareNetObjectsTests
 {
@@ -395,6 +398,8 @@ namespace KellermanSoftware.CompareNetObjectsTests
             Console.WriteLine(result.DifferencesString);
         }
 
+        #if !DNCORE
+
         [Test]
         public void LinearGradient()
         {
@@ -403,6 +408,8 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             Assert.IsFalse(_compare.Compare(brush1, brush2).AreEqual);
         }
+
+        #endif
 
         [Test]
         public void DecimalCollectionWhenOrderIgnored()

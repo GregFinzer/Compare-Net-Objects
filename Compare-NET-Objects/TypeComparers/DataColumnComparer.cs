@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if !DNCORE
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -80,3 +82,5 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         }
     }
 }
+
+#endif
