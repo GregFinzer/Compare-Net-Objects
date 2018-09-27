@@ -2,7 +2,10 @@
 
   <PropertyGroup>
     <PackageId>CompareNETObjects</PackageId>
-    <TargetFrameworks>netstandard1.3;netstandard2.0;net40</TargetFrameworks>
+    <AssemblyTitle>Kellerman-Serialization</AssemblyTitle>
+    <AssemblyCompany>Kellerman Software</AssemblyCompany>
+    <AssemblyProduct>Kellerman-Serialization</AssemblyProduct>
+    <TargetFrameworks>net40;net45;net451;net452;net46;netstandard1.3;netstandard2.0;</TargetFrameworks>
     <AssemblyName>KellermanSoftware.Compare-NET-Objects</AssemblyName>
     <RootNamespace>KellermanSoftware.CompareNetObjects</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -13,6 +16,15 @@
   
   <PropertyGroup>
     <IsNetStandard>false</IsNetStandard>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageTags>compare comparison equality equal deep objects difference compareobjects deepequal deepequals</PackageTags>
+    <Description>What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.</Description>
+    <Authors>KellermanSoftware</Authors>
+    <Version>4.56.0</Version>
+    <AssemblyVersion>4.56.0.0</AssemblyVersion>
+    <NeutralLanguage>en-US</NeutralLanguage>    
+    <Company>Kellerman Software</Company>
+    <PackageReleaseNotes>Multitarget Build for net40, net45, net451, net452, net46, netstandard1.3, and netstandard2.0</PackageReleaseNotes>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
@@ -24,12 +36,33 @@
 
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <IsNetStandard>true</IsNetStandard>
+    <DefineConstants>$(DefineConstants);NETSTANDARD2_0</DefineConstants>
   </PropertyGroup>
   
   <PropertyGroup Condition="$(IsNetStandard)">
-    <DefineConstants>$(DefineConstants);DNCORE</DefineConstants>
+    <DefineConstants>$(DefineConstants);DNCORE;NETCORE;NETSTANDARD</DefineConstants>
   </PropertyGroup>
   
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net40'">
+    <DefineConstants>$(DefineConstants);NET40;NETFULL</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45'">
+    <DefineConstants>$(DefineConstants);NET45;NETFULL</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net451'">
+    <DefineConstants>$(DefineConstants);NET451;NETFULL</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net452'">
+    <DefineConstants>$(DefineConstants);NET452;NETFULL</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net46'">
+    <DefineConstants>$(DefineConstants);NET46;NETFULL</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -54,7 +87,7 @@
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
   </ItemGroup>
   
-  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
+  <ItemGroup Condition=" '$(IsNetStandard)' == 'false'">
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   

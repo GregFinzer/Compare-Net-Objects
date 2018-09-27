@@ -34,11 +34,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-#if !DNCORE
+#if !NETSTANDARD
 using System.Runtime.Serialization.Json;
 #endif
 
-#if !PORTABLE && !DNCORE
+#if !NETSTANDARD
 using KellermanSoftware.CompareNetObjects.Properties;
 #endif
 
@@ -143,7 +143,7 @@ namespace KellermanSoftware.CompareNetObjects
             Config = config;
         }
 
-#if !PORTABLE && !DNCORE
+#if !NETSTANDARD
 
         /// <summary>
         /// Set up defaults for the comparison
@@ -207,7 +207,7 @@ namespace KellermanSoftware.CompareNetObjects
         {
             ComparisonResult result = new ComparisonResult(Config);
 
-#if !PORTABLE && !DNCORE
+#if !NETSTANDARD
                 result.Watch.Start();
 #endif
 
@@ -227,7 +227,7 @@ namespace KellermanSoftware.CompareNetObjects
             if (Config.AutoClearCache)
                 ClearCache();
 
-#if !PORTABLE && !DNCORE
+#if !NETSTANDARD
                 result.Watch.Stop();
 #endif
 
@@ -242,7 +242,7 @@ namespace KellermanSoftware.CompareNetObjects
             Cache.ClearCache();
         }
 
-#if !DNCORE
+#if !NETSTANDARD
         /// <summary>
         /// Save the current configuration to the passed stream
         /// </summary>
@@ -270,7 +270,7 @@ namespace KellermanSoftware.CompareNetObjects
         }
 #endif
 
-#if !PORTABLE && !DNCORE
+#if !NETSTANDARD
         /// <summary>
         /// Load the current configuration from a json stream
         /// </summary>

@@ -8,7 +8,7 @@ using System.Text;
 #if !NETSTANDARD1
 using System.Dynamic;
 #endif
-#if !PORTABLE && !DNCORE
+#if !NETSTANDARD
 using System.Data;
 using System.Drawing;
 #endif
@@ -121,11 +121,7 @@ namespace KellermanSoftware.CompareNetObjects
             if (type == null)
                 return false;
 
-#if PORTABLE
-            return type.IsValueType && !IsSimpleType(type) && !IsImmutableArray(type);
-#else
             return type.GetTypeInfo().IsValueType && !IsSimpleType(type) && !IsImmutableArray(type);
-#endif
         }
 
         /// <summary>
@@ -151,11 +147,7 @@ namespace KellermanSoftware.CompareNetObjects
             if (type == null)
                 return false;
 
-#if PORTABLE
-            return type.IsClass;
-#else
             return type.GetTypeInfo().IsClass;
-#endif
         }
 
         /// <summary>
@@ -211,11 +203,7 @@ namespace KellermanSoftware.CompareNetObjects
             if (type == null)
                 return false;
 
-#if PORTABLE
-             return type.IsEnum;
-#else
             return type.GetTypeInfo().IsEnum;
-#endif
         }
 
         /// <summary>
@@ -241,13 +229,8 @@ namespace KellermanSoftware.CompareNetObjects
             if (type == null)
                 return false;
 
-#if PORTABLE
-            return type.IsGenericType
-                && type.GetGenericTypeDefinition() == typeof(HashSet<>);
-#else
             return type.GetTypeInfo().IsGenericType
                 && type.GetTypeInfo().GetGenericTypeDefinition() == typeof(HashSet<>);
-#endif
         }
 
         /// <summary>
@@ -272,7 +255,7 @@ namespace KellermanSoftware.CompareNetObjects
         {
             if (type == null)
                 return false;
-#if !DNCORE
+#if !NETSTANDARD
             var toCheck = type.ReflectedType;
 #else
             var toCheck = type.DeclaringType;
@@ -367,19 +350,6 @@ namespace KellermanSoftware.CompareNetObjects
             if (type == null)
                 return false;
 
-#if PORTABLE
-                        if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
-            {
-                type = Nullable.GetUnderlyingType(type);
-            }
-
-            return type.IsPrimitive
-                   || type.IsEnum
-                   || type == typeof(DateTime)
-                   || type == typeof(string)
-                   || type == typeof(Guid)
-                   || type == typeof(Decimal);
-#else
             if (type.GetTypeInfo().IsGenericType && type.GetTypeInfo().GetGenericTypeDefinition() == typeof(Nullable<>))
             {
                 type = Nullable.GetUnderlyingType(type);
@@ -390,7 +360,6 @@ namespace KellermanSoftware.CompareNetObjects
                    || type == typeof(string)
                    || type == typeof(Guid)
                    || type == typeof(Decimal);
-#endif
 
         }
 
@@ -407,7 +376,7 @@ namespace KellermanSoftware.CompareNetObjects
             return (typeof(Type).IsAssignableFrom(type));
         }
 
-#if !DNCORE
+#if !NETSTANDARD
 
         /// <summary>
         /// Returns true if the type is an IPEndPoint

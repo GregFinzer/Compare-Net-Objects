@@ -65,7 +65,7 @@ namespace KellermanSoftware.CompareNetObjects
 
                 FieldInfo[] currentFields;
 
-#if !PORTABLE && !DNCORE
+#if !NETSTANDARD
                 if (config.ComparePrivateFields && !config.CompareStaticFields)
                 {
                     List<FieldInfo> list = new List<FieldInfo>();
@@ -132,7 +132,7 @@ namespace KellermanSoftware.CompareNetObjects
 
                 PropertyInfo[] currentProperties;
 
-#if PORTABLE || DNCORE
+#if NETSTANDARD
             if (!config.CompareStaticProperties)
                 currentProperties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
             else

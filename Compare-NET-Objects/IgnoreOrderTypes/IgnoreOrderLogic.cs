@@ -294,7 +294,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
         private static string RespectNumberToString(object o)
         {
 
-#if DNCORE
+#if NETSTANDARD
             string typeString = o.GetType().Name;
 
             switch (typeString)

@@ -291,7 +291,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
         #region Save and Load Configuration Tests
 
-        #if !DNCORE
+        #if !NETSTANDARD
 
         [Test]
         public void SaveConfigurationTest()

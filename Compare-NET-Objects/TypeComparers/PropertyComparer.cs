@@ -150,7 +150,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 propertyEntity.CanRead = property.CanRead;
                 propertyEntity.CanWrite = property.CanWrite;
                 propertyEntity.PropertyType = property.PropertyType;
-#if !PORTABLE && !DNCORE
+#if !NETSTANDARD
                 propertyEntity.ReflectedType = property.ReflectedType;
 #endif
                 propertyEntity.Indexers.AddRange(property.GetIndexParameters());
@@ -295,7 +295,7 @@ See https://github.com/GregFinzer/Compare-Net-Objects/issues/103";
                 throw new Exception("Cannot compare objects with a non integer indexer for object " + breadCrumb);
             }
 
-#if !DNCORE
+#if !NETSTANDARD
             var type = info.ReflectedType;
 #else
             var type = info.DeclaringType;

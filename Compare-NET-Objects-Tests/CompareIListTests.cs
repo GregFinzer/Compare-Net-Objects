@@ -462,7 +462,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
             Console.WriteLine(result.DifferencesString);
             Assert.IsFalse(result.AreEqual);
 
-            #if !DNCORE
+            #if !NETSTANDARD
             Console.WriteLine(result.ElapsedMilliseconds);
             #endif
         }

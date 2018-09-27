@@ -31,7 +31,7 @@ namespace KellermanSoftware.CompareNetObjects
             _result = new ComparisonResult(_logic.Config);
         }
 
-#if !PORTABLE && !DNCORE
+#if !NETSTANDARD
         /// <summary>
         /// Obsolete Use CompareLogic instead
         /// </summary>
@@ -48,7 +48,7 @@ namespace KellermanSoftware.CompareNetObjects
         #region Properties
 
 
-#if !PORTABLE && !DNCORE
+#if !NETSTANDARD
         /// <summary>
         /// Obsolete Use the ComparisonResult.ElapsedMilliseconds returned from CompareLogic.Compare
         /// </summary>
@@ -90,7 +90,7 @@ namespace KellermanSoftware.CompareNetObjects
         }
 
         //Security restriction in Silverlight prevents getting private properties and fields
-#if !PORTABLE && !DNCORE
+#if !NETSTANDARD
 
         /// <summary>
         /// Obsolete Use CompareLogic.Config.ComparePrivateProperties instead

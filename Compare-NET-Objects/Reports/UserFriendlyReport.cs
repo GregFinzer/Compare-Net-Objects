@@ -24,7 +24,7 @@ namespace KellermanSoftware.CompareNetObjects.Reports
         /// </summary>
         public string ChangedToText { get; set; }
 
-#if !PORTABLE && !DNCORE
+#if !NETSTANDARD
         /// <summary>
         /// Output the differences to a file
         /// </summary>
@@ -98,7 +98,7 @@ namespace KellermanSoftware.CompareNetObjects.Reports
             return sb.ToString();
         }
 
-        #if !PORTABLE && !DNCORE
+        #if !NETSTANDARD
         /// <summary>
         /// Launch the application for showing the file
         /// </summary>

@@ -84,11 +84,11 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
             if (config.ShowBreadcrumb)
             {
-#if (DEBUG && !PORTABLE) || DNCORE
+#if (DEBUG) || NETSTANDARD
                 Console.WriteLine(sb.ToString());
 #endif
 
-#if !PORTABLE && !DNCORE && !DEBUG
+#if !NETSTANDARD && !DEBUG
                 Trace.WriteLine(sb.ToString());
 #endif
             }
@@ -159,7 +159,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 if (value == null)
                     return "(null)";
 
-                #if !PORTABLE && !DNCORE
+                #if !NETSTANDARD
                     if (value == DBNull.Value)
                         return "System.DBNull.Value";
                 #endif

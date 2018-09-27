@@ -5,7 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-#if !DNCORE
+#if !NETSTANDARD
 using System.Windows.Forms;
 #endif
 
@@ -69,7 +69,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
             return AppDomain.CurrentDomain.BaseDirectory;
         }
 
-        #if !DNCORE
+        #if !NETSTANDARD
 
         /// <summary>
         /// Takes a screen shot saves it to the specified directory and returns the full file path

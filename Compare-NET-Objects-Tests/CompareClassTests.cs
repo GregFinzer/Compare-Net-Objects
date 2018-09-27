@@ -122,7 +122,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
         #endregion
 
-        #if !DNCORE
+        #if !NETSTANDARD
 
         #region Private Property Tests
         [Test]

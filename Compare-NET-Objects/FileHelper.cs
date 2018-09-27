@@ -1,4 +1,4 @@
-﻿#if !DNCORE
+﻿#if !NETSTANDARD
 
 using System;
 using System.IO;

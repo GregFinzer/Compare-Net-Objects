@@ -22,7 +22,7 @@ namespace KellermanSoftware.CompareNetObjects
             Config = config;
             Differences = new List<Difference>();
 
-            #if !PORTABLE && !DNCORE
+            #if !NETSTANDARD
                 Watch = new Stopwatch();
             #endif
         }
@@ -39,7 +39,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// </summary>
         public ComparisonConfig Config { get; private set; }
 
-        #if !PORTABLE && !DNCORE
+        #if !NETSTANDARD
             internal Stopwatch Watch { get; set; }
 
             /// <summary>

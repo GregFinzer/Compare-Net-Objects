@@ -108,13 +108,8 @@ namespace KellermanSoftware.CompareNetObjects
             }
 
             //The class is ignored by an attribute
-#if PORTABLE
-            if (IgnoredByAttribute(config, t1))
-                return true;
-#else
             if (IgnoredByAttribute(config, t1.GetTypeInfo()) || IgnoredByAttribute(config, t2.GetTypeInfo()))
                 return true;
-#endif
 
             return false;
         }

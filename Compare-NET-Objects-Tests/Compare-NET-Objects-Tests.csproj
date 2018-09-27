@@ -26,7 +26,7 @@
 
   <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0'">
     <IsNetCore>true</IsNetCore>
-    <DefineConstants>$(DefineConstants);DNCORE</DefineConstants>
+    <DefineConstants>$(DefineConstants);DNCORE;NETSTANDARD;NETCORE</DefineConstants>
   </PropertyGroup>
   
   <ItemGroup Condition="!$(IsNetCore)">

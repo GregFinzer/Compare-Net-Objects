@@ -10,7 +10,7 @@ using System.Linq;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses.Bal;
 using Point = System.Drawing.Point;
 
-#if !DNCORE
+#if !NETSTANDARD
 using System.Drawing.Drawing2D;
 #endif
 
@@ -398,7 +398,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
             Console.WriteLine(result.DifferencesString);
         }
 
-        #if !DNCORE
+        #if !NETSTANDARD
 
         [Test]
         public void LinearGradient()
