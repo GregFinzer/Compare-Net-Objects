@@ -65,7 +65,7 @@ namespace KellermanSoftware.CompareNetObjects
 
                 FieldInfo[] currentFields;
 
-#if !NETSTANDARD
+#if !NETSTANDARD1_3
                 if (config.ComparePrivateFields && !config.CompareStaticFields)
                 {
                     List<FieldInfo> list = new List<FieldInfo>();
@@ -132,6 +132,12 @@ namespace KellermanSoftware.CompareNetObjects
 
                 PropertyInfo[] currentProperties;
 
+#if NETSTANDARD1_3
+                if (!config.CompareStaticProperties)
+                    currentProperties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+                else
+                    currentProperties = type.GetProperties(); //Default is public instance and static
+#else
                 if (config.ComparePrivateProperties && !config.CompareStaticProperties)
                     currentProperties =
                         type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
@@ -142,6 +148,7 @@ namespace KellermanSoftware.CompareNetObjects
                 else if (!config.CompareStaticProperties)
                     currentProperties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
                 else
+#endif
                     currentProperties = type.GetProperties(); //Default is public instance and static
 
                 if (config.Caching)

@@ -173,6 +173,7 @@ namespace KellermanSoftware.CompareNetObjects
 #endif
         public List<string> MembersToInclude { get; set; }
 
+#if !NETSTANDARD1_3
         /// <summary>
         /// If true, private properties and fields will be compared. The default is false.  Silverlight and WinRT restricts access to private variables.
         /// </summary>
@@ -180,7 +181,9 @@ namespace KellermanSoftware.CompareNetObjects
         [DataMember]
 #endif
         public bool ComparePrivateProperties { get; set; }
+#endif
 
+#if !NETSTANDARD1_3
         /// <summary>
         /// If true, private fields will be compared. The default is false.  Silverlight and WinRT restricts access to private variables.
         /// </summary>
@@ -188,6 +191,7 @@ namespace KellermanSoftware.CompareNetObjects
         [DataMember]
 #endif
         public bool ComparePrivateFields { get; set; }
+#endif
 
         /// <summary>
         /// If true, static properties will be compared.  The default is true.

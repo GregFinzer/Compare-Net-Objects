@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using KellermanSoftware.CompareNetObjects;
 using KellermanSoftware.CompareNetObjectsTests.Attributes;
@@ -9,7 +8,6 @@ using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using KellermanSoftware.CompareNetObjects.Reports;
-using KellermanSoftware.CompareNetObjectsTests.TestClasses.Bal;
 using Point = System.Drawing.Point;
 
 #if !NETSTANDARD
@@ -60,6 +58,40 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             //Assert
             Assert.IsTrue(props.Length > 0);
+        }
+
+        /// <summary>
+        /// https://github.com/GregFinzer/Compare-Net-Objects/issues/77
+        /// </summary>
+        [Test]
+        public void ComparisonsOfTypesWithPrivateFieldsAreAccurate()
+        {
+            var compareLogic = new CompareLogic(new ComparisonConfig { ComparePrivateFields = true });
+            var result = compareLogic.Compare(new SomethingWithPrivateField(123), new SomethingWithPrivateField(456));
+            Assert.IsFalse(result.AreEqual);
+        }
+
+        private class SomethingWithPrivateField
+        {
+            private readonly int _key;
+            public SomethingWithPrivateField(int key) { _key = key; }
+        }
+
+        /// <summary>
+        /// https://github.com/GregFinzer/Compare-Net-Objects/issues/77
+        /// </summary>
+        [Test]
+        public void ComparisonsOfTypesWithPrivatePropertiesAreAccurate()
+        {
+            var compareLogic = new CompareLogic(new ComparisonConfig { ComparePrivateProperties = true });
+            var result = compareLogic.Compare(new SomethingWithPrivateProperty(123), new SomethingWithPrivateProperty(456));
+            Assert.IsFalse(result.AreEqual);
+        }
+
+        private class SomethingWithPrivateProperty
+        {
+            public SomethingWithPrivateProperty(int key) { Key = key; }
+            private int Key { get; }
         }
 
         /// <summary>
