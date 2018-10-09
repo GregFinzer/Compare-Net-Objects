@@ -7,6 +7,7 @@ using KellermanSoftware.CompareNetObjectsTests.TestClasses;
 using NUnit.Framework;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using KellermanSoftware.CompareNetObjects.Reports;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses.Bal;
 using Point = System.Drawing.Point;
@@ -46,6 +47,20 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #endregion
 
         #region Tests
+
+
+        [Test]
+        public void GetPrivatePropertiesNetStandard()
+        {
+            //Arrange
+            Type type = typeof(ClassWithPrivateProperties);
+
+            //Act
+            var props = type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+            //Assert
+            Assert.IsTrue(props.Length > 0);
+        }
 
         /// <summary>
         /// https://github.com/GregFinzer/Compare-Net-Objects/issues/110

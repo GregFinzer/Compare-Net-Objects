@@ -132,12 +132,6 @@ namespace KellermanSoftware.CompareNetObjects
 
                 PropertyInfo[] currentProperties;
 
-#if NETSTANDARD
-            if (!config.CompareStaticProperties)
-                currentProperties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            else
-                currentProperties = type.GetProperties(); //Default is public instance and static
-#else
                 if (config.ComparePrivateProperties && !config.CompareStaticProperties)
                     currentProperties =
                         type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
@@ -149,7 +143,6 @@ namespace KellermanSoftware.CompareNetObjects
                     currentProperties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
                 else
                     currentProperties = type.GetProperties(); //Default is public instance and static
-#endif
 
                 if (config.Caching)
                     _propertyCache.Add(type, currentProperties);

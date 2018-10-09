@@ -173,20 +173,21 @@ namespace KellermanSoftware.CompareNetObjects
 #endif
         public List<string> MembersToInclude { get; set; }
 
-        //Security restriction in Silverlight prevents getting private properties and fields
-#if !NETSTANDARD
         /// <summary>
         /// If true, private properties and fields will be compared. The default is false.  Silverlight and WinRT restricts access to private variables.
         /// </summary>
+#if !NETSTANDARD
         [DataMember]
+#endif
         public bool ComparePrivateProperties { get; set; }
 
         /// <summary>
         /// If true, private fields will be compared. The default is false.  Silverlight and WinRT restricts access to private variables.
         /// </summary>
+#if !NETSTANDARD
         [DataMember]
-        public bool ComparePrivateFields { get; set; }
 #endif
+        public bool ComparePrivateFields { get; set; }
 
         /// <summary>
         /// If true, static properties will be compared.  The default is true.
