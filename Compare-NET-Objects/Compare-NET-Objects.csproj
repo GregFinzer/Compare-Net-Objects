@@ -20,11 +20,11 @@
     <PackageTags>compare comparison equality equal deep objects difference compareobjects deepequal deepequals</PackageTags>
     <Description>What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.</Description>
     <Authors>KellermanSoftware</Authors>
-    <Version>4.56.0</Version>
-    <AssemblyVersion>4.56.0.0</AssemblyVersion>
+    <Version>4.57.0</Version>
+    <AssemblyVersion>4.57.0.0</AssemblyVersion>
     <NeutralLanguage>en-US</NeutralLanguage>    
     <Company>Kellerman Software</Company>
-    <PackageReleaseNotes>Multitarget Build for net40, net45, net451, net452, net46, netstandard1.3, and netstandard2.0</PackageReleaseNotes>
+    <PackageReleaseNotes>Support for comparing private properties in .NET Standard 2.0 and higher via pull request:  https://github.com/GregFinzer/Compare-Net-Objects/pull/119</PackageReleaseNotes>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
