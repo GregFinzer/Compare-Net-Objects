@@ -15,6 +15,42 @@ namespace KellermanSoftware.CompareNetObjectsTests
     {
 
         [Test]
+        public void HtmlReportTest()
+        {
+            string expected = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "movie.html");
+
+            if (File.Exists(expected))
+                File.Delete(expected);
+
+            Movie movie1 = new Movie();
+            movie1.Name = "Oblivion";
+            movie1.PaymentForTomCruise = 2000000M;
+
+            Movie movie2 = new Movie();
+            movie2.Name = "Edge of Tomorrow";
+            movie2.PaymentForTomCruise = 3000000M;
+
+            CompareLogic compareLogic = new CompareLogic();
+            compareLogic.Config.MaxDifferences = Int32.MaxValue;
+            ComparisonResult result = compareLogic.Compare(movie1, movie2);
+
+            HtmlReport htmlReport = new HtmlReport();
+
+            // The config object is to overwrite the defaults
+            htmlReport.Config.GenerateFullHtml = true; // if false, it will only generate an html table
+            htmlReport.Config.HtmlTitle = "Comparison Report";
+            htmlReport.Config.BreadCrumbColumName = "Bread Crumb"; 
+            htmlReport.Config.ExpectedColumnName = "Expected";
+            htmlReport.Config.ActualColumnName = "Actual";
+            //htmlReport.Config.IncludeCustomCSS(".diff-crumb {background: gray;}"); // add some custom css
+            htmlReport.OutputFile(result.Differences, expected);
+
+            Assert.IsTrue(File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, expected)));
+
+            htmlReport.LaunchApplication(expected);
+        }
+
+        [Test]
         public void BeyondCompareReportTest()
         {
             string expected = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "beyondExpected.txt");
