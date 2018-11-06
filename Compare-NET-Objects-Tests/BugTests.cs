@@ -46,6 +46,23 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
         #region Tests
 
+        [Test]
+        public void TimespanShouldCompareWhenCompareChildrenIsFalse()
+        {
+            //Arrange
+            var object1 = new ClassWithTimespan() { MyTimeSpan = new TimeSpan(6, 0, 0) };
+            var object2 = new ClassWithTimespan { MyTimeSpan = new TimeSpan(7, 0, 0) };
+
+            var comparerConfig = new ComparisonConfig();
+            comparerConfig.CompareChildren = false;
+            var comparer = new CompareLogic(comparerConfig);
+
+            //Act
+            var result = comparer.Compare(object1, object2);
+
+            //Assert
+            Assert.IsFalse(result.AreEqual);
+        }
 
         [Test]
         public void GetPrivatePropertiesNetStandard()

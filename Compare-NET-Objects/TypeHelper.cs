@@ -74,6 +74,11 @@ namespace KellermanSoftware.CompareNetObjects
                 return false;
 
             return !IsSimpleType(type)
+                && !IsTimespan(type)
+                && !IsDateTimeOffset(type)
+                && !IsEnum(type)
+                && !IsPointer(type)
+                && !IsStringBuilder(type)
                 && (IsClass(type)
                     || IsInterface(type)
                     || IsArray(type)
