@@ -369,6 +369,14 @@ namespace KellermanSoftware.CompareNetObjects
         public bool TreatStringEmptyAndNullTheSame { get; set; }
 
         /// <summary>
+        /// If true, leading and trailing whitespaces will be ignored for Strings and String Builder. The default is false.
+        /// </summary>
+#if !DNCORE
+        [DataMember]
+#endif
+        public bool IgnoreStringLeadingTrailingWhitespace { get; set; }
+
+        /// <summary>
         /// The precision to compare double values.  The default is 0.
         /// </summary>
 #if !NETSTANDARD
@@ -431,6 +439,7 @@ namespace KellermanSoftware.CompareNetObjects
             IgnoreUnknownObjectTypes = false;
             MaxStructDepth = 2;
             CaseSensitive = true;
+            IgnoreStringLeadingTrailingWhitespace = false;
         }
 #endregion
     }
