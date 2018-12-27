@@ -44,6 +44,12 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             string object1String = parms.Object1.ToString();
             string object2String = parms.Object2.ToString();
 
+            if (parms.Config.IgnoreStringLeadingTrailingWhitespace)
+            {
+                object1String = object1String.Trim();
+                object2String = object2String.Trim();
+            }
+
             if (!parms.Config.CaseSensitive)
             {
                 if (!String.Equals(object1String, object2String, StringComparison.OrdinalIgnoreCase))
