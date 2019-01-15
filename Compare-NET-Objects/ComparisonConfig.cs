@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using KellermanSoftware.CompareNetObjects.TypeComparers;
+using System.Linq;
 #if !NETSTANDARD
 using System.Runtime.Serialization;
 #endif
@@ -396,6 +397,24 @@ namespace KellermanSoftware.CompareNetObjects
 
         #region Methods
 
+        /// <summary>
+        /// Backing member that supports <see cref="HasWildcardMembersToExclude"/>
+        /// </summary>
+        private bool? _hasWildcardInMembersToIgnore;
+
+        /// <summary>
+        /// Computed value of whether or not exclusion list has wildcards.
+        /// </summary>
+        public bool HasWildcardMembersToExclude()
+        {
+            if (_hasWildcardInMembersToIgnore.HasValue)
+            {
+                return _hasWildcardInMembersToIgnore.Value;
+            }
+
+            _hasWildcardInMembersToIgnore = MembersToIgnore.Any(x => x.IndexOf("*") > -1);
+            return _hasWildcardInMembersToIgnore.Value;
+        }
 
         /// <summary>
         /// Reset the configuration to the default values
@@ -406,6 +425,8 @@ namespace KellermanSoftware.CompareNetObjects
             _differenceCallback = d => { };
 
             MembersToIgnore = new List<string>();
+            _hasWildcardInMembersToIgnore = null;
+
             MembersToInclude = new List<string>();
             ClassTypesToIgnore = new List<Type>();
             ClassTypesToInclude = new List<Type>();
