@@ -12,6 +12,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
     {
         private readonly RootComparer _rootComparer;
         private readonly IndexerComparer _indexerComparer;
+        private static readonly string[] _baseList = { "Count", "Capacity", "Item" };
 
         /// <summary>
         /// Constructor that takes a root comparer
@@ -28,14 +29,12 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         /// </summary>
         public void PerformCompareProperties(CompareParms parms, bool ignoreBaseList= false)
         {
-            string[] baseList = {"Count", "Capacity", "Item"};
-
             List<PropertyEntity> object1Properties = GetCurrentProperties(parms, parms.Object1, parms.Object1Type);
             List<PropertyEntity> object2Properties = GetCurrentProperties(parms, parms.Object2, parms.Object2Type);
 
             foreach (PropertyEntity propertyEntity in object1Properties)
             {
-                if (ignoreBaseList && baseList.Contains(propertyEntity.Name))
+                if (ignoreBaseList && _baseList.Contains(propertyEntity.Name))
                     continue;
                     
                 CompareProperty(parms, propertyEntity, object2Properties);
