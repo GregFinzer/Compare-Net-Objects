@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using KellermanSoftware.CompareNetObjects;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses;
@@ -523,6 +524,98 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             if (!result.AreEqual)
                 throw new Exception(result.DifferencesString);
+        }
+
+        [Test]
+        public void CompareListsTwoDifferentListTypes()
+        {
+            List<Person> list1 = new List<Person>();
+            list1.Add(new Person(){Name="Logan 5"});
+            list1.Add(new Person(){Name="Francis 7"});
+
+            NewList<Person> list2 = new NewList<Person>(list1);
+
+            ComparisonConfig config = new ComparisonConfig();
+            config.IgnoreObjectTypes = true;
+
+            CompareLogic compareLogic = new CompareLogic(config);
+            var result = compareLogic.Compare(list1, list2);
+            Assert.IsTrue(result.AreEqual);
+
+            list2.Add(new Person(){Name="Roger 4"});
+
+            result = compareLogic.Compare(list1, list2);
+            Assert.IsFalse(result.AreEqual);
+        }
+
+        private class NewList<T> : IList<T>
+        {
+            private readonly IList<T> _wrappedList;
+
+            public NewList(IEnumerable<T> list)
+            {
+                _wrappedList = new List<T>(list);;
+            }
+
+            public IEnumerator<T> GetEnumerator()
+            {
+                return _wrappedList.GetEnumerator();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return _wrappedList.GetEnumerator();
+            }
+
+            public void Add(T item)
+            {
+                _wrappedList.Add(item);
+            }
+
+            public void Clear()
+            {
+                _wrappedList.Clear();
+            }
+
+            public bool Contains(T item)
+            {
+                return _wrappedList.Contains(item);
+            }
+
+            public void CopyTo(T[] array, int arrayIndex)
+            {
+                _wrappedList.CopyTo(array, arrayIndex);
+            }
+
+            public bool Remove(T item)
+            {
+                return _wrappedList.Remove(item);
+            }
+
+            public int Count => _wrappedList.Count;
+
+            public bool IsReadOnly => _wrappedList.IsReadOnly;
+
+            public int IndexOf(T item)
+            {
+                return _wrappedList.IndexOf(item);
+            }
+
+            public void Insert(int index, T item)
+            {
+                _wrappedList.Insert(index, item);
+            }
+
+            public void RemoveAt(int index)
+            {
+                _wrappedList.RemoveAt(index);
+            }
+
+            public T this[int index]
+            {
+                get => _wrappedList[index];
+                set => _wrappedList[index] = value;
+            }
         }
 
         #endregion
