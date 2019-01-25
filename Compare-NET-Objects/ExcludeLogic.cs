@@ -34,7 +34,7 @@ namespace KellermanSoftware.CompareNetObjects
                     return true;
 
                 //Wildcard member
-                if (ExcludedByWildcard(config, info))
+                if (config.HasWildcardMembersToExclude() && ExcludedByWildcard(config, info))
                     return true;
             }
 
