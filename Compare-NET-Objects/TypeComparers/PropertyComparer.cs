@@ -85,7 +85,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             }
             else
             {
-                _indexerComparer.CompareIndexer(parms, info);
+                _indexerComparer.CompareIndexer(parms, info, secondObjectInfo);
                 return;
             }
 

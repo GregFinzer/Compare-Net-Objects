@@ -24,22 +24,24 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         /// <summary>
         /// Compare an integer indexer
         /// </summary>
-        public void CompareIndexer(CompareParms parms, PropertyEntity info)
+        public void CompareIndexer(CompareParms parms, PropertyEntity info, PropertyEntity secondObjectInfo)
         {
             if (info == null)
                 throw new ArgumentNullException("info");
 #if !NETSTANDARD
             var type = info.ReflectedType;
+            var type2 = secondObjectInfo.ReflectedType;
 #else
             var type = info.DeclaringType;
+            var type2 = secondObjectInfo.DeclaringType;
 #endif
-            if (type == null)
+            if (type == null || type2 == null)
                 throw new ArgumentNullException("info");
 
             int indexerCount1 = (int)type.GetProperty("Count").GetGetMethod().Invoke(parms.Object1, new object[] { });
-            int indexerCount2 = (int)type.GetProperty("Count").GetGetMethod().Invoke(parms.Object2, new object[] { });
+            int indexerCount2 = (int)type2.GetProperty("Count").GetGetMethod().Invoke(parms.Object2, new object[] { });
 
-            bool differentCounts = IndexersHaveDifferentLength(parms, info);
+            bool differentCounts = IndexersHaveDifferentLength(parms, info, secondObjectInfo);
 
             if (parms.Result.ExceededDifferences)
                 return;
@@ -47,7 +49,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             if (parms.Config.IgnoreCollectionOrder)
             {
                 var enumerable1 = new IndexerCollectionLooper(parms.Object1, info.PropertyInfo, indexerCount1);
-                var enumerable2 = new IndexerCollectionLooper(parms.Object2, info.PropertyInfo, indexerCount2);
+                var enumerable2 = new IndexerCollectionLooper(parms.Object2, secondObjectInfo.PropertyInfo, indexerCount2);
 
                 CompareParms childParms = new CompareParms
                 {
@@ -75,7 +77,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                     object objectValue2 = null;
 
                     if (i < indexerCount2)
-                        objectValue2 = info.PropertyInfo.GetValue(parms.Object2, new object[] { i });
+                        objectValue2 = secondObjectInfo.PropertyInfo.GetValue(parms.Object2, new object[] { i });
 
                     CompareParms childParms = new CompareParms
                     {
@@ -99,7 +101,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                     for (int j = indexerCount1; j < indexerCount2; j++)
                     {
                         currentCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb, info.Name, string.Empty, j);
-                        object objectValue2 = info.PropertyInfo.GetValue(parms.Object2, new object[] { j });
+                        object objectValue2 =  secondObjectInfo.PropertyInfo.GetValue(parms.Object2, new object[] { j });
 
                         CompareParms childParms = new CompareParms
                         {
@@ -121,21 +123,23 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             }
         }
 
-        private bool IndexersHaveDifferentLength(CompareParms parms, PropertyEntity info)
+        private bool IndexersHaveDifferentLength(CompareParms parms, PropertyEntity info, PropertyEntity secondObjectInfo)
         {
             if (info == null)
                 throw new ArgumentNullException("info");
 
 #if !NETSTANDARD
             var type = info.ReflectedType;
+            var type2 = secondObjectInfo.ReflectedType;
 #else
             var type = info.DeclaringType;
+            var type2 = secondObjectInfo.DeclaringType;
 #endif
-            if (type == null)
+            if (type == null || type2 == null)
                 throw new ArgumentNullException("info");
 
             int indexerCount1 = (int)type.GetProperty("Count").GetGetMethod().Invoke(parms.Object1, new object[] { });
-            int indexerCount2 = (int)type.GetProperty("Count").GetGetMethod().Invoke(parms.Object2, new object[] { });
+            int indexerCount2 = (int)type2.GetProperty("Count").GetGetMethod().Invoke(parms.Object2, new object[] { });
 
             if (indexerCount1 != indexerCount2)
             {
