@@ -95,6 +95,7 @@ namespace KellermanSoftware.CompareNetObjects.Reports
         {
             TextWriter writer = new StreamWriter(stream);
             WriteItOut(differences, writer);
+            writer.Flush();
 
             if (stream.CanSeek)
                 stream.Seek(0, SeekOrigin.Begin);
