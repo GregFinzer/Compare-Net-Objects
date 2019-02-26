@@ -63,6 +63,7 @@ dotnet add package CompareNETObjects
 * WinMerge Report
 * CSV Report
 * User Friendly Report 
+* HTML Report
 
 ## Options
 * Ability to IgnoreCollectionOrder to compare lists of different lengths
@@ -71,6 +72,7 @@ dotnet add package CompareNETObjects
 * Ability to ignore specific members by name or by wildcard
 * Interface member filtering
 * Ability to treat string.empty and null as equal
+* Ability to ignore string leading and trailing whitespace
 * Case insensitive option for strings
 * Ignore millisecond differences between DateTime values or DateTimeOffset values
 * Precision for double or decimal values
