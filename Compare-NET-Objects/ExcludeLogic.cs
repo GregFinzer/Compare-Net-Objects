@@ -8,7 +8,7 @@ namespace KellermanSoftware.CompareNetObjects
     /// <summary>
     /// Exclude types depending upon the configuration
     /// </summary>
-    public static class ExcludeLogic 
+    public static class ExcludeLogic
     {
         /// <summary>
         /// Returns true if the property or field should be excluded
@@ -21,7 +21,7 @@ namespace KellermanSoftware.CompareNetObjects
             //Only compare specific member names
             if (config.MembersToInclude.Count > 0 && !config.MembersToInclude.Contains(info.Name))
                 return true;
-            
+
             if (config.MembersToIgnore.Count > 0)
             {
                 //Ignore by type.membername
@@ -38,9 +38,34 @@ namespace KellermanSoftware.CompareNetObjects
                     return true;
             }
 
+            if (config.FieldAttributesToIgnore.Count > 0)
+            {
+                //Ignore by FieldAttribute
+
+                var attrs = info.GetCustomAttributes(true);
+                foreach (var ignoreField in config.FieldAttributesToIgnore)
+                {
+
+                    var found = false;
+                    foreach (var attr in attrs)
+                    {
+                        var TypeId = attr.GetType().GetProperty("TypeId").GetValue(attr, null);
+                        var attrName = (string)TypeId.GetType().GetProperty("Name").GetValue(TypeId, null);
+                        var field = ignoreField.StartsWith("!") ? ignoreField.Substring(1) : ignoreField;
+                        if (field == attrName || field + "Attribute" == attrName)
+                        {
+                            found = true;
+                        }
+
+                    }
+                    if ((ignoreField.StartsWith("!") && !found) || !ignoreField.StartsWith("!") && found)
+                        return true;
+                }
+            }
 
             if (IgnoredByAttribute(config, info))
                 return true;
+
 
             return false;
         }

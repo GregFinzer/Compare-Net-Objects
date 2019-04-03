@@ -16,7 +16,7 @@ namespace KellermanSoftware.CompareNetObjects
 #endif
     public class ComparisonConfig
     {
-#region Class Variables
+        #region Class Variables
         private Action<Difference> _differenceCallback;
         private int _maxStructDepth;
 
@@ -64,7 +64,7 @@ namespace KellermanSoftware.CompareNetObjects
 #if !NETSTANDARD
         [DataMember]
 #endif
-        public bool CompareDateTimeOffsetWithOffsets  { get; set; }
+        public bool CompareDateTimeOffsetWithOffsets { get; set; }
 
         /// <summary>
         /// When comparing struct, the depth to compare for children.  The default is 2, the max is 5
@@ -384,7 +384,7 @@ namespace KellermanSoftware.CompareNetObjects
         [DataMember]
 #endif
         public double DoublePrecision { get; set; }
-        
+
         /// <summary>
         /// The precision to compare decimal values.  The default is 0.
         /// </summary>
@@ -415,6 +415,18 @@ namespace KellermanSoftware.CompareNetObjects
             _hasWildcardInMembersToIgnore = MembersToIgnore.Any(x => x.IndexOf("*") > -1);
             return _hasWildcardInMembersToIgnore.Value;
         }
+
+        /// <summary>
+        /// Ignore Properties based in FieldAttributes, . Case sensitive. The default is to compare all members.
+        /// Support's Not (!) operator
+        /// </summary>
+        /// <example>FieldAttributesToIgnore.Add("DataMember,NotMapped");
+        /// FieldAttributesToIgnore.Add("!DataMember");
+        /// </example>
+#if !NETSTANDARD
+        [DataMember]
+#endif
+        public List<string> FieldAttributesToIgnore { get; set; }
 
         /// <summary>
         /// Reset the configuration to the default values
@@ -461,7 +473,9 @@ namespace KellermanSoftware.CompareNetObjects
             MaxStructDepth = 2;
             CaseSensitive = true;
             IgnoreStringLeadingTrailingWhitespace = false;
+            FieldAttributesToIgnore = new List<string>();
+
         }
-#endregion
+        #endregion
     }
 }
