@@ -5,9 +5,11 @@ using KellermanSoftware.CompareNetObjectsTests.Attributes;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses;
 using NUnit.Framework;
 using System.Drawing;
+using System.Dynamic;
 using System.Linq;
 using System.Reflection;
 using KellermanSoftware.CompareNetObjects.Reports;
+using Newtonsoft.Json;
 using Point = System.Drawing.Point;
 
 #if !NETSTANDARD
@@ -45,6 +47,50 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #endregion
 
         #region Tests
+
+        //public class abc
+        //{
+        //    public ExpandoObject ex;
+        //}
+
+        //[Test]
+        //public void test()
+        //{
+        //    abc a = new abc()
+        //    {
+        //        ex = JsonConvert.DeserializeObject("{"test": "1"}")
+        //    };
+
+        //    abc b = new abc()
+        //    {
+        //        ex = new ExpandoObject()
+        //    };
+
+        //    CompareLogic compareLogic = new CompareLogic();
+        //    compareLogic.Config.MembersToIgnore.Add("*test*");
+        //    compareLogic.Config.MembersToIgnore.Add("*ex.test*");
+        //    compareLogic.Config.MembersToIgnore.Add("*.ex.test*");
+        //    compareLogic.Config.MembersToIgnore.Add("*abc.ex.test*");
+        //    compareLogic.Config.MembersToIgnore.Add("*.abc.ex.test*");
+        //    compareLogic.Config.MembersToIgnore.Add("test*");
+        //    compareLogic.Config.MembersToIgnore.Add("ex.test*");
+        //    compareLogic.Config.MembersToIgnore.Add(".ex.test*");
+        //    compareLogic.Config.MembersToIgnore.Add("abc.ex.test*");
+        //    compareLogic.Config.MembersToIgnore.Add(".abc.ex.test*");
+        //    compareLogic.Config.MembersToIgnore.Add("*test");
+        //    compareLogic.Config.MembersToIgnore.Add("*ex.test");
+        //    compareLogic.Config.MembersToIgnore.Add("*.ex.test");
+        //    compareLogic.Config.MembersToIgnore.Add("*abc.ex.test");
+        //    compareLogic.Config.MembersToIgnore.Add("*.abc.ex.test");
+        //    compareLogic.Config.MembersToIgnore.Add("test");
+        //    compareLogic.Config.MembersToIgnore.Add("ex.test");
+        //    compareLogic.Config.MembersToIgnore.Add(".ex.test");
+        //    compareLogic.Config.MembersToIgnore.Add("abc.ex.test");
+        //    compareLogic.Config.MembersToIgnore.Add(".abc.ex.test");
+        //    compareLogic.Config.MaxDifferences = 50;
+
+        //    ComparisonResult result = compareLogic.Compare(a, b);
+        //}
 
         [Test]
         public void When_CompareDateTimeOffsetWithOffsets_Is_False_Do_Not_Compare_Offsets()
