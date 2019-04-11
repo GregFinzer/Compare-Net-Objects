@@ -47,6 +47,37 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
+        public void When_CompareDateTimeOffsetWithOffsets_Is_False_Do_Not_Compare_Offsets()
+        {
+            DateTime now = DateTime.Now;
+            DateTimeOffset date1 = new DateTimeOffset(
+                now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second, new TimeSpan(0, 0, 0));
+            DateTimeOffset date2 = new DateTimeOffset(
+                now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second, new TimeSpan(3, 0, 0));
+
+            _compare.Config.CompareDateTimeOffsetWithOffsets = false;
+            ComparisonResult result = _compare.Compare(date1, date2);
+
+            if (!result.AreEqual)
+                throw new Exception(result.DifferencesString);
+        }
+
+        [Test]
+        public void When_CompareDateTimeOffsetWithOffsets_Is_True_Compare_Offsets()
+        {
+            DateTime now = DateTime.Now;
+            DateTimeOffset date1 = new DateTimeOffset(
+                now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second, new TimeSpan(0, 0, 0));
+            DateTimeOffset date2 = new DateTimeOffset(
+                now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second, new TimeSpan(3, 0, 0));
+
+            _compare.Config.CompareDateTimeOffsetWithOffsets = true;
+            ComparisonResult result = _compare.Compare(date1, date2);
+
+            Assert.IsFalse(result.AreEqual);
+        }
+
+        [Test]
         public void TimespanShouldCompareWhenCompareChildrenIsFalse()
         {
             //Arrange

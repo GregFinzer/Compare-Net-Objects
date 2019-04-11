@@ -39,9 +39,24 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             DateTimeOffset date1 = (DateTimeOffset)parms.Object1;
             DateTimeOffset date2 = (DateTimeOffset)parms.Object2;
 
-            if (Math.Abs((date1 - date2).TotalMilliseconds) > parms.Config.MaxMillisecondsDateDifference 
-                && (!parms.Config.CompareDateTimeOffsetWithOffsets || date1.Offset == date2.Offset))
+            if (parms.Config.CompareDateTimeOffsetWithOffsets 
+                && Math.Abs((date1 - date2).TotalMilliseconds) > parms.Config.MaxMillisecondsDateDifference)
+            {
                 AddDifference(parms);
+            }
+            else if (!parms.Config.CompareDateTimeOffsetWithOffsets)
+            {                
+                DateTime date1NoOffset = new DateTime(date1.Year, date1.Month, date1.Day, date1.Hour, date1.Minute, date1.Second);
+                date1NoOffset = date1NoOffset.AddMilliseconds(date1.Millisecond);
+
+                DateTime date2NoOffset = new DateTime(date2.Year, date2.Month, date2.Day, date2.Hour, date2.Minute, date2.Second);
+                date2NoOffset = date2NoOffset.AddMilliseconds(date2.Millisecond);
+
+                if (Math.Abs(date1NoOffset.Subtract(date2NoOffset).TotalMilliseconds) > parms.Config.MaxMillisecondsDateDifference)
+                {
+                    AddDifference(parms);
+                }
+            }
 
         }
     }
