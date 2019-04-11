@@ -1,6 +1,4 @@
-﻿#if !NETSTANDARD
-
-using System;
+﻿using System;
 using System.IO;
 
 namespace KellermanSoftware.CompareNetObjects
@@ -16,7 +14,12 @@ namespace KellermanSoftware.CompareNetObjects
         /// <returns></returns>
         public static string GetCurrentDirectory()
         {
-            return PathSlash(AppDomain.CurrentDomain.BaseDirectory);
+#if NETSTANDARD
+            string basePath = AppContext.BaseDirectory;
+#else
+            string basePath = AppDomain.CurrentDomain.BaseDirectory;
+#endif
+            return PathSlash(basePath);
         }
 
         /// <summary>
@@ -38,4 +41,4 @@ namespace KellermanSoftware.CompareNetObjects
     }
 }
 
-#endif
+

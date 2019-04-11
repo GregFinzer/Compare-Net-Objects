@@ -1,4 +1,4 @@
-﻿#if !NETSTANDARD
+﻿
 
 using System;
 using System.Collections.Generic;
@@ -75,4 +75,4 @@ namespace KellermanSoftware.CompareNetObjects.Reports
     }
 }
 
-#endif
+

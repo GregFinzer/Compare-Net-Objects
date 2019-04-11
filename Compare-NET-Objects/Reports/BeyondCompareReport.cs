@@ -1,4 +1,4 @@
-﻿#if !NETSTANDARD
+﻿
 
 using System;
 using System.Diagnostics;
@@ -14,6 +14,12 @@ namespace KellermanSoftware.CompareNetObjects.Reports
     {
         private const string APPLICATION_NAME = "BCompare.exe";
 
+#if NETSTANDARD1
+        public override void LaunchApplication(string expectedFilePath, string actualFilePath)
+        {
+            throw new NotSupportedException();
+        }
+#else
         /// <summary>
         /// Launch the WinMerge
         /// </summary>
@@ -21,6 +27,9 @@ namespace KellermanSoftware.CompareNetObjects.Reports
         /// <param name="actualFilePath">The path to write the actual results</param>
         public override void LaunchApplication(string expectedFilePath, string actualFilePath)
         {
+            if (!EnvironmentHelper.IsWindows())
+                throw new NotSupportedException();
+
             if (String.IsNullOrEmpty(Path.GetDirectoryName(expectedFilePath)))
                 expectedFilePath = Path.Combine(FileHelper.GetCurrentDirectory(), expectedFilePath);
 
@@ -36,6 +45,7 @@ namespace KellermanSoftware.CompareNetObjects.Reports
 
             ProcessHelper.Shell(beyondComparePath, args, ProcessWindowStyle.Normal, false);
         }
+#endif
 
         /// <summary>
         /// Find the path of the Beyond Compare executable
@@ -79,4 +89,4 @@ namespace KellermanSoftware.CompareNetObjects.Reports
     }
 }
 
-#endif
+

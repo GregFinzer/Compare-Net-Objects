@@ -24,7 +24,6 @@ namespace KellermanSoftware.CompareNetObjects.Reports
         /// </summary>
         public string ChangedToText { get; set; }
 
-#if !NETSTANDARD
         /// <summary>
         /// Output the differences to a file
         /// </summary>
@@ -43,7 +42,6 @@ namespace KellermanSoftware.CompareNetObjects.Reports
                 }
             }   
         }
-#endif
 
         private string FormatProperty(Difference difference)
         {
@@ -99,16 +97,25 @@ namespace KellermanSoftware.CompareNetObjects.Reports
             return sb.ToString();
         }
 
-        #if !NETSTANDARD
+#if NETSTANDARD1
+        public void LaunchApplication(string filePath)
+        {
+            throw new NotSupportedException();
+        }	
+#else
+
         /// <summary>
         /// Launch the application for showing the file
         /// </summary>
         /// <param name="filePath">The file path</param>
         public void LaunchApplication(string filePath)
         {
+            if (!EnvironmentHelper.IsWindows())
+                throw new NotSupportedException();
+
             ProcessHelper.Shell(filePath, string.Empty, ProcessWindowStyle.Normal, false);
         }
-        #endif
+#endif
 
     }
 }

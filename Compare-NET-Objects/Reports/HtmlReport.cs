@@ -24,7 +24,6 @@ namespace KellermanSoftware.CompareNetObjects.Reports
         /// </summary>
         public HtmlConfig Config { get; set; }
 
-#if !NETSTANDARD
         /// <summary>
         /// Output the differences to a file
         /// </summary>
@@ -43,7 +42,6 @@ namespace KellermanSoftware.CompareNetObjects.Reports
                 }
             }
         }
-#endif
 
         private void WriteItOut(List<Difference> differences, TextWriter writer)
         {
@@ -75,13 +73,22 @@ namespace KellermanSoftware.CompareNetObjects.Reports
             }
         }
 
-#if !NETSTANDARD
+#if NETSTANDARD1
+        public void LaunchApplication(string filePath)
+        {
+            throw new NotSupportedException();
+        }	
+#else
+
         /// <summary>
         /// Launch the WinMerge
         /// </summary>
         /// <param name="filePath">The differences file</param>
         public void LaunchApplication(string filePath)
         {
+            if (!EnvironmentHelper.IsWindows())
+                throw new NotSupportedException();
+
             ProcessHelper.Shell(filePath, string.Empty, ProcessWindowStyle.Normal, false);
         }
 #endif
