@@ -37,6 +37,17 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
+        public void RubansDifference()
+        {
+            double double1 = 32299999.1;
+            double double2 = 32300000.2;
+            _compare.Config.DoublePrecision =  .0001;
+            ComparisonResult result = _compare.Compare(double1, double2);
+
+            Assert.IsTrue(result.AreEqual);
+        }
+
+        [Test]
         public void CompareDoubleSlightlyOff()
         {
             Double double1 = 1.09;
