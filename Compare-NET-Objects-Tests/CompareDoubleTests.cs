@@ -44,7 +44,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
             _compare.Config.DoublePrecision =  .0001;
             ComparisonResult result = _compare.Compare(double1, double2);
 
-            Assert.IsTrue(result.AreEqual);
+            Assert.IsFalse(result.AreEqual);
         }
 
         [Test]

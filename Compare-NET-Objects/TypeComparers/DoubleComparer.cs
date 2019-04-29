@@ -39,10 +39,10 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             Double double1 = (Double)parms.Object1;
             Double double2 = (Double)parms.Object2;
 
-            double difference = Math.Abs(double1 * parms.Config.DoublePrecision);
-
-            if (Math.Abs(double1 - double2) > difference)
+            if (Math.Abs(double1 - double2) > parms.Config.DoublePrecision)
+            {
                 AddDifference(parms);
+            }
         }
     }
 }

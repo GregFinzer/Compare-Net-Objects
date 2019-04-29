@@ -39,9 +39,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
            decimal decimal1 = (decimal)parms.Object1;
            decimal decimal2 = (decimal)parms.Object2;
 
-           decimal difference = Math.Abs(decimal1 * parms.Config.DecimalPrecision);
-
-           if (Math.Abs(decimal1 - decimal2) > difference)
+           if (Math.Abs(decimal1 - decimal2) > parms.Config.DecimalPrecision)
                 AddDifference(parms);
         }
     }
