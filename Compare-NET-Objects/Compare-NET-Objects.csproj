@@ -20,11 +20,14 @@
     <PackageTags>compare comparison equality equal deep objects difference compareobjects deepequal deepequals</PackageTags>
     <Description>What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.</Description>
     <Authors>KellermanSoftware</Authors>
-    <Version>4.58.0</Version>
-    <AssemblyVersion>4.58.0.0</AssemblyVersion>
+    <Version>4.59.0</Version>
+    <AssemblyVersion>4.59.0.0</AssemblyVersion>
     <NeutralLanguage>en-US</NeutralLanguage>    
     <Company>Kellerman Software</Company>
-    <PackageReleaseNotes>New feature HTMLReporting, IgnoreStringLeadingTrailingWhitespace.  Fixes TimeSpan comparison, indexer comparison, report output stream flush. References:  https://github.com/GregFinzer/Compare-Net-Objects/pull/123 https://github.com/GregFinzer/Compare-Net-Objects/issues/124 IgnoreStringLeadingTrailingWhitespace https://github.com/GregFinzer/Compare-Net-Objects/pull/129 https://github.com/GregFinzer/Compare-Net-Objects/pull/136 https://github.com/GregFinzer/Compare-Net-Objects/issues/137</PackageReleaseNotes>
+    <PackageReleaseNotes>Defect fixes.  https://github.com/GregFinzer/Compare-Net-Objects/issues/142
+https://github.com/GregFinzer/Compare-Net-Objects/issues/143
+https://github.com/GregFinzer/Compare-Net-Objects/issues/145
+https://github.com/GregFinzer/Compare-Net-Objects/issues/148</PackageReleaseNotes>
     <Copyright>Copyright © 2019 Kellerman Software</Copyright>
   </PropertyGroup>
   
