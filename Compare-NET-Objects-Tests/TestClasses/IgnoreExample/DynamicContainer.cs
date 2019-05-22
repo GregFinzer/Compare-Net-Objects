@@ -3,7 +3,7 @@
 
 namespace KellermanSoftware.CompareNetObjectsTests.TestClasses.IgnoreExample
 {
-    class DynamicContainer
+    public class DynamicContainer
     {
         public ExpandoObject expando;
     }

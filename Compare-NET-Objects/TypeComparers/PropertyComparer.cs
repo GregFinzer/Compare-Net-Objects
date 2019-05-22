@@ -64,6 +64,10 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             if (info.PropertyInfo != null && ExcludeLogic.ShouldExcludeMember(parms.Config, info.PropertyInfo))
                 return;
 
+            //This is a dynamic property to be excluded on an expando object
+            if (info.IsDynamic && ExcludeLogic.ShouldExcludeDynamicMember(parms.Config, info.Name, info.DeclaringType))
+                return;
+
             //If we should ignore read only, skip it
             if (!parms.Config.CompareReadOnly && info.CanWrite == false)
                 return;

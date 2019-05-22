@@ -1,4 +1,5 @@
-﻿using System.Dynamic;
+﻿using System;
+using System.Dynamic;
 using KellermanSoftware.CompareNetObjects;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses.IgnoreExample;
@@ -35,35 +36,17 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             DynamicContainer b = new DynamicContainer()
             {
-                expando = new ExpandoObject()
+                expando = JsonConvert.DeserializeObject<ExpandoObject>("{\"test\": \"2\"}")
             };
 
             CompareLogic compareLogic = new CompareLogic();
-            compareLogic.Config.MembersToIgnore.Add("*test*");
-            compareLogic.Config.MembersToIgnore.Add("*expando.test*");
-            compareLogic.Config.MembersToIgnore.Add("*.expando.test*");
-            compareLogic.Config.MembersToIgnore.Add("*DynamicContainer.expando.test*");
-            compareLogic.Config.MembersToIgnore.Add("*.DynamicContainer.expando.test*");
-            compareLogic.Config.MembersToIgnore.Add("test*");
-            compareLogic.Config.MembersToIgnore.Add("expando.test*");
-            compareLogic.Config.MembersToIgnore.Add(".expando.test*");
-            compareLogic.Config.MembersToIgnore.Add("DynamicContainer.expando.test*");
-            compareLogic.Config.MembersToIgnore.Add(".DynamicContainer.expando.test*");
-            compareLogic.Config.MembersToIgnore.Add("*test");
-            compareLogic.Config.MembersToIgnore.Add("*expando.test");
-            compareLogic.Config.MembersToIgnore.Add("*.expando.test");
-            compareLogic.Config.MembersToIgnore.Add("*DynamicContainer.expando.test");
-            compareLogic.Config.MembersToIgnore.Add("*.DynamicContainer.expando.test");
             compareLogic.Config.MembersToIgnore.Add("test");
-            compareLogic.Config.MembersToIgnore.Add("expando.test");
-            compareLogic.Config.MembersToIgnore.Add(".expando.test");
-            compareLogic.Config.MembersToIgnore.Add("DynamicContainer.expando.test");
-            compareLogic.Config.MembersToIgnore.Add(".DynamicContainer.expando.test");
             compareLogic.Config.CustomComparers.Add(new StringMightBeFloat(RootComparerFactory.GetRootComparer()));
             compareLogic.Config.MaxDifferences = 50;
 
             ComparisonResult result = compareLogic.Compare(a, b);
 
+            Console.WriteLine(result.DifferencesString);
             Assert.IsTrue(result.AreEqual);
         }
     }

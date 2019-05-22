@@ -11,6 +11,38 @@ namespace KellermanSoftware.CompareNetObjects
     public static class ExcludeLogic 
     {
         /// <summary>
+        /// Exclude a member of an expando object
+        /// </summary>
+        /// <param name="config"></param>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool ShouldExcludeDynamicMember(ComparisonConfig config, string name, Type type)
+        {
+            //Only compare specific member names
+            if (config.MembersToInclude.Count > 0 && !config.MembersToInclude.Contains(name))
+                return true;
+
+            if (config.MembersToIgnore.Count > 0)
+            {
+                //Ignore by type.membername
+                if (type != null
+                    && config.MembersToIgnore.Contains(type.Name + "." + name))
+                    return true;
+
+                //Ignore exactly by the name of the member
+                if (config.MembersToIgnore.Count > 0 && config.MembersToIgnore.Contains(name))
+                    return true;
+
+                //Wildcard member
+                if (config.HasWildcardMembersToExclude() && ExcludedByWildcard(config, name))
+                    return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// Returns true if the property or field should be excluded
         /// </summary>
         /// <param name="config"></param>
@@ -34,7 +66,7 @@ namespace KellermanSoftware.CompareNetObjects
                     return true;
 
                 //Wildcard member
-                if (config.HasWildcardMembersToExclude() && ExcludedByWildcard(config, info))
+                if (config.HasWildcardMembersToExclude() && ExcludedByWildcard(config, info.Name))
                     return true;
             }
 
@@ -49,9 +81,9 @@ namespace KellermanSoftware.CompareNetObjects
         /// Returns true if the property or field should be exluded by wilcard
         /// </summary>
         /// <param name="config"></param>
-        /// <param name="info"></param>
+        /// <param name="name"></param>
         /// <returns></returns>
-        public static bool ExcludedByWildcard(ComparisonConfig config, MemberInfo info)
+        public static bool ExcludedByWildcard(ComparisonConfig config, string name)
         {
             foreach (var memberWildcard in config.MembersToIgnore)
             {
@@ -60,20 +92,20 @@ namespace KellermanSoftware.CompareNetObjects
                 if (memberWildcard.StartsWith("*") && memberWildcard.EndsWith("*") && memberWildcard.Length > 2)
                 {
                     small = memberWildcard.Substring(1, memberWildcard.Length - 2);
-                    if (info.Name.Contains(small))
+                    if (name.Contains(small))
                     {
                         return true;
                     }
                 }
                 else if (memberWildcard.StartsWith("*")
                          && memberWildcard.Length >= 2
-                         && info.Name.EndsWith(memberWildcard.Substring(1)))
+                         && name.EndsWith(memberWildcard.Substring(1)))
                 {
                     return true;
                 }
                 else if (memberWildcard.EndsWith("*")
                          && memberWildcard.Length >= 2
-                         && info.Name.StartsWith(memberWildcard.Substring(0, memberWildcard.Length - 2)))
+                         && name.StartsWith(memberWildcard.Substring(0, memberWildcard.Length - 2)))
                 {
                     return true;
                 }
