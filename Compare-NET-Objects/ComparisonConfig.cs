@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using KellermanSoftware.CompareNetObjects.TypeComparers;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
 #if !NETSTANDARD
 using System.Runtime.Serialization;
 #endif
@@ -164,6 +166,42 @@ namespace KellermanSoftware.CompareNetObjects
         [DataMember]
 #endif
         public List<string> MembersToIgnore { get; set; }
+
+
+        /// <summary>
+        /// Ignore property during the comparison.  Property is specific to the generic type.
+        /// </summary>
+        /// <param name="ignoredProperty"></param>
+        /// <typeparam name="TClass"></typeparam>
+        /// <exception cref="ArgumentException"></exception>
+        /// <example>IgnoreProperty&lt;Person&gt;(x => x.Name)</example>
+        public void IgnoreProperty<TClass>(Expression<Func<TClass, object>> ignoredProperty)
+        {
+            LambdaExpression lambda = ignoredProperty;
+            MemberExpression memberExpression;
+
+            if (lambda.Body is UnaryExpression unaryExpression)
+            {
+                memberExpression = unaryExpression.Operand as MemberExpression ??
+                                   // catches methods, maybe other things
+                                   throw new ArgumentException(
+                                       $"IgnoreProperty can only be used with properties. {ignoredProperty} is not a property.");
+            }
+            else
+            {
+                memberExpression = (MemberExpression) lambda.Body;
+            }
+
+            var propInfo = memberExpression.Member as PropertyInfo;
+            if (propInfo == null)
+                // catches fields, maybe other things
+            {
+                throw new ArgumentException($"IgnoreProperty can only be used with properties. {ignoredProperty} is not a property.");
+            }
+
+            var name = propInfo.Name;
+            MembersToIgnore.Add(typeof(TClass).Name + "." + name);
+        }
 
         /// <summary>
         /// Only compare elements by name for Data Table Names, Data Table Column Names, properties and fields. Case sensitive. The default is to compare all members.

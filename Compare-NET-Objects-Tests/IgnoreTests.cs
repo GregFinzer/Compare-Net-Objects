@@ -27,6 +27,52 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
 
         [Test]
+        public void IgnoreTypeMemberUsingIgnoreProperty()
+        {
+            ComparisonConfig config = new ComparisonConfig();
+            config.IgnoreProperty<Person>(x => x.Name);
+
+            Person person1 = new Person() { Name = "Darth Vader" };
+            Person person2 = new Person() { Name = "Anakin Skywalker" };
+
+            CompareLogic compare = new CompareLogic(config);
+
+            var result = compare.Compare(person1, person2);
+            Assert.IsTrue(result.AreEqual);
+        }
+
+        [Test]
+        public void IgnoreUnaryTypeMemberUsingIgnoreProperty()
+        {
+            ComparisonConfig config = new ComparisonConfig();
+            config.IgnoreProperty<Person>(x => x.DateModified);
+
+            Person person1 = new Person() { DateModified = new DateTime(2019, 5, 23) };
+            Person person2 = new Person() { DateModified = new DateTime(2015, 1, 2)};
+
+            CompareLogic compare = new CompareLogic(config);
+
+            var result = compare.Compare(person1, person2);
+            Assert.IsTrue(result.AreEqual);
+        }
+
+        [Test]
+        public void UsingIgnorePropertyThrowsWithField()
+        {
+            ComparisonConfig config = new ComparisonConfig();
+            Assert.Throws<ArgumentException>(() =>
+                config.IgnoreProperty<Person>(x => x.DateCreated));
+        }
+
+        [Test]
+        public void UsingIgnorePropertyThrowsWithMethod()
+        {
+            ComparisonConfig config = new ComparisonConfig();
+            Assert.Throws<ArgumentException>(() =>
+                config.IgnoreProperty<Person>(x => x.GetAge()));
+        }
+
+        [Test]
         public void ExpandoObject()
         {
             DynamicContainer a = new DynamicContainer()
