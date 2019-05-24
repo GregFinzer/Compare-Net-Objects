@@ -17,8 +17,19 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             set;
         }
 
+        public DateTime DateModified
+        {
+            get;
+            set;
+        }
+
         public string LastName { get; set; }
 
         public int Age { get; set; }
+
+        public int GetAge()
+        {
+            return Age;
+        }
     }
 }
