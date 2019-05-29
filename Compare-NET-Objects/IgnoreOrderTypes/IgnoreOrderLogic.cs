@@ -302,8 +302,9 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                 case "Decimal":
                     return ((decimal)o).ToString("G29");
                 case "Double":
-                case "Single":
                     return ((double)o).ToString("G");
+                case "Single":
+                    return ((float)o).ToString("G");
                 default:
                     return o.ToString();
             }
@@ -313,8 +314,9 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                 case TypeCode.Decimal:
                     return ((decimal)o).ToString("G29");
                 case TypeCode.Double:
-                case TypeCode.Single:
                     return ((double)o).ToString("G");
+                case TypeCode.Single:
+                    return ((float)o).ToString("G");
                 default:
                     return o.ToString();
             }
