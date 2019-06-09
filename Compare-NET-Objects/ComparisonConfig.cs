@@ -18,7 +18,7 @@ namespace KellermanSoftware.CompareNetObjects
 #endif
     public class ComparisonConfig
     {
-#region Class Variables
+        #region Class Variables
         private Action<Difference> _differenceCallback;
         private int _maxStructDepth;
 

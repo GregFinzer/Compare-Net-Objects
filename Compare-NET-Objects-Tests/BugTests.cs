@@ -6,6 +6,7 @@ using KellermanSoftware.CompareNetObjectsTests.TestClasses;
 using NUnit.Framework;
 using System.Drawing;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using KellermanSoftware.CompareNetObjects.Reports;
@@ -48,49 +49,36 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
         #region Tests
 
-        //public class abc
-        //{
-        //    public ExpandoObject ex;
-        //}
+#if !NETSTANDARD
+        [Test]
+        public void SaveAndLoadConfig()
+        {
+            //This is the comparison class
+            CompareLogic compareLogic = new CompareLogic();
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");
 
-        //[Test]
-        //public void test()
-        //{
-        //    abc a = new abc()
-        //    {
-        //        ex = JsonConvert.DeserializeObject("{"test": "1"}")
-        //    };
+            compareLogic.SaveConfiguration(filePath);
+            compareLogic.LoadConfiguration(filePath);
 
-        //    abc b = new abc()
-        //    {
-        //        ex = new ExpandoObject()
-        //    };
 
-        //    CompareLogic compareLogic = new CompareLogic();
-        //    compareLogic.Config.MembersToIgnore.Add("*test*");
-        //    compareLogic.Config.MembersToIgnore.Add("*ex.test*");
-        //    compareLogic.Config.MembersToIgnore.Add("*.ex.test*");
-        //    compareLogic.Config.MembersToIgnore.Add("*abc.ex.test*");
-        //    compareLogic.Config.MembersToIgnore.Add("*.abc.ex.test*");
-        //    compareLogic.Config.MembersToIgnore.Add("test*");
-        //    compareLogic.Config.MembersToIgnore.Add("ex.test*");
-        //    compareLogic.Config.MembersToIgnore.Add(".ex.test*");
-        //    compareLogic.Config.MembersToIgnore.Add("abc.ex.test*");
-        //    compareLogic.Config.MembersToIgnore.Add(".abc.ex.test*");
-        //    compareLogic.Config.MembersToIgnore.Add("*test");
-        //    compareLogic.Config.MembersToIgnore.Add("*ex.test");
-        //    compareLogic.Config.MembersToIgnore.Add("*.ex.test");
-        //    compareLogic.Config.MembersToIgnore.Add("*abc.ex.test");
-        //    compareLogic.Config.MembersToIgnore.Add("*.abc.ex.test");
-        //    compareLogic.Config.MembersToIgnore.Add("test");
-        //    compareLogic.Config.MembersToIgnore.Add("ex.test");
-        //    compareLogic.Config.MembersToIgnore.Add(".ex.test");
-        //    compareLogic.Config.MembersToIgnore.Add("abc.ex.test");
-        //    compareLogic.Config.MembersToIgnore.Add(".abc.ex.test");
-        //    compareLogic.Config.MaxDifferences = 50;
+            //Create a couple objects to compare
+            Person person1 = new Person();
+            person1.DateCreated = DateTime.Now;
+            person1.Name = "Greg";
 
-        //    ComparisonResult result = compareLogic.Compare(a, b);
-        //}
+            Person person2 = new Person();
+            person2.Name = "John";
+            person2.DateCreated = person1.DateCreated;
+
+            ComparisonResult result = compareLogic.Compare(person1, person2);
+
+            //These will be different, write out the differences
+            if (!result.AreEqual)
+                Console.WriteLine(result.DifferencesString);
+            else
+                Console.WriteLine("Objects are the same");
+        }
+#endif
 
         [Test]
         public void When_CompareDateTimeOffsetWithOffsets_Is_False_Do_Not_Compare_Offsets()

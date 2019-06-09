@@ -281,6 +281,7 @@ namespace KellermanSoftware.CompareNetObjects
             {
                 DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(ComparisonConfig));
                 Config = (ComparisonConfig)ser.ReadObject(stream);
+                Config.DifferenceCallback = d => { };
             }
         }
 
