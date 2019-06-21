@@ -24,6 +24,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
     {
         #region Class Variables
         private CompareLogic _compare;
+
         #endregion
 
         #region Setup/Teardown
@@ -48,6 +49,21 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #endregion
 
         #region Tests
+
+        [Test]
+        public void RefStructProperty()
+        {
+            var compareLogic = new CompareLogic(new ComparisonConfig
+            {
+                MembersToIgnore =
+                {
+                    "Item"
+                }
+            });
+
+            var differences = compareLogic.Compare(new RefStructClass(), new RefStructClass());
+            Assert.IsTrue(differences.AreEqual);
+        }
 
 #if !NETSTANDARD
         [Test]
