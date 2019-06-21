@@ -168,6 +168,9 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                     catch (System.Reflection.TargetInvocationException)
                     {
                     }
+                    catch (System.NotSupportedException)
+                    {
+                    }
                 }
 
                 propertyEntity.PropertyInfo = property;
