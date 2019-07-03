@@ -20,14 +20,19 @@
     <PackageTags>compare comparison equality equal deep objects difference compareobjects deepequal deepequals</PackageTags>
     <Description>What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.</Description>
     <Authors>KellermanSoftware</Authors>
-    <Version>4.59.0</Version>
-    <AssemblyVersion>4.59.0.0</AssemblyVersion>
+    <Version>4.61.0</Version>
+    <AssemblyVersion>4.61.0.0</AssemblyVersion>
     <NeutralLanguage>en-US</NeutralLanguage>    
     <Company>Kellerman Software</Company>
-    <PackageReleaseNotes>Defect fixes.  https://github.com/GregFinzer/Compare-Net-Objects/issues/142
-https://github.com/GregFinzer/Compare-Net-Objects/issues/143
-https://github.com/GregFinzer/Compare-Net-Objects/issues/145
-https://github.com/GregFinzer/Compare-Net-Objects/issues/148</PackageReleaseNotes>
+    <PackageReleaseNotes>Defect Fixes
+IgnoreOrder with Floats by @zhyy2008z https://github.com/GregFinzer/Compare-Net-Objects/issues/154
+Load Configuration Null Exception https://github.com/GregFinzer/Compare-Net-Objects/issues/158
+Ref Struct Exception https://github.com/GregFinzer/Compare-Net-Objects/issues/161
+
+New Features: 
+Lambda Ignore Properties by @ajepst.  https://github.com/GregFinzer/Compare-Net-Objects/pull/153
+Generic type custom comparer from @goyzhang.  https://github.com/GregFinzer/Compare-Net-Objects/pull/159
+</PackageReleaseNotes>
     <Copyright>Copyright © 2019 Kellerman Software</Copyright>
   </PropertyGroup>
   
