@@ -14,7 +14,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
     public class IgnoreOrderLogic : BaseComparer
     {
         private readonly RootComparer _rootComparer;
-        private readonly List<string> _alreadyCompared = new List<string>();
+        private readonly Dictionary<string, bool> _alreadyCompared = new Dictionary<string, bool>();
 
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
 
                 if (enumerator2.MoveNext())
                 {
-                    if (_alreadyCompared.Contains(matchIndex1))
+                    if (_alreadyCompared.ContainsKey(matchIndex1))
                     {
                         continue;
                     }
@@ -119,7 +119,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                         };
 
                         _rootComparer.Compare(childParms);
-                        _alreadyCompared.Add(matchIndex1);
+                        _alreadyCompared.Add(matchIndex1, true);
                     }
                     else
                     {
@@ -138,104 +138,91 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
             bool reverseCompare)
         {
             IEnumerator enumerator1;
-            List<string> matchingSpec;
+            IEnumerator enumerator2;
+            List<string> matchingSpec1 = null;
+            List<string> matchingSpec2 = null;
+
+            var list1 = new Dictionary<string, object>();
+            var list2 = new Dictionary<string, object>();
+            Type dataType1 = null;
+            Type dataType2 = null;
 
             if (!reverseCompare)
             {
                 enumerator1 = ((IEnumerable) parms.Object1).GetEnumerator();
+                enumerator2 = ((IEnumerable) parms.Object2).GetEnumerator();
             }
             else
             {
                 enumerator1 = ((IEnumerable)parms.Object2).GetEnumerator();
+                enumerator2 = ((IEnumerable)parms.Object1).GetEnumerator();
             }
 
             while (enumerator1.MoveNext())
             {
-                if (enumerator1.Current == null)
+                var data = enumerator1.Current;
+                dataType1 = dataType1 ?? data?.GetType();
+                matchingSpec1 = matchingSpec1 ?? GetMatchingSpec(parms.Result, dataType1);
+                var matchingIndex = GetMatchIndex(parms.Result, matchingSpec1, data); 
+                list1.Add(matchingIndex, data);
+            }
+
+            while (enumerator2.MoveNext())
+            {
+                var data = enumerator2.Current;
+                dataType2 = dataType2 ?? data?.GetType();
+                matchingSpec2 = matchingSpec2 ?? GetMatchingSpec(parms.Result, dataType2);
+                var matchingIndex = GetMatchIndex(parms.Result, matchingSpec2, data); 
+                list2.Add(matchingIndex, data);
+            }
+
+            foreach(var item1 in list1)
+            {
+                if (parms.Config.ClassTypesToIgnore.Contains(item1.Value.GetType()))
                 {
                     continue;
                 }
 
-                Type enumerator1Type = enumerator1.Current.GetType();
-
-                if (parms.Config.ClassTypesToIgnore.Contains(enumerator1Type))
-                {
-                    continue;
-                }
-
-                matchingSpec = GetMatchingSpec(parms.Result, enumerator1Type);
-
-                string matchIndex1 = GetMatchIndex(parms.Result, matchingSpec, enumerator1.Current);
-
-                if (_alreadyCompared.Contains(matchIndex1))
+                if (_alreadyCompared.ContainsKey(item1.Key))
                     continue;
 
-                string currentBreadCrumb = string.Format("{0}[{1}]", parms.BreadCrumb, matchIndex1);
-                IEnumerator enumerator2;
-
-                if (!reverseCompare)
-                {
-                    enumerator2 = ((IEnumerable) parms.Object2).GetEnumerator();
-                }
-                else
-                {
-                    enumerator2 = ((IEnumerable)parms.Object1).GetEnumerator();
-                }
+                string currentBreadCrumb = string.Format("{0}[{1}]", parms.BreadCrumb, item1.Key);
 
                 bool found = false;
-
-                while (enumerator2.MoveNext())
+                var item2Value = list2.ContainsKey(item1.Key) ? list2[item1.Key] : null;
+                
+                if (item2Value != null)
                 {
-                    if (enumerator2.Current == null)
-                    {
-                        continue;
-                    }
-
-                    Type enumerator2Type = enumerator2.Current.GetType();
-
-                    if (parms.Config.ClassTypesToIgnore.Contains(enumerator2Type))
-                    {
-                        continue;
-                    }
-
-                    matchingSpec = GetMatchingSpec(parms.Result, enumerator2Type);
-                    string matchIndex2 = GetMatchIndex(parms.Result, matchingSpec, enumerator2.Current);
-
-                    if (matchIndex1 == matchIndex2)
-                    {
                         CompareParms childParms = new CompareParms
                         {
                             Result = parms.Result,
                             Config = parms.Config,
                             ParentObject1 = parms.Object1,
                             ParentObject2 = parms.Object2,
-                            Object1 = enumerator1.Current,
-                            Object2 = enumerator2.Current,
+                            Object1 = item1.Value,
+                            Object2 = item2Value,
                             BreadCrumb = currentBreadCrumb
                         };
 
                         _rootComparer.Compare(childParms);
-                        _alreadyCompared.Add(matchIndex1);
-                        found = true;
-                        break;
-                    }
+                        _alreadyCompared.Add(item1.Key, true);
+                        //list2.Remove(item1.Key);    // Already matched, so remove from dictionary
                 }
-
-                if (!found)
+                else
                 {
                     Difference difference = new Difference
                     {
                         ParentObject1 = parms.ParentObject1,
                         ParentObject2 = parms.ParentObject2,
                         PropertyName = currentBreadCrumb,
-                        Object1Value = reverseCompare ? "(null)" : NiceString(enumerator1.Current),
-                        Object2Value = reverseCompare ? NiceString(enumerator1.Current) : "(null)",
+                        Object1Value = reverseCompare ? "(null)" : NiceString(item1.Value),
+                        Object2Value = reverseCompare ? NiceString(item1.Value) : "(null)",
                         ChildPropertyName = "Item",
-						Object1 = reverseCompare ? null : enumerator1.Current,
-						Object2 = reverseCompare ? enumerator1.Current : null
+						Object1 = reverseCompare ? null : item1.Value,
+						Object2 = reverseCompare ? item1.Value : null
                     };
 
-                    AddDifference(parms.Result, difference);                    
+                    AddDifference(parms.Result, difference);
                 }
                 if (parms.Result.ExceededDifferences)
                     return;

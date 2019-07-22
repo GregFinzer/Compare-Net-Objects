@@ -1002,6 +1002,28 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
         }
 
+
+        [Test]
+        public void ComparerIgnoreOrderNumericArraysTest()
+        {
+            const int len = 5000;
+            var a = new Int32[len];
+            var b = new Int32[len];
+            for (var i = 0; i < len; i++)
+            {
+                a[i] = i;
+                b[len - 1 - i] = i;
+            }
+
+            var comparer = new CompareLogic();
+            comparer.Config.IgnoreCollectionOrder = true;
+            comparer.Config.MaxDifferences = 1;
+
+            ComparisonResult result = comparer.Compare(a, b);
+            Console.WriteLine(result.DifferencesString);
+            Assert.IsTrue(result.AreEqual);
+        }
+
         [Test]
         public void CollectionDisorderedWithSpecMatch()
         {
@@ -1144,10 +1166,10 @@ namespace KellermanSoftware.CompareNetObjectsTests
             _compare.Config = config;
 
             var result = _compare.Compare(entity1, entity2);
-            Assert.AreEqual(result.Differences.Count, 3);
-            Assert.AreEqual(result.Differences[0].PropertyName, "Children[Id:10].Children");
-            Assert.AreEqual(result.Differences[1].PropertyName, "Children[Id:10].Children[Id:103]");
-            Assert.AreEqual(result.Differences[2].PropertyName, "Children[Id:11].Children[Id:101].Description");
+            Assert.AreEqual(3, result.Differences.Count);
+            Assert.AreEqual("Children[Id:10].Children",result.Differences[0].PropertyName);
+            Assert.AreEqual("Children[Id:10].Children[Id:103]", result.Differences[1].PropertyName);
+            Assert.AreEqual("Children[Id:11].Children[Id:101].Description", result.Differences[2].PropertyName);
         }
 
         [Test]
