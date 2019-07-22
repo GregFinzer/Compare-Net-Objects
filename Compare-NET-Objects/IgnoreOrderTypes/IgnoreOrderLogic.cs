@@ -164,7 +164,8 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                 dataType1 = dataType1 ?? data?.GetType();
                 matchingSpec1 = matchingSpec1 ?? GetMatchingSpec(parms.Result, dataType1);
                 var matchingIndex = GetMatchIndex(parms.Result, matchingSpec1, data); 
-                list1.Add(matchingIndex, data);
+                if (!list1.ContainsKey(matchingIndex))
+                    list1.Add(matchingIndex, data); // How to handle duplicates in unordered lists???
             }
 
             while (enumerator2.MoveNext())
@@ -173,7 +174,8 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                 dataType2 = dataType2 ?? data?.GetType();
                 matchingSpec2 = matchingSpec2 ?? GetMatchingSpec(parms.Result, dataType2);
                 var matchingIndex = GetMatchIndex(parms.Result, matchingSpec2, data); 
-                list2.Add(matchingIndex, data);
+                if (!list2.ContainsKey(matchingIndex))
+                    list2.Add(matchingIndex, data); // How to handle duplicates in unordered lists???
             }
 
             foreach(var item1 in list1)
@@ -205,7 +207,6 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                         };
 
                         _rootComparer.Compare(childParms);
-                        _alreadyCompared.Add(item1.Key, true);
                         //list2.Remove(item1.Key);    // Already matched, so remove from dictionary
                 }
                 else
@@ -224,6 +225,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
 
                     AddDifference(parms.Result, difference);
                 }
+                _alreadyCompared.Add(item1.Key, true);
                 if (parms.Result.ExceededDifferences)
                     return;
 
