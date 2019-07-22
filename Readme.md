@@ -108,7 +108,6 @@ dotnet add package CompareNETObjects
 * Private properties and fields cannot be compared for .NET Core 1.3.  They are allowed to be compared in .NET Core 2.0 and higher.
 * DynamicObject type is not supported but will be implemented in 2020 when the library is versioned to .NET Framework 4.5
 * When ignoring the collection order, the collection matching spec cannot be a field on a child or parent class.  It has to be a property or field of the class.  The property has to be a simple type.
-* ElapsedMilliseconds does not work for .NET Standard builds as there is no StopWatch in those frameworks.
 * If you override Equals and GetHashCode in your classes, Equals and GetHashCode must be implemented correctly. GetHashCode must be unique for each object.  If the hash code is the same for two objects, they will be considered equal.
 
 
