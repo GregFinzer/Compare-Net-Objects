@@ -996,10 +996,88 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             ComparisonResult result = comparer.Compare(a, b);
             Console.WriteLine(result.DifferencesString);
-            Assert.IsTrue(result.Differences.Where(d => d.Object1Value == "E").Count() == 1);
-            Assert.IsTrue(result.Differences.Where(d => d.Object2Value == "c").Count() == 1);
-            Assert.IsTrue(result.Differences.Where(d => d.Object2Value == "d").Count() == 1);
+            Assert.IsTrue(result.Differences.Count(d => d.Object1Value == "E") == 1);
+            Assert.IsTrue(result.Differences.Count(d => d.Object2Value == "c") == 1);
+            Assert.IsTrue(result.Differences.Count(d => d.Object2Value == "d") == 1);
 
+        }
+
+
+        [Test]
+        public void ComparerIgnoreOrderHugeNumericArraysTest()
+        {
+            const int len = 100000;
+            var a = new Int32[len];
+            var b = new Int32[len];
+            for (var i = 0; i < len; i++)
+            {
+                a[i] = i;
+                b[len - 1 - i] = i;
+            }
+
+            var comparer = new CompareLogic();
+            comparer.Config.IgnoreCollectionOrder = true;
+            comparer.Config.MaxDifferences = 1;
+
+            ComparisonResult result = comparer.Compare(a, b);
+            Console.WriteLine(result.DifferencesString);
+            Assert.IsTrue(result.AreEqual);
+        }
+
+        [Test]
+        public void ComparerIgnoreOrderNumericArraysWithDuplicatesTest()
+        {
+            var a = new Int32[] { 1,2,3,4,5,6,7,8,8,9};
+            var b = new Int32[] { 8,1,2,8,3,4,5,6,7,9};
+
+            var comparer = new CompareLogic();
+            comparer.Config.IgnoreCollectionOrder = true;
+            comparer.Config.MaxDifferences = 1;
+
+            ComparisonResult result = comparer.Compare(a, b);
+            Console.WriteLine(result.DifferencesString);
+            Assert.IsTrue(result.AreEqual);
+        }
+
+        [Test]
+        public void ComparerIgnoreOrderNumericArraysWithMismatchedDuplicatesTest()
+        {
+            var a = new Int32[] { 1,1,2};
+            var b = new Int32[] { 1,2,2};
+
+            var comparer = new CompareLogic();
+            comparer.Config.IgnoreCollectionOrder = true;
+            comparer.Config.MaxDifferences = 10;
+
+            ComparisonResult result = comparer.Compare(a, b);
+            Console.WriteLine(result.DifferencesString);
+            Assert.IsFalse(result.AreEqual);
+            Assert.IsTrue(result.Differences.Count == 2);
+            Assert.IsTrue(result.Differences.Count(d => d.Object1Value == "1" && d.Object2Value == "(null)") == 1);
+            Assert.IsTrue(result.Differences.Count(d => d.Object1Value == "(null)" && d.Object2Value == "2") == 1);
+        }
+
+        [Test]
+        public void ComparerIgnoreOrderNumericArraysWithMismatchedDuplicatesTest2()
+        {
+            var a = new Int32[] { 1,1,2,3,4};
+            var b = new Int32[] { 1,2,2};
+
+            var comparer = new CompareLogic();
+            comparer.Config.IgnoreCollectionOrder = true;
+            comparer.Config.MaxDifferences = 10;
+
+            ComparisonResult result = comparer.Compare(a, b);
+            Console.WriteLine(result.DifferencesString);
+            Assert.IsFalse(result.AreEqual);
+            Assert.IsTrue(result.Differences.Count == 7);
+            Assert.IsTrue(result.Differences.Count(d => d.Object1Value == "1" && d.Object2Value == "(null)") == 1);
+            Assert.IsTrue(result.Differences.Count(d => d.Object1Value == "(null)" && d.Object2Value == "2") == 1);
+            Assert.IsTrue(result.Differences.Count(d => d.Object1Value == "3" && d.Object2Value == "(null)") == 1);
+            Assert.IsTrue(result.Differences.Count(d => d.Object1Value == "4" && d.Object2Value == "(null)") == 1);
+            Assert.IsTrue(result.Differences.Count(d => d.ChildPropertyName == "Count") == 1);
+            Assert.IsTrue(result.Differences.Count(d => d.PropertyName == "Length") == 1);
+            Assert.IsTrue(result.Differences.Count(d => d.PropertyName == "LongLength") == 1);
         }
 
         [Test]
@@ -1144,10 +1222,10 @@ namespace KellermanSoftware.CompareNetObjectsTests
             _compare.Config = config;
 
             var result = _compare.Compare(entity1, entity2);
-            Assert.AreEqual(result.Differences.Count, 3);
-            Assert.AreEqual(result.Differences[0].PropertyName, "Children[Id:10].Children");
-            Assert.AreEqual(result.Differences[1].PropertyName, "Children[Id:10].Children[Id:103]");
-            Assert.AreEqual(result.Differences[2].PropertyName, "Children[Id:11].Children[Id:101].Description");
+            Assert.AreEqual(3, result.Differences.Count);
+            Assert.AreEqual("Children[Id:10].Children",result.Differences[0].PropertyName);
+            Assert.AreEqual("Children[Id:10].Children[Id:103]", result.Differences[1].PropertyName);
+            Assert.AreEqual("Children[Id:11].Children[Id:101].Description", result.Differences[2].PropertyName);
         }
 
         [Test]
@@ -1176,6 +1254,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
             Assert.AreEqual(result.Differences.First().Object2, "Logan 4");
         }
 
+
         [Test]
         public void ClassTypeInListIgnorePositive()
         {
@@ -1184,7 +1263,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
                 MaxDifferences = int.MaxValue,
                 MembersToIgnore = new List<string>() { "Type" },
                 ClassTypesToIgnore = new List<Type>() { typeof(Officer) },
-                CollectionMatchingSpec = new Dictionary<System.Type, IEnumerable<string>>()
+                CollectionMatchingSpec = new Dictionary<Type, IEnumerable<string>>()
                 {
                     {
                         typeof(Officer),
@@ -1204,34 +1283,20 @@ namespace KellermanSoftware.CompareNetObjectsTests
             var list1 = new List<object>();
             var list2 = new List<object>();
 
-            Officer p1 = new Officer();
-            p1.ID = 2;
-            p1.Name = "Greg";
-            p1.Type = Deck.AstroPhysics;
-
-            Officer p2 = new Officer();
-            p2.ID = 1;
-            p2.Name = "Leyla";
-            p2.Type = Deck.Engineering;
-
-            Person p3 = new Person();
-            p3.ID = 3;
-            p3.Name = "Henk";
-            p3.DateCreated = DateTime.Now;
-
-            Person p4 = new Person();
-            p4.ID = 3;
-            p4.Name = "Henk";
-            p4.DateCreated = p3.DateCreated;
-
+            Officer p1 = new Officer {ID = 3, Name = "Greg", Type = Deck.AstroPhysics};
+            Person p3 = new Person {ID = 2, Name = "Henk", DateCreated = DateTime.Now};
             list1.Add(p1);
             list1.Add(p3);
+
+            Officer p2 = new Officer {ID = 1, Name = "Leyla", Type = Deck.Engineering};
+            Person p4 = new Person {ID = 2, Name = "Henk", DateCreated = p3.DateCreated};
             list2.Add(p2);
             list2.Add(p4);
 
             var result = _compare.Compare(list1, list2);
             Assert.IsTrue(result.AreEqual, result.DifferencesString);
         }
+
 
         [Test]
         public void CompareListsIgnoreOrderTypeAndNull()
