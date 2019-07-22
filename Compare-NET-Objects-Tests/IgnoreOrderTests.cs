@@ -1022,6 +1022,8 @@ namespace KellermanSoftware.CompareNetObjectsTests
             ComparisonResult result = comparer.Compare(a, b);
             Console.WriteLine(result.DifferencesString);
             Assert.IsTrue(result.AreEqual);
+
+            Console.WriteLine(result.ElapsedMilliseconds);
         }
 
         [Test]

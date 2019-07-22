@@ -21,10 +21,7 @@ namespace KellermanSoftware.CompareNetObjects
         {
             Config = config;
             Differences = new List<Difference>();
-
-            #if !NETSTANDARD
-                Watch = new Stopwatch();
-            #endif
+            Watch = new Stopwatch();
         }
         #endregion
 
@@ -39,18 +36,17 @@ namespace KellermanSoftware.CompareNetObjects
         /// </summary>
         public ComparisonConfig Config { get; private set; }
 
-        #if !NETSTANDARD
-            internal Stopwatch Watch { get; set; }
+        
+        internal Stopwatch Watch { get; set; }
 
-            /// <summary>
-            /// The amount of time in milliseconds it took for the comparison
-            /// </summary>
-            public long ElapsedMilliseconds
-            {
-                get { return Watch.ElapsedMilliseconds; }
-            }
-        #endif
-
+        /// <summary>
+        /// The amount of time in milliseconds it took for the comparison
+        /// </summary>
+        public long ElapsedMilliseconds
+        {
+            get { return Watch.ElapsedMilliseconds; }
+        }
+        
         /// <summary>
         /// Keep track of parent objects in the object hiearchy
         /// </summary>

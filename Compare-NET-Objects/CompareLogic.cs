@@ -207,9 +207,7 @@ namespace KellermanSoftware.CompareNetObjects
         {
             ComparisonResult result = new ComparisonResult(Config);
 
-#if !NETSTANDARD
-                result.Watch.Start();
-#endif
+            result.Watch.Start();
 
             RootComparer rootComparer = RootComparerFactory.GetRootComparer();
 
@@ -227,9 +225,7 @@ namespace KellermanSoftware.CompareNetObjects
             if (Config.AutoClearCache)
                 ClearCache();
 
-#if !NETSTANDARD
-                result.Watch.Stop();
-#endif
+            result.Watch.Stop();
 
             return result;
         }
