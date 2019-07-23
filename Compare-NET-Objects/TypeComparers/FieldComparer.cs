@@ -57,8 +57,8 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             object objectValue1 = item.GetValue(parms.Object1);
             object objectValue2 = secondFieldInfo != null ? secondFieldInfo.GetValue(parms.Object2) : null;
 
-            bool object1IsParent = objectValue1 != null && (objectValue1 == parms.Object1 || parms.Result.Parents.ContainsKey(objectValue1.GetHashCode()));
-            bool object2IsParent = objectValue2 != null && (objectValue2 == parms.Object2 || parms.Result.Parents.ContainsKey(objectValue2.GetHashCode()));
+            bool object1IsParent = objectValue1 != null && (objectValue1 == parms.Object1 || parms.Result.IsParent(objectValue1));
+            bool object2IsParent = objectValue2 != null && (objectValue2 == parms.Object2 || parms.Result.IsParent(objectValue2));
 
             //Skip fields that point to the parent
             if ((TypeHelper.IsClass(item.FieldType) || TypeHelper.IsInterface(item.FieldType))

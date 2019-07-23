@@ -40,8 +40,8 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
             try
             {
-                parms.Result.AddParent(parms.Object1.GetHashCode());
-                parms.Result.AddParent(parms.Object2.GetHashCode());
+                parms.Result.AddParent(parms.Object1);
+                parms.Result.AddParent(parms.Object2);
 
                 //Objects must be the same length
                 bool countsDifferent = DictionaryCountsDifferent(parms);
@@ -62,8 +62,8 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             }
             finally
             {
-                parms.Result.RemoveParent(parms.Object1.GetHashCode());
-                parms.Result.RemoveParent(parms.Object2.GetHashCode());
+                parms.Result.RemoveParent(parms.Object1);
+                parms.Result.RemoveParent(parms.Object2);
             }
         }
 

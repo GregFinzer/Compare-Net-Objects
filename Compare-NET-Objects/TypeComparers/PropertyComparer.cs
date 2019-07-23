@@ -92,8 +92,8 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 return;
             }
 
-            bool object1IsParent = objectValue1 != null && (objectValue1 == parms.Object1 || parms.Result.Parents.ContainsKey(objectValue1.GetHashCode()));
-            bool object2IsParent = objectValue2 != null && (objectValue2 == parms.Object2 || parms.Result.Parents.ContainsKey(objectValue2.GetHashCode()));
+            bool object1IsParent = objectValue1 != null && (objectValue1 == parms.Object1 || parms.Result.IsParent(objectValue1));
+            bool object2IsParent = objectValue2 != null && (objectValue2 == parms.Object2 || parms.Result.IsParent(objectValue2));
 
             //Skip properties where both point to the corresponding parent
             if ((TypeHelper.IsClass(info.PropertyType) || TypeHelper.IsInterface(info.PropertyType) || TypeHelper.IsStruct(info.PropertyType))

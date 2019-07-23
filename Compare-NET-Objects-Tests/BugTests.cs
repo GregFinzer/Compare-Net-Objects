@@ -51,6 +51,23 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
+        public void ObjectWithSameHashCodeAndDifferentPropertiesShouldBeDifferent()
+        {
+            ClassWithOverriddenHashCode person1 = new ClassWithOverriddenHashCode();
+            person1.Name = "Weird Al Yankovic";
+            person1.MyCircularReference = person1;
+
+            ClassWithOverriddenHashCode person2 = new ClassWithOverriddenHashCode();
+            person2.Name = "Robin Williams";
+            person2.MyCircularReference = person2;
+
+            CompareLogic compareLogic = new CompareLogic();
+            ComparisonResult result = compareLogic.Compare(person1, person2);
+            Console.WriteLine(result.DifferencesString);
+            Assert.IsFalse(result.AreEqual);
+        }
+
+        [Test]
         public void RefStructProperty()
         {
             var compareLogic = new CompareLogic(new ComparisonConfig

@@ -37,8 +37,8 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         {
             try
             {
-                parms.Result.AddParent(parms.Object1.GetHashCode());
-                parms.Result.AddParent(parms.Object2.GetHashCode());
+                parms.Result.AddParent(parms.Object1);
+                parms.Result.AddParent(parms.Object2);
 
                 Type t1 = parms.Object1.GetType();
                 parms.Object1Type = t1;
@@ -63,8 +63,8 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             }
             finally
             {
-                parms.Result.RemoveParent(parms.Object1.GetHashCode());
-                parms.Result.RemoveParent(parms.Object2.GetHashCode());
+                parms.Result.RemoveParent(parms.Object1);
+                parms.Result.RemoveParent(parms.Object2);
             }
         }
 
