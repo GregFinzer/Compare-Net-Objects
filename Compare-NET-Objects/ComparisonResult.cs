@@ -113,7 +113,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// <param name="objectReference"></param>
         protected internal void AddParent(object objectReference)
         {
-            if (objectReference == null)
+            if (objectReference == null || _parents == null)
                 return;
 
             if (!_parents.ContainsKey(objectReference))
@@ -134,14 +134,21 @@ namespace KellermanSoftware.CompareNetObjects
         /// <param name="objectReference"></param>
         protected internal void RemoveParent(object objectReference)
         {
-            if (objectReference == null)
+            if (objectReference == null || _parents == null)
                 return;
 
-            if (_parents.ContainsKey(objectReference))
+            try
             {
-                if (_parents[objectReference] <= 1)
-                    _parents.Remove(objectReference);
-                else _parents[objectReference]--;
+                if (_parents.ContainsKey(objectReference))
+                {
+                    if (_parents[objectReference] <= 1)
+                        _parents.Remove(objectReference);
+                    else _parents[objectReference]--;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
             }
         }
 
@@ -152,7 +159,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// <returns></returns>
         protected internal bool IsParent(object objectReference)
         {
-            if (objectReference == null)
+            if (objectReference == null || _parents == null)
                 return false;
 
             return _parents.ContainsKey(objectReference);
