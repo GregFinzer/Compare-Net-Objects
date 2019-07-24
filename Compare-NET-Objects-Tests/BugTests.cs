@@ -51,6 +51,36 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
+        public void NegativeIntegersShouldBeNegativeOnUserFriendlyReport()
+        {
+            List<object> groundTruth = new List<object>();
+            List<object> newResult = new List<object>();
+
+
+            groundTruth.Add(new { boo = 1, gg = 7 });
+            groundTruth.Add(new { boo = -5, gg = 9 });
+            newResult.Add(new { boo = -6, gg = 4 });
+            newResult.Add(new { boo = 5, gg = 23 });
+
+            CompareLogic compareLogicObject = new CompareLogic();
+            compareLogicObject.Config.MaxDifferences = int.MaxValue;
+            compareLogicObject.Config.IgnoreCollectionOrder = true;
+
+            ComparisonResult assertionResult = compareLogicObject.Compare(groundTruth, newResult);
+
+            Console.WriteLine("DifferencesString");
+            Console.WriteLine(assertionResult.DifferencesString);
+
+            Console.WriteLine();
+            Console.WriteLine("UserFriendlyReport");
+            UserFriendlyReport friendlyReport = new UserFriendlyReport();
+            string result = friendlyReport.OutputString(assertionResult.Differences);
+            Console.WriteLine(result);
+
+            Assert.IsTrue(result.Contains("[{ boo = -5, gg = 9 }]"));
+        }
+
+        [Test]
         public void ObjectWithSameHashCodeAndDifferentPropertiesShouldBeDifferent()
         {
             ClassWithOverriddenHashCode person1 = new ClassWithOverriddenHashCode();

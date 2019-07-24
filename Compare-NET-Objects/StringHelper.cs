@@ -29,7 +29,6 @@ namespace KellermanSoftware.CompareNetObjects
 
             //Replace underline with spaces
             input = input.Replace("_", " ");
-            input = input.Replace("-", " ");
             input = input.Replace("  ", " ");
 
             //Trim any spaces
@@ -41,7 +40,7 @@ namespace KellermanSoftware.CompareNetObjects
 
             for (int i = 1; i < chars.Length; i++)
             {
-                bool isUpperOrNumber = (chars[i] >= 'A' && chars[i] <= 'Z') || (chars[i] >= '0' && chars[i] <= '9');
+                bool isUpperOrNumberOrDash = (chars[i] >= 'A' && chars[i] <= 'Z') || (chars[i] >= '0' && chars[i] <= '9') || chars[i] == '-';
                 bool isNextCharLower = i < chars.Length - 1 && (chars[i + 1] >= 'a' && chars[i + 1] <= 'z');
                 bool isSpace = chars[i] == ' ';
                 bool isLower = (chars[i] >= 'a' && chars[i] <= 'z');
@@ -52,8 +51,8 @@ namespace KellermanSoftware.CompareNetObjects
                 }
                 //Look for upper case characters that have lower case characters before
                 //Or upper case characters where the next character is lower
-                else if ((isUpperOrNumber && isLastUpper == false)
-                    || (isUpperOrNumber && isNextCharLower))
+                else if ((isUpperOrNumberOrDash && isLastUpper == false)
+                    || (isUpperOrNumberOrDash && isNextCharLower))
                 {
                     sb.Append(' ');
                     isLastUpper = true;
