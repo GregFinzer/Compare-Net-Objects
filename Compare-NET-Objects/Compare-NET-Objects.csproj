@@ -5,7 +5,7 @@
     <AssemblyTitle>Kellerman-Serialization</AssemblyTitle>
     <AssemblyCompany>Kellerman Software</AssemblyCompany>
     <AssemblyProduct>Kellerman-Serialization</AssemblyProduct>
-    <TargetFrameworks>net40;net45;net451;net452;net46;netstandard1.3;netstandard2.0;</TargetFrameworks>
+    <TargetFrameworks>net40;net45;net451;net452;net46;net47;net471;net472;net48;netstandard1.3;netstandard2.0;</TargetFrameworks>
     <AssemblyName>KellermanSoftware.Compare-NET-Objects</AssemblyName>
     <RootNamespace>KellermanSoftware.CompareNetObjects</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -20,25 +20,11 @@
     <PackageTags>compare comparison equality equal deep objects difference compareobjects deepequal deepequals</PackageTags>
     <Description>What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.</Description>
     <Authors>KellermanSoftware</Authors>
-    <Version>4.62.0</Version>
-    <AssemblyVersion>4.62.0.0</AssemblyVersion>
+    <Version>4.63.0</Version>
+    <AssemblyVersion>4.63.0.0</AssemblyVersion>
     <NeutralLanguage>en-US</NeutralLanguage>    
     <Company>Kellerman Software</Company>
-    <PackageReleaseNotes>Defect Fixes:
-
-* Fix for negative number formatting in User Friendly report:  https://github.com/GregFinzer/Compare-Net-Objects/issues/166
-
-* Fix for GetHashCode treating objects as equal.  Fixes these issues:
-https://github.com/GregFinzer/Compare-Net-Objects/issues/169
-https://github.com/GregFinzer/Compare-Net-Objects/issues/157
-https://github.com/GregFinzer/Compare-Net-Objects/issues/149
-https://github.com/GregFinzer/Compare-Net-Objects/issues/122
-https://github.com/GregFinzer/Compare-Net-Objects/issues/113
-https://github.com/GregFinzer/Compare-Net-Objects/issues/34
-
-New Features:
-* Add ElapsedMilliseconds to .NET Standard Build
-* Performance improvements to unordered enumerable collections by @jsobell</PackageReleaseNotes>
+    <PackageReleaseNotes>NuGet Builds for .NET Framework 4.7, 4.7.1, 4.7.2, and 4.8</PackageReleaseNotes>
     <Copyright>Copyright © 2019 Kellerman Software</Copyright>
   </PropertyGroup>
   
@@ -78,6 +64,22 @@ New Features:
     <DefineConstants>$(DefineConstants);NET46;NETFULL</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net47'">
+    <DefineConstants>$(DefineConstants);NET47;NETFULL</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net471'">
+    <DefineConstants>$(DefineConstants);NET471;NETFULL</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net472'">
+    <DefineConstants>$(DefineConstants);NET472;NETFULL</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net48'">
+    <DefineConstants>$(DefineConstants);NET48;NETFULL</DefineConstants>
+  </PropertyGroup>
+  
   <ItemGroup>
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
