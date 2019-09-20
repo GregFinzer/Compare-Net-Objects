@@ -886,8 +886,8 @@ namespace KellermanSoftware.CompareNetObjectsTests
             dict2.Add("1003", p3);
             dict2.Add("1004", p4);
 
-            Assert.IsFalse(_compare.Compare(dict1, dict2).AreEqual);
-            Assert.IsFalse(_compare.Compare(dict2, dict1).AreEqual);
+            Assert.IsTrue(_compare.Compare(dict1, dict2).AreEqual);
+            Assert.IsTrue(_compare.Compare(dict2, dict1).AreEqual);
         }
 
         [Test]

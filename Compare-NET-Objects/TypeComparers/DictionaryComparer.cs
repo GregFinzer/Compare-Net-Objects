@@ -26,7 +26,9 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         /// <returns></returns>
         public override bool IsTypeMatch(Type type1, Type type2)
         {
-            return TypeHelper.IsIDictionary(type1) && TypeHelper.IsIDictionary(type2);
+            return ((TypeHelper.IsIDictionary(type1) || type1 == null) &&
+                    (TypeHelper.IsIDictionary(type2) || type2 == null) &&
+                    !(type1 == null && type2 == null));
         }
 
         /// <summary>
@@ -34,10 +36,6 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         /// </summary>
         public override void CompareType(CompareParms parms)
         {
-            //This should never happen, null check happens one level up
-            if (parms.Object1 == null || parms.Object2 == null)
-                return;
-
             try
             {
                 parms.Result.AddParent(parms.Object1);
@@ -49,16 +47,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 if (parms.Result.ExceededDifferences)
                     return;
 
-                if (parms.Config.IgnoreCollectionOrder)
-                {
-                    IgnoreOrderLogic logic = new IgnoreOrderLogic(RootComparer);
-                    logic.CompareEnumeratorIgnoreOrder(parms, countsDifferent);
-                }
-                else
-                {
-                    CompareEachItem(parms);
-                }
-
+                CompareEachItem(parms);
             }
             finally
             {
@@ -69,46 +58,61 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
         private void CompareEachItem(CompareParms parms)
         {
-            var enumerator1 = ((IDictionary) parms.Object1).GetEnumerator();
-            var enumerator2 = ((IDictionary) parms.Object2).GetEnumerator();
+            var dict1 = ((IDictionary)parms.Object1);
+            var dict2 = ((IDictionary)parms.Object2);
 
-            while (enumerator1.MoveNext() && enumerator2.MoveNext())
+            if (dict1 != null)
             {
-                string currentBreadCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb, "Key");
+                string currentBreadCrumb = "";
+                CompareParms childParms = null;
 
-                CompareParms childParms = new CompareParms
+                foreach (var key in dict1.Keys)
                 {
-                    Result = parms.Result,
-                    Config = parms.Config,
-                    ParentObject1 = parms.Object1,
-                    ParentObject2 = parms.Object2,
-                    Object1 = enumerator1.Key,
-                    Object2 = enumerator2.Key,
-                    BreadCrumb = currentBreadCrumb
-                };
+                    currentBreadCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb, "[" +key.ToString()+ "].Value");
 
-                RootComparer.Compare(childParms);
+                    childParms = new CompareParms
+                    {
+                        Result = parms.Result,
+                        Config = parms.Config,
+                        ParentObject1 = parms.Object1,
+                        ParentObject2 = parms.Object2,
+                        Object1 = dict1[key],
+                        Object2 = (dict2 != null) ? dict2[key] : null,
+                        BreadCrumb = currentBreadCrumb
+                    };
 
-                if (parms.Result.ExceededDifferences)
-                    return;
+                    RootComparer.Compare(childParms);
 
-                currentBreadCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb, "Value");
+                    if (parms.Result.ExceededDifferences)
+                        return;
+                }
+            }
 
-                childParms = new CompareParms
+            if (dict2 != null)
+            {
+                string currentBreadCrumb = "";
+                CompareParms childParms = null;
+
+                foreach (var key in dict2.Keys)
                 {
-                    Result = parms.Result,
-                    Config = parms.Config,
-                    ParentObject1 = parms.Object1,
-                    ParentObject2 = parms.Object2,
-                    Object1 = enumerator1.Value,
-                    Object2 = enumerator2.Value,
-                    BreadCrumb = currentBreadCrumb
-                };
+                    currentBreadCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb, "[" + key.ToString() + "].Value");
 
-                RootComparer.Compare(childParms);
+                    childParms = new CompareParms
+                    {
+                        Result = parms.Result,
+                        Config = parms.Config,
+                        ParentObject1 = parms.Object1,
+                        ParentObject2 = parms.Object2,
+                        Object1 = (dict1 != null && dict1.Contains(key)) ? dict1[key] : null,
+                        Object2 = dict2[key],
+                        BreadCrumb = currentBreadCrumb
+                    };
 
-                if (parms.Result.ExceededDifferences)
-                    return;
+                    RootComparer.Compare(childParms);
+
+                    if (parms.Result.ExceededDifferences)
+                        return;
+                }
             }
         }
 
@@ -117,31 +121,27 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             IDictionary iDict1 = parms.Object1 as IDictionary;
             IDictionary iDict2 = parms.Object2 as IDictionary;
 
-            if (iDict1 == null)
-                throw new ArgumentException("parms.Object1");
+            int iDict1Count = (iDict1 == null) ? 0 : iDict1.Count;
+            int iDict2Count = (iDict2 == null) ? 0 : iDict2.Count;
 
-            if (iDict2 == null)
-                throw new ArgumentException("parms.Object2");
+            if (iDict1Count == iDict2Count)
+                return false;
 
-            if (iDict1.Count != iDict2.Count)
+            Difference difference = new Difference
             {
-                Difference difference = new Difference
-                                            {
-                                                ParentObject1 = parms.ParentObject1,
-                                                ParentObject2 = parms.ParentObject2,
-                                                PropertyName = parms.BreadCrumb,
-                                                Object1Value = iDict1.Count.ToString(CultureInfo.InvariantCulture),
-                                                Object2Value = iDict2.Count.ToString(CultureInfo.InvariantCulture),
-                                                ChildPropertyName = "Count",
-                                                Object1 = iDict1,
-                                                Object2 = iDict2
-                                            };
+                ParentObject1 = parms.ParentObject1,
+                ParentObject2 = parms.ParentObject2,
+                PropertyName = parms.BreadCrumb,
+                Object1Value = iDict1Count.ToString(CultureInfo.InvariantCulture),
+                Object2Value = iDict2Count.ToString(CultureInfo.InvariantCulture),
+                ChildPropertyName = "Count",
+                Object1 = iDict1,
+                Object2 = iDict2
+            };
 
-                AddDifference(parms.Result, difference);
+            AddDifference(parms.Result, difference);
 
-                return true;
-            }
-            return false;
+            return true;
         }
     }
 }
