@@ -44,7 +44,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 return;
 
             //Skip if it should be excluded based on the configuration
-            if (ExcludeLogic.ShouldExcludeMember(parms.Config, item))
+            if (ExcludeLogic.ShouldExcludeMember(parms.Config, item, parms.Object1Type))
                 return;
 
             //If we ignore types then we must get correct FieldInfo object
