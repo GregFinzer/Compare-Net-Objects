@@ -61,7 +61,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 return;
 
             //Skip if it should be excluded based on the configuration
-            if (info.PropertyInfo != null && ExcludeLogic.ShouldExcludeMember(parms.Config, info.PropertyInfo))
+            if (info.PropertyInfo != null && ExcludeLogic.ShouldExcludeMember(parms.Config, info.PropertyInfo, info.DeclaringType))
                 return;
 
             //This is a dynamic property to be excluded on an expando object

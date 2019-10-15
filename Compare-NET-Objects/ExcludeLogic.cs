@@ -47,8 +47,9 @@ namespace KellermanSoftware.CompareNetObjects
         /// </summary>
         /// <param name="config"></param>
         /// <param name="info"></param>
+        /// <param name="objectType"></param>
         /// <returns></returns>
-        public static bool ShouldExcludeMember(ComparisonConfig config, MemberInfo info)
+        public static bool ShouldExcludeMember(ComparisonConfig config, MemberInfo info, Type objectType)
         {
             //Only compare specific member names
             if (config.MembersToInclude.Count > 0 && !config.MembersToInclude.Contains(info.Name))
@@ -56,8 +57,12 @@ namespace KellermanSoftware.CompareNetObjects
             
             if (config.MembersToIgnore.Count > 0)
             {
-                //Ignore by type.membername
-                if (info.DeclaringType != null
+				//Ignore by objecttype.membername
+	            if (config.MembersToIgnore.Contains(objectType.Name + "." + info.Name))
+		            return true;
+
+				//Ignore by declaringType.membername
+				if (info.DeclaringType != null
                     && config.MembersToIgnore.Contains(info.DeclaringType.Name + "." + info.Name))
                     return true;
 
@@ -177,7 +182,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// <summary>
         /// Check if any type has attributes that should be bypassed
         /// </summary>
-        /// <returns></returns>
+        /// <returns></returns>	
         public static bool IgnoredByAttribute(ComparisonConfig config, MemberInfo info)
         {
             var attributes = info.GetCustomAttributes(true);

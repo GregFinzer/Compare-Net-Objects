@@ -8,92 +8,134 @@ using NUnit.Framework;
 
 namespace KellermanSoftware.CompareNetObjectsTests
 {
-    [TestFixture]
-    public class IgnoreTests
-    {
-        [Test]
-        public void IgnoreTypeMember()
-        {
-            ComparisonConfig config = new ComparisonConfig();
-            config.MembersToIgnore.Add("Person.Name");
+	[TestFixture]
+	public class IgnoreTests
+	{
+		[Test]
+		public void IgnoreTypeMember()
+		{
+			var config = new ComparisonConfig();
+			config.MembersToIgnore.Add("Person.Name");
 
-            Person person1 = new Person() {Name = "Darth Vader"};
-            Person person2 = new Person() {Name = "Anakin Skywalker"};
+			var person1 = new Person {Name = "Darth Vader"};
+			var person2 = new Person {Name = "Anakin Skywalker"};
 
-            CompareLogic compare = new CompareLogic(config);
+			var compare = new CompareLogic(config);
 
-            var result = compare.Compare(person1, person2);
-            Assert.IsTrue(result.AreEqual);
-        }
+			var result = compare.Compare(person1, person2);
+			Assert.IsTrue(result.AreEqual);
+		}
 
-        [Test]
-        public void IgnoreTypeMemberUsingIgnoreProperty()
-        {
-            ComparisonConfig config = new ComparisonConfig();
-            config.IgnoreProperty<Person>(x => x.Name);
+		[Test]
+		public void IgnoreTypeMemberUsingIgnoreProperty()
+		{
+			var config = new ComparisonConfig();
+			config.IgnoreProperty<Person>(x => x.Name);
 
-            Person person1 = new Person() { Name = "Darth Vader" };
-            Person person2 = new Person() { Name = "Anakin Skywalker" };
+			var person1 = new Person { Name = "Darth Vader" };
+			var person2 = new Person { Name = "Anakin Skywalker" };
 
-            CompareLogic compare = new CompareLogic(config);
+			var compare = new CompareLogic(config);
 
-            var result = compare.Compare(person1, person2);
-            Assert.IsTrue(result.AreEqual);
-        }
+			var result = compare.Compare(person1, person2);
+			Assert.IsTrue(result.AreEqual);
+		}
 
-        [Test]
-        public void IgnoreUnaryTypeMemberUsingIgnoreProperty()
-        {
-            ComparisonConfig config = new ComparisonConfig();
-            config.IgnoreProperty<Person>(x => x.DateModified);
+		[Test]
+		public void IgnoreUnaryTypeMemberUsingIgnoreProperty()
+		{
+			var config = new ComparisonConfig();
+			config.IgnoreProperty<Person>(x => x.DateModified);
 
-            Person person1 = new Person() { DateModified = new DateTime(2019, 5, 23) };
-            Person person2 = new Person() { DateModified = new DateTime(2015, 1, 2)};
+			var person1 = new Person { DateModified = new DateTime(2019, 5, 23) };
+			var person2 = new Person { DateModified = new DateTime(2015, 1, 2)};
 
-            CompareLogic compare = new CompareLogic(config);
+			var compare = new CompareLogic(config);
 
-            var result = compare.Compare(person1, person2);
-            Assert.IsTrue(result.AreEqual);
-        }
+			var result = compare.Compare(person1, person2);
+			Assert.IsTrue(result.AreEqual);
+		}
 
-        [Test]
-        public void UsingIgnorePropertyThrowsWithField()
-        {
-            ComparisonConfig config = new ComparisonConfig();
-            Assert.Throws<ArgumentException>(() =>
-                config.IgnoreProperty<Person>(x => x.DateCreated));
-        }
+		[Test]
+		public void UsingIgnorePropertyThrowsWithField()
+		{
+			var config = new ComparisonConfig();
+			Assert.Throws<ArgumentException>(() =>
+				config.IgnoreProperty<Person>(x => x.DateCreated));
+		}
 
-        [Test]
-        public void UsingIgnorePropertyThrowsWithMethod()
-        {
-            ComparisonConfig config = new ComparisonConfig();
-            Assert.Throws<ArgumentException>(() =>
-                config.IgnoreProperty<Person>(x => x.GetAge()));
-        }
+		[Test]
+		public void UsingIgnorePropertyThrowsWithMethod()
+		{
+			var config = new ComparisonConfig();
+			Assert.Throws<ArgumentException>(() =>
+				config.IgnoreProperty<Person>(x => x.GetAge()));
+		}
 
-        [Test]
-        public void ExpandoObject()
-        {
-            DynamicContainer a = new DynamicContainer()
-            {
-                expando = JsonConvert.DeserializeObject<ExpandoObject>("{\"test\": \"1\"}")
-            };
+		[Test]
+		public void ExpandoObject()
+		{
+			var a = new DynamicContainer
+			{
+				expando = JsonConvert.DeserializeObject<ExpandoObject>("{\"test\": \"1\"}")
+			};
 
-            DynamicContainer b = new DynamicContainer()
-            {
-                expando = JsonConvert.DeserializeObject<ExpandoObject>("{\"test\": \"2\"}")
-            };
+			var b = new DynamicContainer
+			{
+				expando = JsonConvert.DeserializeObject<ExpandoObject>("{\"test\": \"2\"}")
+			};
 
-            CompareLogic compareLogic = new CompareLogic();
-            compareLogic.Config.MembersToIgnore.Add("test");
-            compareLogic.Config.CustomComparers.Add(new StringMightBeFloat(RootComparerFactory.GetRootComparer()));
-            compareLogic.Config.MaxDifferences = 50;
+			var compareLogic = new CompareLogic();
+			compareLogic.Config.MembersToIgnore.Add("test");
+			compareLogic.Config.CustomComparers.Add(new StringMightBeFloat(RootComparerFactory.GetRootComparer()));
+			compareLogic.Config.MaxDifferences = 50;
 
-            ComparisonResult result = compareLogic.Compare(a, b);
+			var result = compareLogic.Compare(a, b);
 
-            Console.WriteLine(result.DifferencesString);
-            Assert.IsTrue(result.AreEqual);
-        }
-    }
+			Console.WriteLine(result.DifferencesString);
+			Assert.IsTrue(result.AreEqual);
+		}
+
+		[Test]
+		public void IgnoreBaseClassPropertyUsingIgnoreProperty()
+		{
+			var config = new ComparisonConfig();
+			config.IgnoreProperty<Officer>(x => x.ID);
+
+			var deriveFromOfficer1 = new DeriveFromOfficer {HomeAddress = "Address", ID = 1, Name = "John", Type = Deck.Engineering};
+			var deriveFromOfficer2 = new DeriveFromOfficer {HomeAddress = "Address", ID = 2, Name = "John", Type = Deck.Engineering};
+
+			var derive2FromOfficer1 = new Derive2FromOfficer { Email = "a@a.com", ID = 3, Name = "John", Type = Deck.Engineering };
+			var derive2FromOfficer2 = new Derive2FromOfficer { Email = "a@a.com", ID = 4, Name = "John", Type = Deck.Engineering };
+
+			var compare = new CompareLogic(config);
+
+			var result = compare.Compare(deriveFromOfficer1, deriveFromOfficer2);
+			Assert.IsTrue(result.AreEqual);
+
+			result = compare.Compare(derive2FromOfficer1, derive2FromOfficer2);
+			Assert.IsTrue(result.AreEqual);
+		}
+
+		[Test]
+		public void IgnoreDerivedClassPropertyUsingIgnoreProperty()
+		{
+			var config = new ComparisonConfig();
+			config.IgnoreProperty<DeriveFromOfficer>(x => x.ID);
+
+			var deriveFromOfficer1 = new DeriveFromOfficer { HomeAddress = "Address", ID = 1, Name = "John", Type = Deck.Engineering };
+			var deriveFromOfficer2 = new DeriveFromOfficer { HomeAddress = "Address", ID = 2, Name = "John", Type = Deck.Engineering };
+
+			var derive2FromOfficer1 = new Derive2FromOfficer { Email = "a@a.com", ID = 3, Name = "John", Type = Deck.Engineering };
+			var derive2FromOfficer2 = new Derive2FromOfficer { Email = "a@a.com", ID = 4, Name = "John", Type = Deck.Engineering };
+
+			var compare = new CompareLogic(config);
+
+			var result = compare.Compare((Officer)deriveFromOfficer1, (Officer)deriveFromOfficer2);
+			Assert.IsTrue(result.AreEqual);
+
+			result = compare.Compare(derive2FromOfficer1, derive2FromOfficer2);
+			Assert.IsFalse(result.AreEqual);
+		}
+	}
 }
