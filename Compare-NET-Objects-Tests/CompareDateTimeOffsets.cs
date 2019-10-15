@@ -82,6 +82,36 @@ namespace KellermanSoftware.CompareNetObjectsTests
             if (!result.AreEqual)
                 throw new Exception(result.DifferencesString);
         }
+
+        [Test]
+        public void DateTimeOffsetIgnoreTimezoneEqual()
+        {
+            DateTimeOffset date = new DateTimeOffset(DateTime.Now);
+            DateTimeOffset date1 = TimeZoneInfo.ConvertTime(date, CentralEuropeStandardTime);
+            DateTimeOffset date2 = TimeZoneInfo.ConvertTime(date, SingaporeStandardTime);
+
+            _compare.Config.IgnoreDateTimeOffsetTimezones = true;
+            ComparisonResult result = _compare.Compare(date1, date2);
+
+            Assert.IsTrue(result.AreEqual);
+        }
+
+        [Test]
+        public void DateTimeOffsetIgnoreTimezoneNotEqual()
+        {
+            DateTimeOffset date = new DateTimeOffset(DateTime.Now);
+            DateTimeOffset date1 = TimeZoneInfo.ConvertTime(date, CentralEuropeStandardTime);
+            DateTimeOffset date2 = TimeZoneInfo.ConvertTime(date.AddSeconds(2), SingaporeStandardTime);
+
+            _compare.Config.IgnoreDateTimeOffsetTimezones = true;
+            ComparisonResult result = _compare.Compare(date1, date2);
+
+            Assert.IsFalse(result.AreEqual);
+        }
+
+        private static TimeZoneInfo CentralEuropeStandardTime = TimeZoneInfo.FindSystemTimeZoneById("Central Europe Standard Time");
+        private static TimeZoneInfo SingaporeStandardTime = TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time");
+
         #endregion
     }
 }

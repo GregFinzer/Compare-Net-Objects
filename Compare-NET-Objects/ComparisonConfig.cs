@@ -68,6 +68,15 @@ namespace KellermanSoftware.CompareNetObjects
 #endif
         public bool CompareDateTimeOffsetWithOffsets  { get; set; }
 
+
+        /// <summary>
+        /// When comparing DateTimeOffsets, timezone difference will be ignored by changing both object to their UTC equivalent value. The default is false.
+        /// </summary>
+#if !NETSTANDARD
+        [DataMember]
+#endif
+        public bool IgnoreDateTimeOffsetTimezones { get; set; }
+
         /// <summary>
         /// When comparing struct, the depth to compare for children.  The default is 2, the max is 5
         /// </summary>

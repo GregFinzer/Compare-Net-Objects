@@ -39,6 +39,12 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             DateTimeOffset date1 = (DateTimeOffset)parms.Object1;
             DateTimeOffset date2 = (DateTimeOffset)parms.Object2;
 
+            if (parms.Config.IgnoreDateTimeOffsetTimezones)
+            {
+                date1 = date1.ToUniversalTime();
+                date2 = date2.ToUniversalTime();
+            }
+
             if (parms.Config.CompareDateTimeOffsetWithOffsets 
                 && Math.Abs((date1 - date2).TotalMilliseconds) > parms.Config.MaxMillisecondsDateDifference)
             {
@@ -57,7 +63,6 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                     AddDifference(parms);
                 }
             }
-
         }
     }
 }
