@@ -51,6 +51,29 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
+        public void ComparingListsOfNullWhileIgnoringCollectionOrderShouldNotThrowObjectReferenceError()
+        {
+            //Arrange
+            ComparisonConfig config = new ComparisonConfig();
+            config.IgnoreCollectionOrder = true;
+            config.IgnoreObjectTypes = true;
+
+            CompareLogic logic = new CompareLogic(config);
+            List<object> data1 = new List<object>();
+            data1.Add(null);
+
+            List<object> data2 = new List<object>();
+            data2.Add(null);
+
+            //Act
+            var result = logic.Compare(data1, data2);
+
+            //Assert
+            Assert.IsTrue(result.AreEqual, result.DifferencesString);
+
+        }
+
+        [Test]
         public void NegativeIntegersShouldBeNegativeOnUserFriendlyReport()
         {
             List<object> groundTruth = new List<object>();

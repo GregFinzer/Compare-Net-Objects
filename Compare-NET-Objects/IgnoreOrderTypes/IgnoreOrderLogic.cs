@@ -71,7 +71,11 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
             while (enumerator1.MoveNext())
             {
                 var data = enumerator1.Current;
-                if (parms.Config.ClassTypesToIgnore.Contains(data.GetType())) continue;
+                if (data != null
+                    && parms.Config.ClassTypesToIgnore.Contains(data.GetType()))
+                {
+                    continue;
+                }
 
                 dataType1 = dataType1 ?? data?.GetType();
                 matchingSpec1 = matchingSpec1 ?? GetMatchingSpec(parms.Result, dataType1);
@@ -85,7 +89,11 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
             while (enumerator2.MoveNext())
             {
                 var data = enumerator2.Current;
-                if (parms.Config.ClassTypesToIgnore.Contains(data.GetType())) continue;
+                if (data != null 
+                    && parms.Config.ClassTypesToIgnore.Contains(data.GetType()))
+                {
+                    continue;
+                }
 
                 dataType2 = dataType2 ?? data?.GetType();
                 matchingSpec2 = matchingSpec2 ?? GetMatchingSpec(parms.Result, dataType2);
@@ -98,13 +106,22 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
 
             while (list1.Count > 0)
             {
-                var item1 = list1.First();
+                KeyValuePair<string, InstanceCounter> item1 = list1.First();
 
-                var currentBreadCrumb = $"{parms.BreadCrumb}[{item1.Key}]";
+                string currentBreadCrumb = $"{parms.BreadCrumb}[{item1.Key}]";
 
-                var item2Value = list2.ContainsKey(item1.Key) ? list2[item1.Key].ObjectValue : null;
+                bool bothObjectValuesNull = item1.Value.ObjectValue == null
+                                            && list2.ContainsKey(item1.Key)
+                                            && list2[item1.Key].ObjectValue == null;
 
-                if (item2Value != null)
+                object item2Value = list2.ContainsKey(item1.Key) ? list2[item1.Key].ObjectValue : null;
+
+                if (bothObjectValuesNull)
+                {
+                    if (--list2[item1.Key].Counter == 0)
+                        list2.Remove(item1.Key); // Matched, so remove from dictionary so we don't double-dip on it
+                }
+                else if (item2Value != null)
                 {
                     CompareParms childParams = new CompareParms
                     {
@@ -170,6 +187,9 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
 
         private string GetMatchIndex(ComparisonResult result, List<string> spec, object currentObject)
         {
+            if (currentObject == null)
+                return "(null)";
+
             List<PropertyInfo> properties = Cache.GetPropertyInfo(result.Config, currentObject.GetType()).ToList();
             StringBuilder sb = new StringBuilder();
 
@@ -245,6 +265,9 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
 
         private List<string> GetMatchingSpec(ComparisonResult result,Type type)
         {
+            if (type == null)
+                return new List<string> { "(null)" };
+
             //The user defined a key for the order
             var matchingBasePresent = result.Config.CollectionMatchingSpec.Keys.FirstOrDefault(k => k.IsAssignableFrom(type));
             if (matchingBasePresent != null)
