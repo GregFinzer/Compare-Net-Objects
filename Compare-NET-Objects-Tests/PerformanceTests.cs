@@ -38,6 +38,8 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #endregion
 
         #region Tests
+
+
         [Test]
         public void CompareGiantLists()
         {
@@ -59,6 +61,30 @@ namespace KellermanSoftware.CompareNetObjectsTests
             watch.Stop();
             
             Console.WriteLine(watch.ElapsedMilliseconds);
+        }
+
+
+        [Test, Ignore("Takes 10 seconds to run, too slow")]
+        public void ComparerIgnoreOrderHugeNumericArraysTest()
+        {
+            const int len = 100000;
+            var a = new Int32[len];
+            var b = new Int32[len];
+            for (var i = 0; i < len; i++)
+            {
+                a[i] = i;
+                b[len - 1 - i] = i;
+            }
+
+            var comparer = new CompareLogic();
+            comparer.Config.IgnoreCollectionOrder = true;
+            comparer.Config.MaxDifferences = 1;
+
+            ComparisonResult result = comparer.Compare(a, b);
+            Console.WriteLine(result.DifferencesString);
+            Assert.IsTrue(result.AreEqual);
+
+            Console.WriteLine(result.ElapsedMilliseconds);
         }
 
         [Test, Ignore("Inconsistent")]

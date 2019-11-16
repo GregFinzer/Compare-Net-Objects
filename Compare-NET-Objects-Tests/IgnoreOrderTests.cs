@@ -1004,29 +1004,6 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
 
         [Test]
-        public void ComparerIgnoreOrderHugeNumericArraysTest()
-        {
-            const int len = 100000;
-            var a = new Int32[len];
-            var b = new Int32[len];
-            for (var i = 0; i < len; i++)
-            {
-                a[i] = i;
-                b[len - 1 - i] = i;
-            }
-
-            var comparer = new CompareLogic();
-            comparer.Config.IgnoreCollectionOrder = true;
-            comparer.Config.MaxDifferences = 1;
-
-            ComparisonResult result = comparer.Compare(a, b);
-            Console.WriteLine(result.DifferencesString);
-            Assert.IsTrue(result.AreEqual);
-
-            Console.WriteLine(result.ElapsedMilliseconds);
-        }
-
-        [Test]
         public void ComparerIgnoreOrderNumericArraysWithDuplicatesTest()
         {
             var a = new Int32[] { 1,2,3,4,5,6,7,8,8,9};
