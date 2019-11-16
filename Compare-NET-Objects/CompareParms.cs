@@ -1,5 +1,5 @@
 ﻿using System;
-
+using KellermanSoftware.CompareNetObjects.TypeComparers;
 
 namespace KellermanSoftware.CompareNetObjects
 {
@@ -52,5 +52,10 @@ namespace KellermanSoftware.CompareNetObjects
         /// The breadcrumb in the tree
         /// </summary>
         public string BreadCrumb { get; set; }
+
+        /// <summary>
+        /// Custom comparer used to assert <para>Object1</para>
+        /// </summary>
+        public BaseTypeComparer CustomPropertyComparer { get; set; }
     }
 }
