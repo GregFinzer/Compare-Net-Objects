@@ -79,6 +79,12 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             if (parms.Config.IgnoreObjectTypes && secondObjectInfo == null)
                 return;
 
+            //Check if we have custom function to validate property
+            BaseTypeComparer customComparer = null;
+            if (info.PropertyInfo != null)
+                customComparer = CustomValidationLogic.CustomValidatorForMember(parms.Config, info.PropertyInfo, info.DeclaringType)
+                                 ?? CustomValidationLogic.CustomValidatorForDynamicMember(parms.Config, info.Name, info.DeclaringType);
+
             object objectValue1;
             object objectValue2;
             if (!IsValidIndexer(parms.Config, info, parms.BreadCrumb))
@@ -112,7 +118,8 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 ParentObject2 = parms.Object2,
                 Object1 = objectValue1,
                 Object2 = objectValue2,
-                BreadCrumb = currentBreadCrumb
+                BreadCrumb = currentBreadCrumb,
+                CustomPropertyComparer = customComparer
             };
 
             _rootComparer.Compare(childParms);

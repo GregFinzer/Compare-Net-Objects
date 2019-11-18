@@ -43,6 +43,10 @@ namespace KellermanSoftware.CompareNetObjects
                 {
                     customComparer.CompareType(parms);
                 }
+                else if (parms.CustomPropertyComparer != null)
+                {
+                    parms.CustomPropertyComparer.CompareType(parms);
+                }
                 else
                 {
                     BaseTypeComparer typeComparer = TypeComparers.FirstOrDefault(o => o.IsTypeMatch(t1, t2));

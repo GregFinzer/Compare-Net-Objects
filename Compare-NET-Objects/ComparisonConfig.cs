@@ -176,7 +176,6 @@ namespace KellermanSoftware.CompareNetObjects
 #endif
         public List<string> MembersToIgnore { get; set; }
 
-
         /// <summary>
         /// Ignore property during the comparison.  Property is specific to the generic type.
         /// </summary>
@@ -210,6 +209,35 @@ namespace KellermanSoftware.CompareNetObjects
 
             var name = propInfo.Name;
             MembersToIgnore.Add(typeof(TClass).Name + "." + name);
+        }
+
+
+        public void CustomPropertyComparer<TClass>(Expression<Func<TClass, object>> customProperty, BaseTypeComparer validator)
+        {
+            LambdaExpression lambda = customProperty;
+            MemberExpression memberExpression;
+
+            if (lambda.Body is UnaryExpression unaryExpression)
+            {
+                memberExpression = unaryExpression.Operand as MemberExpression ??
+                                   // catches methods, maybe other things
+                                   throw new ArgumentException(
+                                       $"Custom property comparer can only be used with properties. {customProperty} is not a property.");
+            }
+            else
+            {
+                memberExpression = (MemberExpression)lambda.Body;
+            }
+
+            var propInfo = memberExpression.Member as PropertyInfo;
+            if (propInfo == null)
+                // catches fields, maybe other things
+            {
+                throw new ArgumentException($"Custom property comparer can only be used with properties. {customProperty} is not a property.");
+            }
+
+            var name = propInfo.Name;
+            CustomPropertyComparers.Add(typeof(TClass).Name + "." + name, validator);
         }
 
         /// <summary>
@@ -408,6 +436,15 @@ namespace KellermanSoftware.CompareNetObjects
 #endif
         public List<BaseTypeComparer> CustomComparers { get; set; }
 
+
+        /// <summary>
+        /// A list of custom property comparers that take priority over the built in and type comparers 
+        /// </summary>
+#if !NETSTANDARD
+        [DataMember]
+#endif
+        public Dictionary<string, BaseTypeComparer> CustomPropertyComparers { get; set; }
+
         /// <summary>
         /// If true, string.empty and null will be treated as equal for Strings and String Builder. The default is false.
         /// </summary>
@@ -486,6 +523,7 @@ namespace KellermanSoftware.CompareNetObjects
             ComparePrivateProperties = false;
             ComparePrivateFields = false;
 #endif
+            CustomPropertyComparers = new Dictionary<string, BaseTypeComparer>();
             CompareChildren = true;
             CompareReadOnly = true;
             CompareFields = true;
