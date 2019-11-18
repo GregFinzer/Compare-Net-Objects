@@ -56,7 +56,7 @@ dotnet add package CompareNETObjects
 * Property and Field Info reflection caching for increased performance
 * Rich Differences List or simple DifferencesString
 * Difference Callback
-* Supports custom comparison functions
+* Supports custom comparison for types and properties
 * ElapsedMilliseconds indicates how long the comparison took
 * Thread Safe
 * Beyond Compare Report
