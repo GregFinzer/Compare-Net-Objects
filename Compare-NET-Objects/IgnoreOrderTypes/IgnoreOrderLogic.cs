@@ -220,7 +220,8 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                 else
                 {
                     var decimals = BitConverter.GetBytes(decimal.GetBits(result.Config.DecimalPrecision)[3])[2];
-                    var formatString = $"{{0}}:{{1{(info.PropertyType.FullName != null && info.PropertyType.FullName.Contains("System.Decimal") ? $":N{decimals}" : string.Empty)}}},";
+                    var formatString = $"{{0}}:{{1{(TypeHelper.IsDecimal(propertyValue) ? $":N{decimals}" : string.Empty)}}},";
+
                     sb.Append(string.Format(formatString, item, propertyValue));
                 }
             }
