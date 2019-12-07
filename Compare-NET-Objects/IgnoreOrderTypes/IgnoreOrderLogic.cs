@@ -44,7 +44,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
             public int Counter;
             public readonly object ObjectValue;
         }
-        
+
         private void CompareOutOfOrder(CompareParms parms, bool reverseCompare)
         {
             IEnumerator enumerator1;
@@ -59,8 +59,8 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
 
             if (!reverseCompare)
             {
-                enumerator1 = ((IEnumerable) parms.Object1).GetEnumerator();
-                enumerator2 = ((IEnumerable) parms.Object2).GetEnumerator();
+                enumerator1 = ((IEnumerable)parms.Object1).GetEnumerator();
+                enumerator2 = ((IEnumerable)parms.Object2).GetEnumerator();
             }
             else
             {
@@ -89,7 +89,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
             while (enumerator2.MoveNext())
             {
                 var data = enumerator2.Current;
-                if (data != null 
+                if (data != null
                     && parms.Config.ClassTypesToIgnore.Contains(data.GetType()))
                 {
                     continue;
@@ -184,7 +184,6 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
             }
         }
 
-
         private string GetMatchIndex(ComparisonResult result, List<string> spec, object currentObject)
         {
             if (currentObject == null)
@@ -216,11 +215,13 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
 
                 if (propertyValue == null)
                 {
-                    sb.AppendFormat("{0}:(null),",item);
+                    sb.AppendFormat("{0}:(null),", item);
                 }
                 else
                 {
-                    string formatString = $"{{0}}:{{1{(info.PropertyType.Name == "Decimal" ? ":N" : string.Empty)}}},";
+                    var decimals = BitConverter.GetBytes(decimal.GetBits(result.Config.DecimalPrecision)[3])[2];
+                    var formatString = $"{{0}}:{{1{(TypeHelper.IsDecimal(propertyValue) ? $":N{decimals}" : string.Empty)}}},";
+
                     sb.Append(string.Format(formatString, item, propertyValue));
                 }
             }
@@ -263,7 +264,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
 #endif
         }
 
-        private List<string> GetMatchingSpec(ComparisonResult result,Type type)
+        private List<string> GetMatchingSpec(ComparisonResult result, Type type)
         {
             if (type == null)
                 return new List<string> { "(null)" };
@@ -279,7 +280,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
             List<string> list = Cache.GetPropertyInfo(result.Config, type)
                 .Where(o => o.CanWrite && (TypeHelper.IsSimpleType(o.PropertyType) || TypeHelper.IsEnum(o.PropertyType)))
                 .Select(o => o.Name).ToList();
-            
+
             //Remove members to ignore in the key
             foreach (var member in result.Config.MembersToIgnore)
             {
@@ -288,17 +289,5 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
 
             return list;
         }
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
