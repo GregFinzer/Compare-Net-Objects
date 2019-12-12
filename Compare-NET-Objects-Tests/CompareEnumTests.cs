@@ -123,6 +123,64 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             Assert.IsFalse(_compare.Compare(list1, list2).AreEqual);
         }
+
+
+        [Test]
+        public void TestNullableEnumPropertyNegative()
+        {
+            _compare.Config.CompareChildren = false;
+
+            var item1 = new ClassWithNullableEnumProperty()
+            {
+                MyDeck = Deck.Engineering
+            };
+
+
+            var item2 = new ClassWithNullableEnumProperty()
+            {
+                MyDeck = null
+            };
+
+            Assert.That(_compare.Compare(item1, item2).AreEqual, Is.False);
+        }
+
+        [Test]
+        public void TestNullableEnumPropertyPositive()
+        {
+            _compare.Config.CompareChildren = false;
+
+            var item1 = new ClassWithNullableEnumProperty()
+            {
+                MyDeck = null
+            };
+
+
+            var item2 = new ClassWithNullableEnumProperty()
+            {
+                MyDeck = null
+            };
+
+            Assert.That(_compare.Compare(item1, item2).AreEqual, Is.True);
+        }
+
+        [Test]
+        public void TestNullableEnumPropertyDifferentValuesNegative()
+        {
+            _compare.Config.CompareChildren = false;
+
+            var item1 = new ClassWithNullableEnumProperty()
+            {
+                MyDeck = Deck.AstroPhysics
+            };
+
+
+            var item2 = new ClassWithNullableEnumProperty()
+            {
+                MyDeck = Deck.Engineering
+            };
+
+            Assert.That(_compare.Compare(item1, item2).AreEqual, Is.False);
+        }
         #endregion
     }
 }
