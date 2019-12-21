@@ -24,8 +24,14 @@
     <AssemblyVersion>4.65.0.0</AssemblyVersion>
     <NeutralLanguage>en-US</NeutralLanguage>    
     <Company>Kellerman Software</Company>
-    <PackageReleaseNotes>Fix for comparing lists out of order with null items in the list. https://github.com/GregFinzer/Compare-Net-Objects/issues/181
-New custom property comparer feature by @flotas.  https://github.com/GregFinzer/Compare-Net-Objects/pull/184</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixes for bugs with Dots and Tabs
+https://github.com/GregFinzer/Compare-Net-Objects/issues/186
+
+Comparing nullable decimal property 1.1m and 1.10m in complex type collection resulting "not equal"
+https://github.com/GregFinzer/Compare-Net-Objects/issues/187
+
+Support for nullable Enum-Properties
+https://github.com/GregFinzer/Compare-Net-Objects/issues/189</PackageReleaseNotes>
     <Copyright>Copyright © 2019 Kellerman Software</Copyright>
   </PropertyGroup>
   
