@@ -34,6 +34,9 @@ namespace KellermanSoftware.CompareNetObjects
             //Trim any spaces
             input = input.Trim();
 
+            if (String.IsNullOrEmpty(input))
+                return string.Empty;
+
             char[] chars = input.ToCharArray();
 
             sb.Append(chars[0]);

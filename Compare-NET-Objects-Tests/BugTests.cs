@@ -51,6 +51,31 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
+        public void DotsAndTabsShouldFormatCorrectly()
+        {
+            List<DotsAndTabs> groundTruth = new List<DotsAndTabs>();
+            List<DotsAndTabs> newResult = new List<DotsAndTabs>();
+
+            groundTruth.Add(new DotsAndTabs { boo = "hello", gg = "hello again" });
+            groundTruth.Add(new DotsAndTabs  { boo = "scorpio \t. .\r\n11-nov", gg = "hello again2" });
+            newResult.Add(new DotsAndTabs  { boo = "hello", gg = "hello again" });
+            newResult.Add(new DotsAndTabs  { boo = "  .....  ", gg = "hello again2" });
+
+            CompareLogic compareLogicObject = new CompareLogic();
+            compareLogicObject.Config.MaxDifferences = int.MaxValue;
+            compareLogicObject.Config.IgnoreCollectionOrder = true;
+
+            ComparisonResult assertionResult = compareLogicObject.Compare(groundTruth, newResult);
+
+            Console.WriteLine(assertionResult.DifferencesString + "\n\n\n");
+
+            UserFriendlyReport friendlyReport = new UserFriendlyReport();
+
+            Console.WriteLine(friendlyReport.OutputString(assertionResult.Differences));
+
+        }
+
+        [Test]
         public void ComparingListsOfNullWhileIgnoringCollectionOrderShouldNotThrowObjectReferenceError()
         {
             //Arrange
