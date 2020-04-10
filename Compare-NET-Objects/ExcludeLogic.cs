@@ -185,6 +185,12 @@ namespace KellermanSoftware.CompareNetObjects
         /// <returns></returns>	
         public static bool IgnoredByAttribute(ComparisonConfig config, MemberInfo info)
         {
+            //Prevent loading attributes when AttributesToIgnore is empty
+            if (config.AttributesToIgnore.Count == 0)
+            {
+                return false;
+            }
+            
             var attributes = info.GetCustomAttributes(true);
 
             return attributes.Any(a => config.AttributesToIgnore.Contains(a.GetType()));
