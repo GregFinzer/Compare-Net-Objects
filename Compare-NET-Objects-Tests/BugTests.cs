@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using KellermanSoftware.CompareNetObjects.Reports;
+using KellermanSoftware.CompareNetObjectsTests.TestClasses.HashBug;
 using Newtonsoft.Json;
 using Point = System.Drawing.Point;
 
@@ -49,6 +50,37 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #endregion
 
         #region Tests
+
+        [Test]
+        public void HashBugTest()
+        {
+            var c = new HashBugC()
+            {
+                Text = "I'm C"
+            };
+
+            var b = new HashBugB()
+            {
+                Text = "I'm B",
+                CollectionOfC = new List<HashBugC>()
+                {
+                    c
+                }
+            };
+
+            var b2 = new HashBugB()
+            {
+                Text = "I'm B",
+                CollectionOfC = new List<HashBugC>()
+                {
+                    c
+                }
+            };
+
+            var comparisonResult = b == b2;
+
+            Assert.IsTrue(comparisonResult);
+        }
 
         [Test]
         public void DotsAndTabsShouldFormatCorrectly()

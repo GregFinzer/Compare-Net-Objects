@@ -13,9 +13,10 @@ namespace KellermanSoftware.CompareNetObjects
         #region Class Variables
         private string _differencesString;
         /// <summary>
-        /// Keep track of parent objects in the object hierarchy
+        /// Keep track of parent objects in the object hierarchy by using reference equals
         /// </summary>
-        private readonly Dictionary<object, int> _parents = new Dictionary<object, int>();
+        private readonly Dictionary<object, int> _referenceParents = new Dictionary<object, int>();
+        private readonly  Dictionary<int, int> _hashParents = new Dictionary<int, int>();
         #endregion
 
         #region Constructors
@@ -113,16 +114,41 @@ namespace KellermanSoftware.CompareNetObjects
         /// <param name="objectReference"></param>
         protected internal void AddParent(object objectReference)
         {
-            if (objectReference == null || _parents == null)
+            if (objectReference == null)
                 return;
 
-            if (!_parents.ContainsKey(objectReference))
+            if (Config.UseHashCodeIdentifier && _hashParents == null)
+                return;
+
+            if (!Config.UseHashCodeIdentifier && _referenceParents == null)
+                return;
+
+            if (Config.UseHashCodeIdentifier)
             {
-                _parents.Add(objectReference, 0);
+                int hash = objectReference.GetHashCode();
+
+                if (hash == 0)
+                    return;
+
+                if (!_hashParents.ContainsKey(hash))
+                {
+                    _hashParents.Add(hash, 1);
+                }
+                else
+                {
+                    _hashParents[hash]++;
+                }
             }
             else
             {
-                _parents[objectReference]++;
+                if (!_referenceParents.ContainsKey(objectReference))
+                {
+                    _referenceParents.Add(objectReference, 0);
+                }
+                else
+                {
+                    _referenceParents[objectReference]++;
+                }
             }
         }
 
@@ -134,16 +160,46 @@ namespace KellermanSoftware.CompareNetObjects
         /// <param name="objectReference"></param>
         protected internal void RemoveParent(object objectReference)
         {
-            if (objectReference == null || _parents == null)
+            if (objectReference == null)
+                return;
+
+            if (Config.UseHashCodeIdentifier && _hashParents == null)
+                return;
+
+            if (!Config.UseHashCodeIdentifier && _referenceParents == null)
                 return;
 
             try
             {
-                if (_parents.ContainsKey(objectReference))
+                if (Config.UseHashCodeIdentifier)
                 {
-                    if (_parents[objectReference] <= 1)
-                        _parents.Remove(objectReference);
-                    else _parents[objectReference]--;
+                    int hash = objectReference.GetHashCode();
+
+                    if (_hashParents.ContainsKey(hash))
+                    {
+                        if (_hashParents[hash] <= 1)
+                        {
+                            _hashParents.Remove(hash);
+                        }
+                        else
+                        {
+                            _hashParents[hash]--;
+                        }
+                    }
+                }
+                else
+                {
+                    if (_referenceParents.ContainsKey(objectReference))
+                    {
+                        if (_referenceParents[objectReference] <= 1)
+                        {
+                            _referenceParents.Remove(objectReference);
+                        }
+                        else
+                        {
+                            _referenceParents[objectReference]--;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -159,10 +215,28 @@ namespace KellermanSoftware.CompareNetObjects
         /// <returns></returns>
         protected internal bool IsParent(object objectReference)
         {
-            if (objectReference == null || _parents == null)
+            if (objectReference == null)
                 return false;
 
-            return _parents.ContainsKey(objectReference);
+            if (Config.UseHashCodeIdentifier && _hashParents == null)
+                return false;
+
+            if (!Config.UseHashCodeIdentifier && _referenceParents == null)
+                return false;
+
+            if (Config.UseHashCodeIdentifier)
+            {
+                int hash = objectReference.GetHashCode();
+
+                if (hash == 0)
+                    return false;
+
+                return _hashParents.ContainsKey(hash);
+            }
+            else
+            {
+                return _referenceParents.ContainsKey(objectReference);
+            }
         }
         #endregion
 

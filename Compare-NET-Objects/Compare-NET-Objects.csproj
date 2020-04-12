@@ -19,7 +19,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>compare comparison equality equal deep objects difference compareobjects deepequal deepequals</PackageTags>
     <Description>What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.</Description>
-    <Authors>KellermanSoftware</Authors>
+    <Authors>rte</Authors>
     <Version>4.65.0</Version>
     <AssemblyVersion>4.65.0.0</AssemblyVersion>
     <NeutralLanguage>en-US</NeutralLanguage>    

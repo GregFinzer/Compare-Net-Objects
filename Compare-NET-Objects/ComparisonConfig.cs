@@ -37,6 +37,13 @@ namespace KellermanSoftware.CompareNetObjects
         #region Properties
 
         /// <summary>
+        /// By default Compare .NET Objects uses reference equal to identify objects.
+        /// Versions 4.61 and older used the hash code.  Setting this to true will identify objects by hash code instead of reference equals.
+        /// The default is false
+        /// </summary>
+        public bool UseHashCodeIdentifier { get; set; }
+
+        /// <summary>
         /// When comparing strings or StringBuilder types, perform a case sensitive comparison.  The default is true.
         /// </summary>
 #if !NETSTANDARD
