@@ -20,19 +20,15 @@
     <PackageTags>compare comparison equality equal deep objects difference compareobjects deepequal deepequals</PackageTags>
     <Description>What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.</Description>
     <Authors>rte</Authors>
-    <Version>4.65.0</Version>
-    <AssemblyVersion>4.65.0.0</AssemblyVersion>
+    <Version>4.66.0</Version>
+    <AssemblyVersion>4.66.0.0</AssemblyVersion>
     <NeutralLanguage>en-US</NeutralLanguage>    
     <Company>Kellerman Software</Company>
-    <PackageReleaseNotes>Fixes for bugs with Dots and Tabs
-https://github.com/GregFinzer/Compare-Net-Objects/issues/186
+    <PackageReleaseNotes>Improve IgnoredByAttributePerformance by ocoanet
 
-Comparing nullable decimal property 1.1m and 1.10m in complex type collection resulting "not equal"
-https://github.com/GregFinzer/Compare-Net-Objects/issues/187
-
-Support for nullable Enum-Properties
-https://github.com/GregFinzer/Compare-Net-Objects/issues/189</PackageReleaseNotes>
-    <Copyright>Copyright © 2019 Kellerman Software</Copyright>
+Added Config.UseHashCodeIdentifier for fix https://github.com/GregFinzer/Compare-Net-Objects/issues/192</PackageReleaseNotes>
+    <Copyright>Copyright © 2020 Kellerman Software</Copyright>
+    <FileVersion>4.66.0.0</FileVersion>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
