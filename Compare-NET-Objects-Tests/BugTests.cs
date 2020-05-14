@@ -52,6 +52,16 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
+        public void SimpleArrayTest()
+        {
+            var compareLogic = new CompareLogic();
+            compareLogic.Config.IgnoreCollectionOrder = true;
+            compareLogic.Config.MaxDifferences = Int32.MaxValue;
+            ComparisonResult result = compareLogic.Compare(new[] { "one" }, new[] { "two" });
+            Console.WriteLine(result.DifferencesString);
+        }
+
+        [Test]
         public void HashBugTest()
         {
             var c = new HashBugC()
