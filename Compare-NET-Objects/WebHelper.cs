@@ -3,6 +3,9 @@ using System.Text;
 
 namespace KellermanSoftware.CompareNetObjects
 {
+    /// <summary>
+    /// Helper class for web related methods
+    /// </summary>
     public static class WebHelper
     {
         /// <summary>

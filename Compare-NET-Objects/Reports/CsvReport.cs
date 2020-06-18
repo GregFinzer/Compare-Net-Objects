@@ -73,6 +73,11 @@ namespace KellermanSoftware.CompareNetObjects.Reports
         }
 
 #if NETSTANDARD1
+
+        /// <summary>
+        /// Throws a NotSupportedException when run under .NET Standard 1
+        /// </summary>
+        /// <param name="filePath">The differences file</param>
         public void LaunchApplication(string filePath)
         {
             throw new NotSupportedException();

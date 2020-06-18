@@ -15,13 +15,18 @@ namespace KellermanSoftware.CompareNetObjects.Reports
         private const string APPLICATION_NAME = "BCompare.exe";
 
 #if NETSTANDARD1
+        /// <summary>
+        /// Throw a NotSupported exception if we are running under .NET Standard 1.0
+        /// </summary>
+        /// <param name="expectedFilePath">The path to write the expected results</param>
+        /// <param name="actualFilePath">The path to write the actual results</param>
         public override void LaunchApplication(string expectedFilePath, string actualFilePath)
         {
             throw new NotSupportedException();
         }
 #else
         /// <summary>
-        /// Launch the WinMerge
+        /// Launch Beyond Compare
         /// </summary>
         /// <param name="expectedFilePath">The path to write the expected results</param>
         /// <param name="actualFilePath">The path to write the actual results</param>

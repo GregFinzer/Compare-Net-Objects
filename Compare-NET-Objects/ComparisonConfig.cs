@@ -218,7 +218,12 @@ namespace KellermanSoftware.CompareNetObjects
             MembersToIgnore.Add(typeof(TClass).Name + "." + name);
         }
 
-
+        /// <summary>
+        /// Define a Custom Property Comparer using a lambda expression
+        /// </summary>
+        /// <typeparam name="TClass"></typeparam>
+        /// <param name="customProperty"></param>
+        /// <param name="validator"></param>
         public void CustomPropertyComparer<TClass>(Expression<Func<TClass, object>> customProperty, BaseTypeComparer validator)
         {
             LambdaExpression lambda = customProperty;

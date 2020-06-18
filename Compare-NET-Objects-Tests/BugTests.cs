@@ -20,6 +20,8 @@ using System.Drawing.Drawing2D;
 
 namespace KellermanSoftware.CompareNetObjectsTests
 {
+
+
     [TestFixture]
     public class BugTests
     {
@@ -50,6 +52,42 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #endregion
 
         #region Tests
+
+        [Test]
+        public void IgnoredMemberGetPropertyAccessed()
+        {
+            //This is the comparison class
+            CompareLogic compareLogic = new CompareLogic();
+            compareLogic.Config.MembersToIgnore.Add("Person.Name");
+
+            //Create a couple objects to compare
+            PersonWithNotImplementedProperty person1 = new PersonWithNotImplementedProperty();
+            person1.DateCreated = DateTime.Now;
+
+            PersonWithNotImplementedProperty person2 = new PersonWithNotImplementedProperty();
+            person2.DateCreated = person1.DateCreated;
+            ComparisonResult result = compareLogic.Compare(person1, person2);
+
+            Assert.IsTrue(result.AreEqual);
+        }
+
+        [Test]
+        public void CheckIgnoreCollectionOrder()
+        {
+            Dictionary<Type, IEnumerable<string>> collectionSpec = new Dictionary<Type, IEnumerable<string>>();
+            collectionSpec.Add(typeof(Foo2), new string[] { "Prop" });
+
+            var config = new ComparisonConfig { IgnoreCollectionOrder = true, CollectionMatchingSpec = collectionSpec };
+            var compareLogic = new CompareLogic(config);
+
+            var actual = new Foo2[] { new Foo2(2), new Foo2(1) };
+            var expected = new Foo2[] { new Foo2(1), new Foo2(2) };
+
+
+            var result = compareLogic.Compare(expected, actual);
+            Console.WriteLine(result.DifferencesString);
+            Assert.IsTrue(result.AreEqual);
+        }
 
         [Test]
         public void SimpleArrayTest()

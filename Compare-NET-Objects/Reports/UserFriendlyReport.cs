@@ -98,6 +98,11 @@ namespace KellermanSoftware.CompareNetObjects.Reports
         }
 
 #if NETSTANDARD1
+
+        /// <summary>
+        /// Throws an exception when running under .NET Standard 1.0
+        /// </summary>
+        /// <param name="filePath">The file path</param>
         public void LaunchApplication(string filePath)
         {
             throw new NotSupportedException();

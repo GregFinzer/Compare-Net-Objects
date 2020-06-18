@@ -74,6 +74,10 @@ namespace KellermanSoftware.CompareNetObjects.Reports
         }
 
 #if NETSTANDARD1
+        /// <summary>
+        /// Throw a NotSupported exception if we are running under .NET Standard 1.0
+        /// </summary>
+        /// <param name="filePath">The differences file</param>
         public void LaunchApplication(string filePath)
         {
             throw new NotSupportedException();
@@ -81,7 +85,7 @@ namespace KellermanSoftware.CompareNetObjects.Reports
 #else
 
         /// <summary>
-        /// Launch the WinMerge
+        /// Launch the HTML Report
         /// </summary>
         /// <param name="filePath">The differences file</param>
         public void LaunchApplication(string filePath)
