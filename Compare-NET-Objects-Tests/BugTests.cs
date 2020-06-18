@@ -58,7 +58,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
         {
             //This is the comparison class
             CompareLogic compareLogic = new CompareLogic();
-            compareLogic.Config.MembersToIgnore.Add("Person.Name");
+            compareLogic.Config.MembersToIgnore.Add("PersonWithNotImplementedProperty.Name");
 
             //Create a couple objects to compare
             PersonWithNotImplementedProperty person1 = new PersonWithNotImplementedProperty();

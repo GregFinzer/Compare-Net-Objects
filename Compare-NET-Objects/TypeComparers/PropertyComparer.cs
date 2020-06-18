@@ -146,14 +146,20 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         private static List<PropertyEntity> HandleNormalProperties(CompareParms parms, object objectValue, Type objectType)
         {
             IEnumerable<PropertyInfo> properties = Cache.GetPropertyInfo(parms.Result.Config, objectType);
-            return AddPropertyInfos(objectValue, objectType, properties);
+            return AddPropertyInfos(parms, objectValue, objectType, properties);
         }
 
-        private static List<PropertyEntity> AddPropertyInfos(object objectValue, Type objectType, IEnumerable<PropertyInfo> properties)
+        private static List<PropertyEntity> AddPropertyInfos(CompareParms parms,
+            object objectValue, 
+            Type objectType, 
+            IEnumerable<PropertyInfo> properties)
         {
             List<PropertyEntity> currentProperties = new List<PropertyEntity>();
             foreach (var property in properties)
             {
+                if (ExcludeLogic.ShouldExcludeMember(parms.Config, property, objectType))
+                    continue;
+
                 PropertyEntity propertyEntity = new PropertyEntity();
                 propertyEntity.IsDynamic = false;
                 propertyEntity.Name = property.Name;
