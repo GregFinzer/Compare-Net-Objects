@@ -91,6 +91,58 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
 
         [Test]
+        public void SByteArrayTestPositive()
+        {
+            sbyte[] b1 = new sbyte[256];
+            sbyte[] b2 = new sbyte[256];
+            for (int i = 0; i <= 255; i++)
+                b1[i] = (sbyte)i;
+
+            b1.CopyTo(b2, 0);
+
+            ComparisonResult result = _compare.Compare(b1, b2);
+
+            if (!result.AreEqual)
+                throw new Exception(result.DifferencesString);
+        }
+
+        [Test]
+        public void SByteArrayTestNegative()
+        {
+            sbyte[] b1 = new sbyte[256];
+            sbyte[] b2 = new sbyte[256];
+            for (int i = 0; i <= 255; i++)
+                b1[i] = (sbyte)i;
+
+            b1.CopyTo(b2, 0);
+            b2[5] = 77;
+
+            ComparisonResult result = _compare.Compare(b1, b2);
+
+            if (result.AreEqual)
+                throw new Exception(result.DifferencesString);
+        }
+
+        [Test]
+        public void SByteListTestNegative()
+        {
+            sbyte[] b1 = new sbyte[256];
+            sbyte[] b2 = new sbyte[256];
+            for (int i = 0; i <= 255; i++)
+                b1[i] = (sbyte)i;
+
+            b1.CopyTo(b2, 0);
+            b2[5] = 77;
+
+            List<sbyte> bList1 = new List<sbyte>(b1);
+            List<sbyte> bList2 = new List<sbyte>(b2);
+            ComparisonResult result = _compare.Compare(bList1, bList2);
+
+            if (result.AreEqual)
+                throw new Exception(result.DifferencesString);
+        }
+
+        [Test]
         public void ArrayTest()
         {
             Person p1 = new Person();
