@@ -60,7 +60,8 @@ namespace KellermanSoftware.CompareNetObjects
             return IsIList(type) && (
                 typeof(IEnumerable<byte>).IsAssignableFrom(type) ||
                 typeof(IEnumerable<byte?>).IsAssignableFrom(type)
-                );
+                )
+                && type != typeof(sbyte[]);
         }
 
         /// <summary>
