@@ -102,6 +102,7 @@ dotnet add package CompareNETObjects
 * IPEndPoint
 * Types of Type (RuntimeType)
 * StringBuilder
+* SByte
 
 # Limitations
 * Custom Collections with Non-Integer Indexers cannot be compared.
