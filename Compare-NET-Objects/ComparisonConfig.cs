@@ -382,7 +382,7 @@ namespace KellermanSoftware.CompareNetObjects
         public List<Type> AttributesToIgnore { get; set; }
 
         /// <summary>
-        /// If a class, property or field don't have at least one of the attributes in this list, it will be ignored
+        /// If a property or field don't have at least one of the attributes in this list, it will be ignored
         /// </summary>
         /// <example>RequiredAttributesToCompare.Add(typeof(XmlIgnoreAttribute));</example>
 #if !NETSTANDARD
