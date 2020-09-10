@@ -160,6 +160,48 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
         #endregion
 
+        #region IgnoreByLackOfAttributeTest
+        [Test]
+        public void IgnoreByLackOfAttribute()
+        {
+            Movie movie1 = new Movie();
+            movie1.Name = "Mission Impossible 13, Ethan Gets Unlucky";
+            movie1.PaymentForTomCruise = 20000000;
+
+            Movie movie2 = new Movie();
+            movie2.Name = "Mission Impossible 13, Ethan Gets Unlucky";
+            movie2.PaymentForTomCruise = 20000001;
+
+            //The difference for PaymentForTomCruise will be ignored because only Name property is marked with CompareAttribute
+            _compare.Config.RequiredAttributesToCompare.Add(typeof(CompareAttribute));
+            Assert.IsTrue(_compare.Compare(movie1, movie2).AreEqual, $"Compare should result in equal because {nameof(Movie.PaymentForTomCruise)} doesn't have {nameof(CompareAttribute)}");
+
+            _compare.Config.RequiredAttributesToCompare.Clear();
+        }
+
+        [Test]
+        public void IgnoreByLackOfAttributeDifferent()
+        {
+            Movie movie1 = new Movie();
+            movie1.Name = "Mission Impossible 13, Ethan Gets Unlucky";
+            movie1.PaymentForTomCruise = 20000000;
+
+            Movie movie2 = new Movie();
+            movie2.Name = "Mission Impossible 14, Ethan Gets Unlucky";
+            movie2.PaymentForTomCruise = 20000001;
+
+            //The difference for PaymentForTomCruise will be ignored, but not for Name property, because it has CompareAttribute
+            _compare.Config.RequiredAttributesToCompare.Add(typeof(CompareAttribute));
+            _compare.Config.MaxDifferences = 2;
+
+            var result = _compare.Compare(movie1, movie2);
+            Assert.IsFalse(result.AreEqual, $"Compare shouldn't result in equal because {nameof(Movie.Name)} has different values");
+            Assert.IsTrue(result.Differences.Count == 1, $"Only one difference should exist because {nameof(Movie.PaymentForTomCruise)} doesn't have {nameof(CompareAttribute)}");
+
+            _compare.Config.RequiredAttributesToCompare.Clear();
+        }
+        #endregion
+
         #region Ignore Read Only Tests
         [Test]
         public void IgnoreReadOnlyPositive()
