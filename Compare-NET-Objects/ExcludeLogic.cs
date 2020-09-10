@@ -151,10 +151,6 @@ namespace KellermanSoftware.CompareNetObjects
             if (IgnoredByAttribute(config, t1.GetTypeInfo()) || IgnoredByAttribute(config, t2.GetTypeInfo()))
                 return true;
 
-            //The class is ignored by lack of required attribute
-            if (IgnoredByLackOfAttribute(config, t1.GetTypeInfo()) || IgnoredByLackOfAttribute(config, t2.GetTypeInfo()))
-                return true;
-
             return false;
         }
 
