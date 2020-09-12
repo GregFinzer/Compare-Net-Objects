@@ -79,6 +79,9 @@ namespace KellermanSoftware.CompareNetObjects
             if (IgnoredByAttribute(config, info))
                 return true;
 
+            if (IgnoredByLackOfAttribute(config, info))
+                return true;
+
             return false;
         }
 
@@ -194,6 +197,23 @@ namespace KellermanSoftware.CompareNetObjects
             var attributes = info.GetCustomAttributes(true);
 
             return attributes.Any(a => config.AttributesToIgnore.Contains(a.GetType()));
+        }
+
+        /// <summary>
+        /// Check if any type lacks attributes that should be required
+        /// </summary>
+        /// <returns></returns>	
+        public static bool IgnoredByLackOfAttribute(ComparisonConfig config, MemberInfo info)
+        {
+            //Prevent loading attributes when RequiredAttributesToCompare is empty
+            if (config.RequiredAttributesToCompare.Count == 0)
+            {
+                return false;
+            }
+
+            var attributes = info.GetCustomAttributes(true);
+
+            return !attributes.Any(a => config.RequiredAttributesToCompare.Contains(a.GetType()));
         }
 
     }

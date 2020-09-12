@@ -708,6 +708,31 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
 
         [Test]
+        public void IgnoreByLackOfAttribute_test_should_fail_difference_should_be_customer()
+        {
+            // Arrange
+            Shipment shipment1 = CreateShipment();
+            Shipment shipment2 = CreateShipment();
+            shipment2.InsertDate = DateTime.Now; 
+            shipment2.Customer = "Andritz"; // Only Customer has the CompareAttribute on it
+
+            _compare.Config.RequiredAttributesToCompare.Add(typeof(CompareAttribute));
+            _compare.Config.MaxDifferences = int.MaxValue;
+
+            // Act
+            var result = _compare.Compare(shipment1, shipment2);
+
+            // Assert
+            Assert.IsFalse(result.AreEqual);
+            Assert.AreEqual(1, result.Differences.Count);
+            Console.WriteLine(result.DifferencesString);
+            Assert.AreEqual("ADEG", result.Differences[0].Object1Value);
+            Assert.AreEqual("Andritz", result.Differences[0].Object2Value);
+
+            _compare.Config.RequiredAttributesToCompare.Clear();
+        }
+
+        [Test]
         public void WilliamCWarnerTest()
         {
             ILabTest labTest = new LabTest();

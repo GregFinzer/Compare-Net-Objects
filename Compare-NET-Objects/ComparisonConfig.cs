@@ -382,6 +382,15 @@ namespace KellermanSoftware.CompareNetObjects
         public List<Type> AttributesToIgnore { get; set; }
 
         /// <summary>
+        /// If a property or field don't have at least one of the attributes in this list, it will be ignored
+        /// </summary>
+        /// <example>RequiredAttributesToCompare.Add(typeof(XmlIgnoreAttribute));</example>
+#if !NETSTANDARD
+        [DataMember]
+#endif
+        public List<Type> RequiredAttributesToCompare { get; set; }
+
+        /// <summary>
         /// If true, objects will be compared ignore their type diferences.  The default is false.
         /// </summary>
 #if !NETSTANDARD
@@ -518,6 +527,7 @@ namespace KellermanSoftware.CompareNetObjects
         public void Reset()
         {
             AttributesToIgnore = new List<Type>();
+            RequiredAttributesToCompare = new List<Type>();
             _differenceCallback = d => { };
 
             MembersToIgnore = new List<string>();
