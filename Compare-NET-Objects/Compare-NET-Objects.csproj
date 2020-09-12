@@ -19,16 +19,16 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>compare comparison equality equal deep objects difference compareobjects deepequal deepequals</PackageTags>
     <Description>What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.</Description>
-    <Authors>rte</Authors>
-    <Version>4.66.0</Version>
-    <AssemblyVersion>4.66.0.0</AssemblyVersion>
+    <Authors>gfinzer</Authors>
+    <Version>4.67.0</Version>
+    <AssemblyVersion>4.67.0.0</AssemblyVersion>
     <NeutralLanguage>en-US</NeutralLanguage>    
     <Company>Kellerman Software</Company>
-    <PackageReleaseNotes>Improve IgnoredByAttributePerformance by ocoanet
-
-Added Config.UseHashCodeIdentifier for fix https://github.com/GregFinzer/Compare-Net-Objects/issues/192</PackageReleaseNotes>
+    <PackageReleaseNotes>1.  Fix for Ignored Member Get Property Accessed: https://github.com/GregFinzer/Compare-Net-Objects/issues/201
+2.  Support for sbyte array from @taks https://github.com/GregFinzer/Compare-Net-Objects/pull/203
+3.  New feature from @igorocampos compare only properties with given attribute.  https://github.com/GregFinzer/Compare-Net-Objects/issues/207</PackageReleaseNotes>
     <Copyright>Copyright © 2020 Kellerman Software</Copyright>
-    <FileVersion>4.66.0.0</FileVersion>
+    <FileVersion>4.67.0.0</FileVersion>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
