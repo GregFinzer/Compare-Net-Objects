@@ -809,7 +809,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
             List<Shipment> shipments2 = new List<Shipment>();
             Shipment shipment3 = new Shipment() { Customer = "Name2" };
             Shipment shipment4 = new Shipment() { Customer = "Name1" };
-            shipment4.InsertDate = DateTime.Now; // InsertDate has the CompareIgnoreAttribute on it
+            shipment4.InsertDate = DateTime.Now.AddDays(1); // Set different value for InsertDate
 
             //add in different order
             shipments2.Add(shipment3);
@@ -823,7 +823,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             // Assert
             Assert.IsFalse(result.AreEqual);
-            Assert.AreEqual(1, result.Differences.Count);
+            Assert.AreEqual(2, result.Differences.Count);
             Console.WriteLine(result.DifferencesString);
 
             _compare.Config.AttributesToIgnore.Clear();
