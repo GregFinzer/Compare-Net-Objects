@@ -137,9 +137,9 @@ namespace KellermanSoftware.CompareNetObjectsTests
             List<DotsAndTabs> newResult = new List<DotsAndTabs>();
 
             groundTruth.Add(new DotsAndTabs { boo = "hello", gg = "hello again" });
-            groundTruth.Add(new DotsAndTabs  { boo = "scorpio \t. .\r\n11-nov", gg = "hello again2" });
-            newResult.Add(new DotsAndTabs  { boo = "hello", gg = "hello again" });
-            newResult.Add(new DotsAndTabs  { boo = "  .....  ", gg = "hello again2" });
+            groundTruth.Add(new DotsAndTabs { boo = "scorpio \t. .\r\n11-nov", gg = "hello again2" });
+            newResult.Add(new DotsAndTabs { boo = "hello", gg = "hello again" });
+            newResult.Add(new DotsAndTabs { boo = "  .....  ", gg = "hello again2" });
 
             CompareLogic compareLogicObject = new CompareLogic();
             compareLogicObject.Config.MaxDifferences = int.MaxValue;
@@ -469,7 +469,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
         [Test]
         public void PropertyNameShouldNotHaveAPeriodInFrontOfIt()
         {
-            Person person1 = new Person() {Name = "Luke Skywalker", DateCreated = DateTime.Today, ID = 1};
+            Person person1 = new Person() { Name = "Luke Skywalker", DateCreated = DateTime.Today, ID = 1 };
             Person person2 = new Person() { Name = "Leia Skywalker", DateCreated = DateTime.Today, ID = 1 };
 
             var result = _compare.Compare(person1, person2);
@@ -517,7 +517,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             var comparer = new CompareLogic { Config = { IgnoreCollectionOrder = true } };
             var res = comparer.Compare(bar1, bar2);
-            Assert.IsTrue(res.AreEqual,res.DifferencesString);
+            Assert.IsTrue(res.AreEqual, res.DifferencesString);
         }
 
         [Test]
@@ -624,9 +624,9 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             //Ignore types so they will be equal
             Assert.IsTrue(result.AreEqual);
-            
+
             _compare.Config.Reset();
-            
+
         }
 
 
@@ -713,7 +713,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
             // Arrange
             Shipment shipment1 = CreateShipment();
             Shipment shipment2 = CreateShipment();
-            shipment2.InsertDate = DateTime.Now; 
+            shipment2.InsertDate = DateTime.Now;
             shipment2.Customer = "Andritz"; // Only Customer has the CompareAttribute on it
 
             _compare.Config.RequiredAttributesToCompare.Add(typeof(CompareAttribute));
@@ -751,7 +751,85 @@ namespace KellermanSoftware.CompareNetObjectsTests
             Console.WriteLine(result.DifferencesString);
         }
 
-        #if !NETSTANDARD
+        [Test]
+        public void IgnoreByAttribute_IgnoreCollectionOrder_ShouldPass()
+        {
+            // Arrange
+            Shipment shipment1 = new Shipment() { Customer = "Name1" };
+            shipment1.InsertDate = DateTime.Now; // InsertDate has the CompareIgnoreAttribute on it
+            Shipment shipment2 = new Shipment() { Customer = "Name2" };
+
+            _compare.Config.AttributesToIgnore.Add(typeof(CompareIgnoreAttribute));
+            _compare.Config.IgnoreCollectionOrder = true;
+            _compare.Config.MaxDifferences = int.MaxValue;
+
+            List<Shipment> shipments1 = new List<Shipment>();
+            shipments1.Add(shipment1);
+            shipments1.Add(shipment2);
+
+            List<Shipment> shipments2 = new List<Shipment>();
+            Shipment shipment3 = new Shipment() { Customer = "Name2" };
+            Shipment shipment4 = new Shipment() { Customer = "Name1" };
+            shipment4.InsertDate = DateTime.Now; // InsertDate has the CompareIgnoreAttribute on it
+
+            //add in different order
+            shipments2.Add(shipment3);
+            shipments2.Add(shipment4);
+
+            //shipment1 & shipment3 are same, shipment2 and shipment4 are also same but their InsertDate is different. 
+            //Also the order of items are diiferent in both list.
+
+            // Act
+            var result = _compare.Compare(shipments1, shipments2);
+
+            // Assert
+            Assert.IsTrue(result.AreEqual);
+            Assert.AreEqual(0, result.Differences.Count);
+            Console.WriteLine(result.DifferencesString);
+
+            _compare.Config.AttributesToIgnore.Clear();
+        }
+
+        [Test]
+        public void IgnoreByAttribute_IgnoreCollectionOrder_ShouldFail()
+        {
+            // Arrange
+            Shipment shipment1 = new Shipment() { Customer = "Name1" };
+            shipment1.InsertDate = DateTime.Now; // InsertDate has the CompareIgnoreAttribute on it
+            Shipment shipment2 = new Shipment() { Customer = "Name2" };
+
+            //No ignored attributes added so test should fail for property InsertDate
+            _compare.Config.IgnoreCollectionOrder = true;
+            _compare.Config.MaxDifferences = int.MaxValue;
+
+            List<Shipment> shipments1 = new List<Shipment>();
+            shipments1.Add(shipment1);
+            shipments1.Add(shipment2);
+
+            List<Shipment> shipments2 = new List<Shipment>();
+            Shipment shipment3 = new Shipment() { Customer = "Name2" };
+            Shipment shipment4 = new Shipment() { Customer = "Name1" };
+            shipment4.InsertDate = DateTime.Now.AddDays(1); // Set different value for InsertDate
+
+            //add in different order
+            shipments2.Add(shipment3);
+            shipments2.Add(shipment4);
+
+            //shipment1 & shipment3 are same, shipment2 and shipment4 are also same but their InsertDate is different. 
+            //Also the order of items are diiferent in both list.
+
+            // Act
+            var result = _compare.Compare(shipments1, shipments2);
+
+            // Assert
+            Assert.IsFalse(result.AreEqual);
+            Assert.AreEqual(2, result.Differences.Count);
+            Console.WriteLine(result.DifferencesString);
+
+            _compare.Config.AttributesToIgnore.Clear();
+        }
+
+#if !NETSTANDARD
 
         [Test]
         public void LinearGradient()
@@ -762,7 +840,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
             Assert.IsFalse(_compare.Compare(brush1, brush2).AreEqual);
         }
 
-        #endif
+#endif
 
         [Test]
         public void DecimalCollectionWhenOrderIgnored()
@@ -771,7 +849,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
             {
                 IgnoreCollectionOrder = true
             });
-            Assert.IsTrue(compare.Compare(new decimal[] { 10, 1 }, new [] { 10.0m, 1.0m }).AreEqual);
+            Assert.IsTrue(compare.Compare(new decimal[] { 10, 1 }, new[] { 10.0m, 1.0m }).AreEqual);
         }
 
         #endregion
