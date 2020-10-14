@@ -278,14 +278,8 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
 
             //Make a key out of primitive types, date, decimal, string, guid, and enum of the class
             List<string> list = Cache.GetPropertyInfo(result.Config, type)
-                .Where(o => o.CanWrite && (TypeHelper.IsSimpleType(o.PropertyType) || TypeHelper.IsEnum(o.PropertyType)))
+                .Where(o => o.CanWrite && !ExcludeLogic.ShouldExcludeMember(result.Config, o, o.DeclaringType) && (TypeHelper.IsSimpleType(o.PropertyType) || TypeHelper.IsEnum(o.PropertyType)))
                 .Select(o => o.Name).ToList();
-
-            //Remove members to ignore in the key
-            foreach (var member in result.Config.MembersToIgnore)
-            {
-                list.Remove(member);
-            }
 
             return list;
         }
