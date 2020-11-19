@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using KellermanSoftware.CompareNetObjects;
 using KellermanSoftware.CompareNetObjects.TypeComparers;
 
 namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
@@ -58,8 +59,8 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
             Type dataType2 = null;
 
             // Determine an explicit fallback to be used if the first element in an enumerable is null.
-            Type fallbackType1 = parms.Object1Type != null ? (parms.Object1Type.IsGenericType ? parms.Object1Type.GetGenericArguments()[0] : parms.Object1Type.GetElementType()) : null;
-            Type fallbackType2 = parms.Object2Type != null ? (parms.Object2Type.IsGenericType ? parms.Object2Type.GetGenericArguments()[0] : parms.Object2Type.GetElementType()) : null;
+            Type fallbackType1 = parms.Object1Type != null ? (TypeHelper.IsGenericType(parms.Object1Type) ? parms.Object1Type.GetGenericArguments()[0] : parms.Object1Type.GetElementType()) : null;
+            Type fallbackType2 = parms.Object2Type != null ? (TypeHelper.IsGenericType(parms.Object2Type) ? parms.Object2Type.GetGenericArguments()[0] : parms.Object2Type.GetElementType()) : null;
 
             if (!reverseCompare)
             {
