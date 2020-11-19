@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using KellermanSoftware.CompareNetObjects;
@@ -1393,6 +1393,24 @@ namespace KellermanSoftware.CompareNetObjectsTests
             var result = compareLogic.Compare(list1, list2);
             Assert.IsTrue(result.AreEqual);
         }
+
+        [Test]
+        public void CompareListsIgnoreOrderFirstElementNull()
+        {
+            var compareLogic = new CompareLogic();
+            compareLogic.Config.IgnoreCollectionOrder = true;
+
+            Assert.DoesNotThrow(() => compareLogic.Compare(new[] {"a", "b"}, new[] {null, "a"}));
+        }
+
+        [Test] 
+        public void CompareListsIgnoreOrderFirstElementNull_Reverse() 
+        { 
+            var compareLogic = new CompareLogic(); 
+            compareLogic.Config.IgnoreCollectionOrder = true; 
+ 
+            Assert.DoesNotThrow(() => compareLogic.Compare(new[] {null, "a"}, new[] {"a", "b"})); 
+        } 
         #endregion
     }
 }

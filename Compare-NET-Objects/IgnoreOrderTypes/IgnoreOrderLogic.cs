@@ -57,6 +57,10 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
             Type dataType1 = null;
             Type dataType2 = null;
 
+            // Determine an explicit fallback to be used if the first element in an enumerable is null.
+            Type fallbackType1 = parms.Object1Type != null ? (parms.Object1Type.IsGenericType ? parms.Object1Type.GetGenericArguments()[0] : parms.Object1Type.GetElementType()) : null;
+            Type fallbackType2 = parms.Object2Type != null ? (parms.Object2Type.IsGenericType ? parms.Object2Type.GetGenericArguments()[0] : parms.Object2Type.GetElementType()) : null;
+
             if (!reverseCompare)
             {
                 enumerator1 = ((IEnumerable)parms.Object1).GetEnumerator();
@@ -77,7 +81,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                     continue;
                 }
 
-                dataType1 = dataType1 ?? data?.GetType();
+                dataType1 = dataType1 ?? data?.GetType() ?? fallbackType1;
                 matchingSpec1 = matchingSpec1 ?? GetMatchingSpec(parms.Result, dataType1);
                 var matchingIndex = GetMatchIndex(parms.Result, matchingSpec1, data);
                 if (!list1.ContainsKey(matchingIndex))
@@ -95,7 +99,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                     continue;
                 }
 
-                dataType2 = dataType2 ?? data?.GetType();
+                dataType2 = dataType2 ?? data?.GetType() ?? fallbackType2;
                 matchingSpec2 = matchingSpec2 ?? GetMatchingSpec(parms.Result, dataType2);
                 var matchingIndex = GetMatchIndex(parms.Result, matchingSpec2, data);
                 if (!list2.ContainsKey(matchingIndex))
