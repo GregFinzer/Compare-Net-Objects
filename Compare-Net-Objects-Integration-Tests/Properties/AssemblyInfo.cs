@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Kellerman Software")]
 [assembly: AssemblyProduct("Compare-Net-Objects-Integration-Tests")]
-[assembly: AssemblyCopyright("Copyright © 2020")]
+[assembly: AssemblyCopyright("Copyright © 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
