@@ -396,6 +396,23 @@ namespace KellermanSoftware.CompareNetObjects
             return (typeof(Type).IsAssignableFrom(type));
         }
 
+
+        /// <summary>
+        /// Returns true if the type is a generic type.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        public static bool IsGenericType(Type type)
+        {
+            if (type == null)
+                return false;
+
+#if NETSTANDARD1
+            return type.GetTypeInfo().IsGenericType;
+#else
+            return type.IsGenericType;
+#endif
+        }
+
 #if !NETSTANDARD
 
         /// <summary>
@@ -474,7 +491,6 @@ namespace KellermanSoftware.CompareNetObjects
 
             return type == typeof(Font);
         }
-
 #endif
 
     }
