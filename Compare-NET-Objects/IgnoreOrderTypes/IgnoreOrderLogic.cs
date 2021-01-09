@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -48,6 +49,10 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
 
         private void CompareOutOfOrder(CompareParms parms, bool reverseCompare)
         {
+            bool differenceDetected = false;
+            int list1Count = 0;
+            int list2Count = 0;
+
             IEnumerator enumerator1;
             IEnumerator enumerator2;
             List<string> matchingSpec1 = null;
@@ -89,6 +94,8 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                     list1.Add(matchingIndex, new InstanceCounter(data, 1));
                 else
                     list1[matchingIndex].Counter++;
+
+                list1Count++;
             }
 
             while (enumerator2.MoveNext())
@@ -107,6 +114,8 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                     list2.Add(matchingIndex, new InstanceCounter(data, 1));
                 else
                     list2[matchingIndex].Counter++;
+
+                list2Count++;
             }
 
             while (list1.Count > 0)
@@ -158,6 +167,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                     };
 
                     AddDifference(parms.Result, difference);
+                    differenceDetected = true;
                 }
 
                 //_alreadyCompared.Add(item1.Key, true);
@@ -183,9 +193,28 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                     Object2 = reverseCompare ? null : item2.Value.ObjectValue
                 };
                 AddDifference(parms.Result, difference);
+                differenceDetected = true;
                 list2.Remove(item2.Key);
                 if (parms.Result.ExceededDifferences)
                     return;
+            }
+
+            //This use case one of the lists has a duplicate value
+            if (!differenceDetected && list1Count != list2Count)
+            {
+                Difference difference = new Difference
+                {
+                    ParentObject1 = parms.ParentObject1,
+                    ParentObject2 = parms.ParentObject2,
+                    PropertyName = parms.BreadCrumb,
+                    Object1Value = list1Count.ToString(CultureInfo.InvariantCulture),
+                    Object2Value = list2Count.ToString(CultureInfo.InvariantCulture),
+                    ChildPropertyName = "Count",
+                    Object1 = parms.Object1,
+                    Object2 = parms.Object2
+                };
+
+                AddDifference(parms.Result, difference);
             }
         }
 

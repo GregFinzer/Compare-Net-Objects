@@ -54,6 +54,20 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
+        public void IgnoreOrderOneListHasADuplicateValue()
+        {
+            CompareLogic compareLogic = new CompareLogic();
+            compareLogic.Config.IgnoreCollectionOrder = true;
+
+            List<string> list1 = new List<string>(){ "Item1", "Item2"};
+            List<string> list2 = new List<string>() { "Item1", "Item2", "Item2" };
+
+            var result = compareLogic.Compare(list1, list2);
+            Console.WriteLine(result.DifferencesString);
+            Assert.IsFalse(result.AreEqual);
+        }
+
+        [Test]
         public void IgnoredMemberGetPropertyAccessed()
         {
             //This is the comparison class
