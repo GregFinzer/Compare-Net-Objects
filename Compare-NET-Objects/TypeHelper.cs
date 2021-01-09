@@ -493,5 +493,47 @@ namespace KellermanSoftware.CompareNetObjects
         }
 #endif
 
+#if !NETSTANDARD
+        /// <summary>
+        /// Turn a list of types into a list of string types
+        /// </summary>
+        /// <param name="types"></param>
+        /// <returns></returns>
+        public static List<string> ListOfTypesSerializer(List<Type> types)
+        {
+            if (types == null || !types.Any())
+                return new List<string>();
+
+            List<string> result = new List<string>();
+
+            foreach (var type in types)
+            {
+                if (type != null)
+                {
+                    result.Add(type.FullName);
+                }
+            }
+
+            return result;
+        }
+
+        public static List<Type> ListOfTypesDeserializer(List<string> stringList)
+        {
+            if (stringList == null || !stringList.Any())
+                return new List<Type>();
+
+            List<Type> result = new List<Type>();
+
+            foreach (var item in stringList)
+            {
+                if (!string.IsNullOrEmpty(item))
+                {
+                    result.Add(Type.GetType(item));
+                }
+            }
+
+            return result;
+        }
+#endif
     }
 }

@@ -123,10 +123,17 @@ namespace KellermanSoftware.CompareNetObjects
         /// <summary>
         /// If a class implements an interface then only members of the interface will be compared.  The default is all members are compared. 
         /// </summary>
-#if !NETSTANDARD
-        [DataMember]
-#endif
         public List<Type> InterfaceMembers { get; set; }
+#if !NETSTANDARD
+        [DataMember(Name = "InterfaceMembers")]
+        private List<string> InterfaceMembersSerializer
+        {
+            get { return TypeHelper.ListOfTypesSerializer(InterfaceMembers);}
+            set { InterfaceMembers = TypeHelper.ListOfTypesDeserializer(value); }
+        }
+#endif
+
+
 
         /// <summary>
         /// Show breadcrumb at each stage of the comparision.  The default is false.
@@ -140,36 +147,56 @@ namespace KellermanSoftware.CompareNetObjects
         /// <summary>
         /// A list of class types to be ignored in the comparison. The default is to compare all class types.
         /// </summary>
-#if !NETSTANDARD
-        [DataMember]
-#endif
         public List<Type> ClassTypesToIgnore { get; set; }
+#if !NETSTANDARD
+        [DataMember(Name = "ClassTypesToIgnore")]
+        private List<string> ClassTypesToIgnoreSerializer
+        {
+            get { return TypeHelper.ListOfTypesSerializer(ClassTypesToIgnore); }
+            set { ClassTypesToIgnore = TypeHelper.ListOfTypesDeserializer(value); }
+        }
+#endif
 
         /// <summary>
         /// Only these class types will be compared. The default is to compare all class types.
         /// </summary>
         /// <remarks>If you specify a class type here no other class types will be compared unless it is in this list.</remarks>
-#if !NETSTANDARD
-        [DataMember]
-#endif
         public List<Type> ClassTypesToInclude { get; set; }
+#if !NETSTANDARD
+        [DataMember(Name = "ClassTypesToInclude")]
+        private List<string> ClassTypesToIncludeSerializer
+        {
+            get { return TypeHelper.ListOfTypesSerializer(ClassTypesToInclude); }
+            set { ClassTypesToInclude = TypeHelper.ListOfTypesDeserializer(value); }
+        }
+#endif
 
         /// <summary>
         /// A list of types to be ignored in the comparison. The default is to compare all types.  A typical thing to not compare are GUIDs
         /// </summary>
-#if !NETSTANDARD
-        [DataMember]
-#endif
         public List<Type> TypesToIgnore { get; set; }
+#if !NETSTANDARD
+        [DataMember(Name = "TypesToIgnore")]
+        private List<string> TypesToIgnoreSerializer
+        {
+            get { return TypeHelper.ListOfTypesSerializer(TypesToIgnore); }
+            set { TypesToIgnore = TypeHelper.ListOfTypesDeserializer(value); }
+        }
+#endif
 
         /// <summary>
         /// Only these types will be compared. The default is to compare all types.
         /// </summary>
         /// <remarks>If you specify a type here no others will be compared unless it is in this list.  You must specify ALL Types that you want to compare.</remarks>
-#if !NETSTANDARD
-        [DataMember]
-#endif
         public List<Type> TypesToInclude { get; set; }
+#if !NETSTANDARD
+        [DataMember(Name = "TypesToInclude")]
+        private List<string> TypesToIncludeSerializer
+        {
+            get { return TypeHelper.ListOfTypesSerializer(TypesToInclude); }
+            set { TypesToInclude = TypeHelper.ListOfTypesDeserializer(value); }
+        }
+#endif
 
         /// <summary>
         /// Ignore Data Table Names, Data Table Column Names, properties, or fields by name during the comparison. Case sensitive. The default is to compare all members.
@@ -376,19 +403,29 @@ namespace KellermanSoftware.CompareNetObjects
         /// A list of attributes to ignore a class, property or field
         /// </summary>
         /// <example>AttributesToIgnore.Add(typeof(XmlIgnoreAttribute));</example>
-#if !NETSTANDARD
-        [DataMember]
-#endif
         public List<Type> AttributesToIgnore { get; set; }
+#if !NETSTANDARD
+        [DataMember(Name = "AttributesToIgnore")]
+        private List<string> AttributesToIgnoreSerializer
+        {
+            get { return TypeHelper.ListOfTypesSerializer(AttributesToIgnore); }
+            set { AttributesToIgnore = TypeHelper.ListOfTypesDeserializer(value); }
+        }
+#endif
 
         /// <summary>
         /// If a property or field don't have at least one of the attributes in this list, it will be ignored
         /// </summary>
         /// <example>RequiredAttributesToCompare.Add(typeof(XmlIgnoreAttribute));</example>
-#if !NETSTANDARD
-        [DataMember]
-#endif
         public List<Type> RequiredAttributesToCompare { get; set; }
+#if !NETSTANDARD
+        [DataMember(Name = "RequiredAttributesToCompare")]
+        private List<string> RequiredAttributesToCompareSerializer
+        {
+            get { return TypeHelper.ListOfTypesSerializer(RequiredAttributesToCompare); }
+            set { RequiredAttributesToCompare = TypeHelper.ListOfTypesDeserializer(value); }
+        }
+#endif
 
         /// <summary>
         /// If true, objects will be compared ignore their type diferences.  The default is false.
