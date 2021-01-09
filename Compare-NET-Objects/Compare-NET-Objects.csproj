@@ -5,7 +5,7 @@
     <AssemblyTitle>Kellerman-Serialization</AssemblyTitle>
     <AssemblyCompany>Kellerman Software</AssemblyCompany>
     <AssemblyProduct>Kellerman-Serialization</AssemblyProduct>
-    <TargetFrameworks>net40;net45;net451;net452;net46;net47;net471;net472;net48;netstandard1.3;netstandard2.0;</TargetFrameworks>
+    <TargetFrameworks>net40;net45;net451;net452;net46;net47;net471;net472;net48;netstandard1.3;netstandard2.0;netstandard2.1;</TargetFrameworks>
     <AssemblyName>KellermanSoftware.Compare-NET-Objects</AssemblyName>
     <RootNamespace>KellermanSoftware.CompareNetObjects</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -20,13 +20,16 @@
     <PackageTags>compare comparison equality equal deep objects difference compareobjects deepequal deepequals</PackageTags>
     <Description>What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.</Description>
     <Authors>gfinzer</Authors>
-    <Version>4.68.0</Version>
-    <AssemblyVersion>4.68.0.0</AssemblyVersion>
+    <Version>4.69.0</Version>
+    <AssemblyVersion>4.69.0.0</AssemblyVersion>
     <NeutralLanguage>en-US</NeutralLanguage>    
     <Company>Kellerman Software</Company>
-    <PackageReleaseNotes>Enhancement: Test Extensions like ShouldCompare should take Optional Config implemented by drdamour</PackageReleaseNotes>
-    <Copyright>Copyright © 2020 Kellerman Software</Copyright>
-    <FileVersion>4.68.0.0</FileVersion>
+    <PackageReleaseNotes>Fix for Comparing dictionaries return two differences for same key. #214
+Fix for Ignore Order One List Has A Duplicate Value. #209
+Fix for SaveConfiguration serialization of type causes exception #204
+Support for .NET 5.0 #217</PackageReleaseNotes>
+    <Copyright>Copyright © 2021 Kellerman Software</Copyright>
+    <FileVersion>4.69.0.0</FileVersion>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
@@ -39,6 +42,11 @@
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <IsNetStandard>true</IsNetStandard>
     <DefineConstants>$(DefineConstants);NETSTANDARD2_0</DefineConstants>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
+    <IsNetStandard>true</IsNetStandard>
+    <DefineConstants>$(DefineConstants);NETSTANDARD2_1</DefineConstants>
   </PropertyGroup>
   
   <PropertyGroup Condition="$(IsNetStandard)">
@@ -103,6 +111,10 @@
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
   </ItemGroup>
   
   <ItemGroup Condition=" '$(IsNetStandard)' == 'false'">
