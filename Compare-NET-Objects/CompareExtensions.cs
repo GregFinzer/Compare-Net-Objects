@@ -7,12 +7,10 @@ namespace KellermanSoftware.CompareNetObjects
     /// </summary>
     public static class CompareExtensions
     {
-        private static readonly CompareLogic _compareLogic;
 
         static CompareExtensions()
         {
             Config = new ComparisonConfig();
-            _compareLogic = new CompareLogic();
         }
 
         /// <summary>
@@ -27,10 +25,11 @@ namespace KellermanSoftware.CompareNetObjects
         /// <param name="actual"></param>
         /// <param name="expected"></param>
         /// <param name="message"></param>
-        public static void ShouldCompare<T>(this T actual, T expected, string message = null)
+        /// <param name="compareConfig"></param>
+        public static void ShouldCompare<T>(this T actual, T expected, string message = null, ComparisonConfig compareConfig = null)
         {
-            _compareLogic.Config = Config;
-            ComparisonResult result = _compareLogic.Compare(expected, actual);
+            var logic = new CompareLogic(compareConfig ?? Config);
+            ComparisonResult result = logic.Compare(expected, actual);
 
             if (!result.AreEqual)
             {
@@ -45,10 +44,11 @@ namespace KellermanSoftware.CompareNetObjects
         /// <param name="actual"></param>
         /// <param name="expected"></param>
         /// <param name="message"></param>
-        public static void ShouldNotCompare<T>(this T actual, T expected, string message = null)
+        /// <param name="compareConfig"></param>
+        public static void ShouldNotCompare<T>(this T actual, T expected, string message = null, ComparisonConfig compareConfig = null)
         {
-            _compareLogic.Config = Config;
-            ComparisonResult result = _compareLogic.Compare(expected, actual);
+            var logic = new CompareLogic(compareConfig ?? Config);
+            ComparisonResult result = logic.Compare(expected, actual);
 
             if (result.AreEqual)
             {
