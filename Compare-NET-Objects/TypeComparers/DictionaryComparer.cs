@@ -95,7 +95,11 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
                 foreach (var key in dict2.Keys)
                 {
-                    currentBreadCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb, "[" + key.ToString() + "].Value");
+                    if (dict1 != null && dict1.Contains(key))
+                        continue;
+
+                    currentBreadCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb,
+                        "[" + key.ToString() + "].Value");
 
                     childParms = new CompareParms
                     {
@@ -103,7 +107,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                         Config = parms.Config,
                         ParentObject1 = parms.Object1,
                         ParentObject2 = parms.Object2,
-                        Object1 = (dict1 != null && dict1.Contains(key)) ? dict1[key] : null,
+                        Object1 = null,
                         Object2 = dict2[key],
                         BreadCrumb = currentBreadCrumb
                     };
@@ -112,6 +116,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
                     if (parms.Result.ExceededDifferences)
                         return;
+                    
                 }
             }
         }

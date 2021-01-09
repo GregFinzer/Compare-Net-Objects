@@ -54,6 +54,35 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
+        public void ComparingDictionariesReturnTwoDifferencesForSameKey()
+        {
+            var oldDoc = new TestDoc()
+            {
+                Fields =
+                {
+                    ["a"] = 1,
+                    ["b"] = 2,
+                },
+            };
+
+            var newDoc = new TestDoc()
+            {
+                Fields =
+                {
+                    ["a"] = 3,
+                    ["c"] = 5
+                },
+            };
+
+            CompareLogic compareLogic = new CompareLogic();
+            compareLogic.Config.MaxDifferences = int.MaxValue;
+
+            var result = compareLogic.Compare(oldDoc, newDoc);
+            Console.WriteLine(result.DifferencesString);
+            Assert.IsTrue(result.Differences.Count == 3);
+        }
+
+        [Test]
         public void IgnoreOrderOneListHasADuplicateValue()
         {
             CompareLogic compareLogic = new CompareLogic();

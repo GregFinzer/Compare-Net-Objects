@@ -103,9 +103,11 @@ namespace KellermanSoftware.CompareNetObjectsTests
             ComparisonResult result1 = _compare.Compare(dict1, dict2);
             ComparisonResult result2 = _compare.Compare(dict2, dict1);
 
+            Console.WriteLine(result1.DifferencesString);
             Assert.IsFalse(result1.AreEqual);
             Assert.AreEqual(4, result1.Differences.Count);
 
+            Console.WriteLine(result2.DifferencesString);
             Assert.IsFalse(result2.AreEqual);
             Assert.AreEqual(4, result2.Differences.Count);
         }
