@@ -48,7 +48,7 @@ dotnet add package CompareNETObjects
 * Compares Publicly Visible Class Fields and Properties
 * Compares Private Fields and Properties (off by default)
 * Source code in C#
-* NUnit Test Project Included with over **200+** unit tests
+* NUnit Test Project Included with over **275+** unit tests
 * Ability to load settings from a config file for use with powershell
 * Ability to pass in the configuration
 * Ability to save and load the configuration as json
