@@ -239,7 +239,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
         private static List<PropertyEntity> HandleDynamicObject(ComparisonConfig config, object objectValue, Type objectType)
         {
-            if (TypeHelper.IsDynamicObject(objectType))
+            if (TypeHelper.IsExpandoObject(objectValue))
             {
                 return AddExpandoPropertyValues(objectValue, objectType);
             }

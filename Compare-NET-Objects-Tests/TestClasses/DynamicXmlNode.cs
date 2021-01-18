@@ -4,6 +4,9 @@ using System.Xml.Linq;
 
 namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
 {
+    /// <summary>
+    /// From Stack Overflow:  https://stackoverflow.com/questions/3565481/differences-between-expandoobject-dynamicobject-and-dynamic
+    /// </summary>
     public class DynamicXMLNode : DynamicObject
     {
         XElement node;

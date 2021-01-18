@@ -62,13 +62,14 @@ namespace KellermanSoftware.CompareNetObjects
             {
                 bool isDynamicType = TypeHelper.IsDynamicObject(type);
 
-                if (!isDynamicType && config.Caching && _fieldCache.ContainsKey(type))
+                if (config.Caching && _fieldCache.ContainsKey(type))
                     return _fieldCache[type];
 
                 FieldInfo[] currentFields;
 
 #if !NETSTANDARD1_3
-                if (config.ComparePrivateFields && !config.CompareStaticFields)
+                //All the implementation examples that I have seen for dynamic objects use private fields or properties
+                if (( config.ComparePrivateFields || isDynamicType) && !config.CompareStaticFields)
                 {
                     List<FieldInfo> list = new List<FieldInfo>();
                     Type t = type;
@@ -79,7 +80,7 @@ namespace KellermanSoftware.CompareNetObjects
                     } while (t != null);
                     currentFields = list.ToArray();
                 }
-                else if (config.ComparePrivateFields && config.CompareStaticFields)
+                else if ((config.ComparePrivateFields || isDynamicType) && config.CompareStaticFields)
                 {
                     List<FieldInfo> list = new List<FieldInfo>();
                     Type t = type;
@@ -96,7 +97,7 @@ namespace KellermanSoftware.CompareNetObjects
 #endif
                     currentFields = type.GetFields(); //Default is public instance and static
 
-                if (!isDynamicType && config.Caching)
+                if (config.Caching)
                     _fieldCache.Add(type, currentFields);
 
                 return currentFields;
@@ -131,7 +132,7 @@ namespace KellermanSoftware.CompareNetObjects
             {
                 bool isDynamicType = TypeHelper.IsDynamicObject(type);
 
-                if (!isDynamicType && config.Caching && _propertyCache.ContainsKey(type))
+                if (config.Caching && _propertyCache.ContainsKey(type))
                     return _propertyCache[type];
 
                 PropertyInfo[] currentProperties;
@@ -142,21 +143,32 @@ namespace KellermanSoftware.CompareNetObjects
                 else
                     currentProperties = type.GetProperties(); //Default is public instance and static
 #else
-                if (config.ComparePrivateProperties && !config.CompareStaticProperties)
+                //All the implementation examples that I have seen for dynamic objects use private fields or properties
+                if ((config.ComparePrivateProperties || isDynamicType) && !config.CompareStaticProperties)
+                {
                     currentProperties =
                         type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                else if (config.ComparePrivateProperties && config.CompareStaticProperties)
+                }
+                else if ((config.ComparePrivateProperties || isDynamicType) && config.CompareStaticProperties)
+                {
                     currentProperties =
                         type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic |
                                            BindingFlags.Static);
+                }
                 else if (!config.CompareStaticProperties)
+                {
                     currentProperties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+                }
                 else
-#endif
+                {
                     currentProperties = type.GetProperties(); //Default is public instance and static
+                }
+#endif
 
-                if (!isDynamicType && config.Caching)
+                if (config.Caching)
+                {
                     _propertyCache.Add(type, currentProperties);
+                }
 
                 return currentProperties;
             }

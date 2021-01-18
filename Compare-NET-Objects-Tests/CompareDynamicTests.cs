@@ -176,25 +176,60 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
 
         [Test]
-        public void CompareDynamicObjectTest()
+        public void CompareDynamicObjectCookiesTest()
         {
-            dynamic contact1 = new DynamicXMLNode("contact1s");
-            contact1.Name = "Patrick Hines";
+            dynamic cookieJar1 = new DynamicCookies();
+            cookieJar1.Oreos = 10;
+            cookieJar1.ElFudge = 2;
+
+            dynamic cookieJar2 = new DynamicCookies();
+            cookieJar2.Oreos = 10;
+            cookieJar2.ElFudge = 2;
+
+            CompareLogic comparer = new CompareLogic();
+            ComparisonResult result = comparer.Compare(cookieJar1, cookieJar2);
+
+            Assert.IsTrue(result.AreEqual);
+        }
+
+        [Test]
+        public void CompareDynamicObjectCookiesTestNegative()
+        {
+            dynamic cookieJar1 = new DynamicCookies();
+            cookieJar1.Oreos = 10;
+            cookieJar1.ElFudge = 2;
+
+            dynamic cookieJar2 = new DynamicCookies();
+            cookieJar2.Oreos = 10;
+            cookieJar2.ElFudge = 0; //Someone ate all of the El Fudge Cookies, oh no
+
+            CompareLogic comparer = new CompareLogic();
+            ComparisonResult result = comparer.Compare(cookieJar1, cookieJar2);
+
+            Console.WriteLine(result.DifferencesString);
+            Assert.IsFalse(result.AreEqual);
+        }
+
+        [Test]
+        public void CompareDynamicObjectXmlNodeTest()
+        {
+            dynamic contact1 = new DynamicXMLNode("contact");
+            contact1.Name = "Buckaroo Banzai";
             contact1.Phone = "206-555-0144";
             contact1.Address = new DynamicXMLNode();
-            contact1.Address.Street = "123 Main St";
-            contact1.Address.City = "Mercer Island";
-            contact1.Address.State = "WA";
-            contact1.Address.Postal = "68402";
+            contact1.Address.Street = "8th Dimension";
+            contact1.Address.City = "Los Angeles";
+            contact1.Address.State = "CA";
+            contact1.Address.Postal = "90002";
 
-            dynamic contact2 = new DynamicXMLNode("contact2s");
-            contact2.Name = "Patrick Hines";
+            dynamic contact2 = new DynamicXMLNode("contact");
+            contact2.Name = "Buckaroo Banzai";
             contact2.Phone = "206-555-0144";
             contact2.Address = new DynamicXMLNode();
-            contact2.Address.Street = "123 Main St";
-            contact2.Address.City = "Mercer Island";
-            contact2.Address.State = "WA";
-            contact2.Address.Postal = "68402";
+            contact2.Address.Street = "8th Dimension";
+            contact2.Address.City = "Los Angeles";
+            contact2.Address.State = "CA";
+            contact2.Address.Postal = "90002";
 
             CompareLogic comparer = new CompareLogic();
             ComparisonResult result = comparer.Compare(contact1, contact2);
@@ -203,29 +238,32 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
 
         [Test]
-        public void CompareDynamicObjectTestNegative()
+        public void CompareDynamicObjectXmlNodeTestNegative()
         {
-            dynamic contact1 = new DynamicXMLNode("contact1s");
-            contact1.Name = "Patrick Hines";
+            dynamic contact1 = new DynamicXMLNode("contact");
+            contact1.Name = "Buckaroo Banzai";
             contact1.Phone = "206-555-0144";
             contact1.Address = new DynamicXMLNode();
-            contact1.Address.Street = "123 Main St";
-            contact1.Address.City = "Mercer Island";
-            contact1.Address.State = "WA";
-            contact1.Address.Postal = "68402";
+            contact1.Address.Street = "8th Dimension";
+            contact1.Address.City = "Los Angeles";
+            contact1.Address.State = "CA";
+            contact1.Address.Postal = "90002";
 
-            dynamic contact2 = new DynamicXMLNode("contact2s");
-            contact2.Name = "Patrick Hines";
+            dynamic contact2 = new DynamicXMLNode("contact");
+            contact2.Name = "Buckaroo Banzai";
             contact2.Phone = "206-555-0144";
             contact2.Address = new DynamicXMLNode();
-            contact2.Address.Street = "123 Main St";
-            contact2.Address.City = "Beverly Hills";
+            contact2.Address.Street = "8th Dimension";
+            //Buckaroo Banzai moved to Beverly Hills
+            //He can afford it since he is a surgeon, rock star, and a scientist
+            contact2.Address.City = "Beverly Hills"; 
             contact2.Address.State = "CA";
             contact2.Address.Postal = "90210";
 
             CompareLogic comparer = new CompareLogic();
             ComparisonResult result = comparer.Compare(contact1, contact2);
 
+            Console.WriteLine(result.DifferencesString);
             Assert.False(result.AreEqual);
         }
     }
