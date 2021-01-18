@@ -20,16 +20,13 @@
     <PackageTags>compare comparison equality equal deep objects difference compareobjects deepequal deepequals</PackageTags>
     <Description>What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.</Description>
     <Authors>gfinzer</Authors>
-    <Version>4.69.0</Version>
-    <AssemblyVersion>4.69.0.0</AssemblyVersion>
+    <Version>4.70.0</Version>
+    <AssemblyVersion>4.70.0.0</AssemblyVersion>
     <NeutralLanguage>en-US</NeutralLanguage>    
     <Company>Kellerman Software</Company>
-    <PackageReleaseNotes>Fix for Comparing dictionaries return two differences for same key. #214
-Fix for Ignore Order One List Has A Duplicate Value. #209
-Fix for SaveConfiguration serialization of type causes exception #204
-Support for .NET 5.0 #217</PackageReleaseNotes>
+    <PackageReleaseNotes>Fix for Dynamic Objects https://github.com/GregFinzer/Compare-Net-Objects/issues/103</PackageReleaseNotes>
     <Copyright>Copyright © 2021 Kellerman Software</Copyright>
-    <FileVersion>4.69.0.0</FileVersion>
+    <FileVersion>4.70.0.0</FileVersion>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">

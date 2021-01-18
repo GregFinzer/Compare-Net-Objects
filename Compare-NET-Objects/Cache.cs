@@ -60,7 +60,9 @@ namespace KellermanSoftware.CompareNetObjects
         {
             lock (_fieldCache)
             {
-                if (config.Caching && _fieldCache.ContainsKey(type))
+                bool isDynamicType = TypeHelper.IsDynamicObject(type);
+
+                if (!isDynamicType && config.Caching && _fieldCache.ContainsKey(type))
                     return _fieldCache[type];
 
                 FieldInfo[] currentFields;
@@ -94,7 +96,7 @@ namespace KellermanSoftware.CompareNetObjects
 #endif
                     currentFields = type.GetFields(); //Default is public instance and static
 
-                if (config.Caching)
+                if (!isDynamicType && config.Caching)
                     _fieldCache.Add(type, currentFields);
 
                 return currentFields;
@@ -127,7 +129,9 @@ namespace KellermanSoftware.CompareNetObjects
         {
             lock (_propertyCache)
             {
-                if (config.Caching && _propertyCache.ContainsKey(type))
+                bool isDynamicType = TypeHelper.IsDynamicObject(type);
+
+                if (!isDynamicType && config.Caching && _propertyCache.ContainsKey(type))
                     return _propertyCache[type];
 
                 PropertyInfo[] currentProperties;
@@ -151,7 +155,7 @@ namespace KellermanSoftware.CompareNetObjects
 #endif
                     currentProperties = type.GetProperties(); //Default is public instance and static
 
-                if (config.Caching)
+                if (!isDynamicType && config.Caching)
                     _propertyCache.Add(type, currentProperties);
 
                 return currentProperties;

@@ -241,14 +241,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         {
             if (TypeHelper.IsDynamicObject(objectType))
             {
-                if (TypeHelper.IsExpandoObject(objectValue))
-                {
-                    return AddExpandoPropertyValues(objectValue, objectType);
-                }
-
-                string msg = @"Dynamic Objects Are Not Supported as TryGetMember requires Microsoft.CSharp which requires .NET Framework 4.5 and higher. ExpandoObjects are supported.  
-See https://github.com/GregFinzer/Compare-Net-Objects/issues/103";
-                throw new NotSupportedException(msg);
+                return AddExpandoPropertyValues(objectValue, objectType);
             }
 
             return null;

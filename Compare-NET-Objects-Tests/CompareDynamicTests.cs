@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Dynamic;
+using System.Web.OData;
 using KellermanSoftware.CompareNetObjects;
+using KellermanSoftware.CompareNetObjectsTests.TestClasses;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
@@ -66,7 +68,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
             dynamic human1 = new ExpandoObject();
             human1.Name = "John";
             human1.Surname = "Doe";
-            human1.Interests = new[] { "Swimming", "Books", "Biking" };
+            human1.Interests = new[] {"Swimming", "Books", "Biking"};
             human1.Stuff = new ExpandoObject();
             human1.Stuff.Foo = "bar";
             human1.Stuff.Hmm = 42;
@@ -74,7 +76,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
             dynamic human2 = new ExpandoObject();
             human2.Name = "Jane";
             human2.Surname = "Doe";
-            human2.Interests = new[] { "Swimming", "Books", "Biking" };
+            human2.Interests = new[] {"Swimming", "Books", "Biking"};
             human2.Stuff = new ExpandoObject();
             human2.Stuff.Foo = "bar";
             human2.Stuff.Hmm = 42;
@@ -86,6 +88,145 @@ namespace KellermanSoftware.CompareNetObjectsTests
             var result = oc.Compare(human1, human2);
             Console.WriteLine(result.DifferencesString);
             Assert.IsFalse(result.AreEqual);
+        }
+
+        [Test]
+        public void CompareDynamicObjectWithUnderlyingType()
+        {
+            SimpleEntity x = new SimpleEntity();
+
+            dynamic dynamicX = x;
+            dynamicX.Name = nameof(SimpleEntity);
+            dynamicX.Id = typeof(SimpleEntity).GUID;
+
+            SimpleEntity y = new SimpleEntity();
+            dynamic dynamicY = y;
+            dynamicY.Name = nameof(SimpleEntity);
+            dynamicY.Id = typeof(SimpleEntity).GUID;
+
+            CompareLogic comparer = new CompareLogic();
+            ComparisonResult result = comparer.Compare(dynamicX, dynamicY);
+
+            Assert.True(result.AreEqual);
+        }
+
+        [Test]
+        public void CompareDynamicObjectWithUnderlyingTypeNegative()
+        {
+            SimpleEntity x = new SimpleEntity();
+
+            dynamic dynamicX = x;
+            dynamicX.Name = nameof(SimpleEntity);
+            dynamicX.Id = typeof(SimpleEntity).GUID;
+
+            SimpleEntity y = new SimpleEntity();
+            dynamic dynamicY = y;
+            dynamicY.Name = nameof(SimpleEntity);
+            dynamicY.Id = Guid.NewGuid();
+
+            CompareLogic comparer = new CompareLogic();
+            ComparisonResult result = comparer.Compare(dynamicX, dynamicY);
+
+            Assert.False(result.AreEqual);
+        }
+
+        [Test]
+        public void CompareAnnonymousType()
+        {
+            dynamic myDynamic1 = new {PropertyOne = true, PropertyTwo = false};
+            dynamic myDynamic2 = new {PropertyOne = true, PropertyTwo = false};
+
+            CompareLogic comparer = new CompareLogic();
+            ComparisonResult result = comparer.Compare(myDynamic1, myDynamic2);
+
+            Assert.True(result.AreEqual);
+        }
+
+        [Test]
+        public void CompareAnnonymousTypeNegative()
+        {
+            dynamic myDynamic1 = new {PropertyOne = true, PropertyTwo = false};
+            dynamic myDynamic2 = new {PropertyOne = true, PropertyTwo = true};
+
+            CompareLogic comparer = new CompareLogic();
+            ComparisonResult result = comparer.Compare(myDynamic1, myDynamic2);
+
+            Assert.False(result.AreEqual);
+        }
+
+        [Test]
+        public void CompareDynamicOData()
+        {
+            Delta<SimpleEntity> x = new Delta<SimpleEntity>();
+
+            dynamic dynamicX = x;
+            dynamicX.Name = nameof(SimpleEntity);
+            dynamicX.Id = typeof(SimpleEntity).GUID;
+
+            Delta<SimpleEntity> y = new Delta<SimpleEntity>();
+
+            dynamic dynamicY = y;
+            dynamicY.Name = nameof(SimpleEntity);
+            dynamicY.Id = typeof(SimpleEntity).GUID;
+
+            CompareLogic comparer = new CompareLogic();
+            ComparisonResult result = comparer.Compare(y, x);
+
+            Assert.True(result.AreEqual);
+        }
+
+        [Test]
+        public void CompareDynamicObjectTest()
+        {
+            dynamic contact1 = new DynamicXMLNode("contact1s");
+            contact1.Name = "Patrick Hines";
+            contact1.Phone = "206-555-0144";
+            contact1.Address = new DynamicXMLNode();
+            contact1.Address.Street = "123 Main St";
+            contact1.Address.City = "Mercer Island";
+            contact1.Address.State = "WA";
+            contact1.Address.Postal = "68402";
+
+            dynamic contact2 = new DynamicXMLNode("contact2s");
+            contact2.Name = "Patrick Hines";
+            contact2.Phone = "206-555-0144";
+            contact2.Address = new DynamicXMLNode();
+            contact2.Address.Street = "123 Main St";
+            contact2.Address.City = "Mercer Island";
+            contact2.Address.State = "WA";
+            contact2.Address.Postal = "68402";
+
+            CompareLogic comparer = new CompareLogic();
+            ComparisonResult result = comparer.Compare(contact1, contact2);
+
+            Assert.True(result.AreEqual);
+        }
+
+        [Test]
+        public void CompareDynamicObjectTestNegative()
+        {
+            dynamic contact1 = new DynamicXMLNode("contact1s");
+            contact1.Name = "Patrick Hines";
+            contact1.Phone = "206-555-0144";
+            contact1.Address = new DynamicXMLNode();
+            contact1.Address.Street = "123 Main St";
+            contact1.Address.City = "Mercer Island";
+            contact1.Address.State = "WA";
+            contact1.Address.Postal = "68402";
+
+            dynamic contact2 = new DynamicXMLNode("contact2s");
+            contact2.Name = "Patrick Hines";
+            contact2.Phone = "206-555-0144";
+            contact2.Address = new DynamicXMLNode();
+            contact2.Address.Street = "123 Main St";
+            contact2.Address.City = "Beverly Hills";
+            contact2.Address.State = "CA";
+            contact2.Address.Postal = "90210";
+
+            CompareLogic comparer = new CompareLogic();
+            ComparisonResult result = comparer.Compare(contact1, contact2);
+
+            Assert.False(result.AreEqual);
         }
     }
 }
