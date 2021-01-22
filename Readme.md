@@ -100,7 +100,7 @@ dotnet add package CompareNETObjects
 * LinearGradient
 * HashSet
 * URI
-* IPEndPoint
+* IPEndPoint (Supported for everything except .NET Standard 1.0)
 * Types of Type (RuntimeType)
 * StringBuilder
 * SByte

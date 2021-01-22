@@ -1,4 +1,4 @@
-﻿#if !NETSTANDARD
+﻿#if NETFULL || NETSTANDARD2_0 || NETSTANDARD2_1
 
 using System;
 using System.Globalization;

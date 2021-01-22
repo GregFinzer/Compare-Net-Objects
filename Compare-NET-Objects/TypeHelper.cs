@@ -413,8 +413,8 @@ namespace KellermanSoftware.CompareNetObjects
 #endif
         }
 
-#if !NETSTANDARD
 
+#if NETFULL || NETSTANDARD2_0 || NETSTANDARD2_1
         /// <summary>
         /// Returns true if the type is an IPEndPoint
         /// </summary>
@@ -427,7 +427,9 @@ namespace KellermanSoftware.CompareNetObjects
 
             return type == typeof(IPEndPoint);
         }
+#endif
 
+#if !NETSTANDARD
         /// <summary>
         /// Returns true if the type is a dataset
         /// </summary>

@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using KellermanSoftware.CompareNetObjects.Reports;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses.HashBug;
@@ -52,6 +53,19 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #endregion
 
         #region Tests
+
+        [Test]
+        public void IPV6AddressShouldBeDifferent()
+        {
+            IPEndPoint a = new IPEndPoint(IPAddress.Parse("2001:4898:e0:5e:444:fcfd:cccc:1111"), 443) ;
+            IPEndPoint b = new IPEndPoint(IPAddress.Parse("2001:4898:e0:5e:4f4:fcfd:854c:16d9"), 443);
+
+            CompareLogic compareLogic = new CompareLogic();
+
+            var result = compareLogic.Compare(a, b);
+            Console.WriteLine(result.DifferencesString);
+            Assert.IsFalse(result.AreEqual);
+        }
 
         [Test]
         public void ComparingDictionariesReturnTwoDifferencesForSameKey()
