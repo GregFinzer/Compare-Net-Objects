@@ -209,6 +209,9 @@ namespace KellermanSoftware.CompareNetObjects
 
             result.Watch.Start();
 
+            //The config may have changed since the last run
+            Config.PropertyEntityCache.Clear();
+
             RootComparer rootComparer = RootComparerFactory.GetRootComparer();
 
             CompareParms parms = new CompareParms

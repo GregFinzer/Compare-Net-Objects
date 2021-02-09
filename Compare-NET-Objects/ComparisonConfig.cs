@@ -21,7 +21,6 @@ namespace KellermanSoftware.CompareNetObjects
         #region Class Variables
         private Action<Difference> _differenceCallback;
         private int _maxStructDepth;
-
         #endregion
 
         #region Constructors
@@ -39,7 +38,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// <summary>
         /// Reflection Cache for property info
         /// </summary>
-        internal Dictionary<Type, PropertyEntity[]> PropertyEntityCache { get; set; }
+        internal Dictionary<Type, List<PropertyEntity>> PropertyEntityCache { get; set; }
 
         /// <summary>
         /// By default Compare .NET Objects uses reference equal to identify objects.
@@ -128,6 +127,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// <summary>
         /// If a class implements an interface then only members of the interface will be compared.  The default is all members are compared. 
         /// </summary>
+        /// <remarks>Version 5 changed the type from a List to a HashSet for performance</remarks>
         public HashSet<Type> InterfaceMembers { get; set; }
 #if !NETSTANDARD
         [DataMember(Name = "InterfaceMembers")]
@@ -152,6 +152,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// <summary>
         /// A list of class types to be ignored in the comparison. The default is to compare all class types.
         /// </summary>
+        /// <remarks>Version 5 changed the type from a List to a HashSet for performance</remarks>
         public HashSet<Type> ClassTypesToIgnore { get; set; }
 #if !NETSTANDARD
         [DataMember(Name = "ClassTypesToIgnore")]
@@ -166,6 +167,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// Only these class types will be compared. The default is to compare all class types.
         /// </summary>
         /// <remarks>If you specify a class type here no other class types will be compared unless it is in this list.</remarks>
+        /// <remarks>Version 5 changed the type from a List to a HashSet for performance</remarks>
         public HashSet<Type> ClassTypesToInclude { get; set; }
 #if !NETSTANDARD
         [DataMember(Name = "ClassTypesToInclude")]
@@ -179,6 +181,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// <summary>
         /// A list of types to be ignored in the comparison. The default is to compare all types.  A typical thing to not compare are GUIDs
         /// </summary>
+        /// <remarks>Version 5 changed the type from a List to a HashSet for performance</remarks>
         public HashSet<Type> TypesToIgnore { get; set; }
 #if !NETSTANDARD
         [DataMember(Name = "TypesToIgnore")]
@@ -193,6 +196,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// Only these types will be compared. The default is to compare all types.
         /// </summary>
         /// <remarks>If you specify a type here no others will be compared unless it is in this list.  You must specify ALL Types that you want to compare.</remarks>
+        /// <remarks>Version 5 changed the type from a List to a HashSet for performance</remarks>
         public HashSet<Type> TypesToInclude { get; set; }
 #if !NETSTANDARD
         [DataMember(Name = "TypesToInclude")]
@@ -210,10 +214,11 @@ namespace KellermanSoftware.CompareNetObjects
         /// MembersToIgnore.Add("Invoice.InvoiceGuid");
         /// MembersToIgnore.Add("*Id");
         /// </example>
+        /// <remarks>Version 5 changed the type from a List to a HashSet for performance</remarks>
 #if !NETSTANDARD
         [DataMember]
 #endif
-        public HashSet<string> MembersToIgnore { get; set; }
+        public HashSet<string> MembersToIgnore { get ; set; }
 
         /// <summary>
         /// Ignore property during the comparison.  Property is specific to the generic type.
@@ -288,6 +293,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// Only compare elements by name for Data Table Names, Data Table Column Names, properties and fields. Case sensitive. The default is to compare all members.
         /// </summary>
         /// <example>MembersToInclude.Add("FirstName")</example>
+        /// <remarks>Version 5 changed the type from a List to a HashSet for performance</remarks>
 #if !NETSTANDARD
         [DataMember]
 #endif
@@ -408,6 +414,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// A list of attributes to ignore a class, property or field
         /// </summary>
         /// <example>AttributesToIgnore.Add(typeof(XmlIgnoreAttribute));</example>
+        /// <remarks>Version 5 changed the type from a List to a HashSet for performance</remarks>
         public HashSet<Type> AttributesToIgnore { get; set; }
 #if !NETSTANDARD
         [DataMember(Name = "AttributesToIgnore")]
@@ -422,6 +429,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// If a property or field don't have at least one of the attributes in this list, it will be ignored
         /// </summary>
         /// <example>RequiredAttributesToCompare.Add(typeof(XmlIgnoreAttribute));</example>
+        /// <remarks>Version 5 changed the type from a List to a HashSet for performance</remarks>
         public HashSet<Type> RequiredAttributesToCompare { get; set; }
 #if !NETSTANDARD
         [DataMember(Name = "RequiredAttributesToCompare")]
@@ -610,7 +618,7 @@ namespace KellermanSoftware.CompareNetObjects
             MaxStructDepth = 2;
             CaseSensitive = true;
             IgnoreStringLeadingTrailingWhitespace = false;
-            PropertyEntityCache = new Dictionary<Type, PropertyEntity[]>();
+            PropertyEntityCache= new Dictionary<Type, List<PropertyEntity>>();
         }
 #endregion
     }

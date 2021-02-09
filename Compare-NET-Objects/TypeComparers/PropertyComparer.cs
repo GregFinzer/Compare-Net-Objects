@@ -154,6 +154,9 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             Type objectType, 
             IEnumerable<PropertyInfo> properties)
         {
+            if (parms.Config.Caching && parms.Config.PropertyEntityCache.ContainsKey(objectType))
+                return parms.Config.PropertyEntityCache[objectType];
+
             List<PropertyEntity> currentProperties = new List<PropertyEntity>();
             foreach (var property in properties)
             {
@@ -191,11 +194,19 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 currentProperties.Add(propertyEntity);
             }
 
+            if (parms.Config.Caching)
+            {
+                parms.Config.PropertyEntityCache.Add(objectType, currentProperties);
+            }
+
             return currentProperties;
         }
 
         private static List<PropertyEntity> HandleInterfaceMembers(CompareParms parms, object objectValue, Type objectType)
         {
+            if (parms.Config.Caching && parms.Config.PropertyEntityCache.ContainsKey(objectType))
+                return parms.Config.PropertyEntityCache[objectType];
+
             List<PropertyEntity> currentProperties = new List<PropertyEntity>();
 
             if (parms.Config.InterfaceMembers.Count > 0)
@@ -233,6 +244,9 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
             if (currentProperties.Count == 0)
                 return null;
+
+            if (parms.Config.Caching)
+                parms.Config.PropertyEntityCache.Add(objectType, currentProperties);
 
             return currentProperties;
         }

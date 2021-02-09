@@ -51,30 +51,30 @@ namespace KellermanSoftware.CompareNetObjectsTests
             {
                 PerformanceOrder order = new PerformanceOrder();
                 order.OrderId = i;
-                order.Email = "john.bigbooty@buckaroobanzai.com";
+                order.Email = "john.whorfin@buckaroobanzai.com";
                 order.FirstName = "John";
-                order.LastName = "Big Booty";
+                order.LastName = "Whorfin";
                 order.Phone = "(555) 123-4567";
 
                 order.BillingAddress = new PerformanceAddress();
                 order.BillingAddress.AddressId = i + max + 1;
                 order.BillingAddress.FirstName = "John";
-                order.BillingAddress.LastName = "Big Booty";
+                order.BillingAddress.LastName = "Whorfin";
                 order.BillingAddress.AddressLine1 = "100 John Lithgow Lane";
                 order.BillingAddress.AddressLine2 = "Suite 8";
                 order.BillingAddress.City = "Los Angeles";
-                order.BillingAddress.State = "Shock";
+                order.BillingAddress.State = "Shock"; //You got me in the state of Shock
                 order.BillingAddress.Zip = "88888";
                 order.BillingAddress.Phone = "(555) 123-4567";
 
                 order.ShippingAddress = new PerformanceAddress();
                 order.ShippingAddress.AddressId = i + max + max + 1;
                 order.ShippingAddress.FirstName = "John";
-                order.ShippingAddress.LastName = "Big Booty";
+                order.ShippingAddress.LastName = "Whorfin";
                 order.ShippingAddress.AddressLine1 = "100 John Lithgow Lane";
                 order.ShippingAddress.AddressLine2 = "Suite 8";
                 order.ShippingAddress.City = "Los Angeles";
-                order.ShippingAddress.State = "Shock";
+                order.ShippingAddress.State = "Shock"; //You got me in the state of Shock
                 order.ShippingAddress.Zip = "88888";
                 order.ShippingAddress.Phone = "(555) 123-4567";
 
@@ -147,7 +147,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
             Console.WriteLine(result.ElapsedMilliseconds);
         }
 
-        [Test, Ignore("Inconsistent")]
+        [Test]
         public void CachingTest()
         {
             List<Person> list1 = new List<Person>();
