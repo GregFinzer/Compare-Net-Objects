@@ -119,4 +119,3 @@ https://github.com/GregFinzer/Compare-Net-Objects/blob/master/Compare-NET-Object
 
 # Licensing
 https://github.com/GregFinzer/Compare-Net-Objects/wiki/Licensing
-
