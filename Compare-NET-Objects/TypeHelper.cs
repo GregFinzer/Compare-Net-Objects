@@ -501,7 +501,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// </summary>
         /// <param name="types"></param>
         /// <returns></returns>
-        public static List<string> ListOfTypesSerializer(List<Type> types)
+        public static List<string> ListOfTypesSerializer(HashSet<Type> types)
         {
             if (types == null || !types.Any())
                 return new List<string>();
@@ -519,12 +519,12 @@ namespace KellermanSoftware.CompareNetObjects
             return result;
         }
 
-        public static List<Type> ListOfTypesDeserializer(List<string> stringList)
+        public static HashSet<Type> ListOfTypesDeserializer(List<string> stringList)
         {
             if (stringList == null || !stringList.Any())
-                return new List<Type>();
+                return new HashSet<Type>();
 
-            List<Type> result = new List<Type>();
+            HashSet<Type> result = new HashSet<Type>();
 
             foreach (var item in stringList)
             {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using KellermanSoftware.CompareNetObjects;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses;
+using KellermanSoftware.CompareNetObjectsTests.TestClasses.Performance;
 using NUnit.Framework;
 
 namespace KellermanSoftware.CompareNetObjectsTests
@@ -39,6 +40,65 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
         #region Tests
 
+        [Test]
+        public void CompareTypicalObjectSet()
+        {
+            int max = 10000;
+
+            List<PerformanceOrder> orders = new List<PerformanceOrder>();
+
+            for (int i = 0; i < max; i++)
+            {
+                PerformanceOrder order = new PerformanceOrder();
+                order.OrderId = i;
+                order.Email = "john.bigbooty@buckaroobanzai.com";
+                order.FirstName = "John";
+                order.LastName = "Big Booty";
+                order.Phone = "(555) 123-4567";
+
+                order.BillingAddress = new PerformanceAddress();
+                order.BillingAddress.AddressId = i + max + 1;
+                order.BillingAddress.FirstName = "John";
+                order.BillingAddress.LastName = "Big Booty";
+                order.BillingAddress.AddressLine1 = "100 John Lithgow Lane";
+                order.BillingAddress.AddressLine2 = "Suite 8";
+                order.BillingAddress.City = "Los Angeles";
+                order.BillingAddress.State = "Shock";
+                order.BillingAddress.Zip = "88888";
+                order.BillingAddress.Phone = "(555) 123-4567";
+
+                order.ShippingAddress = new PerformanceAddress();
+                order.ShippingAddress.AddressId = i + max + max + 1;
+                order.ShippingAddress.FirstName = "John";
+                order.ShippingAddress.LastName = "Big Booty";
+                order.ShippingAddress.AddressLine1 = "100 John Lithgow Lane";
+                order.ShippingAddress.AddressLine2 = "Suite 8";
+                order.ShippingAddress.City = "Los Angeles";
+                order.ShippingAddress.State = "Shock";
+                order.ShippingAddress.Zip = "88888";
+                order.ShippingAddress.Phone = "(555) 123-4567";
+
+                order.OrderDetails = new List<PerformanceOrderDetail>();
+
+                var detail = new PerformanceOrderDetail();
+                detail.OrderDetailId = i;
+                detail.ProductName = "Space Ship";
+                detail.Price = 888888888.88M;
+                detail.Quantity = 8;
+                detail.SKU = "BB8";
+                order.OrderDetails.Add(detail);
+                orders.Add(order);
+            }
+
+            List<PerformanceOrder> orders2 = Common.CloneWithSerialization(orders);
+
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+            ComparisonResult result = _compare.Compare(orders, orders2);
+            watch.Stop();
+
+            Console.WriteLine(watch.ElapsedMilliseconds);
+        }
 
         [Test]
         public void CompareGiantLists()

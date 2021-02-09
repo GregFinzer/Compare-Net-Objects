@@ -41,6 +41,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         /// <summary>
         /// Add a breadcrumb to an existing breadcrumb
         /// </summary>
+        /// <remarks>This originally used a string builder which had lower performance</remarks>
         /// <param name="config">Comparison configuration</param>
         /// <param name="existing">The existing breadcrumb</param>
         /// <param name="name">The field or property name</param>
@@ -58,43 +59,41 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 throw new ArgumentNullException("name");
             
             bool useName = name.Length > 0;
-            StringBuilder sb = new StringBuilder();
-
-            sb.Append(existing);
+            string stringResult = existing;
 
             if (useName)
             {
                 //Do not put a period at the beginning
-                if (sb.Length > 0)
+                if (stringResult.Length > 0)
                 {
-                    sb.AppendFormat(".");
+                    stringResult += ".";
                 }
-                
-                sb.Append(name);
+
+                stringResult += name;
             }
 
-            sb.Append(extra);
+            stringResult += extra;
 
             if (useIndex)
             {
                 // ReSharper disable RedundantAssignment
                 int result = -1;
                 // ReSharper restore RedundantAssignment
-                sb.AppendFormat(Int32.TryParse(index, out result) ? "[{0}]" : "[\"{0}\"]", index);
+                stringResult += String.Format(Int32.TryParse(index, out result) ? "[{0}]" : "[\"{0}\"]", index);
             }
 
             if (config.ShowBreadcrumb)
             {
 #if (DEBUG) || NETSTANDARD
-                Console.WriteLine(sb.ToString());
+                Console.WriteLine(stringResult);
 #endif
 
 #if !NETSTANDARD && !DEBUG
-                Trace.WriteLine(sb.ToString());
+                Trace.WriteLine(stringResult);
 #endif
             }
 
-            return sb.ToString();
+            return stringResult;
         }
 
         /// <summary>

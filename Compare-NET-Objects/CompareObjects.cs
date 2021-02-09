@@ -3,6 +3,8 @@
 #region Includes
 using System;
 using System.Collections.Generic;
+using System.Linq;
+
 #endregion
 
 namespace KellermanSoftware.CompareNetObjects
@@ -75,8 +77,15 @@ namespace KellermanSoftware.CompareNetObjects
         [Obsolete("Use CompareLogic.Config.MembersToIgnore for members or CompareLogic.Config.ClassTypesToIgnore instead", true)]
         public List<string> ElementsToIgnore
         {
-            get { return _logic.Config.MembersToIgnore; }
-            set { _logic.Config.MembersToIgnore = value; }
+            get { return _logic.Config.MembersToIgnore.ToList(); }
+            set
+            {
+                _logic.Config.MembersToIgnore.Clear();
+                foreach (var item in value)
+                {
+                    _logic.Config.MembersToIgnore.Add(item);
+                }
+            }
         }
 
         /// <summary>
@@ -85,8 +94,15 @@ namespace KellermanSoftware.CompareNetObjects
         [Obsolete("Use CompareLogic.Config.MembersToInclude or CompareLogic.Config.ClassTypesToInclude instead", true)]
         public List<string> ElementsToInclude
         {
-            get { return _logic.Config.MembersToInclude; }
-            set { _logic.Config.MembersToInclude = value; }
+            get { return _logic.Config.MembersToInclude.ToList(); }
+            set
+            {
+                _logic.Config.MembersToInclude.Clear();
+                foreach (var item in value)
+                {
+                    _logic.Config.MembersToInclude.Add(item);
+                }
+            }
         }
 
         //Security restriction in Silverlight prevents getting private properties and fields
@@ -240,8 +256,15 @@ namespace KellermanSoftware.CompareNetObjects
         [Obsolete("Use CompareLogic.Config.AttributesToIgnore instead", true)]
         public List<Type> AttributesToIgnore
         {
-            get { return _logic.Config.AttributesToIgnore; }
-            set { _logic.Config.AttributesToIgnore = value; }
+            get { return _logic.Config.AttributesToIgnore.ToList(); }
+            set
+            {
+                _logic.Config.AttributesToIgnore.Clear();
+                foreach (var item in value)
+                {
+                    _logic.Config.AttributesToIgnore.Add(item);
+                }
+            }
         }
 
         /// <summary>

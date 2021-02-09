@@ -44,7 +44,7 @@ namespace KellermanSoftware.CompareNetObjectsIntegrationTests
         }
 
         [Test]
-        public void SerializationException()
+        public void TypesToIgnoreShouldSerializeAndDeserialize()
         {
             //This is the comparison class
             CompareLogic compareLogic = new CompareLogic();
@@ -53,7 +53,7 @@ namespace KellermanSoftware.CompareNetObjectsIntegrationTests
             compareLogic.Config.TypesToIgnore.Add(typeof(Guid));
             compareLogic.SaveConfiguration(filePath);
             compareLogic.LoadConfiguration(filePath);
-
+            Assert.IsTrue(compareLogic.Config.TypesToIgnore.Contains(typeof(Guid)));
 
             //Create a couple objects to compare
             Person person1 = new Person();
@@ -71,6 +71,22 @@ namespace KellermanSoftware.CompareNetObjectsIntegrationTests
                 Console.WriteLine(result.DifferencesString);
             else
                 Console.WriteLine("Objects are the same");
+        }
+
+        [Test]
+        public void HashsetStringsShouldSerializeAndDeserialize()
+        {
+            //This is the comparison class
+            CompareLogic compareLogic = new CompareLogic();
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HashsetStringTest.json");
+
+            compareLogic.Config.MembersToIgnore.Add("CreateDate");
+            compareLogic.Config.MembersToInclude.Add("OrderId");
+            compareLogic.SaveConfiguration(filePath);
+            compareLogic.LoadConfiguration(filePath);
+
+            Assert.IsTrue(compareLogic.Config.MembersToIgnore.Contains(("CreateDate")));
+            Assert.IsTrue(compareLogic.Config.MembersToInclude.Contains(("OrderId")));
         }
 #endif
     }

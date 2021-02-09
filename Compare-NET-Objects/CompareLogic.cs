@@ -160,8 +160,8 @@ namespace KellermanSoftware.CompareNetObjects
         private void SetupWithAppConfigSettings()
         {
             Config.MembersToIgnore = Settings.Default.MembersToIgnore == null
-                                ? new List<string>()
-                                : new List<string>((IEnumerable<string>)Settings.Default.MembersToIgnore);
+                                ? new HashSet<string>()
+                                : new HashSet<string>((IEnumerable<string>)Settings.Default.MembersToIgnore);
 
             if (Settings.Default.MembersToIgnore != null)
             {
