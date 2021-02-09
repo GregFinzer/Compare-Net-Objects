@@ -147,7 +147,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
             Console.WriteLine(result.ElapsedMilliseconds);
         }
 
-        [Test]
+        [Test, Ignore("Inconsistent")]
         public void CachingTest()
         {
             int max = 10000;
