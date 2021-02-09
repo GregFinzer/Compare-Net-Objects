@@ -150,17 +150,54 @@ namespace KellermanSoftware.CompareNetObjectsTests
         [Test]
         public void CachingTest()
         {
-            List<Person> list1 = new List<Person>();
-            List<Person> list2 = new List<Person>();
+            int max = 10000;
 
-            for (int i = 1; i <= 10000; i++)
+            List<PerformanceOrder> list1 = new List<PerformanceOrder>();
+
+            for (int i = 0; i < max; i++)
             {
-                Person person = new Person();
-                person.DateCreated = DateTime.Now;
-                person.Name = "Robot " + i;
-                list1.Add(person);
-                list2.Add(Common.CloneWithSerialization(person));
+                PerformanceOrder order = new PerformanceOrder();
+                order.OrderId = i;
+                order.Email = "john.whorfin@buckaroobanzai.com";
+                order.FirstName = "John";
+                order.LastName = "Whorfin";
+                order.Phone = "(555) 123-4567";
+
+                order.BillingAddress = new PerformanceAddress();
+                order.BillingAddress.AddressId = i + max + 1;
+                order.BillingAddress.FirstName = "John";
+                order.BillingAddress.LastName = "Whorfin";
+                order.BillingAddress.AddressLine1 = "100 John Lithgow Lane";
+                order.BillingAddress.AddressLine2 = "Suite 8";
+                order.BillingAddress.City = "Los Angeles";
+                order.BillingAddress.State = "Shock"; //You got me in the state of Shock
+                order.BillingAddress.Zip = "88888";
+                order.BillingAddress.Phone = "(555) 123-4567";
+
+                order.ShippingAddress = new PerformanceAddress();
+                order.ShippingAddress.AddressId = i + max + max + 1;
+                order.ShippingAddress.FirstName = "John";
+                order.ShippingAddress.LastName = "Whorfin";
+                order.ShippingAddress.AddressLine1 = "100 John Lithgow Lane";
+                order.ShippingAddress.AddressLine2 = "Suite 8";
+                order.ShippingAddress.City = "Los Angeles";
+                order.ShippingAddress.State = "Shock"; //You got me in the state of Shock
+                order.ShippingAddress.Zip = "88888";
+                order.ShippingAddress.Phone = "(555) 123-4567";
+
+                order.OrderDetails = new List<PerformanceOrderDetail>();
+
+                var detail = new PerformanceOrderDetail();
+                detail.OrderDetailId = i;
+                detail.ProductName = "Space Ship";
+                detail.Price = 888888888.88M;
+                detail.Quantity = 8;
+                detail.SKU = "BB8";
+                order.OrderDetails.Add(detail);
+                list1.Add(order);
             }
+
+            List<PerformanceOrder> list2 = Common.CloneWithSerialization(list1);
 
             _compare.Config.Caching = false;
             Stopwatch watch = new Stopwatch();

@@ -45,11 +45,6 @@ namespace KellermanSoftware.CompareNetObjects
         internal HashSet<Type> RequiredAttributesToCompareSet { get; set; }
 
         /// <summary>
-        /// Reflection Cache for property info
-        /// </summary>
-        internal Dictionary<Type, List<PropertyEntity>> PropertyEntityCache { get; set; }
-
-        /// <summary>
         /// By default Compare .NET Objects uses reference equal to identify objects.
         /// Versions 4.61 and older used the hash code.  Setting this to true will identify objects by hash code instead of reference equals.
         /// The default is false
@@ -631,7 +626,6 @@ namespace KellermanSoftware.CompareNetObjects
             MaxStructDepth = 2;
             CaseSensitive = true;
             IgnoreStringLeadingTrailingWhitespace = false;
-            PropertyEntityCache= new Dictionary<Type, List<PropertyEntity>>();
         }
 #endregion
     }

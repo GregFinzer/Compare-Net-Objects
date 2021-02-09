@@ -248,7 +248,6 @@ namespace KellermanSoftware.CompareNetObjects
         /// </summary>
         public void ClearCache()
         {
-            Config.PropertyEntityCache.Clear();
             Cache.ClearCache();
         }
 
