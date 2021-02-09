@@ -44,11 +44,11 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             for (int i = 0; i < Math.Min(dataRow2.Table.Columns.Count, dataRow1.Table.Columns.Count); i++)
             {
                 //Only compare specific column names
-                if (parms.Config.MembersToInclude.Count > 0 && !parms.Config.MembersToInclude.Contains(dataRow1.Table.Columns[i].ColumnName))
+                if (parms.Config.MembersToIncludeSet.Count > 0 && !parms.Config.MembersToIncludeSet.Contains(dataRow1.Table.Columns[i].ColumnName))
                     continue;
 
                 //If we should ignore it, skip it
-                if (parms.Config.MembersToInclude.Count == 0 && parms.Config.MembersToIgnore.Contains(dataRow1.Table.Columns[i].ColumnName))
+                if (parms.Config.MembersToIncludeSet.Count == 0 && parms.Config.MembersToIgnoreSet.Contains(dataRow1.Table.Columns[i].ColumnName))
                     continue;
 
                 //If we should ignore read only, skip it

@@ -1240,8 +1240,8 @@ namespace KellermanSoftware.CompareNetObjectsTests
             var comparisonConfig = new ComparisonConfig()
             {
                 MaxDifferences = int.MaxValue,
-                MembersToIgnore = new HashSet<string>() { "Type" },
-                ClassTypesToIgnore = new HashSet<Type>() { typeof(Officer) },
+                MembersToIgnore = new List<string>() { "Type" },
+                ClassTypesToIgnore = new List<Type>() { typeof(Officer) },
                 CollectionMatchingSpec = new Dictionary<Type, IEnumerable<string>>()
                 {
                     {

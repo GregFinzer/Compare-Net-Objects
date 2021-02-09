@@ -20,18 +20,18 @@ namespace KellermanSoftware.CompareNetObjects
         public static bool ShouldExcludeDynamicMember(ComparisonConfig config, string name, Type type)
         {
             //Only compare specific member names
-            if (config.MembersToInclude.Count > 0 && !config.MembersToInclude.Contains(name))
+            if (config.MembersToIncludeSet.Count > 0 && !config.MembersToIncludeSet.Contains(name))
                 return true;
 
-            if (config.MembersToIgnore.Count > 0)
+            if (config.MembersToIgnoreSet.Count > 0)
             {
                 //Ignore by type.membername
                 if (type != null
-                    && config.MembersToIgnore.Contains(type.Name + "." + name))
+                    && config.MembersToIgnoreSet.Contains(type.Name + "." + name))
                     return true;
 
                 //Ignore exactly by the name of the member
-                if (config.MembersToIgnore.Count > 0 && config.MembersToIgnore.Contains(name))
+                if (config.MembersToIgnoreSet.Count > 0 && config.MembersToIgnoreSet.Contains(name))
                     return true;
 
                 //Wildcard member
@@ -52,22 +52,22 @@ namespace KellermanSoftware.CompareNetObjects
         public static bool ShouldExcludeMember(ComparisonConfig config, MemberInfo info, Type objectType)
         {
             //Only compare specific member names
-            if (config.MembersToInclude.Count > 0 && !config.MembersToInclude.Contains(info.Name))
+            if (config.MembersToIncludeSet.Count > 0 && !config.MembersToIncludeSet.Contains(info.Name))
                 return true;
             
-            if (config.MembersToIgnore.Count > 0)
+            if (config.MembersToIgnoreSet.Count > 0)
             {
 				//Ignore by objecttype.membername
-	            if (config.MembersToIgnore.Contains(objectType.Name + "." + info.Name))
+	            if (config.MembersToIgnoreSet.Contains(objectType.Name + "." + info.Name))
 		            return true;
 
 				//Ignore by declaringType.membername
 				if (info.DeclaringType != null
-                    && config.MembersToIgnore.Contains(info.DeclaringType.Name + "." + info.Name))
+                    && config.MembersToIgnoreSet.Contains(info.DeclaringType.Name + "." + info.Name))
                     return true;
 
                 //Ignore exactly by the name of the member
-                if (config.MembersToIgnore.Count > 0 && config.MembersToIgnore.Contains(info.Name))
+                if (config.MembersToIgnoreSet.Count > 0 && config.MembersToIgnoreSet.Contains(info.Name))
                     return true;
 
                 //Wildcard member
@@ -132,17 +132,17 @@ namespace KellermanSoftware.CompareNetObjects
         public static bool ShouldExcludeClass(ComparisonConfig config, Type t1, Type t2)
         {
             //Only include specific class types
-            if (config.ClassTypesToInclude.Count > 0
-                && (!config.ClassTypesToInclude.Contains(t1)
-                    || !config.ClassTypesToInclude.Contains(t2)))
+            if (config.ClassTypesToIncludeSet.Count > 0
+                && (!config.ClassTypesToIncludeSet.Contains(t1)
+                    || !config.ClassTypesToIncludeSet.Contains(t2)))
             {
                 return true;
             }
 
             //Ignore specific class types
-            if (config.ClassTypesToIgnore.Count > 0
-                && (config.ClassTypesToIgnore.Contains(t1)
-                    || config.ClassTypesToIgnore.Contains(t2)))
+            if (config.ClassTypesToIgnoreSet.Count > 0
+                && (config.ClassTypesToIgnoreSet.Contains(t1)
+                    || config.ClassTypesToIgnoreSet.Contains(t2)))
             {
                 return true;
             }
@@ -164,17 +164,17 @@ namespace KellermanSoftware.CompareNetObjects
         public static bool ShouldExcludeType(ComparisonConfig config, Type t1, Type t2)
         {
             //Only include specific types
-            if (config.TypesToInclude.Count > 0
-                && (!config.TypesToInclude.Contains(t1)
-                    || !config.TypesToInclude.Contains(t2)))
+            if (config.TypesToIncludeSet.Count > 0
+                && (!config.TypesToIncludeSet.Contains(t1)
+                    || !config.TypesToIncludeSet.Contains(t2)))
             {
                 return true;
             }
 
             //Ignore specific types
-            if (config.TypesToIgnore.Count > 0
-                && (config.TypesToIgnore.Contains(t1)
-                    || config.TypesToIgnore.Contains(t2)))
+            if (config.TypesToIgnoreSet.Count > 0
+                && (config.TypesToIgnoreSet.Contains(t1)
+                    || config.TypesToIgnoreSet.Contains(t2)))
             {
                 return true;
             }
@@ -189,14 +189,14 @@ namespace KellermanSoftware.CompareNetObjects
         public static bool IgnoredByAttribute(ComparisonConfig config, MemberInfo info)
         {
             //Prevent loading attributes when AttributesToIgnore is empty
-            if (config.AttributesToIgnore.Count == 0)
+            if (config.AttributesToIgnoreSet.Count == 0)
             {
                 return false;
             }
             
             var attributes = info.GetCustomAttributes(true);
 
-            return attributes.Any(a => config.AttributesToIgnore.Contains(a.GetType()));
+            return attributes.Any(a => config.AttributesToIgnoreSet.Contains(a.GetType()));
         }
 
         /// <summary>
@@ -206,14 +206,14 @@ namespace KellermanSoftware.CompareNetObjects
         public static bool IgnoredByLackOfAttribute(ComparisonConfig config, MemberInfo info)
         {
             //Prevent loading attributes when RequiredAttributesToCompare is empty
-            if (config.RequiredAttributesToCompare.Count == 0)
+            if (config.RequiredAttributesToCompareSet.Count == 0)
             {
                 return false;
             }
 
             var attributes = info.GetCustomAttributes(true);
 
-            return !attributes.Any(a => config.RequiredAttributesToCompare.Contains(a.GetType()));
+            return !attributes.Any(a => config.RequiredAttributesToCompareSet.Contains(a.GetType()));
         }
 
     }

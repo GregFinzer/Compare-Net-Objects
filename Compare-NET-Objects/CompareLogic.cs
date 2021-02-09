@@ -5,28 +5,39 @@
 // http://www.kellermansoftware.com
 // *  Free Quick Reference Pack for Developers
 // *  Free Sharp Zip Wrapper
-// *  NUnit Test Generator
 // * .NET Caching Library
+// * .NET Code Generator
 // * .NET Email Validation Library
-// * .NET FTP Library
 // * .NET Encryption Library
+// * .NET Excel Reports (Create Excel reports without excel being installed)
+// * .NET FTP Library
+// * .NET Link Tracker
 // * .NET Logging Library
+// * .NET PGP Library
+// * .NET SFTP Library
+// * .NET Word Reports (Create reports based on Microsoft Word files without having Microsoft Word installed)
+// * AccessDiff (Detects data, code, and form differences)
+// * Cheap Reports for Shopify
+// * Cheap Taxes for Shopify
+// * Connection String Creator
+// * Config Helper Pro (Read and write to the registry, config files, and INI files with 100% managed code)
+// * CSV Reports (CSV Reader, Writer)
+// * Easy Database Creator
+// * File Search Library
+// * Installerific (create Windows, Chocolatey, and Portable App installers)
+// * Knight Data Access Layer (ORM, LINQ Provider, Generator)
+// * Name Parser
+// * Ninja Database Pro (Object Relational database for .NET)
+// * Ninja Database Lite (Document database for .NET)
+// * Ninja WinRT Database (Object database for Windows 8 Runtime, Windows Phone 8)
+// * NUnit Test Generator
+// * Search Databases
+// * Source Code Search Tool
 // * Themed Winform Wizard
 // * Unused Stored Procedures
-// * AccessDiff
-// * .NET SFTP Library
-// * Ninja Database Pro (Object database for .NET, Silverlight, Windows Phone 7)
-// * Ninja WinRT Database (Object database for Windows 8 Runtime, Windows Phone 8)
-// * Knight Data Access Layer (ORM, LINQ Provider, Generator)
-// * CSV Reports (CSV Reader, Writer)
-// * What's Changed? (Compare words, strings, streams, and text files)
-// * .NET Excel Reports (Create Excel reports without excel being installed)
-// * .NET Word Reports (Create reports based on Microsoft Word files without having Microsoft Word installed)
-// * Config Helper Pro (Read and write to the registry, config files, and INI files with 100% managed code)
-// * Connection String Creator
+// * User Agent Parser
 // * USPS Street Standardization Library
-// * .NET Link Tracker
-// * .NET PGP Library
+// * What's Changed? (Compare words, strings, streams, and text files)
 
 #region Includes
 
@@ -160,8 +171,8 @@ namespace KellermanSoftware.CompareNetObjects
         private void SetupWithAppConfigSettings()
         {
             Config.MembersToIgnore = Settings.Default.MembersToIgnore == null
-                                ? new HashSet<string>()
-                                : new HashSet<string>((IEnumerable<string>)Settings.Default.MembersToIgnore);
+                                ? new List<string>()
+                                : new List<string>((IEnumerable<string>)Settings.Default.MembersToIgnore);
 
             if (Settings.Default.MembersToIgnore != null)
             {
@@ -209,8 +220,7 @@ namespace KellermanSoftware.CompareNetObjects
 
             result.Watch.Start();
 
-            //The config may have changed since the last run
-            Config.PropertyEntityCache.Clear();
+            Config.PopulateHashSets();
 
             RootComparer rootComparer = RootComparerFactory.GetRootComparer();
 
@@ -238,6 +248,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// </summary>
         public void ClearCache()
         {
+            Config.PropertyEntityCache.Clear();
             Cache.ClearCache();
         }
 

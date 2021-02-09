@@ -35,6 +35,15 @@ namespace KellermanSoftware.CompareNetObjects
 
         #region Properties
 
+        internal HashSet<Type> AttributesToIgnoreSet { get; set; }
+        internal HashSet<string> MembersToIgnoreSet { get; set; }
+        internal HashSet<string> MembersToIncludeSet { get; set; }
+        internal HashSet<Type> ClassTypesToIgnoreSet { get; set; }
+        internal HashSet<Type> ClassTypesToIncludeSet { get; set; }
+        internal HashSet<Type> TypesToIgnoreSet { get; set; }
+        internal HashSet<Type> TypesToIncludeSet { get; set; }
+        internal HashSet<Type> RequiredAttributesToCompareSet { get; set; }
+
         /// <summary>
         /// Reflection Cache for property info
         /// </summary>
@@ -127,8 +136,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// <summary>
         /// If a class implements an interface then only members of the interface will be compared.  The default is all members are compared. 
         /// </summary>
-        /// <remarks>Version 5 changed the type from a List to a HashSet for performance</remarks>
-        public HashSet<Type> InterfaceMembers { get; set; }
+        public List<Type> InterfaceMembers { get; set; }
 #if !NETSTANDARD
         [DataMember(Name = "InterfaceMembers")]
         private List<string> InterfaceMembersSerializer
@@ -152,8 +160,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// <summary>
         /// A list of class types to be ignored in the comparison. The default is to compare all class types.
         /// </summary>
-        /// <remarks>Version 5 changed the type from a List to a HashSet for performance</remarks>
-        public HashSet<Type> ClassTypesToIgnore { get; set; }
+        public List<Type> ClassTypesToIgnore { get; set; }
 #if !NETSTANDARD
         [DataMember(Name = "ClassTypesToIgnore")]
         private List<string> ClassTypesToIgnoreSerializer
@@ -167,8 +174,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// Only these class types will be compared. The default is to compare all class types.
         /// </summary>
         /// <remarks>If you specify a class type here no other class types will be compared unless it is in this list.</remarks>
-        /// <remarks>Version 5 changed the type from a List to a HashSet for performance</remarks>
-        public HashSet<Type> ClassTypesToInclude { get; set; }
+        public List<Type> ClassTypesToInclude { get; set; }
 #if !NETSTANDARD
         [DataMember(Name = "ClassTypesToInclude")]
         private List<string> ClassTypesToIncludeSerializer
@@ -181,8 +187,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// <summary>
         /// A list of types to be ignored in the comparison. The default is to compare all types.  A typical thing to not compare are GUIDs
         /// </summary>
-        /// <remarks>Version 5 changed the type from a List to a HashSet for performance</remarks>
-        public HashSet<Type> TypesToIgnore { get; set; }
+        public List<Type> TypesToIgnore { get; set; }
 #if !NETSTANDARD
         [DataMember(Name = "TypesToIgnore")]
         private List<string> TypesToIgnoreSerializer
@@ -196,8 +201,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// Only these types will be compared. The default is to compare all types.
         /// </summary>
         /// <remarks>If you specify a type here no others will be compared unless it is in this list.  You must specify ALL Types that you want to compare.</remarks>
-        /// <remarks>Version 5 changed the type from a List to a HashSet for performance</remarks>
-        public HashSet<Type> TypesToInclude { get; set; }
+        public List<Type> TypesToInclude { get; set; }
 #if !NETSTANDARD
         [DataMember(Name = "TypesToInclude")]
         private List<string> TypesToIncludeSerializer
@@ -214,11 +218,10 @@ namespace KellermanSoftware.CompareNetObjects
         /// MembersToIgnore.Add("Invoice.InvoiceGuid");
         /// MembersToIgnore.Add("*Id");
         /// </example>
-        /// <remarks>Version 5 changed the type from a List to a HashSet for performance</remarks>
 #if !NETSTANDARD
         [DataMember]
 #endif
-        public HashSet<string> MembersToIgnore { get ; set; }
+        public List<string> MembersToIgnore { get ; set; }
 
         /// <summary>
         /// Ignore property during the comparison.  Property is specific to the generic type.
@@ -293,11 +296,10 @@ namespace KellermanSoftware.CompareNetObjects
         /// Only compare elements by name for Data Table Names, Data Table Column Names, properties and fields. Case sensitive. The default is to compare all members.
         /// </summary>
         /// <example>MembersToInclude.Add("FirstName")</example>
-        /// <remarks>Version 5 changed the type from a List to a HashSet for performance</remarks>
 #if !NETSTANDARD
         [DataMember]
 #endif
-        public HashSet<string> MembersToInclude { get; set; }
+        public List<string> MembersToInclude { get; set; }
 
 #if !NETSTANDARD1_3
         /// <summary>
@@ -414,8 +416,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// A list of attributes to ignore a class, property or field
         /// </summary>
         /// <example>AttributesToIgnore.Add(typeof(XmlIgnoreAttribute));</example>
-        /// <remarks>Version 5 changed the type from a List to a HashSet for performance</remarks>
-        public HashSet<Type> AttributesToIgnore { get; set; }
+        public List<Type> AttributesToIgnore { get; set; }
 #if !NETSTANDARD
         [DataMember(Name = "AttributesToIgnore")]
         private List<string> AttributesToIgnoreSerializer
@@ -429,8 +430,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// If a property or field don't have at least one of the attributes in this list, it will be ignored
         /// </summary>
         /// <example>RequiredAttributesToCompare.Add(typeof(XmlIgnoreAttribute));</example>
-        /// <remarks>Version 5 changed the type from a List to a HashSet for performance</remarks>
-        public HashSet<Type> RequiredAttributesToCompare { get; set; }
+        public List<Type> RequiredAttributesToCompare { get; set; }
 #if !NETSTANDARD
         [DataMember(Name = "RequiredAttributesToCompare")]
         private List<string> RequiredAttributesToCompareSerializer
@@ -552,6 +552,19 @@ namespace KellermanSoftware.CompareNetObjects
 
         #region Methods
 
+        //These hash sets are used for performance
+        internal void PopulateHashSets()
+        {
+            AttributesToIgnoreSet = new HashSet<Type>((AttributesToIgnore ?? new List<Type>()).Distinct());
+            MembersToIgnoreSet = new HashSet<String>((MembersToIgnore ?? new List<String>()).Distinct());
+            MembersToIncludeSet = new HashSet<String>((MembersToInclude ?? new List<String>()).Distinct());
+            ClassTypesToIgnoreSet = new HashSet<Type>((ClassTypesToIgnore ?? new List<Type>()).Distinct());
+            ClassTypesToIncludeSet = new HashSet<Type>((ClassTypesToInclude ?? new List<Type>()).Distinct());
+            TypesToIgnoreSet = new HashSet<Type>((TypesToIgnore ?? new List<Type>()).Distinct());
+            TypesToIncludeSet = new HashSet<Type>((TypesToInclude ?? new List<Type>()).Distinct());
+            RequiredAttributesToCompareSet = new HashSet<Type>((RequiredAttributesToCompare ?? new List<Type>()).Distinct());
+        }
+
         /// <summary>
         /// Backing member that supports <see cref="HasWildcardMembersToExclude"/>
         /// </summary>
@@ -567,7 +580,7 @@ namespace KellermanSoftware.CompareNetObjects
                 return _hasWildcardInMembersToIgnore.Value;
             }
 
-            _hasWildcardInMembersToIgnore = MembersToIgnore.Any(x => x.IndexOf("*") > -1);
+            _hasWildcardInMembersToIgnore = MembersToIgnoreSet.Any(x => x.IndexOf("*") > -1);
             return _hasWildcardInMembersToIgnore.Value;
         }
 
@@ -576,22 +589,22 @@ namespace KellermanSoftware.CompareNetObjects
         /// </summary>
         public void Reset()
         {
-            AttributesToIgnore = new HashSet<Type>();
-            RequiredAttributesToCompare = new HashSet<Type>();
+            AttributesToIgnore = new List<Type>();
+            RequiredAttributesToCompare = new List<Type>();
             _differenceCallback = d => { };
 
-            MembersToIgnore = new HashSet<string>();
+            MembersToIgnore = new List<string>();
             _hasWildcardInMembersToIgnore = null;
 
-            MembersToInclude = new HashSet<string>();
-            ClassTypesToIgnore = new HashSet<Type>();
-            ClassTypesToInclude = new HashSet<Type>();
-            TypesToIgnore = new HashSet<Type>();
-            TypesToInclude = new HashSet<Type>();
+            MembersToInclude = new List<string>();
+            ClassTypesToIgnore = new List<Type>();
+            ClassTypesToInclude = new List<Type>();
+            TypesToIgnore = new List<Type>();
+            TypesToInclude = new List<Type>();
 
             CompareStaticFields = true;
             CompareStaticProperties = true;
-#if !NETSTANDARD
+#if !NETSTANDARD1_3
             ComparePrivateProperties = false;
             ComparePrivateFields = false;
 #endif
@@ -610,7 +623,7 @@ namespace KellermanSoftware.CompareNetObjects
             ActualName = "Actual";
             CustomComparers = new List<BaseTypeComparer>();
             TreatStringEmptyAndNullTheSame = false;
-            InterfaceMembers = new HashSet<Type>();
+            InterfaceMembers = new List<Type>();
             SkipInvalidIndexers = false;
             MaxByteArrayDifferences = 1;
             CollectionMatchingSpec = new Dictionary<Type, IEnumerable<string>>();
