@@ -54,6 +54,32 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
         #region Tests
 
+        //Failed comparison of objects with complex dictionary key
+        //https://github.com/GregFinzer/Compare-Net-Objects/issues/222
+        [Test]
+        public void ComplexDictionaryShouldCompare()
+        {
+            // Arrange.
+            var originalGraph = new GenericCollections();
+            originalGraph.Prepare();
+
+            // Act.
+            var serializedKeys = JsonConvert.SerializeObject(originalGraph.DicOfDics!.Keys.ToArray());
+            var serializedValues = JsonConvert.SerializeObject(originalGraph.DicOfDics!.Values.ToArray());
+
+            var keys = JsonConvert.DeserializeObject<Dictionary<Int16, Int32>[]>(serializedKeys);
+            var values = JsonConvert.DeserializeObject<Dictionary<String, UInt16?>[]>(serializedValues);
+
+            var dic = keys.Zip(values, (x, y) => (x, y)).ToDictionary(pair => pair.x, pair => pair.y);
+            var deserializedGraph = new GenericCollections { DicOfDics = dic! };
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph); // Manual compare seems ok...
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph); // However, this throws an assertion error -_-
+        }
+
         [Test]
         public void IPV6AddressShouldBeDifferent()
         {

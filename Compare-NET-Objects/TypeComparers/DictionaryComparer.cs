@@ -44,10 +44,27 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 //Objects must be the same length
                 bool countsDifferent = DictionaryCountsDifferent(parms);
 
-                if (parms.Result.ExceededDifferences)
+                if (countsDifferent && parms.Result.ExceededDifferences)
                     return;
 
-                CompareEachItem(parms);
+                bool shouldCompareByKeys = ShouldCompareByKeys(parms);
+
+                if (shouldCompareByKeys)
+                {
+                    CompareByKeys(parms);
+                }
+                else
+                {
+                    if (parms.Config.IgnoreCollectionOrder)
+                    {
+                        IgnoreOrderLogic logic = new IgnoreOrderLogic(RootComparer);
+                        logic.CompareEnumeratorIgnoreOrder(parms, countsDifferent);
+                    }
+                    else
+                    {
+                        CompareByEnumerator(parms);
+                    }
+                }
             }
             finally
             {
@@ -56,28 +73,53 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             }
         }
 
-        private void CompareEachItem(CompareParms parms)
+        /// <summary>
+        /// This is to handle funky situation of having a complex object as a key
+        /// (In this case a dictionary as a key)
+        /// https://github.com/GregFinzer/Compare-Net-Objects/issues/222
+        /// </summary>
+        /// <param name="parms"></param>
+        /// <returns></returns>
+        private static bool ShouldCompareByKeys(CompareParms parms)
+        {
+            bool shouldCompareByKeys = true;
+
+            if (parms.Object1 != null)
+            {
+                var dict1 = ((IDictionary) parms.Object1);
+                
+                if (dict1.Keys.Count > 0)
+                {
+                    var enumerator1 = ((IDictionary) parms.Object1).GetEnumerator();
+                    enumerator1.MoveNext();
+                    shouldCompareByKeys =
+                        enumerator1.Key != null && TypeHelper.IsSimpleType(enumerator1.Key.GetType());
+                }
+            }
+
+            return shouldCompareByKeys;
+        }
+
+
+        private void CompareByKeys(CompareParms parms)
         {
             var dict1 = ((IDictionary)parms.Object1);
             var dict2 = ((IDictionary)parms.Object2);
 
             if (dict1 != null)
             {
-                string currentBreadCrumb = "";
-                CompareParms childParms = null;
-
                 foreach (var key in dict1.Keys)
                 {
-                    currentBreadCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb, "[" +key.ToString()+ "].Value");
+                    string currentBreadCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb, "[" +key.ToString()+ "].Value");
 
-                    childParms = new CompareParms
+                    CompareParms childParms = new CompareParms
                     {
                         Result = parms.Result,
                         Config = parms.Config,
                         ParentObject1 = parms.Object1,
                         ParentObject2 = parms.Object2,
                         Object1 = dict1[key],
-                        Object2 = (dict2 != null) ? dict2[key] : null,
+                        Object2 = (dict2 != null) && dict2.Contains(key) ? dict2[key] : null,
                         BreadCrumb = currentBreadCrumb
                     };
 
@@ -90,18 +132,15 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
             if (dict2 != null)
             {
-                string currentBreadCrumb = "";
-                CompareParms childParms = null;
-
                 foreach (var key in dict2.Keys)
                 {
                     if (dict1 != null && dict1.Contains(key))
                         continue;
 
-                    currentBreadCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb,
+                    var currentBreadCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb,
                         "[" + key.ToString() + "].Value");
 
-                    childParms = new CompareParms
+                    var childParms = new CompareParms
                     {
                         Result = parms.Result,
                         Config = parms.Config,
@@ -118,6 +157,51 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                         return;
                     
                 }
+            }
+        }
+
+        private void CompareByEnumerator(CompareParms parms)
+        {
+            var enumerator1 = ((IDictionary)parms.Object1).GetEnumerator();
+            var enumerator2 = ((IDictionary)parms.Object2).GetEnumerator();
+
+            while (enumerator1.MoveNext() && enumerator2.MoveNext())
+            {
+                string currentBreadCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb, "Key");
+
+                CompareParms childParms = new CompareParms
+                {
+                    Result = parms.Result,
+                    Config = parms.Config,
+                    ParentObject1 = parms.Object1,
+                    ParentObject2 = parms.Object2,
+                    Object1 = enumerator1.Key,
+                    Object2 = enumerator2.Key,
+                    BreadCrumb = currentBreadCrumb
+                };
+
+                RootComparer.Compare(childParms);
+
+                if (parms.Result.ExceededDifferences)
+                    return;
+
+                currentBreadCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb, "Value");
+
+                childParms = new CompareParms
+                {
+                    Result = parms.Result,
+                    Config = parms.Config,
+                    ParentObject1 = parms.Object1,
+                    ParentObject2 = parms.Object2,
+                    Object1 = enumerator1.Value,
+                    Object2 = enumerator2.Value,
+                    BreadCrumb = currentBreadCrumb
+                };
+
+                RootComparer.Compare(childParms);
+
+                if (parms.Result.ExceededDifferences)
+                    return;
             }
         }
 

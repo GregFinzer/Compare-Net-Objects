@@ -23,7 +23,7 @@
   
   <PropertyGroup>
     <IsNetCore>false</IsNetCore>
-    <LangVersion>7.2</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0'">
