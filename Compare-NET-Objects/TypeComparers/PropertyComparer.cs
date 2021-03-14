@@ -6,7 +6,7 @@ using System.Linq;
 namespace KellermanSoftware.CompareNetObjects.TypeComparers
 {
     /// <summary>
-    /// Compare two properties (Note inherits from BaseComparer instead of TypeComparer
+    /// Compare two properties (Note: inherits from BaseComparer instead of TypeComparer).
     /// </summary>
     public class PropertyComparer : BaseComparer
     {

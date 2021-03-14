@@ -114,10 +114,54 @@ namespace KellermanSoftware.CompareNetObjectsTests
             }
         }
 
+        // New feature: comparison of collections with indexers objects and ignore order.
+        //https://github.com/GregFinzer/Compare-Net-Objects/issues/223
+        #region Tests For Collections Of Indexers And IgnoreCollectionsOrder
+
 #nullable enable
 
-        // New feature: comparison of collections with indexers objects.
-        //https://github.com/GregFinzer/Compare-Net-Objects/issues/223
+        [Test]
+        public void EnumerableWithIndexerKeysAndValuesShouldCompare()
+        {
+            // Arrange.
+            var originalGraph = EnumerableWithIndexerValues.Create();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.EnumerableOfLists.ToArray());
+
+            var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
+
+            var enumerablesOfLists = lists.ToList();
+            var deserializedGraph = new EnumerableWithIndexerValues(enumerablesOfLists);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph);
+        }
+
+        [Test]
+        public void EnumerableWithIndexerKeysAndValuesShouldCompare_Reverse()
+        {
+            // Arrange.
+            var originalGraph = EnumerableWithIndexerValues.Create();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.EnumerableOfLists.ToArray());
+
+            var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
+
+            var enumerablesOfLists = lists.Reverse().ToList();
+            var deserializedGraph = new EnumerableWithIndexerValues(enumerablesOfLists);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph);
+        }
+
         [Test]
         public void ListWithIndexerValuesShouldCompare()
         {
@@ -139,8 +183,27 @@ namespace KellermanSoftware.CompareNetObjectsTests
             originalGraph.CompareObjects(deserializedGraph);
         }
 
-        // New feature: comparison of collections with indexers objects.
-        //https://github.com/GregFinzer/Compare-Net-Objects/issues/223
+        [Test]
+        public void ListWithIndexerValuesShouldCompare_Reverse()
+        {
+            // Arrange.
+            var originalGraph = ListWithIndexerValues.Create();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.ListOfLists.ToArray());
+
+            var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
+
+            var listOfLists = lists.Reverse().ToList();
+            var deserializedGraph = new ListWithIndexerValues(listOfLists);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph);
+        }
+
         [Test]
         public void ArrayWithIndexerValuesShouldCompare()
         {
@@ -162,8 +225,27 @@ namespace KellermanSoftware.CompareNetObjectsTests
             originalGraph.CompareObjects(deserializedGraph);
         }
 
-        // New feature: comparison of collections with indexers objects.
-        //https://github.com/GregFinzer/Compare-Net-Objects/issues/223
+        [Test]
+        public void ArrayWithIndexerValuesShouldCompare_Reverse()
+        {
+            // Arrange.
+            var originalGraph = ArraysWithIndexerValues.Create();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.ArrayOfLists.ToArray());
+
+            var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
+
+            var arrayOfLists = lists.Reverse().ToArray();
+            var deserializedGraph = new ArraysWithIndexerValues(arrayOfLists);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph);
+        }
+
         [Test]
         public void DictionaryWithIndexerKeysAndValuesShouldCompare()
         {
@@ -182,12 +264,37 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             // Assert.
             Console.WriteLine("Manual Compare");
-            //originalGraph.ManualCompare(deserializedGraph);
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph);
+        }
+
+        [Test]
+        public void DictionaryWithIndexerKeysAndValuesShouldCompare_Reverse()
+        {
+            // Arrange.
+            var originalGraph = DictionaryWithIndexerKeysAndValues.Create();
+
+            // Act.
+            var serializedKeys = JsonConvert.SerializeObject(originalGraph.DictOfLists.Keys.ToArray());
+            var serializedValues = JsonConvert.SerializeObject(originalGraph.DictOfLists.Values.ToArray());
+
+            var keys = JsonConvert.DeserializeObject<List<int>[]>(serializedKeys);
+            var values = JsonConvert.DeserializeObject<List<int>[]>(serializedValues);
+
+            var dictOfLists = keys.Zip(values, (x, y) => (x, y)).Reverse().ToDictionary(pair => pair.x, pair => pair.y);
+            var deserializedGraph = new DictionaryWithIndexerKeysAndValues(dictOfLists!);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
             Console.WriteLine("Compare .NET Objects");
             originalGraph.CompareObjects(deserializedGraph);
         }
 
 #nullable disable
+
+        #endregion
 
         #endregion
     }

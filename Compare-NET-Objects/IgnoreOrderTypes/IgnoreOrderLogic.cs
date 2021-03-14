@@ -16,7 +16,6 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
     public class IgnoreOrderLogic : BaseComparer
     {
         private readonly RootComparer _rootComparer;
-        private readonly Dictionary<string, bool> _alreadyCompared = new Dictionary<string, bool>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IgnoreOrderLogic"/> class.
@@ -170,7 +169,6 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                     differenceDetected = true;
                 }
 
-                //_alreadyCompared.Add(item1.Key, true);
                 if (parms.Result.ExceededDifferences)
                     return;
 
@@ -236,6 +234,15 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                         $"Invalid CollectionMatchingSpec.  No such property {item} for type {currentObject.GetType().Name} ");
                 }
 
+                // Ensure that we will not compare indexer property.
+                var indexParameters = info.GetIndexParameters();
+                if (indexParameters.Length > 0)
+                {
+                    throw new ArgumentException(
+                        $"Invalid object {currentObject.GetType().Name} to compare. Object with indexers cannot be compared when IgnoreCollectionOrder = true.",
+                        nameof(currentObject)
+                    );
+                }
                 var propertyValue = info.GetValue(currentObject, null);
 
                 if (result.Config.TreatStringEmptyAndNullTheSame && info.PropertyType == typeof(string) && propertyValue == null)

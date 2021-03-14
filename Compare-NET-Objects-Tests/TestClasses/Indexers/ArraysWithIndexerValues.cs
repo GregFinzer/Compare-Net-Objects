@@ -51,7 +51,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             else
             {
                 Assert.AreEqual(ArrayOfLists.Length, other.ArrayOfLists.Length);
-                for (int i = 0; i < ArrayOfLists.Length; i++)
+                for (int i = 0; i < ArrayOfLists.Length; ++i)
                 {
                     List<int>? ch1 = ArrayOfLists[i];
                     List<int>? ch2 = other.ArrayOfLists[i];

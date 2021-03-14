@@ -43,7 +43,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             }
 
             Assert.AreEqual(ListOfLists.Count, other.ListOfLists.Count);
-            for (int i = 0; i < ListOfLists.Count; i++)
+            for (int i = 0; i < ListOfLists.Count; ++i)
             {
                 List<int>? ch1 = ListOfLists[i];
                 List<int>? ch2 = other.ListOfLists[i];

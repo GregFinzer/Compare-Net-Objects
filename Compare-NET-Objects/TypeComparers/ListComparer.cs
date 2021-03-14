@@ -34,7 +34,6 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             return TypeHelper.IsIList(type1) && TypeHelper.IsIList(type2);
         }
 
-
         /// <summary>
         /// Compare two objects that implement IList
         /// </summary>
@@ -64,7 +63,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
                 bool countsDifferent = ListsHaveDifferentCounts(parms);
 
-                if (parms.Config.IgnoreCollectionOrder && !ChildIsListOrDictionary(parms))
+                if (parms.Config.IgnoreCollectionOrder && !ChildShouldBeComparedWithoutOrder(parms))
                 {
                     IgnoreOrderLogic ignoreOrderLogic = new IgnoreOrderLogic(RootComparer);
                     ignoreOrderLogic.CompareEnumeratorIgnoreOrder(parms, countsDifferent);
@@ -99,7 +98,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             if (parms.Config.CompareProperties)
             {
                 _propertyComparer.PerformCompareProperties(parms, true);
-            }            
+            }
         }
 
         private bool ListsHaveDifferentCounts(CompareParms parms)
@@ -146,17 +145,33 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             return false;
         }
 
-        private bool ChildIsListOrDictionary(CompareParms parms)
+        private bool ChildShouldBeComparedWithoutOrder(CompareParms parms)
         {
-            IEnumerator enumerator1 = ((IList)parms.Object1).GetEnumerator();
+            IEnumerator enumerator1 = ((IEnumerable)parms.Object1).GetEnumerator();
 
-            if (enumerator1.MoveNext() && enumerator1.Current != null)
+            // We should ensure that all items is enumerable or list.
+            // Take into account that items can be objects with mixed types => throw an exception that this case is unsupported.
+            // Next code is something like Enumerable.All.
+            bool hasItems = false;
+            while (enumerator1.MoveNext())
             {
+                hasItems = true;
+
+                if (enumerator1.Current is null)
+                    continue;
+
                 Type type = enumerator1.Current.GetType();
-                return TypeHelper.IsIDictionary(type) || TypeHelper.IsIList(type);
+                bool shouldCompareAndIgnoreOrder =
+                    TypeHelper.IsEnumerable(type) ||
+                    TypeHelper.IsIList(type) ||
+                    TypeHelper.IsIDictionary(type);
+                if (!shouldCompareAndIgnoreOrder)
+                    return false;
             }
 
-            return false;
+            // If all items is null, we can compare as usual.
+            // Order does not change anything in this case.
+            return hasItems;
         }
 
         private void CompareItems(CompareParms parms)
@@ -170,15 +185,15 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 string currentBreadCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb, string.Empty, string.Empty, count);
 
                 CompareParms childParms = new CompareParms
-                                          {
-                                              Result = parms.Result,
-                                              Config = parms.Config,
-                                              ParentObject1 = parms.Object1,
-                                              ParentObject2 = parms.Object2,
-                                              Object1 = enumerator1.Current,
-                                              Object2 = enumerator2.Current,
-                                              BreadCrumb = currentBreadCrumb
-                                          };
+                {
+                    Result = parms.Result,
+                    Config = parms.Config,
+                    ParentObject1 = parms.Object1,
+                    ParentObject2 = parms.Object2,
+                    Object1 = enumerator1.Current,
+                    Object2 = enumerator2.Current,
+                    BreadCrumb = currentBreadCrumb
+                };
 
                 RootComparer.Compare(childParms);
 
@@ -188,7 +203,5 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 count++;
             }
         }
-
-
     }
 }
