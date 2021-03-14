@@ -54,14 +54,15 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
         #region Tests
 
+#nullable enable
+
         //Failed comparison of objects with complex dictionary key
         //https://github.com/GregFinzer/Compare-Net-Objects/issues/222
         [Test]
         public void ComplexDictionaryShouldCompare()
         {
             // Arrange.
-            var originalGraph = new GenericCollectionsWithDictionary();
-            originalGraph.Prepare();
+            var originalGraph = GenericCollectionWithComplexDictionary.Create();
 
             // Act.
             var serializedKeys = JsonConvert.SerializeObject(originalGraph.DicOfDics!.Keys.ToArray());
@@ -71,13 +72,13 @@ namespace KellermanSoftware.CompareNetObjectsTests
             var values = JsonConvert.DeserializeObject<Dictionary<string, ushort?>[]>(serializedValues);
 
             var dic = keys.Zip(values, (x, y) => (x, y)).ToDictionary(pair => pair.x, pair => pair.y);
-            var deserializedGraph = new GenericCollectionsWithDictionary { DicOfDics = dic! };
+            var deserializedGraph = new GenericCollectionWithComplexDictionary(dic!);
 
             // Assert.
             Console.WriteLine("Manual Compare");
-            originalGraph.ManualCompare(deserializedGraph); // Manual compare seems ok...
+            originalGraph.ManualCompare(deserializedGraph);
             Console.WriteLine("Compare .NET Objects");
-            originalGraph.CompareObjects(deserializedGraph); // However, this throws an assertion error -_-
+            originalGraph.CompareObjects(deserializedGraph);
         }
 
         //Failed comparison of collections with indexers objects.
@@ -86,8 +87,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
         public void ComplexDictionaryWithListShouldCompare()
         {
             // Arrange.
-            var originalGraph = new GenericCollectionsWithLists();
-            originalGraph.Prepare();
+            var originalGraph = GenericCollectionWithLists.Create();
 
             // Act.
             var serializedLists = JsonConvert.SerializeObject(originalGraph.ListOfLists!.ToArray());
@@ -95,16 +95,13 @@ namespace KellermanSoftware.CompareNetObjectsTests
             var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
 
             var listOfLists = lists.ToList();
-            var deserializedGraph = new GenericCollectionsWithLists
-            {
-                ListOfLists = listOfLists
-            };
+            var deserializedGraph = new GenericCollectionWithLists(listOfLists);
 
             // Assert.
             Console.WriteLine("Manual Compare");
-            originalGraph.ManualCompare(deserializedGraph); // Manual compare seems ok...
+            originalGraph.ManualCompare(deserializedGraph);
             Console.WriteLine("Compare .NET Objects");
-            originalGraph.CompareObjects(deserializedGraph); // However, this throws an assertion error -_-
+            originalGraph.CompareObjects(deserializedGraph);
         }
 
         //Failed comparison of collections with indexers objects.
@@ -113,8 +110,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
         public void ComplexDictionaryWithArrayShouldCompare()
         {
             // Arrange.
-            var originalGraph = new GenericCollectionsWithArrays();
-            originalGraph.Prepare();
+            var originalGraph = GenericCollectionWithArrays.Create();
 
             // Act.
             var serializedLists = JsonConvert.SerializeObject(originalGraph.ArrayOfLists!.ToArray());
@@ -122,17 +118,16 @@ namespace KellermanSoftware.CompareNetObjectsTests
             var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
 
             var arrayOfLists = lists.ToArray();
-            var deserializedGraph = new GenericCollectionsWithArrays
-            {
-                ArrayOfLists = arrayOfLists
-            };
+            var deserializedGraph = new GenericCollectionWithArrays(arrayOfLists);
 
             // Assert.
             Console.WriteLine("Manual Compare");
-            originalGraph.ManualCompare(deserializedGraph); // Manual compare seems ok...
+            originalGraph.ManualCompare(deserializedGraph);
             Console.WriteLine("Compare .NET Objects");
-            originalGraph.CompareObjects(deserializedGraph); // However, this throws an assertion error -_-
+            originalGraph.CompareObjects(deserializedGraph);
         }
+
+#nullable disable
 
         [Test]
         public void IPV6AddressShouldBeDifferent()

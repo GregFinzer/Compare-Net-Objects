@@ -7,25 +7,33 @@ using NUnit.Framework;
 
 namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
 {
-    internal sealed class GenericCollectionsWithArrays
+    internal sealed class GenericCollectionWithArrays
     {
-        public List<int>?[]? ArrayOfLists { get; set; }
+        public List<int>?[] ArrayOfLists { get; }
 
-        public GenericCollectionsWithArrays()
+        public GenericCollectionWithArrays(List<int>?[] arrayOfLists)
         {
+            ArrayOfLists = arrayOfLists;
         }
 
-        // Some weird code to fill list.
-        public void Prepare()
+        public static GenericCollectionWithArrays Create()
         {
-            ArrayOfLists = new List<int>?[2];
-            for (int i = 0; i < ArrayOfLists.Length; ++i)
+            var arrayOfLists = PrepareArray();
+            return new GenericCollectionWithArrays(arrayOfLists);
+        }
+
+        private static List<int>?[] PrepareArray()
+        {
+            var arrayOfLists = new List<int>?[2];
+            for (int i = 0; i < arrayOfLists.Length; ++i)
             {
-                ArrayOfLists[i] = i % 3 == 0 ? null : new List<int>(Enumerable.Range(0, i + 1));
+                arrayOfLists[i] = i % 3 == 0 ? null : new List<int>(Enumerable.Range(0, i + 1));
             }
+
+            return arrayOfLists;
         }
 
-        public void ManualCompare(GenericCollectionsWithArrays? other)
+        public void ManualCompare(GenericCollectionWithArrays? other)
         {
             Assert.NotNull(other);
             if (other is null) // To suppress null warning.
@@ -52,7 +60,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             }
         }
 
-        public void CompareObjects(GenericCollectionsWithArrays? other)
+        public void CompareObjects(GenericCollectionWithArrays? other)
         {
             CompareLogic compareLogic = new()
             {
@@ -60,7 +68,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
                 {
                     ComparePrivateProperties = false,
                     IgnoreObjectTypes = false,
-                    IgnoreCollectionOrder = true // true does not change the result :(
+                    IgnoreCollectionOrder = true // Should be true
                 }
             };
             var result = compareLogic.Compare(this, other);
