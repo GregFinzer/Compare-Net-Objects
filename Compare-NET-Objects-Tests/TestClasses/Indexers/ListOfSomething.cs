@@ -7,22 +7,22 @@ using NUnit.Framework;
 
 namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
 {
-    internal sealed class EnumerableWithIndexerValues
+    internal sealed class ListOfSomething
     {
-        public IEnumerable<List<int>?> EnumerableOfLists { get; }
+        public IReadOnlyList<IEnumerable<int>?> Value { get; }
 
-        public EnumerableWithIndexerValues(IEnumerable<List<int>?> enumerableOfLists)
+        public ListOfSomething(IReadOnlyList<IEnumerable<int>?> listOfLists)
         {
-            EnumerableOfLists = enumerableOfLists.Select(x => x); // Ensure that type will be enumerable.
+            Value = listOfLists;
         }
 
-        public static EnumerableWithIndexerValues Create()
+        public static ListOfSomething CreateWithLists()
         {
-            var listOfLists = PrepareEnumerable();
-            return new EnumerableWithIndexerValues(listOfLists);
+            var listOfLists = PrepareListWithLists();
+            return new ListOfSomething(listOfLists);
         }
 
-        private static IEnumerable<List<int>?> PrepareEnumerable()
+        private static IReadOnlyList<IEnumerable<int>?> PrepareListWithLists()
         {
             var listOfLists = new List<List<int>?>(6);
             for (int i = 0; i < listOfLists.Capacity; ++i)
@@ -30,10 +30,10 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
                 listOfLists.Add(i % 3 == 0 ? null : new List<int>(Enumerable.Range(0, i + 1)));
             }
 
-            return listOfLists.Select(x => x); // Ensure that type will be enumerable.
+            return listOfLists;
         }
 
-        public void ManualCompare(EnumerableWithIndexerValues? other)
+        public void ManualCompare(ListOfSomething? other)
         {
             Assert.NotNull(other);
             if (other is null) // To suppress null warning.
@@ -42,18 +42,16 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
                 return;
             }
 
-            var values1 = EnumerableOfLists.ToArray();
-            var values2 = other.EnumerableOfLists.ToArray();
-            Assert.AreEqual(values1.Length, values2.Length);
-            for (int i = 0; i < values1.Length; ++i)
+            Assert.AreEqual(Value.Count, other.Value.Count);
+            for (int i = 0; i < Value.Count; ++i)
             {
-                List<int>? ch1 = values1[i];
-                List<int>? ch2 = values2[i];
+                var ch1 = Value[i];
+                var ch2 = other.Value[i];
                 CollectionAssert.AreEqual(ch1, ch2);
             }
         }
 
-        public void CompareObjects(EnumerableWithIndexerValues? other)
+        public void CompareObjects(ListOfSomething? other)
         {
             CompareLogic compareLogic = new()
             {

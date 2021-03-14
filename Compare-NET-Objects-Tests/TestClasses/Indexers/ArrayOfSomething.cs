@@ -7,22 +7,22 @@ using NUnit.Framework;
 
 namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
 {
-    internal sealed class ArraysWithIndexerValues
+    internal sealed class ArrayOfSomething
     {
-        public List<int>?[] ArrayOfLists { get; }
+        public IEnumerable<int>?[] Value { get; }
 
-        public ArraysWithIndexerValues(List<int>?[] arrayOfLists)
+        public ArrayOfSomething(IEnumerable<int>?[] arrayOfLists)
         {
-            ArrayOfLists = arrayOfLists;
+            Value = arrayOfLists;
         }
 
-        public static ArraysWithIndexerValues Create()
+        public static ArrayOfSomething CreateWithLists()
         {
-            var arrayOfLists = PrepareArray();
-            return new ArraysWithIndexerValues(arrayOfLists);
+            var arrayOfLists = PrepareArrayWithLists();
+            return new ArrayOfSomething(arrayOfLists);
         }
 
-        private static List<int>?[] PrepareArray()
+        private static IEnumerable<int>?[] PrepareArrayWithLists()
         {
             var arrayOfLists = new List<int>?[6];
             for (int i = 0; i < arrayOfLists.Length; ++i)
@@ -33,7 +33,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             return arrayOfLists;
         }
 
-        public void ManualCompare(ArraysWithIndexerValues? other)
+        public void ManualCompare(ArrayOfSomething? other)
         {
             Assert.NotNull(other);
             if (other is null) // To suppress null warning.
@@ -43,24 +43,24 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             }
 
 
-            if (ArrayOfLists is null || other.ArrayOfLists is null)
+            if (Value is null || other.Value is null)
             {
-                Assert.IsNull(ArrayOfLists);
-                Assert.IsNull(other.ArrayOfLists);
+                Assert.IsNull(Value);
+                Assert.IsNull(other.Value);
             }
             else
             {
-                Assert.AreEqual(ArrayOfLists.Length, other.ArrayOfLists.Length);
-                for (int i = 0; i < ArrayOfLists.Length; ++i)
+                Assert.AreEqual(Value.Length, other.Value.Length);
+                for (int i = 0; i < Value.Length; ++i)
                 {
-                    List<int>? ch1 = ArrayOfLists[i];
-                    List<int>? ch2 = other.ArrayOfLists[i];
+                    var ch1 = Value[i];
+                    var ch2 = other.Value[i];
                     CollectionAssert.AreEqual(ch1, ch2);
                 }
             }
         }
 
-        public void CompareObjects(ArraysWithIndexerValues? other)
+        public void CompareObjects(ArrayOfSomething? other)
         {
             CompareLogic compareLogic = new()
             {

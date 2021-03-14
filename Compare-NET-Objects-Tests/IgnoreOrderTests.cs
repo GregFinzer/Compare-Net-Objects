@@ -4,6 +4,7 @@ using System.Linq;
 using KellermanSoftware.CompareNetObjects;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses.Bal;
+using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace KellermanSoftware.CompareNetObjectsTests
@@ -1410,7 +1411,190 @@ namespace KellermanSoftware.CompareNetObjectsTests
             compareLogic.Config.IgnoreCollectionOrder = true; 
  
             Assert.DoesNotThrow(() => compareLogic.Compare(new[] {null, "a"}, new[] {"a", "b"})); 
-        } 
+        }
+
+        // New feature: comparison of collections with indexers objects and ignore order.
+        //https://github.com/GregFinzer/Compare-Net-Objects/issues/223
+        #region Tests For Collections Of Indexers And IgnoreCollectionsOrder
+
+#nullable enable
+
+        [Test]
+        public void EnumerableOfListsShouldCompare()
+        {
+            // Arrange.
+            var originalGraph = EnumerableOfSomething.CreateWithLists();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.Value.ToArray());
+
+            var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
+
+            var enumerablesOfLists = lists.ToList();
+            var deserializedGraph = new EnumerableOfSomething(enumerablesOfLists);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph);
+        }
+
+        [Test]
+        public void EnumerableOfListsShouldCompare_Reverse()
+        {
+            // Arrange.
+            var originalGraph = EnumerableOfSomething.CreateWithLists();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.Value.ToArray());
+
+            var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
+
+            var enumerablesOfLists = lists.Reverse().ToList();
+            var deserializedGraph = new EnumerableOfSomething(enumerablesOfLists);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph);
+        }
+
+        [Test]
+        public void ListOfListsShouldCompare()
+        {
+            // Arrange.
+            var originalGraph = ListOfSomething.CreateWithLists();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.Value.ToArray());
+
+            var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
+
+            var listOfLists = lists.ToList();
+            var deserializedGraph = new ListOfSomething(listOfLists);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph);
+        }
+
+        [Test]
+        public void ListOfListsShouldCompare_Reverse()
+        {
+            // Arrange.
+            var originalGraph = ListOfSomething.CreateWithLists();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.Value.ToArray());
+
+            var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
+
+            var listOfLists = lists.Reverse().ToList();
+            var deserializedGraph = new ListOfSomething(listOfLists);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph);
+        }
+
+        [Test]
+        public void ArrayOfListsShouldCompare()
+        {
+            // Arrange.
+            var originalGraph = ArrayOfSomething.CreateWithLists();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.Value.ToArray());
+
+            var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
+
+            var arrayOfLists = lists.ToArray();
+            var deserializedGraph = new ArrayOfSomething(arrayOfLists);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph);
+        }
+
+        [Test]
+        public void ArrayOfListsShouldCompare_Reverse()
+        {
+            // Arrange.
+            var originalGraph = ArrayOfSomething.CreateWithLists();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.Value.ToArray());
+
+            var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
+
+            var arrayOfLists = lists.Reverse().ToArray();
+            var deserializedGraph = new ArrayOfSomething(arrayOfLists);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph);
+        }
+
+        [Test]
+        public void DictionaryOfListsShouldCompare()
+        {
+            // Arrange.
+            var originalGraph = DictionaryOfSomething.CreateWithLists();
+
+            // Act.
+            var serializedKeys = JsonConvert.SerializeObject(originalGraph.Value.Keys.ToArray());
+            var serializedValues = JsonConvert.SerializeObject(originalGraph.Value.Values.ToArray());
+
+            var keys = JsonConvert.DeserializeObject<List<int>[]>(serializedKeys);
+            var values = JsonConvert.DeserializeObject<List<int>[]>(serializedValues);
+
+            var dictOfLists = keys.Zip(values, (x, y) => (x, y)).ToDictionary(pair => pair.x.AsEnumerable(), pair => pair.y.AsEnumerable());
+            var deserializedGraph = new DictionaryOfSomething(dictOfLists!);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph);
+        }
+
+        [Test]
+        public void DictionaryOfListsShouldCompare_Reverse()
+        {
+            // Arrange.
+            var originalGraph = DictionaryOfSomething.CreateWithLists();
+
+            // Act.
+            var serializedKeys = JsonConvert.SerializeObject(originalGraph.Value.Keys.ToArray());
+            var serializedValues = JsonConvert.SerializeObject(originalGraph.Value.Values.ToArray());
+
+            var keys = JsonConvert.DeserializeObject<List<int>[]>(serializedKeys);
+            var values = JsonConvert.DeserializeObject<List<int>[]>(serializedValues);
+
+            var dictOfLists = keys.Zip(values, (x, y) => (x, y)).ToDictionary(pair => pair.x.AsEnumerable(), pair => pair.y.AsEnumerable());
+            var deserializedGraph = new DictionaryOfSomething(dictOfLists!);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph);
+        }
+
+#nullable disable
+
+        #endregion
+
         #endregion
     }
 }

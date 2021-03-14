@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using KellermanSoftware.CompareNetObjects;
 using NUnit.Framework;
@@ -7,22 +8,22 @@ using NUnit.Framework;
 
 namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
 {
-    internal sealed class ListWithIndexerValues
+    internal sealed class EnumerableOfSomething
     {
-        public List<List<int>?> ListOfLists { get; }
+        public IEnumerable<IEnumerable<int>?> Value { get; }
 
-        public ListWithIndexerValues(List<List<int>?> listOfLists)
+        public EnumerableOfSomething(IEnumerable<IEnumerable<int>?> enumerableOfLists)
         {
-            ListOfLists = listOfLists;
+            Value = enumerableOfLists.Select(x => x); // Ensure that type will be enumerable.
         }
 
-        public static ListWithIndexerValues Create()
+        public static EnumerableOfSomething CreateWithLists()
         {
-            var listOfLists = PrepareList();
-            return new ListWithIndexerValues(listOfLists);
+            var listOfLists = PrepareEnumerableWithLists();
+            return new EnumerableOfSomething(listOfLists);
         }
 
-        private static List<List<int>?> PrepareList()
+        private static IEnumerable<IEnumerable<int>?> PrepareEnumerableWithLists()
         {
             var listOfLists = new List<List<int>?>(6);
             for (int i = 0; i < listOfLists.Capacity; ++i)
@@ -30,10 +31,10 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
                 listOfLists.Add(i % 3 == 0 ? null : new List<int>(Enumerable.Range(0, i + 1)));
             }
 
-            return listOfLists;
+            return listOfLists.Select(x => x); // Ensure that type will be enumerable.
         }
 
-        public void ManualCompare(ListWithIndexerValues? other)
+        public void ManualCompare(EnumerableOfSomething? other)
         {
             Assert.NotNull(other);
             if (other is null) // To suppress null warning.
@@ -42,16 +43,18 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
                 return;
             }
 
-            Assert.AreEqual(ListOfLists.Count, other.ListOfLists.Count);
-            for (int i = 0; i < ListOfLists.Count; ++i)
+            var values1 = Value.ToArray();
+            var values2 = other.Value.ToArray();
+            Assert.AreEqual(values1.Length, values2.Length);
+            for (int i = 0; i < values1.Length; ++i)
             {
-                List<int>? ch1 = ListOfLists[i];
-                List<int>? ch2 = other.ListOfLists[i];
+                var ch1 = values1[i];
+                var ch2 = values2[i];
                 CollectionAssert.AreEqual(ch1, ch2);
             }
         }
 
-        public void CompareObjects(ListWithIndexerValues? other)
+        public void CompareObjects(EnumerableOfSomething? other)
         {
             CompareLogic compareLogic = new()
             {

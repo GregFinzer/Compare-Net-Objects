@@ -7,26 +7,28 @@ using NUnit.Framework;
 
 namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
 {
-    internal sealed class DictionaryWithIndexerKeysAndValues
+    internal sealed class DictionaryOfSomething
     {
-        public Dictionary<List<int>, List<int>?> DictOfLists { get; }
+        public IReadOnlyDictionary<IEnumerable<int>, IEnumerable<int>?> Value { get; }
 
-        public DictionaryWithIndexerKeysAndValues(Dictionary<List<int>, List<int>?> dictOfLists)
+        public DictionaryOfSomething(IReadOnlyDictionary<IEnumerable<int>, IEnumerable<int>?> dictOfLists)
         {
-            DictOfLists = dictOfLists;
+            Value = dictOfLists;
         }
 
-        public static DictionaryWithIndexerKeysAndValues Create()
+        public static DictionaryOfSomething CreateWithLists()
         {
-            var dictOfLists = PrepareDictionary();
-            return new DictionaryWithIndexerKeysAndValues(dictOfLists);
+            var dictOfLists = PrepareDictionaryWithLists();
+            return new DictionaryOfSomething(dictOfLists);
         }
 
-        private static Dictionary<List<int>, List<int>?> PrepareDictionary()
+        private static IReadOnlyDictionary<IEnumerable<int>, IEnumerable<int>?> PrepareDictionaryWithLists()
         {
             int dicOfDicsCapacity = 6;
             var keyDictionaryComparer = new KeyListComparer();
-            var dicOfDics = new Dictionary<List<int>, List<int>?>(dicOfDicsCapacity, keyDictionaryComparer);
+            var dicOfDics = new Dictionary<IEnumerable<int>, IEnumerable<int>?>(
+                dicOfDicsCapacity, keyDictionaryComparer
+            );
 
             int keyCounter = 1;
             for (int i = 0; i < dicOfDicsCapacity; ++i)
@@ -48,7 +50,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             return dicOfDics;
         }
 
-        public void ManualCompare(DictionaryWithIndexerKeysAndValues? other)
+        public void ManualCompare(DictionaryOfSomething? other)
         {
             Assert.NotNull(other);
             if (other is null) // To suppress null warning.
@@ -57,11 +59,11 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
                 return;
             }
 
-            Assert.AreEqual(DictOfLists.Count, other.DictOfLists.Count);
-            foreach (var key in other.DictOfLists.Keys)
+            Assert.AreEqual(Value.Count, other.Value.Count);
+            foreach (var key in other.Value.Keys)
             {
-                var v2 = other.DictOfLists[key];
-                Assert.IsTrue(DictOfLists.TryGetValue(key, out var v1));
+                var v2 = other.Value[key];
+                Assert.IsTrue(Value.TryGetValue(key, out var v1));
                 if (v1 is null || v2 is null)
                 {
                     Assert.IsNull(v1);
@@ -74,7 +76,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             }
         }
 
-        public void CompareObjects(DictionaryWithIndexerKeysAndValues? other)
+        public void CompareObjects(DictionaryOfSomething? other)
         {
             CompareLogic compareLogic = new()
             {
@@ -94,13 +96,13 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
 
         #region Internals
 
-        private sealed class KeyListComparer : IEqualityComparer<List<int>>
+        private sealed class KeyListComparer : IEqualityComparer<IEnumerable<int>>
         {
             public KeyListComparer()
             {
             }
 
-            public bool Equals(List<int>? x, List<int>? y)
+            public bool Equals(IEnumerable<int>? x, IEnumerable<int>? y)
             {
                 if (x is null)
                 {
@@ -112,15 +114,10 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
                     return false;
                 }
 
-                if (x.Count != y.Count)
-                {
-                    return false;
-                }
-
                 return x.SequenceEqual(y);
             }
 
-            public int GetHashCode(List<int>? obj)
+            public int GetHashCode(IEnumerable<int>? obj)
             {
                 if (obj is null)
                 {
@@ -130,7 +127,6 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
                 unchecked
                 {
                     int hash = 269;
-                    hash = (hash * 47) ^ obj.Count;
                     foreach (var key in obj)
                     {
                         hash = (hash * 47) ^ key;
