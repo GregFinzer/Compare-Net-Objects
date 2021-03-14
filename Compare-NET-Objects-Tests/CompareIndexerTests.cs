@@ -89,10 +89,10 @@ namespace KellermanSoftware.CompareNetObjectsTests
         {
             // Arrange.
             var values = new[] { 1, 2, 3, 4, 5 };
-            var indexedObject = new IndexedObject(values);
+            var indexedObject = new IndexerObject(values);
 
             // Act.
-            var anotherIndexedObject = new IndexedObject(values);
+            var anotherIndexedObject = new IndexerObject(values);
 
             // Assert.
             CompareLogic compareLogic = new()
