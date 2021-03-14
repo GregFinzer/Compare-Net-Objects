@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using KellermanSoftware.CompareNetObjects;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses;
+using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace KellermanSoftware.CompareNetObjectsTests
@@ -110,6 +113,81 @@ namespace KellermanSoftware.CompareNetObjectsTests
                 Assert.Fail(result.DifferencesString);
             }
         }
+
+#nullable enable
+
+        // New feature: comparison of collections with indexers objects.
+        //https://github.com/GregFinzer/Compare-Net-Objects/issues/223
+        [Test]
+        public void ListWithIndexerValuesShouldCompare()
+        {
+            // Arrange.
+            var originalGraph = ListWithIndexerValues.Create();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.ListOfLists.ToArray());
+
+            var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
+
+            var listOfLists = lists.ToList();
+            var deserializedGraph = new ListWithIndexerValues(listOfLists);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph);
+        }
+
+        // New feature: comparison of collections with indexers objects.
+        //https://github.com/GregFinzer/Compare-Net-Objects/issues/223
+        [Test]
+        public void ArrayWithIndexerValuesShouldCompare()
+        {
+            // Arrange.
+            var originalGraph = ArraysWithIndexerValues.Create();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.ArrayOfLists.ToArray());
+
+            var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
+
+            var arrayOfLists = lists.ToArray();
+            var deserializedGraph = new ArraysWithIndexerValues(arrayOfLists);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph);
+        }
+
+        // New feature: comparison of collections with indexers objects.
+        //https://github.com/GregFinzer/Compare-Net-Objects/issues/223
+        [Test]
+        public void DictionaryWithIndexerKeysAndValuesShouldCompare()
+        {
+            // Arrange.
+            var originalGraph = DictionaryWithIndexerKeysAndValues.Create();
+
+            // Act.
+            var serializedKeys = JsonConvert.SerializeObject(originalGraph.DictOfLists.Keys.ToArray());
+            var serializedValues = JsonConvert.SerializeObject(originalGraph.DictOfLists.Values.ToArray());
+
+            var keys = JsonConvert.DeserializeObject<List<int>[]>(serializedKeys);
+            var values = JsonConvert.DeserializeObject<List<int>[]>(serializedValues);
+
+            var dictOfLists = keys.Zip(values, (x, y) => (x, y)).ToDictionary(pair => pair.x, pair => pair.y);
+            var deserializedGraph = new DictionaryWithIndexerKeysAndValues(dictOfLists!);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            //originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph);
+        }
+
+#nullable disable
 
         #endregion
     }

@@ -7,24 +7,24 @@ using NUnit.Framework;
 
 namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
 {
-    internal sealed class GenericCollectionWithLists
+    internal sealed class ListWithIndexerValues
     {
         public List<List<int>?> ListOfLists { get; }
 
-        public GenericCollectionWithLists(List<List<int>?> listOfLists)
+        public ListWithIndexerValues(List<List<int>?> listOfLists)
         {
             ListOfLists = listOfLists;
         }
 
-        public static GenericCollectionWithLists Create()
+        public static ListWithIndexerValues Create()
         {
             var listOfLists = PrepareList();
-            return new GenericCollectionWithLists(listOfLists);
+            return new ListWithIndexerValues(listOfLists);
         }
 
         private static List<List<int>?> PrepareList()
         {
-            var listOfLists = new List<List<int>?>(2);
+            var listOfLists = new List<List<int>?>(6);
             for (int i = 0; i < listOfLists.Capacity; ++i)
             {
                 listOfLists.Add(i % 3 == 0 ? null : new List<int>(Enumerable.Range(0, i + 1)));
@@ -33,7 +33,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             return listOfLists;
         }
 
-        public void ManualCompare(GenericCollectionWithLists? other)
+        public void ManualCompare(ListWithIndexerValues? other)
         {
             Assert.NotNull(other);
             if (other is null) // To suppress null warning.
@@ -51,7 +51,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             }
         }
 
-        public void CompareObjects(GenericCollectionWithLists? other)
+        public void CompareObjects(ListWithIndexerValues? other)
         {
             CompareLogic compareLogic = new()
             {

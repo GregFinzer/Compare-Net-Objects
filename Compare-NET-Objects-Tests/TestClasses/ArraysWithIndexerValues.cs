@@ -7,24 +7,24 @@ using NUnit.Framework;
 
 namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
 {
-    internal sealed class GenericCollectionWithArrays
+    internal sealed class ArraysWithIndexerValues
     {
         public List<int>?[] ArrayOfLists { get; }
 
-        public GenericCollectionWithArrays(List<int>?[] arrayOfLists)
+        public ArraysWithIndexerValues(List<int>?[] arrayOfLists)
         {
             ArrayOfLists = arrayOfLists;
         }
 
-        public static GenericCollectionWithArrays Create()
+        public static ArraysWithIndexerValues Create()
         {
             var arrayOfLists = PrepareArray();
-            return new GenericCollectionWithArrays(arrayOfLists);
+            return new ArraysWithIndexerValues(arrayOfLists);
         }
 
         private static List<int>?[] PrepareArray()
         {
-            var arrayOfLists = new List<int>?[2];
+            var arrayOfLists = new List<int>?[6];
             for (int i = 0; i < arrayOfLists.Length; ++i)
             {
                 arrayOfLists[i] = i % 3 == 0 ? null : new List<int>(Enumerable.Range(0, i + 1));
@@ -33,7 +33,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             return arrayOfLists;
         }
 
-        public void ManualCompare(GenericCollectionWithArrays? other)
+        public void ManualCompare(ArraysWithIndexerValues? other)
         {
             Assert.NotNull(other);
             if (other is null) // To suppress null warning.
@@ -60,7 +60,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             }
         }
 
-        public void CompareObjects(GenericCollectionWithArrays? other)
+        public void CompareObjects(ArraysWithIndexerValues? other)
         {
             CompareLogic compareLogic = new()
             {

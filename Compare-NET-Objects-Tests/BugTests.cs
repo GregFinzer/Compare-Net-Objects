@@ -21,8 +21,6 @@ using System.Drawing.Drawing2D;
 
 namespace KellermanSoftware.CompareNetObjectsTests
 {
-
-
     [TestFixture]
     public class BugTests
     {
@@ -62,63 +60,17 @@ namespace KellermanSoftware.CompareNetObjectsTests
         public void ComplexDictionaryShouldCompare()
         {
             // Arrange.
-            var originalGraph = GenericCollectionWithComplexDictionary.Create();
+            var originalGraph = ComplexDictionaryModel.Create();
 
             // Act.
-            var serializedKeys = JsonConvert.SerializeObject(originalGraph.DicOfDics!.Keys.ToArray());
-            var serializedValues = JsonConvert.SerializeObject(originalGraph.DicOfDics!.Values.ToArray());
+            var serializedKeys = JsonConvert.SerializeObject(originalGraph.DictOfDicts.Keys.ToArray());
+            var serializedValues = JsonConvert.SerializeObject(originalGraph.DictOfDicts.Values.ToArray());
 
             var keys = JsonConvert.DeserializeObject<Dictionary<short, int>[]>(serializedKeys);
             var values = JsonConvert.DeserializeObject<Dictionary<string, ushort?>[]>(serializedValues);
 
-            var dic = keys.Zip(values, (x, y) => (x, y)).ToDictionary(pair => pair.x, pair => pair.y);
-            var deserializedGraph = new GenericCollectionWithComplexDictionary(dic!);
-
-            // Assert.
-            Console.WriteLine("Manual Compare");
-            originalGraph.ManualCompare(deserializedGraph);
-            Console.WriteLine("Compare .NET Objects");
-            originalGraph.CompareObjects(deserializedGraph);
-        }
-
-        //Failed comparison of collections with indexers objects.
-        //https://github.com/GregFinzer/Compare-Net-Objects/issues/223
-        [Test]
-        public void ComplexDictionaryWithListShouldCompare()
-        {
-            // Arrange.
-            var originalGraph = GenericCollectionWithLists.Create();
-
-            // Act.
-            var serializedLists = JsonConvert.SerializeObject(originalGraph.ListOfLists!.ToArray());
-
-            var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
-
-            var listOfLists = lists.ToList();
-            var deserializedGraph = new GenericCollectionWithLists(listOfLists);
-
-            // Assert.
-            Console.WriteLine("Manual Compare");
-            originalGraph.ManualCompare(deserializedGraph);
-            Console.WriteLine("Compare .NET Objects");
-            originalGraph.CompareObjects(deserializedGraph);
-        }
-
-        //Failed comparison of collections with indexers objects.
-        //https://github.com/GregFinzer/Compare-Net-Objects/issues/223
-        [Test]
-        public void ComplexDictionaryWithArrayShouldCompare()
-        {
-            // Arrange.
-            var originalGraph = GenericCollectionWithArrays.Create();
-
-            // Act.
-            var serializedLists = JsonConvert.SerializeObject(originalGraph.ArrayOfLists!.ToArray());
-
-            var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
-
-            var arrayOfLists = lists.ToArray();
-            var deserializedGraph = new GenericCollectionWithArrays(arrayOfLists);
+            var dictOfDicts = keys.Zip(values, (x, y) => (x, y)).ToDictionary(pair => pair.x, pair => pair.y);
+            var deserializedGraph = new ComplexDictionaryModel(dictOfDicts!);
 
             // Assert.
             Console.WriteLine("Manual Compare");

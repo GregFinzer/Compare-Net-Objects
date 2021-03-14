@@ -13,24 +13,25 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
     // Define this type here to use types above.
     using ComplexDictionary = Dictionary<KeyDictionary, ValueDictionary?>;
 
-    internal sealed class GenericCollectionWithComplexDictionary
-    {
-        public ComplexDictionary DicOfDics { get; }
+    internal sealed class ComplexDictionaryModel
 
-        public GenericCollectionWithComplexDictionary(ComplexDictionary dicOfDics)
+    {
+        public ComplexDictionary DictOfDicts { get; }
+
+        public ComplexDictionaryModel(ComplexDictionary dictOfDicts)
         {
-            DicOfDics = dicOfDics;
+            DictOfDicts = dictOfDicts;
         }
 
-        public static GenericCollectionWithComplexDictionary Create()
+        public static ComplexDictionaryModel Create()
         {
-            var dicOfDics = PrepareComplexDictionary();
-            return new GenericCollectionWithComplexDictionary(dicOfDics);
+            var dictOfDicts = PrepareComplexDictionary();
+            return new ComplexDictionaryModel(dictOfDicts);
         }
 
         private static ComplexDictionary PrepareComplexDictionary()
         {
-            int dicOfDicsCapacity = 2; // 0 or 1 does not show the error.
+            int dicOfDicsCapacity = 6; // 0 or 1 does not show the error.
             var keyDictionaryComparer = new KeyDictionaryComparer();
             var dicOfDics = new ComplexDictionary(dicOfDicsCapacity, keyDictionaryComparer);
 
@@ -38,12 +39,10 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             for (int i = 0; i < dicOfDicsCapacity; ++i)
             {
                 var key = new KeyDictionary();
+                int[] keyData = { keyCounter++, keyCounter++ };
+                for (int k = 0; k < keyData.Length; ++k)
                 {
-                    int[] keyData = { keyCounter++, keyCounter++ };
-                    for (int k = 0; k < keyData.Length; ++k)
-                    {
-                        key[unchecked((short) (keyData[k] * -1))] = keyData[k];
-                    }
+                    key[unchecked((short) (keyData[k] * -1))] = keyData[k];
                 }
 
                 ValueDictionary? value = null;
@@ -64,7 +63,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             return dicOfDics;
         }
 
-        public void ManualCompare(GenericCollectionWithComplexDictionary? other)
+        public void ManualCompare(ComplexDictionaryModel? other)
         {
             Assert.NotNull(other);
             if (other is null) // To suppress null warning.
@@ -73,11 +72,11 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
                 return;
             }
 
-            Assert.AreEqual(DicOfDics.Count, other.DicOfDics.Count);
-            foreach (KeyDictionary key in other.DicOfDics.Keys)
+            Assert.AreEqual(DictOfDicts.Count, other.DictOfDicts.Count);
+            foreach (KeyDictionary key in other.DictOfDicts.Keys)
             {
-                ValueDictionary? v2 = other.DicOfDics[key];
-                Assert.IsTrue(DicOfDics.TryGetValue(key, out var v1));
+                ValueDictionary? v2 = other.DictOfDicts[key];
+                Assert.IsTrue(DictOfDicts.TryGetValue(key, out var v1));
                 if (v1 is null || v2 is null)
                 {
                     Assert.IsNull(v1);
@@ -96,7 +95,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             }
         }
 
-        public void CompareObjects(GenericCollectionWithComplexDictionary? other)
+        public void CompareObjects(ComplexDictionaryModel? other)
         {
             var compareLogic = new CompareLogic()
             {
