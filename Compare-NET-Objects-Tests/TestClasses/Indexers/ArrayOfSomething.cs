@@ -5,21 +5,37 @@ using NUnit.Framework;
 
 #nullable enable
 
-namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
+namespace KellermanSoftware.CompareNetObjectsTests.TestClasses.Indexers
 {
     internal sealed class ArrayOfSomething
     {
         public IEnumerable<int>?[] Value { get; }
 
-        public ArrayOfSomething(IEnumerable<int>?[] arrayOfLists)
+        public ArrayOfSomething(IEnumerable<int>?[] value)
         {
-            Value = arrayOfLists;
+            Value = value;
         }
 
         public static ArrayOfSomething CreateWithLists()
         {
             var arrayOfLists = PrepareArrayWithLists();
             return new ArrayOfSomething(arrayOfLists);
+        }
+
+        public static ArrayOfSomething CreateWithArrays()
+        {
+            var arrayOfArrays = PrepareArrayWithLists()
+                .Select(x => x?.ToArray())
+                .ToArray();
+            return new ArrayOfSomething(arrayOfArrays);
+        }
+
+        public static ArrayOfSomething CreateWithEnumerables()
+        {
+            var arrayOfArrays = PrepareArrayWithLists()
+                .Select(x => x?.ToArray().ToTrueEnumerable())
+                .ToArray();
+            return new ArrayOfSomething(arrayOfArrays);
         }
 
         private static IEnumerable<int>?[] PrepareArrayWithLists()
@@ -60,7 +76,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             }
         }
 
-        public void CompareObjects(ArrayOfSomething? other)
+        public void CompareObjects(ArrayOfSomething? other, bool expected)
         {
             CompareLogic compareLogic = new()
             {
@@ -72,9 +88,13 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
                 }
             };
             var result = compareLogic.Compare(this, other);
-            if (!result.AreEqual)
+            if (expected && !result.AreEqual)
             {
                 Assert.Fail(result.DifferencesString);
+            }
+            else if (!expected && result.AreEqual)
+            {
+                Assert.Fail("Expected that objects are not equal.");
             }
         }
     }

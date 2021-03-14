@@ -115,7 +115,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
 
         #region Internals
 
-        private sealed class KeyDictionaryComparer : IEqualityComparer<KeyDictionary>
+        internal sealed class KeyDictionaryComparer : IEqualityComparer<KeyDictionary>
         {
             public KeyDictionaryComparer()
             {

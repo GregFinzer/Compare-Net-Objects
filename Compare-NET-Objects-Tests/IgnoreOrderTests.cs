@@ -4,6 +4,7 @@ using System.Linq;
 using KellermanSoftware.CompareNetObjects;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses.Bal;
+using KellermanSoftware.CompareNetObjectsTests.TestClasses.Indexers;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
@@ -1419,6 +1420,8 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
 #nullable enable
 
+        #region Enumerable
+
         [Test]
         public void EnumerableOfListsShouldCompare()
         {
@@ -1430,14 +1433,14 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
 
-            var enumerablesOfLists = lists.ToList();
-            var deserializedGraph = new EnumerableOfSomething(enumerablesOfLists);
+            var model = lists.ToList();
+            var deserializedGraph = new EnumerableOfSomething(model);
 
             // Assert.
             Console.WriteLine("Manual Compare");
             originalGraph.ManualCompare(deserializedGraph);
             Console.WriteLine("Compare .NET Objects");
-            originalGraph.CompareObjects(deserializedGraph);
+            originalGraph.CompareObjects(deserializedGraph, true);
         }
 
         [Test]
@@ -1451,15 +1454,94 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
 
-            var enumerablesOfLists = lists.Reverse().ToList();
-            var deserializedGraph = new EnumerableOfSomething(enumerablesOfLists);
+            var model = lists.Reverse().ToList();
+            var deserializedGraph = new EnumerableOfSomething(model);
+
+            // Assert.
+            originalGraph.CompareObjects(deserializedGraph, false);
+        }
+
+        [Test]
+        public void EnumerableOfArraysShouldCompare()
+        {
+            // Arrange.
+            var originalGraph = EnumerableOfSomething.CreateWithArrays();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.Value.ToArray());
+
+            var arrays = JsonConvert.DeserializeObject<int[]?[]>(serializedLists);
+
+            var model = arrays.ToArray();
+            var deserializedGraph = new EnumerableOfSomething(model);
 
             // Assert.
             Console.WriteLine("Manual Compare");
             originalGraph.ManualCompare(deserializedGraph);
             Console.WriteLine("Compare .NET Objects");
-            originalGraph.CompareObjects(deserializedGraph);
+            originalGraph.CompareObjects(deserializedGraph, true);
         }
+
+        [Test]
+        public void EnumerableOfArraysShouldCompare_Reverse()
+        {
+            // Arrange.
+            var originalGraph = EnumerableOfSomething.CreateWithArrays();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.Value.ToArray());
+
+            var arrays = JsonConvert.DeserializeObject<int[]?[]>(serializedLists);
+
+            var model = arrays.Reverse().ToArray();
+            var deserializedGraph = new EnumerableOfSomething(model);
+
+            // Assert.
+            originalGraph.CompareObjects(deserializedGraph, false);
+        }
+
+        [Test]
+        public void EnumerableOfEnumerablesShouldCompare()
+        {
+            // Arrange.
+            var originalGraph = EnumerableOfSomething.CreateWithEnumerables();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.Value.Select(x => x?.ToArray()).ToArray());
+
+            var enumerables = JsonConvert.DeserializeObject<int[]?[]>(serializedLists);
+
+            var model = enumerables.Select(x => x?.ToTrueEnumerable()).ToArray();
+            var deserializedGraph = new EnumerableOfSomething(model);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph, true);
+        }
+
+        [Test]
+        public void EnumerableOfEnumerablesShouldCompare_Reverse()
+        {
+            // Arrange.
+            var originalGraph = EnumerableOfSomething.CreateWithEnumerables();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.Value.Select(x => x?.ToArray()).ToArray());
+
+            var enumerables = JsonConvert.DeserializeObject<int[]?[]>(serializedLists);
+
+            var model = enumerables.Reverse().Select(x => x?.ToTrueEnumerable()).ToArray();
+            var deserializedGraph = new EnumerableOfSomething(model);
+
+            // Assert.
+            originalGraph.CompareObjects(deserializedGraph, false);
+        }
+
+        #endregion
+
+        #region List
 
         [Test]
         public void ListOfListsShouldCompare()
@@ -1472,14 +1554,14 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
 
-            var listOfLists = lists.ToList();
-            var deserializedGraph = new ListOfSomething(listOfLists);
+            var model = lists.ToList();
+            var deserializedGraph = new ListOfSomething(model);
 
             // Assert.
             Console.WriteLine("Manual Compare");
             originalGraph.ManualCompare(deserializedGraph);
             Console.WriteLine("Compare .NET Objects");
-            originalGraph.CompareObjects(deserializedGraph);
+            originalGraph.CompareObjects(deserializedGraph, true);
         }
 
         [Test]
@@ -1491,17 +1573,96 @@ namespace KellermanSoftware.CompareNetObjectsTests
             // Act.
             var serializedLists = JsonConvert.SerializeObject(originalGraph.Value.ToArray());
 
-            var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
+            var lists = JsonConvert.DeserializeObject<int[]?[]>(serializedLists);
 
-            var listOfLists = lists.Reverse().ToList();
-            var deserializedGraph = new ListOfSomething(listOfLists);
+            var model = lists.Reverse().ToList();
+            var deserializedGraph = new ListOfSomething(model);
+
+            // Assert.
+            originalGraph.CompareObjects(deserializedGraph, false);
+        }
+
+        [Test]
+        public void ListOfArraysShouldCompare()
+        {
+            // Arrange.
+            var originalGraph = ListOfSomething.CreateWithArrays();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.Value.ToArray());
+
+            var arrays = JsonConvert.DeserializeObject<int[]?[]>(serializedLists);
+
+            var model = arrays.ToList();
+            var deserializedGraph = new ListOfSomething(model);
 
             // Assert.
             Console.WriteLine("Manual Compare");
             originalGraph.ManualCompare(deserializedGraph);
             Console.WriteLine("Compare .NET Objects");
-            originalGraph.CompareObjects(deserializedGraph);
+            originalGraph.CompareObjects(deserializedGraph, true);
         }
+
+        [Test]
+        public void ListOfArraysShouldCompare_Reverse()
+        {
+            // Arrange.
+            var originalGraph = ListOfSomething.CreateWithArrays();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.Value.ToArray());
+
+            var arrays = JsonConvert.DeserializeObject<int[]?[]>(serializedLists);
+
+            var model = arrays.Reverse().ToList();
+            var deserializedGraph = new ListOfSomething(model);
+
+            // Assert.
+            originalGraph.CompareObjects(deserializedGraph, false);
+        }
+
+        [Test]
+        public void ListOfEnumerablesShouldCompare()
+        {
+            // Arrange.
+            var originalGraph = ListOfSomething.CreateWithEnumerables();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.Value.Select(x => x?.ToArray()).ToArray());
+
+            var enumerables = JsonConvert.DeserializeObject<List<List<int>?>>(serializedLists);
+
+            var model = enumerables.Select(x => x?.ToTrueEnumerable()).ToList();
+            var deserializedGraph = new ListOfSomething(model);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph, true);
+        }
+
+        [Test]
+        public void ListOfEnumerablesShouldCompare_Reverse()
+        {
+            // Arrange.
+            var originalGraph = ListOfSomething.CreateWithEnumerables();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.Value.Select(x => x?.ToArray()).ToArray());
+
+            var enumerables = JsonConvert.DeserializeObject<List<List<int>?>>(serializedLists);
+
+            var model = enumerables.AsEnumerable().Reverse().Select(x => x?.ToTrueEnumerable()).ToList();
+            var deserializedGraph = new ListOfSomething(model);
+
+            // Assert.
+            originalGraph.CompareObjects(deserializedGraph, false);
+        }
+
+        #endregion
+
+        #region Array
 
         [Test]
         public void ArrayOfListsShouldCompare()
@@ -1514,14 +1675,14 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
 
-            var arrayOfLists = lists.ToArray();
-            var deserializedGraph = new ArrayOfSomething(arrayOfLists);
+            var model = lists.ToArray();
+            var deserializedGraph = new ArrayOfSomething(model);
 
             // Assert.
             Console.WriteLine("Manual Compare");
             originalGraph.ManualCompare(deserializedGraph);
             Console.WriteLine("Compare .NET Objects");
-            originalGraph.CompareObjects(deserializedGraph);
+            originalGraph.CompareObjects(deserializedGraph, true);
         }
 
         [Test]
@@ -1535,15 +1696,94 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
 
-            var arrayOfLists = lists.Reverse().ToArray();
-            var deserializedGraph = new ArrayOfSomething(arrayOfLists);
+            var model = lists.Reverse().ToArray();
+            var deserializedGraph = new ArrayOfSomething(model);
+
+            // Assert.
+            originalGraph.CompareObjects(deserializedGraph, false);
+        }
+
+        [Test]
+        public void ArrayOfArraysShouldCompare()
+        {
+            // Arrange.
+            var originalGraph = ArrayOfSomething.CreateWithArrays();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.Value.ToArray());
+
+            var lists = JsonConvert.DeserializeObject<int[]?[]>(serializedLists);
+
+            var model = lists.ToArray();
+            var deserializedGraph = new ArrayOfSomething(model);
 
             // Assert.
             Console.WriteLine("Manual Compare");
             originalGraph.ManualCompare(deserializedGraph);
             Console.WriteLine("Compare .NET Objects");
-            originalGraph.CompareObjects(deserializedGraph);
+            originalGraph.CompareObjects(deserializedGraph, true);
         }
+
+        [Test]
+        public void ArrayOfArraysShouldCompare_Reverse()
+        {
+            // Arrange.
+            var originalGraph = ArrayOfSomething.CreateWithArrays();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.Value.ToArray());
+
+            var lists = JsonConvert.DeserializeObject<int[]?[]>(serializedLists);
+
+            var model = lists.Reverse().ToArray();
+            var deserializedGraph = new ArrayOfSomething(model);
+
+            // Assert.
+            originalGraph.CompareObjects(deserializedGraph, false);
+        }
+
+        [Test]
+        public void ArrayOfEnumerableShouldCompare()
+        {
+            // Arrange.
+            var originalGraph = ArrayOfSomething.CreateWithEnumerables();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.Value.Select(x => x?.ToArray()).ToArray());
+
+            var lists = JsonConvert.DeserializeObject<int[]?[]>(serializedLists);
+
+            var model = lists.Select(x => x?.ToTrueEnumerable()).ToArray();
+            var deserializedGraph = new ArrayOfSomething(model);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph, true);
+        }
+
+        [Test]
+        public void ArrayOfEnumerableShouldCompare_Reverse()
+        {
+            // Arrange.
+            var originalGraph = ArrayOfSomething.CreateWithEnumerables();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.Value.Select(x => x?.ToArray()).ToArray());
+
+            var lists = JsonConvert.DeserializeObject<int[]?[]>(serializedLists);
+
+            var model = lists.Reverse().Select(x => x?.ToTrueEnumerable()).ToArray();
+            var deserializedGraph = new ArrayOfSomething(model);
+
+            // Assert.
+            originalGraph.CompareObjects(deserializedGraph, false);
+        }
+
+        #endregion
+
+        #region Dictionary
 
         [Test]
         public void DictionaryOfListsShouldCompare()
@@ -1556,16 +1796,17 @@ namespace KellermanSoftware.CompareNetObjectsTests
             var serializedValues = JsonConvert.SerializeObject(originalGraph.Value.Values.ToArray());
 
             var keys = JsonConvert.DeserializeObject<List<int>[]>(serializedKeys);
-            var values = JsonConvert.DeserializeObject<List<int>[]>(serializedValues);
+            var values = JsonConvert.DeserializeObject<List<int>?[]>(serializedValues);
 
-            var dictOfLists = keys.Zip(values, (x, y) => (x, y)).ToDictionary(pair => pair.x.AsEnumerable(), pair => pair.y.AsEnumerable());
-            var deserializedGraph = new DictionaryOfSomething(dictOfLists!);
+            var model = keys.Zip(values, (x, y) => (x, y))
+                .ToDictionary(pair => pair.x.AsEnumerable(), pair => pair.y.AsEnumerable(), new DictionaryOfSomething.KeyComparer());
+            var deserializedGraph = new DictionaryOfSomething(model!);
 
             // Assert.
             Console.WriteLine("Manual Compare");
             originalGraph.ManualCompare(deserializedGraph);
             Console.WriteLine("Compare .NET Objects");
-            originalGraph.CompareObjects(deserializedGraph);
+            originalGraph.CompareObjects(deserializedGraph, true);
         }
 
         [Test]
@@ -1579,17 +1820,119 @@ namespace KellermanSoftware.CompareNetObjectsTests
             var serializedValues = JsonConvert.SerializeObject(originalGraph.Value.Values.ToArray());
 
             var keys = JsonConvert.DeserializeObject<List<int>[]>(serializedKeys);
-            var values = JsonConvert.DeserializeObject<List<int>[]>(serializedValues);
+            var values = JsonConvert.DeserializeObject<List<int>?[]>(serializedValues);
 
-            var dictOfLists = keys.Zip(values, (x, y) => (x, y)).ToDictionary(pair => pair.x.AsEnumerable(), pair => pair.y.AsEnumerable());
-            var deserializedGraph = new DictionaryOfSomething(dictOfLists!);
+            var model = keys.Zip(values, (x, y) => (x, y))
+                .Reverse()
+                .ToDictionary(pair => pair.x.AsEnumerable(), pair => pair.y.AsEnumerable(), new DictionaryOfSomething.KeyComparer());
+            var deserializedGraph = new DictionaryOfSomething(model!);
 
             // Assert.
             Console.WriteLine("Manual Compare");
             originalGraph.ManualCompare(deserializedGraph);
             Console.WriteLine("Compare .NET Objects");
-            originalGraph.CompareObjects(deserializedGraph);
+            originalGraph.CompareObjects(deserializedGraph, false);
         }
+
+        [Test]
+        public void DictionaryOfArrayShouldCompare()
+        {
+            // Arrange.
+            var originalGraph = DictionaryOfSomething.CreateWithArrays();
+
+            // Act.
+            var serializedKeys = JsonConvert.SerializeObject(originalGraph.Value.Keys.ToArray());
+            var serializedValues = JsonConvert.SerializeObject(originalGraph.Value.Values.ToArray());
+
+            var keys = JsonConvert.DeserializeObject<int[][]>(serializedKeys);
+            var values = JsonConvert.DeserializeObject<int[]?[]>(serializedValues);
+
+            var model = keys.Zip(values, (x, y) => (x, y))
+                .ToDictionary(pair => pair.x.AsEnumerable(), pair => pair.y.AsEnumerable(), new DictionaryOfSomething.KeyComparer());
+            var deserializedGraph = new DictionaryOfSomething(model!);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph, true);
+        }
+
+        [Test]
+        public void DictionaryOfArrayShouldNotCompare_Reverse()
+        {
+            // Arrange.
+            var originalGraph = DictionaryOfSomething.CreateWithArrays();
+
+            // Act.
+            var serializedKeys = JsonConvert.SerializeObject(originalGraph.Value.Keys.ToArray());
+            var serializedValues = JsonConvert.SerializeObject(originalGraph.Value.Values.ToArray());
+
+            var keys = JsonConvert.DeserializeObject<int[][]>(serializedKeys);
+            var values = JsonConvert.DeserializeObject<int[]?[]>(serializedValues);
+
+            var model = keys.Zip(values, (x, y) => (x, y))
+                .Reverse()
+                .ToDictionary(pair => pair.x.AsEnumerable(), pair => pair.y.AsEnumerable(), new DictionaryOfSomething.KeyComparer());
+            var deserializedGraph = new DictionaryOfSomething(model!);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph, false);
+        }
+
+        [Test]
+        public void DictionaryOfEnumerablesShouldCompare()
+        {
+            // Arrange.
+            var originalGraph = DictionaryOfSomething.CreateWithEnumerables();
+
+            // Act.
+            var serializedKeys = JsonConvert.SerializeObject(originalGraph.Value.Keys.Select(x => x.ToArray()).ToArray());
+            var serializedValues = JsonConvert.SerializeObject(originalGraph.Value.Values.Select(x => x?.ToArray()).ToArray());
+
+            var keys = JsonConvert.DeserializeObject<int[][]>(serializedKeys);
+            var values = JsonConvert.DeserializeObject<int[]?[]>(serializedValues);
+
+            var model = keys.Zip(values, (x, y) => (x, y))
+                .ToDictionary(pair => pair.x.ToTrueEnumerable(), pair => pair.y?.ToTrueEnumerable(), new DictionaryOfSomething.KeyComparer());
+            var deserializedGraph = new DictionaryOfSomething(model!);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph, true);
+        }
+
+        [Test]
+        public void DictionaryOfEnumerablesShouldCompare_Reverse()
+        {
+            // Arrange.
+            var originalGraph = DictionaryOfSomething.CreateWithEnumerables();
+
+            // Act.
+            var serializedKeys = JsonConvert.SerializeObject(originalGraph.Value.Keys.Select(x => x.ToArray()).ToArray());
+            var serializedValues = JsonConvert.SerializeObject(originalGraph.Value.Values.Select(x => x?.ToArray()).ToArray());
+
+            var keys = JsonConvert.DeserializeObject<int[][]>(serializedKeys);
+            var values = JsonConvert.DeserializeObject<int[]?[]>(serializedValues);
+
+            var model = keys.Zip(values, (x, y) => (x, y))
+                .Reverse()
+                .ToDictionary(pair => pair.x.ToTrueEnumerable(), pair => pair.y?.ToTrueEnumerable(), new DictionaryOfSomething.KeyComparer());
+            var deserializedGraph = new DictionaryOfSomething(model!);
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph);
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph, false);
+        }
+
+        #endregion
 
 #nullable disable
 

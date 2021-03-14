@@ -5,15 +5,15 @@ using NUnit.Framework;
 
 #nullable enable
 
-namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
+namespace KellermanSoftware.CompareNetObjectsTests.TestClasses.Indexers
 {
     internal sealed class DictionaryOfSomething
     {
         public IReadOnlyDictionary<IEnumerable<int>, IEnumerable<int>?> Value { get; }
 
-        public DictionaryOfSomething(IReadOnlyDictionary<IEnumerable<int>, IEnumerable<int>?> dictOfLists)
+        public DictionaryOfSomething(IReadOnlyDictionary<IEnumerable<int>, IEnumerable<int>?> value)
         {
-            Value = dictOfLists;
+            Value = value;
         }
 
         public static DictionaryOfSomething CreateWithLists()
@@ -22,12 +22,26 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             return new DictionaryOfSomething(dictOfLists);
         }
 
+        public static DictionaryOfSomething CreateWithArrays()
+        {
+            var dictOfLists = PrepareDictionaryWithLists()
+                .ToDictionary(pair => pair.Key.ToArray().AsEnumerable(), pair => pair.Value?.ToArray().AsEnumerable(), new KeyComparer());
+            return new DictionaryOfSomething(dictOfLists!);
+        }
+
+        public static DictionaryOfSomething CreateWithEnumerables()
+        {
+            var dictOfLists = PrepareDictionaryWithLists()
+                .ToDictionary(pair => pair.Key.ToArray().ToTrueEnumerable(), pair => pair.Value?.ToArray().ToTrueEnumerable(), new KeyComparer());
+            return new DictionaryOfSomething(dictOfLists!);
+        }
+
         private static IReadOnlyDictionary<IEnumerable<int>, IEnumerable<int>?> PrepareDictionaryWithLists()
         {
             int dicOfDicsCapacity = 6;
-            var keyDictionaryComparer = new KeyListComparer();
+            var keyComparer = new KeyComparer();
             var dicOfDics = new Dictionary<IEnumerable<int>, IEnumerable<int>?>(
-                dicOfDicsCapacity, keyDictionaryComparer
+                dicOfDicsCapacity, keyComparer
             );
 
             int keyCounter = 1;
@@ -76,7 +90,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             }
         }
 
-        public void CompareObjects(DictionaryOfSomething? other)
+        public void CompareObjects(DictionaryOfSomething? other, bool expected)
         {
             CompareLogic compareLogic = new()
             {
@@ -88,17 +102,21 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
                 }
             };
             var result = compareLogic.Compare(this, other);
-            if (!result.AreEqual)
+            if (expected && !result.AreEqual)
             {
                 Assert.Fail(result.DifferencesString);
+            }
+            else if (!expected && result.AreEqual)
+            {
+                Assert.Fail("Expected that objects are not equal.");
             }
         }
 
         #region Internals
 
-        private sealed class KeyListComparer : IEqualityComparer<IEnumerable<int>>
+        internal sealed class KeyComparer : IEqualityComparer<IEnumerable<int>>
         {
-            public KeyListComparer()
+            public KeyComparer()
             {
             }
 

@@ -1,26 +1,41 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using KellermanSoftware.CompareNetObjects;
 using NUnit.Framework;
 
 #nullable enable
 
-namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
+namespace KellermanSoftware.CompareNetObjectsTests.TestClasses.Indexers
 {
     internal sealed class EnumerableOfSomething
     {
         public IEnumerable<IEnumerable<int>?> Value { get; }
 
-        public EnumerableOfSomething(IEnumerable<IEnumerable<int>?> enumerableOfLists)
+        public EnumerableOfSomething(IEnumerable<IEnumerable<int>?> value)
         {
-            Value = enumerableOfLists.Select(x => x); // Ensure that type will be enumerable.
+            Value = value.ToTrueEnumerable();
         }
 
         public static EnumerableOfSomething CreateWithLists()
         {
-            var listOfLists = PrepareEnumerableWithLists();
-            return new EnumerableOfSomething(listOfLists);
+            var enumerableOfLists = PrepareEnumerableWithLists();
+            return new EnumerableOfSomething(enumerableOfLists);
+        }
+
+        public static EnumerableOfSomething CreateWithArrays()
+        {
+            var enumerableOfArrays = PrepareEnumerableWithLists()
+                .Select(x => x?.ToArray())
+                .ToArray();
+            return new EnumerableOfSomething(enumerableOfArrays);
+        }
+
+        public static EnumerableOfSomething CreateWithEnumerables()
+        {
+            var enumerableOfArrays = PrepareEnumerableWithLists()
+                .Select(x => x?.ToArray().ToTrueEnumerable())
+                .ToArray();
+            return new EnumerableOfSomething(enumerableOfArrays);
         }
 
         private static IEnumerable<IEnumerable<int>?> PrepareEnumerableWithLists()
@@ -31,7 +46,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
                 listOfLists.Add(i % 3 == 0 ? null : new List<int>(Enumerable.Range(0, i + 1)));
             }
 
-            return listOfLists.Select(x => x); // Ensure that type will be enumerable.
+            return listOfLists;
         }
 
         public void ManualCompare(EnumerableOfSomething? other)
@@ -54,7 +69,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
             }
         }
 
-        public void CompareObjects(EnumerableOfSomething? other)
+        public void CompareObjects(EnumerableOfSomething? other, bool expected)
         {
             CompareLogic compareLogic = new()
             {
@@ -66,9 +81,13 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
                 }
             };
             var result = compareLogic.Compare(this, other);
-            if (!result.AreEqual)
+            if (expected && !result.AreEqual)
             {
                 Assert.Fail(result.DifferencesString);
+            }
+            else if (!expected && result.AreEqual)
+            {
+                Assert.Fail("Expected that objects are not equal.");
             }
         }
     }

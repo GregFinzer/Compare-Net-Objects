@@ -69,7 +69,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
             var keys = JsonConvert.DeserializeObject<Dictionary<short, int>[]>(serializedKeys);
             var values = JsonConvert.DeserializeObject<Dictionary<string, ushort?>[]>(serializedValues);
 
-            var dictOfDicts = keys.Zip(values, (x, y) => (x, y)).ToDictionary(pair => pair.x, pair => pair.y);
+            var dictOfDicts = keys.Zip(values, (x, y) => (x, y)).ToDictionary(pair => pair.x, pair => pair.y, new ComplexDictionaryModel.KeyDictionaryComparer());
             var deserializedGraph = new ComplexDictionaryModel(dictOfDicts!);
 
             // Assert.
