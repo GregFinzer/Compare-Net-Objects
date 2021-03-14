@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using KellermanSoftware.CompareNetObjects.IgnoreOrderTypes;
 
 namespace KellermanSoftware.CompareNetObjects.TypeComparers
@@ -63,8 +65,12 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
                 bool countsDifferent = ListsHaveDifferentCounts(parms);
 
+                // If items is collections, need to use default compare logic, not ignore order logic.
+                // We cannot ignore order for nested collections because we will get an reflection exception.
+                // May be need to display some warning or write about this behavior in documentation.
                 if (parms.Config.IgnoreCollectionOrder && !ChildShouldBeComparedWithoutOrder(parms))
                 {
+                    // TODO: allow IndexerComparer to works with types (now it works only with properties).
                     IgnoreOrderLogic ignoreOrderLogic = new IgnoreOrderLogic(RootComparer);
                     ignoreOrderLogic.CompareEnumeratorIgnoreOrder(parms, countsDifferent);
                 }
@@ -149,10 +155,9 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         {
             IEnumerator enumerator1 = ((IEnumerable)parms.Object1).GetEnumerator();
 
-            // We should ensure that all items is enumerable or list.
-            // Take into account that items can be objects with mixed types => throw an exception that this case is unsupported.
-            // Next code is something like Enumerable.All.
+            // We should ensure that all items is enumerable, list or dictionary.
             bool hasItems = false;
+            var results = new List<bool>();
             while (enumerator1.MoveNext())
             {
                 hasItems = true;
@@ -165,8 +170,24 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                     TypeHelper.IsEnumerable(type) ||
                     TypeHelper.IsIList(type) ||
                     TypeHelper.IsIDictionary(type);
-                if (!shouldCompareAndIgnoreOrder)
-                    return false;
+
+                results.Add(shouldCompareAndIgnoreOrder);
+            }
+
+            // Take into account that items can be objects with mixed types.
+            // Throw an exception that this case is unsupported.
+            if (hasItems && results.Count > 0)
+            {
+                bool firstResult = results[0];
+                if (results.Any(x => x != firstResult))
+                {
+                    throw new NotSupportedException(
+                        "Collection has nested collections and some other types. " +
+                        "IgnoreCollectionOrder should be false for such cases."
+                    );
+                }
+
+                return firstResult;
             }
 
             // If all items is null, we can compare as usual.

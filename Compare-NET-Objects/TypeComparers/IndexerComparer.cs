@@ -41,7 +41,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             int indexerCount1 = (int)type.GetProperty("Count").GetGetMethod().Invoke(parms.Object1, new object[] { });
             int indexerCount2 = (int)type2.GetProperty("Count").GetGetMethod().Invoke(parms.Object2, new object[] { });
 
-            bool differentCounts = IndexersHaveDifferentLength(parms, info, secondObjectInfo);
+            bool differentCounts = IndexersHaveDifferentLength(parms, info, indexerCount1, indexerCount2);
 
             if (parms.Result.ExceededDifferences)
                 return;
@@ -123,38 +123,25 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             }
         }
 
-        private bool IndexersHaveDifferentLength(CompareParms parms, PropertyEntity info, PropertyEntity secondObjectInfo)
+        private bool IndexersHaveDifferentLength(CompareParms parms, PropertyEntity info, int indexerCount1, int indexerCount2)
         {
             if (info == null)
                 throw new ArgumentNullException("info");
-
-#if !NETSTANDARD
-            var type = info.ReflectedType;
-            var type2 = secondObjectInfo.ReflectedType;
-#else
-            var type = info.DeclaringType;
-            var type2 = secondObjectInfo.DeclaringType;
-#endif
-            if (type == null || type2 == null)
-                throw new ArgumentNullException("info");
-
-            int indexerCount1 = (int)type.GetProperty("Count").GetGetMethod().Invoke(parms.Object1, new object[] { });
-            int indexerCount2 = (int)type2.GetProperty("Count").GetGetMethod().Invoke(parms.Object2, new object[] { });
 
             if (indexerCount1 != indexerCount2)
             {
                 string currentCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb, info.Name);
                 Difference difference = new Difference
-                                            {
-                                                ParentObject1 = parms.ParentObject1,
-                                                ParentObject2 = parms.ParentObject2,
-                                                PropertyName = currentCrumb,
-                                                Object1Value = indexerCount1.ToString(CultureInfo.InvariantCulture),
-                                                Object2Value = indexerCount2.ToString(CultureInfo.InvariantCulture),
-                                                ChildPropertyName = "Count",
-                                                Object1 = parms.Object1,
-                                                Object2 = parms.Object2
-                                            };
+                {
+                    ParentObject1 = parms.ParentObject1,
+                    ParentObject2 = parms.ParentObject2,
+                    PropertyName = currentCrumb,
+                    Object1Value = indexerCount1.ToString(CultureInfo.InvariantCulture),
+                    Object2Value = indexerCount2.ToString(CultureInfo.InvariantCulture),
+                    ChildPropertyName = "Count",
+                    Object1 = parms.Object1,
+                    Object2 = parms.Object2
+                };
 
                 AddDifference(parms.Result, difference);
                 

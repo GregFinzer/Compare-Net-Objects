@@ -1420,6 +1420,24 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
 #nullable enable
 
+        #region Verify Collection Is Valid To Ignore Order
+
+        [Test]
+        public void CollectionsWithNestedColelctionsAndOtherdTypesAreUnsupported()
+        {
+            var compareLogic = new CompareLogic();
+            compareLogic.Config.IgnoreCollectionOrder = true;
+
+            Assert.Throws<NotSupportedException>(
+                () => compareLogic.Compare(
+                    new object?[] { null, "a", new[] { "1", "2" } },
+                    new object?[] { "a", "b", new[] { "1", "2" } }
+                )
+            );
+        }
+
+        #endregion
+
         #region Enumerable
 
         [Test]
