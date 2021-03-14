@@ -37,16 +37,15 @@ namespace KellermanSoftware.CompareNetObjects
                     string msg = string.Format(
                         "Collection Matching Spec Type {0} should be a class, not a List.  Expected something like Customer, not List<Customer>.  See https://github.com/GregFinzer/Compare-Net-Objects/wiki/Comparing-Lists-of-Different-Lengths",
                         kvp.Key.Name);
-                    throw new Exception(msg);
+                    throw new ArgumentException(msg, nameof(config));
                 }
-
 
                 if (!TypeHelper.IsClass(kvp.Key) && !TypeHelper.IsInterface(kvp.Key))
                 {
                     string msg = string.Format(
                         "Collection matching spec Type {0} should be a class or an interface.  See https://github.com/GregFinzer/Compare-Net-Objects/wiki/Comparing-Lists-of-Different-Lengths",
                         kvp.Key.Name);
-                    throw new Exception(msg);
+                    throw new ArgumentException(msg, nameof(config));
                 }
 
                 List<PropertyInfo> propertyInfos = Cache.GetPropertyInfo(config, kvp.Key).ToList();
@@ -57,9 +56,8 @@ namespace KellermanSoftware.CompareNetObjects
                     {
                         string msg = string.Format("Collection Matching Spec cannot find property {0} of type {1}",
                             index, kvp.Key.Name);
-                        throw new Exception(msg);
+                        throw new ArgumentException(msg, nameof(config));
                     }
-                        
                 }
             }
         }
