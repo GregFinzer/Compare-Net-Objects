@@ -8,37 +8,12 @@ namespace KellermanSoftware.CompareNetObjectsTests
     [TestFixture]
     public class CompareIndexerTests
     {
-        #region Class Variables
-        private CompareLogic _compare;
-        #endregion
-
-        #region Setup/Teardown
-
-
-
-        /// <summary>
-        /// Code that is run before each test
-        /// </summary>
-        [SetUp]
-        public void Initialize()
-        {
-            _compare = new CompareLogic();
-        }
-
-        /// <summary>
-        /// Code that is run after each test
-        /// </summary>
-        [TearDown]
-        public void Cleanup()
-        {
-            _compare = null;
-        }
-        #endregion
-
         #region Tests
+
         [Test]
         public void TestIndexerPositive()
         {
+            // Arrange.
             var jane = new Person { Name = "Jane" };
             var mary = new Person { Name = "Mary" };
             var jack = new Person { Name = "Jack" };
@@ -49,12 +24,19 @@ namespace KellermanSoftware.CompareNetObjectsTests
             var class1 = new ListClass<Person>(nameList1);
             var class2 = new ListClass<Person>(nameList2);
 
-            Assert.IsTrue(_compare.Compare(class1, class2).AreEqual);
+            var compare = new CompareLogic();
+
+            // Act.
+            ComparisonResult comparisonResult = compare.Compare(class1, class2);
+
+            // Assert.
+            Assert.IsTrue(comparisonResult.AreEqual);
         }
 
         [Test]
         public void TestIndexerNegative()
         {
+            // Arrange.
             var jane = new Person { Name = "Jane" };
             var john = new Person { Name = "John" };
             var mary = new Person { Name = "Mary" };
@@ -66,14 +48,19 @@ namespace KellermanSoftware.CompareNetObjectsTests
             var class1 = new ListClass<Person>(nameList1);
             var class2 = new ListClass<Person>(nameList2);
 
-            Assert.IsFalse(_compare.Compare(class1, class2).AreEqual);
+            var compare = new CompareLogic();
+
+            // Act.
+            ComparisonResult comparisonResult = compare.Compare(class1, class2);
+
+            // Assert.
+            Assert.IsFalse(comparisonResult.AreEqual);
         }
-
-
 
         [Test]
         public void TestIndexerLengthNegative()
         {
+            // Arrange.
             var jane = new Person { Name = "Jane" };
             var john = new Person { Name = "John" };
             var mary = new Person { Name = "Mary" };
@@ -85,17 +72,45 @@ namespace KellermanSoftware.CompareNetObjectsTests
             var class1 = new ListClass<Person>(nameList1);
             var class2 = new ListClass<Person>(nameList2);
 
-            var prior = _compare.Config.MaxDifferences;
-            _compare.Config.MaxDifferences = int.MaxValue;
+            var compare = new CompareLogic();
+            compare.Config.MaxDifferences = int.MaxValue;
 
-            ComparisonResult result = _compare.Compare(class1, class2);
-            Assert.AreEqual(result.Differences.Count, 3);
+            // Act.
+            ComparisonResult result12 = compare.Compare(class1, class2);
+            ComparisonResult result21 = compare.Compare(class2, class1);
 
-            result = _compare.Compare(class2, class1);
-            Assert.AreEqual(result.Differences.Count, 3);
-
-            _compare.Config.MaxDifferences = prior;
+            // Assert.
+            Assert.AreEqual(result12.Differences.Count, 3);
+            Assert.AreEqual(result21.Differences.Count, 3);
         }
+
+        [Test]
+        public void ObjectWithIndexerShouldCompare()
+        {
+            // Arrange.
+            var values = new[] { 1, 2, 3, 4, 5 };
+            var indexedObject = new IndexedObject(values);
+
+            // Act.
+            var anotherIndexedObject = new IndexedObject(values);
+
+            // Assert.
+            CompareLogic compareLogic = new()
+            {
+                Config =
+                {
+                    ComparePrivateProperties = false,
+                    IgnoreObjectTypes = false,
+                    IgnoreCollectionOrder = true
+                }
+            };
+            var result = compareLogic.Compare(indexedObject, anotherIndexedObject);
+            if (!result.AreEqual)
+            {
+                Assert.Fail(result.DifferencesString);
+            }
+        }
+
         #endregion
     }
 }

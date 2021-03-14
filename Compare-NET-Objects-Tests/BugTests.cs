@@ -60,18 +60,72 @@ namespace KellermanSoftware.CompareNetObjectsTests
         public void ComplexDictionaryShouldCompare()
         {
             // Arrange.
-            var originalGraph = new GenericCollections();
+            var originalGraph = new GenericCollectionsWithDictionary();
             originalGraph.Prepare();
 
             // Act.
             var serializedKeys = JsonConvert.SerializeObject(originalGraph.DicOfDics!.Keys.ToArray());
             var serializedValues = JsonConvert.SerializeObject(originalGraph.DicOfDics!.Values.ToArray());
 
-            var keys = JsonConvert.DeserializeObject<Dictionary<Int16, Int32>[]>(serializedKeys);
-            var values = JsonConvert.DeserializeObject<Dictionary<String, UInt16?>[]>(serializedValues);
+            var keys = JsonConvert.DeserializeObject<Dictionary<short, int>[]>(serializedKeys);
+            var values = JsonConvert.DeserializeObject<Dictionary<string, ushort?>[]>(serializedValues);
 
             var dic = keys.Zip(values, (x, y) => (x, y)).ToDictionary(pair => pair.x, pair => pair.y);
-            var deserializedGraph = new GenericCollections { DicOfDics = dic! };
+            var deserializedGraph = new GenericCollectionsWithDictionary { DicOfDics = dic! };
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph); // Manual compare seems ok...
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph); // However, this throws an assertion error -_-
+        }
+
+        //Failed comparison of collections with indexers objects.
+        //https://github.com/GregFinzer/Compare-Net-Objects/issues/223
+        [Test]
+        public void ComplexDictionaryWithListShouldCompare()
+        {
+            // Arrange.
+            var originalGraph = new GenericCollectionsWithLists();
+            originalGraph.Prepare();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.ListOfLists!.ToArray());
+
+            var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
+
+            var listOfLists = lists.ToList();
+            var deserializedGraph = new GenericCollectionsWithLists
+            {
+                ListOfLists = listOfLists
+            };
+
+            // Assert.
+            Console.WriteLine("Manual Compare");
+            originalGraph.ManualCompare(deserializedGraph); // Manual compare seems ok...
+            Console.WriteLine("Compare .NET Objects");
+            originalGraph.CompareObjects(deserializedGraph); // However, this throws an assertion error -_-
+        }
+
+        //Failed comparison of collections with indexers objects.
+        //https://github.com/GregFinzer/Compare-Net-Objects/issues/223
+        [Test]
+        public void ComplexDictionaryWithArrayShouldCompare()
+        {
+            // Arrange.
+            var originalGraph = new GenericCollectionsWithArrays();
+            originalGraph.Prepare();
+
+            // Act.
+            var serializedLists = JsonConvert.SerializeObject(originalGraph.ArrayOfLists!.ToArray());
+
+            var lists = JsonConvert.DeserializeObject<List<int>?[]>(serializedLists);
+
+            var arrayOfLists = lists.ToArray();
+            var deserializedGraph = new GenericCollectionsWithArrays
+            {
+                ArrayOfLists = arrayOfLists
+            };
 
             // Assert.
             Console.WriteLine("Manual Compare");
@@ -177,7 +231,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
         {
             var compareLogic = new CompareLogic();
             compareLogic.Config.IgnoreCollectionOrder = true;
-            compareLogic.Config.MaxDifferences = Int32.MaxValue;
+            compareLogic.Config.MaxDifferences = int.MaxValue;
             ComparisonResult result = compareLogic.Compare(new[] { "one" }, new[] { "two" });
             Console.WriteLine(result.DifferencesString);
         }
