@@ -21,8 +21,6 @@ using System.Drawing.Drawing2D;
 
 namespace KellermanSoftware.CompareNetObjectsTests
 {
-
-
     [TestFixture]
     public class BugTests
     {
@@ -54,31 +52,34 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
         #region Tests
 
+#nullable enable
+
         //Failed comparison of objects with complex dictionary key
         //https://github.com/GregFinzer/Compare-Net-Objects/issues/222
         [Test]
         public void ComplexDictionaryShouldCompare()
         {
             // Arrange.
-            var originalGraph = new GenericCollections();
-            originalGraph.Prepare();
+            var originalGraph = ComplexDictionaryModel.Create();
 
             // Act.
-            var serializedKeys = JsonConvert.SerializeObject(originalGraph.DicOfDics!.Keys.ToArray());
-            var serializedValues = JsonConvert.SerializeObject(originalGraph.DicOfDics!.Values.ToArray());
+            var serializedKeys = JsonConvert.SerializeObject(originalGraph.DictOfDicts.Keys.ToArray());
+            var serializedValues = JsonConvert.SerializeObject(originalGraph.DictOfDicts.Values.ToArray());
 
-            var keys = JsonConvert.DeserializeObject<Dictionary<Int16, Int32>[]>(serializedKeys);
-            var values = JsonConvert.DeserializeObject<Dictionary<String, UInt16?>[]>(serializedValues);
+            var keys = JsonConvert.DeserializeObject<Dictionary<short, int>[]>(serializedKeys);
+            var values = JsonConvert.DeserializeObject<Dictionary<string, ushort?>[]>(serializedValues);
 
-            var dic = keys.Zip(values, (x, y) => (x, y)).ToDictionary(pair => pair.x, pair => pair.y);
-            var deserializedGraph = new GenericCollections { DicOfDics = dic! };
+            var dictOfDicts = keys.Zip(values, (x, y) => (x, y)).ToDictionary(pair => pair.x, pair => pair.y, new ComplexDictionaryModel.KeyDictionaryComparer());
+            var deserializedGraph = new ComplexDictionaryModel(dictOfDicts!);
 
             // Assert.
             Console.WriteLine("Manual Compare");
-            originalGraph.ManualCompare(deserializedGraph); // Manual compare seems ok...
+            originalGraph.ManualCompare(deserializedGraph);
             Console.WriteLine("Compare .NET Objects");
-            originalGraph.CompareObjects(deserializedGraph); // However, this throws an assertion error -_-
+            originalGraph.CompareObjects(deserializedGraph);
         }
+
+#nullable disable
 
         [Test]
         public void IPV6AddressShouldBeDifferent()
@@ -177,7 +178,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
         {
             var compareLogic = new CompareLogic();
             compareLogic.Config.IgnoreCollectionOrder = true;
-            compareLogic.Config.MaxDifferences = Int32.MaxValue;
+            compareLogic.Config.MaxDifferences = int.MaxValue;
             ComparisonResult result = compareLogic.Compare(new[] { "one" }, new[] { "two" });
             Console.WriteLine(result.DifferencesString);
         }

@@ -114,7 +114,9 @@ namespace KellermanSoftware.CompareNetObjects
     public class CompareLogic : ICompareLogic
     {
         #region Class Variables
+
         private ComparisonConfig _config;
+
         #endregion
 
         #region Properties
@@ -124,12 +126,12 @@ namespace KellermanSoftware.CompareNetObjects
         /// </summary>
         public ComparisonConfig Config
         {
-            get { return _config;}
+            get => _config;
             set
             {
-                _config = value; 
-                VerifyConfig verifyConfig = new VerifyConfig();
+                var verifyConfig = new VerifyConfig();
                 verifyConfig.Verify(value);
+                _config = value;
             }
         }
 

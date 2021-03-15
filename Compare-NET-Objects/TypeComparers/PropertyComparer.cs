@@ -6,7 +6,7 @@ using System.Linq;
 namespace KellermanSoftware.CompareNetObjects.TypeComparers
 {
     /// <summary>
-    /// Compare two properties (Note inherits from BaseComparer instead of TypeComparer
+    /// Compare two properties (Note: inherits from BaseComparer instead of TypeComparer).
     /// </summary>
     public class PropertyComparer : BaseComparer
     {
@@ -138,7 +138,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
         private static List<PropertyEntity> GetCurrentProperties(CompareParms parms, object objectValue, Type objectType)
         {
-            return HandleDynamicObject(parms.Config, objectValue, objectType)
+            return HandleDynamicObject(objectValue, objectType)
                    ?? HandleInterfaceMembers(parms, objectValue, objectType)
                    ?? HandleNormalProperties(parms, objectValue, objectType);
         }
@@ -237,7 +237,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             return currentProperties;
         }
 
-        private static List<PropertyEntity> HandleDynamicObject(ComparisonConfig config, object objectValue, Type objectType)
+        private static List<PropertyEntity> HandleDynamicObject(object objectValue, Type objectType)
         {
             if (TypeHelper.IsExpandoObject(objectValue))
             {
@@ -246,8 +246,6 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
             return null;
         }
-
-
 
         private static List<PropertyEntity> AddExpandoPropertyValues(Object objectValue, Type objectType)
         {

@@ -6,7 +6,7 @@ using System.Linq;
 namespace KellermanSoftware.CompareNetObjects.TypeComparers
 {
     /// <summary>
-    /// Compare all the fields of a class or struct (Note this derrives from BaseComparer, not TypeComparer)
+    /// Compare all the fields of a class or struct (Note: inherits from BaseComparer instead of TypeComparer).
     /// </summary>
     public class FieldComparer : BaseComparer
     {

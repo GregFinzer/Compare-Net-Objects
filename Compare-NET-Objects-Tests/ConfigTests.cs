@@ -1,5 +1,6 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 using KellermanSoftware.CompareNetObjects;
 using KellermanSoftware.CompareNetObjectsTests.Attributes;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses;
@@ -331,7 +332,32 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
         #endregion
 
+        #region Verify Config Tests
 
+        [Test]
+        public void InvalidConfigShouldBeIgnored()
+        {
+            // Arrange.
+            var compareLogic = new CompareLogic();
+            var originalConfig = compareLogic.Config;
+            Assert.IsNotNull(originalConfig);
 
+            var invalidConfig = new ComparisonConfig
+            {
+                CollectionMatchingSpec = new()
+                {
+                    { typeof(List<string>), Enumerable.Empty<string>() }
+                }
+            };
+
+            // Act.
+            Assert.Throws<ArgumentException>(() => compareLogic.Config = invalidConfig);
+
+            // Assert.
+            Assert.AreNotSame(compareLogic.Config, invalidConfig);
+            Assert.AreSame(compareLogic.Config, originalConfig);
+        }
+
+        #endregion
     }
 }

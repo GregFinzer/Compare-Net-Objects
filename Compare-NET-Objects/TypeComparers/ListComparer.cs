@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using KellermanSoftware.CompareNetObjects.IgnoreOrderTypes;
 
 namespace KellermanSoftware.CompareNetObjects.TypeComparers
@@ -34,7 +36,6 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             return TypeHelper.IsIList(type1) && TypeHelper.IsIList(type2);
         }
 
-
         /// <summary>
         /// Compare two objects that implement IList
         /// </summary>
@@ -64,8 +65,12 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
                 bool countsDifferent = ListsHaveDifferentCounts(parms);
 
-                if (parms.Config.IgnoreCollectionOrder && !ChildIsListOrDictionary(parms))
+                // If items is collections, need to use default compare logic, not ignore order logic.
+                // We cannot ignore order for nested collections because we will get an reflection exception.
+                // May be need to display some warning or write about this behavior in documentation.
+                if (parms.Config.IgnoreCollectionOrder && !ChildShouldBeComparedWithoutOrder(parms))
                 {
+                    // TODO: allow IndexerComparer to works with types (now it works only with properties).
                     IgnoreOrderLogic ignoreOrderLogic = new IgnoreOrderLogic(RootComparer);
                     ignoreOrderLogic.CompareEnumeratorIgnoreOrder(parms, countsDifferent);
                 }
@@ -99,7 +104,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             if (parms.Config.CompareProperties)
             {
                 _propertyComparer.PerformCompareProperties(parms, true);
-            }            
+            }
         }
 
         private bool ListsHaveDifferentCounts(CompareParms parms)
@@ -146,17 +151,48 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             return false;
         }
 
-        private bool ChildIsListOrDictionary(CompareParms parms)
+        private bool ChildShouldBeComparedWithoutOrder(CompareParms parms)
         {
-            IEnumerator enumerator1 = ((IList)parms.Object1).GetEnumerator();
+            IEnumerator enumerator1 = ((IEnumerable)parms.Object1).GetEnumerator();
 
-            if (enumerator1.MoveNext() && enumerator1.Current != null)
+            // We should ensure that all items is enumerable, list or dictionary.
+            bool hasItems = false;
+            var results = new List<bool>();
+            while (enumerator1.MoveNext())
             {
+                hasItems = true;
+
+                if (enumerator1.Current is null)
+                    continue;
+
                 Type type = enumerator1.Current.GetType();
-                return TypeHelper.IsIDictionary(type) || TypeHelper.IsIList(type);
+                bool shouldCompareAndIgnoreOrder =
+                    TypeHelper.IsEnumerable(type) ||
+                    TypeHelper.IsIList(type) ||
+                    TypeHelper.IsIDictionary(type);
+
+                results.Add(shouldCompareAndIgnoreOrder);
             }
 
-            return false;
+            // Take into account that items can be objects with mixed types.
+            // Throw an exception that this case is unsupported.
+            if (hasItems && results.Count > 0)
+            {
+                bool firstResult = results[0];
+                if (results.Any(x => x != firstResult))
+                {
+                    throw new NotSupportedException(
+                        "Collection has nested collections and some other types. " +
+                        "IgnoreCollectionOrder should be false for such cases."
+                    );
+                }
+
+                return firstResult;
+            }
+
+            // If all items is null, we can compare as usual.
+            // Order does not change anything in this case.
+            return hasItems;
         }
 
         private void CompareItems(CompareParms parms)
@@ -170,15 +206,15 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 string currentBreadCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb, string.Empty, string.Empty, count);
 
                 CompareParms childParms = new CompareParms
-                                          {
-                                              Result = parms.Result,
-                                              Config = parms.Config,
-                                              ParentObject1 = parms.Object1,
-                                              ParentObject2 = parms.Object2,
-                                              Object1 = enumerator1.Current,
-                                              Object2 = enumerator2.Current,
-                                              BreadCrumb = currentBreadCrumb
-                                          };
+                {
+                    Result = parms.Result,
+                    Config = parms.Config,
+                    ParentObject1 = parms.Object1,
+                    ParentObject2 = parms.Object2,
+                    Object1 = enumerator1.Current,
+                    Object2 = enumerator2.Current,
+                    BreadCrumb = currentBreadCrumb
+                };
 
                 RootComparer.Compare(childParms);
 
@@ -188,7 +224,5 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 count++;
             }
         }
-
-
     }
 }
