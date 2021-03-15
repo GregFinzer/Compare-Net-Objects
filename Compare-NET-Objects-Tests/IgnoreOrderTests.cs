@@ -1462,7 +1462,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
 
         [Test]
-        public void EnumerableOfListsShouldCompare_Reverse()
+        public void EnumerableOfListsShouldNotCompare_Reverse()
         {
             // Arrange.
             var originalGraph = EnumerableOfSomething.CreateWithLists();
@@ -1501,7 +1501,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
 
         [Test]
-        public void EnumerableOfArraysShouldCompare_Reverse()
+        public void EnumerableOfArraysShouldNotCompare_Reverse()
         {
             // Arrange.
             var originalGraph = EnumerableOfSomething.CreateWithArrays();
@@ -1540,7 +1540,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
 
         [Test]
-        public void EnumerableOfEnumerablesShouldCompare_Reverse()
+        public void EnumerableOfEnumerablesShouldNotCompare_Reverse()
         {
             // Arrange.
             var originalGraph = EnumerableOfSomething.CreateWithEnumerables();
@@ -1583,7 +1583,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
 
         [Test]
-        public void ListOfListsShouldCompare_Reverse()
+        public void ListOfListsShouldNotCompare_Reverse()
         {
             // Arrange.
             var originalGraph = ListOfSomething.CreateWithLists();
@@ -1622,7 +1622,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
 
         [Test]
-        public void ListOfArraysShouldCompare_Reverse()
+        public void ListOfArraysShouldNotCompare_Reverse()
         {
             // Arrange.
             var originalGraph = ListOfSomething.CreateWithArrays();
@@ -1661,7 +1661,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
 
         [Test]
-        public void ListOfEnumerablesShouldCompare_Reverse()
+        public void ListOfEnumerablesShouldNotCompare_Reverse()
         {
             // Arrange.
             var originalGraph = ListOfSomething.CreateWithEnumerables();
@@ -1704,7 +1704,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
 
         [Test]
-        public void ArrayOfListsShouldCompare_Reverse()
+        public void ArrayOfListsShouldNotCompare_Reverse()
         {
             // Arrange.
             var originalGraph = ArrayOfSomething.CreateWithLists();
@@ -1743,7 +1743,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
 
         [Test]
-        public void ArrayOfArraysShouldCompare_Reverse()
+        public void ArrayOfArraysShouldNotCompare_Reverse()
         {
             // Arrange.
             var originalGraph = ArrayOfSomething.CreateWithArrays();
@@ -1782,7 +1782,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
 
         [Test]
-        public void ArrayOfEnumerableShouldCompare_Reverse()
+        public void ArrayOfEnumerableShouldNotCompare_Reverse()
         {
             // Arrange.
             var originalGraph = ArrayOfSomething.CreateWithEnumerables();
@@ -1828,7 +1828,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
 
         [Test]
-        public void DictionaryOfListsShouldCompare_Reverse()
+        public void DictionaryOfListsShouldNotCompare_Reverse()
         {
             // Arrange.
             var originalGraph = DictionaryOfSomething.CreateWithLists();
@@ -1877,7 +1877,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
 
         [Test]
-        public void DictionaryOfArrayShouldNotCompare_Reverse()
+        public void DictionaryOfArrayShouldNotNotCompare_Reverse()
         {
             // Arrange.
             var originalGraph = DictionaryOfSomething.CreateWithArrays();
@@ -1926,7 +1926,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
 
         [Test]
-        public void DictionaryOfEnumerablesShouldCompare_Reverse()
+        public void DictionaryOfEnumerablesShouldNotCompare_Reverse()
         {
             // Arrange.
             var originalGraph = DictionaryOfSomething.CreateWithEnumerables();
