@@ -95,7 +95,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
             var anotherIndexedObject = new IndexerObject(values);
 
             // Assert.
-            CompareLogic compareLogic = new()
+            CompareLogic compareLogic = new CompareLogic
             {
                 Config =
                 {

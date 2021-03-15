@@ -71,7 +71,7 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses.Indexers
 
         public void CompareObjects(EnumerableOfSomething? other, bool expected)
         {
-            CompareLogic compareLogic = new()
+            CompareLogic compareLogic = new CompareLogic
             {
                 Config =
                 {

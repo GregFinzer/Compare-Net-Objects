@@ -344,9 +344,9 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             var invalidConfig = new ComparisonConfig
             {
-                CollectionMatchingSpec = new()
+                CollectionMatchingSpec = new Dictionary<Type, IEnumerable<string>>
                 {
-                    { typeof(List<string>), Enumerable.Empty<string>() }
+                    {typeof(List<string>), Enumerable.Empty<string>()}
                 }
             };
 
