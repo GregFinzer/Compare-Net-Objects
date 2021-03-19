@@ -20,13 +20,16 @@
     <PackageTags>compare comparison equality equal deep objects difference compareobjects deepequal deepequals</PackageTags>
     <Description>What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.</Description>
     <Authors>gfinzer</Authors>
-    <Version>4.72.0</Version>
-    <AssemblyVersion>4.72.0.0</AssemblyVersion>
+    <Version>4.73.0</Version>
+    <AssemblyVersion>4.73.0.0</AssemblyVersion>
     <NeutralLanguage>en-US</NeutralLanguage>    
     <Company>Kellerman Software</Company>
-    <PackageReleaseNotes>Performance improvements.  https://github.com/GregFinzer/Compare-Net-Objects/issues/221</PackageReleaseNotes>
+    <PackageReleaseNotes>Fix for nested dictionaries and nested lists.
+https://github.com/GregFinzer/Compare-Net-Objects/issues/222 
+
+https://github.com/GregFinzer/Compare-Net-Objects/issues/223</PackageReleaseNotes>
     <Copyright>Copyright © 2021 Kellerman Software</Copyright>
-    <FileVersion>4.72.0.0</FileVersion>
+    <FileVersion>4.73.0.0</FileVersion>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
