@@ -330,7 +330,7 @@ namespace KellermanSoftware.CompareNetObjects
             if (type == null)
                 return false;
 
-            return type == typeof(DateTimeOffset);
+            return type == typeof(DateTimeOffset) || type== typeof(System.Nullable<DateTimeOffset>);
         }
 
         /// <summary>
