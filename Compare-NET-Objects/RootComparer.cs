@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using KellermanSoftware.CompareNetObjects.TypeComparers;
+using System.Reflection;
 
 namespace KellermanSoftware.CompareNetObjects
 {
@@ -87,6 +88,16 @@ namespace KellermanSoftware.CompareNetObjects
                 && parms.Object2 != null 
                 && t1 != t2)
             {
+                //Only care if they are in the same inheritance hierarchy or decleared as the same interface.
+                if (parms.Config.IgnoreConcreteTypes
+                && (parms.Object1DeclaredType != null
+                && parms.Object2DeclaredType != null
+                && parms.Object1DeclaredType == parms.Object2DeclaredType
+                || (t1.IsAssignableFrom(t2) || t2.IsAssignableFrom(t1))))
+                {
+                    return false;
+                }
+
                 Difference difference = new Difference
                 {
                     ParentObject1 = parms.ParentObject1,

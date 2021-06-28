@@ -76,7 +76,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             PropertyEntity secondObjectInfo = GetSecondObjectInfo(info, object2Properties);
 
             //If the property does not exist, and we are ignoring the object types, skip it
-            if (parms.Config.IgnoreObjectTypes && secondObjectInfo == null)
+            if ((parms.Config.IgnoreObjectTypes || parms.Config.IgnoreConcreteTypes) && secondObjectInfo == null)
                 return;
 
             //Check if we have custom function to validate property
@@ -119,7 +119,9 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 Object1 = objectValue1,
                 Object2 = objectValue2,
                 BreadCrumb = currentBreadCrumb,
-                CustomPropertyComparer = customComparer
+                CustomPropertyComparer = customComparer,
+                Object1DeclaredType = info?.PropertyType,
+                Object2DeclaredType = secondObjectInfo?.PropertyType
             };
 
             _rootComparer.Compare(childParms);

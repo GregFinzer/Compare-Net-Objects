@@ -24,6 +24,16 @@ namespace KellermanSoftware.CompareNetObjects
         public Type Object2Type { get; set; }
 
         /// <summary>
+        /// The declared type of the first object in its parent. e.g. IList<T>
+        /// </summary>
+        public Type Object1DeclaredType { get; set; }
+
+        /// <summary>
+        /// The declared type of the second object in its parent. e.g. IList<T>
+        /// </summary>
+        public Type Object2DeclaredType { get; set; }
+
+        /// <summary>
         /// Details about the comparison
         /// </summary>
         public ComparisonResult Result { get; set; }
