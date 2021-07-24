@@ -600,6 +600,36 @@ namespace KellermanSoftware.CompareNetObjectsTests
             Assert.IsFalse(result.AreEqual);
         }
 
+        [Test]
+        public void CompareListsHavingEqualsCommonItemsWithExtraItemOnActual()
+        {
+            var expected = new List<int> {0, 1, 2};
+            var actual = new List<int> {0, 1, 2, 3};
+
+            var compareLogic = new CompareLogic(new ComparisonConfig
+            {
+                MaxDifferences = int.MaxValue
+            });
+
+            var comparison = compareLogic.Compare(expected, actual);
+            Assert.That( comparison.DifferencesString, Does.Contain("Types [null,Int32], Item Expected[3] != Actual[3], Values (,3)"));
+        }
+
+        [Test]
+        public void CompareListsHavingEqualsCommonItemsWithMissingItemOnActual()
+        {
+            var actual = new List<int> {0, 1, 2};
+            var expected = new List<int> {0, 1, 2, 3};
+
+            var compareLogic = new CompareLogic(new ComparisonConfig
+            {
+                MaxDifferences = int.MaxValue
+            });
+
+            var comparison = compareLogic.Compare(expected, actual);
+            Assert.That( comparison.DifferencesString, Does.Contain("Types [Int32,null], Item Expected[3] != Actual[3], Values (3,)"));
+        }
+        
         private class NewList<T> : IList<T>
         {
             private readonly IList<T> _wrappedList;

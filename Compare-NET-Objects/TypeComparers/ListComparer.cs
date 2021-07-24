@@ -201,28 +201,72 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             IEnumerator enumerator1 = ((IList) parms.Object1).GetEnumerator();
             IEnumerator enumerator2 = ((IList) parms.Object2).GetEnumerator();
 
-            while (enumerator1.MoveNext() && enumerator2.MoveNext())
+            bool enumerator1HasNext;
+            bool enumerator2HasNext;
+            do
             {
-                string currentBreadCrumb = AddBreadCrumb(parms.Config, parms.BreadCrumb, string.Empty, string.Empty, count);
+                enumerator1HasNext = enumerator1.MoveNext();
+                enumerator2HasNext = enumerator2.MoveNext();
 
-                CompareParms childParms = new CompareParms
+                string currentBreadCrumb = AddBreadCrumb(
+                    parms.Config,
+                    parms.BreadCrumb,
+                    string.Empty,
+                    string.Empty,
+                    count);
+
+                if (enumerator1HasNext && enumerator2HasNext)
                 {
-                    Result = parms.Result,
-                    Config = parms.Config,
-                    ParentObject1 = parms.Object1,
-                    ParentObject2 = parms.Object2,
-                    Object1 = enumerator1.Current,
-                    Object2 = enumerator2.Current,
-                    BreadCrumb = currentBreadCrumb
-                };
+                    CompareParms childParms = new CompareParms
+                    {
+                        Result = parms.Result,
+                        Config = parms.Config,
+                        ParentObject1 = parms.Object1,
+                        ParentObject2 = parms.Object2,
+                        Object1 = enumerator1.Current,
+                        Object2 = enumerator2.Current,
+                        BreadCrumb = currentBreadCrumb
+                    };
 
-                RootComparer.Compare(childParms);
+                    RootComparer.Compare(childParms);
+                }
+                else if (enumerator1HasNext)
+                {
+                    AddDifference(
+                        parms.Result,
+                        new Difference()
+                        {
+                            ParentObject1 = parms.ParentObject1,
+                            ParentObject2 = parms.ParentObject2,
+                            PropertyName = currentBreadCrumb,
+                            Object1Value = NiceString(enumerator1.Current),
+                            Object1 = enumerator1.Current,
+                            ActualName = "Actual" + currentBreadCrumb,
+                            ExpectedName = "Expected" + currentBreadCrumb,
+                        });
+                }
+                else if (enumerator2HasNext)
+                {
+                    AddDifference(
+                        parms.Result,
+                        new Difference()
+                        {
+                            ParentObject1 = parms.ParentObject1,
+                            ParentObject2 = parms.ParentObject2,
+                            PropertyName = currentBreadCrumb,
+                            Object2Value = NiceString(enumerator2.Current),
+                            Object2 = enumerator2.Current,
+                            ActualName = "Actual" + currentBreadCrumb,
+                            ExpectedName = "Expected" + currentBreadCrumb,
+                        });
+                }
 
                 if (parms.Result.ExceededDifferences)
                     return;
 
                 count++;
-            }
+                    
+            } while (enumerator1HasNext || enumerator2HasNext);
         }
     }
 }
