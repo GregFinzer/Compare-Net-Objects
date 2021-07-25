@@ -51,7 +51,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             FieldInfo secondFieldInfo = GetSecondFieldInfo(parms, item);
 
             //If the field does not exist, and we are ignoring the object types, skip it
-            if (parms.Config.IgnoreObjectTypes && secondFieldInfo == null)
+            if ((parms.Config.IgnoreObjectTypes || parms.Config.IgnoreConcreteTypes) && secondFieldInfo == null)
                 return;
 
             object objectValue1 = item.GetValue(parms.Object1);
@@ -86,7 +86,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         private static FieldInfo GetSecondFieldInfo(CompareParms parms, FieldInfo item)
         {
             FieldInfo secondFieldInfo = null;
-            if (parms.Config.IgnoreObjectTypes)
+            if (parms.Config.IgnoreObjectTypes || parms.Config.IgnoreConcreteTypes)
             {
                 IEnumerable<FieldInfo> secondObjectFieldInfos = Cache.GetFieldInfo(parms.Config, parms.Object2Type);
 

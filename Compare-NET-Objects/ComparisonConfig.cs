@@ -543,6 +543,11 @@ namespace KellermanSoftware.CompareNetObjects
 #endif
         public decimal DecimalPrecision { get; set; }
 
+#if !NETSTANDARD
+        [DataMember]
+#endif
+        public bool IgnoreConcreteTypes { get; set; }
+
         #endregion
 
         #region Methods

@@ -231,6 +231,80 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
         #endregion
 
+        #region IgnoreConcreteTypesTests
+        [Test]
+        public void IgnoreConcreteTypesPositive()
+        {
+            PersonGroup group1 = new PersonGroup()
+            {
+                Members = new Person[2]
+                {
+                    new Person() { Name = "Tommy" },
+                    new Person() { Name = "Johnny" }
+                },
+                Manager = new GroupManager() { Name = "Alice", Title = "Boss"}
+            };
+
+            PersonGroup group2 = new PersonGroup()
+            {
+                Members = new List<Person>
+                {
+                    new Person() { Name = "Tommy" },
+                    new Person() { Name = "Johnny" }
+                },
+                Manager = new Person() { Name = "Alice" }
+            };
+           
+            _compare.Config.IgnoreConcreteTypes = true;
+            Assert.IsTrue(_compare.Compare(group2, group1).AreEqual);
+            Assert.IsTrue(_compare.Compare(group1, group2).AreEqual);
+        }
+
+        [Test]
+        public void IgnoreConcreteTypesNegative()
+        {
+            PersonGroup group1 = new PersonGroup()
+            {
+                Members = new Person[2]
+                {
+                    new Person() { Name = "Tommy" },
+                    new Person() { Name = "Johnny" }
+                },
+                Manager = new GroupManager() { Name = "Alice", Title = "Boss" }
+            };
+
+            PersonGroup group2 = new PersonGroup()
+            {
+                Members = new List<Person>
+                {
+                    new Person() { Name = "Tommy" },
+                    new Person() { Name = "Bruce" }
+                },
+                Manager = new Person() { Name = "Bob" }
+            };
+
+            _compare.Config.IgnoreConcreteTypes = true;
+            var result = _compare.Compare(group1, group2);
+            Assert.IsFalse(result.AreEqual, result.DifferencesString);
+        }
+
+        [Test]
+        public void IgnoreConcreteTypesDuck()
+        {
+            var person1 = new Person { Name = "Tommy" };
+            var person2 = new GroupManager { Name = "Tommy", Title = "Boss"};
+            var person3 = new GroupManagerNotInherited() { Name = "Tommy", Title = "Boss" };
+
+
+            Assert.IsFalse(_compare.Compare(person1, person2).AreEqual);
+
+            _compare.Config.IgnoreConcreteTypes = true;
+            Assert.IsTrue(_compare.Compare(person1, person2).AreEqual);
+            Assert.IsFalse(_compare.Compare(person1, person3).AreEqual);
+            Assert.IsFalse(_compare.Compare(person2, person3).AreEqual);
+        }
+        #endregion
+
         #region Class Type Include Tests
         [Test]
         public void ClassTypeIncludePositive()
