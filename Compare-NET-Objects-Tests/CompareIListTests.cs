@@ -670,6 +670,39 @@ namespace KellermanSoftware.CompareNetObjectsTests
             }
         }
 
+        [Test]
+        public void CompareListsHavingEqualsCommonItemsWithExtraItemOnActual()
+        {
+            var expected = new List<int> { 0, 1, 2 };
+            var actual = new List<int> { 0, 1, 2, 3 };
+
+            var compareLogic = new CompareLogic(new ComparisonConfig
+            {
+                MaxDifferences = int.MaxValue,
+                IgnoreCollectionOrder = true
+            });
+
+            var comparison = compareLogic.Compare(expected, actual);
+            Console.WriteLine(comparison.DifferencesString);
+            Assert.That(comparison.DifferencesString, Does.Contain("Types [null,Int32], Item Expected[3].Item != Actual[3].Item, Values ((null),3)"));
+        }
+
+        [Test]
+        public void CompareListsHavingEqualsCommonItemsWithMissingItemOnActual()
+        {
+            var actual = new List<int> { 0, 1, 2 };
+            var expected = new List<int> { 0, 1, 2, 3 };
+
+            var compareLogic = new CompareLogic(new ComparisonConfig
+            {
+                MaxDifferences = int.MaxValue,
+                IgnoreCollectionOrder = true
+            });
+
+            var comparison = compareLogic.Compare(expected, actual);
+            Console.WriteLine(comparison.DifferencesString);
+            Assert.That(comparison.DifferencesString, Does.Contain("Types [Int32,null], Item Expected[3].Item != Actual[3].Item, Values (3,(null))"));
+        }
         #endregion
     }
 }
