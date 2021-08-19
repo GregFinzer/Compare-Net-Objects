@@ -164,6 +164,9 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                         return "System.DBNull.Value";
                 #endif
 
+                if(object is DateTime)
+                    return ((DateTime)object).ToString("o");
+                    
                 return value.ToString();
             }
             catch
