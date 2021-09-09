@@ -40,16 +40,29 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         /// </summary>
         public override void CompareType(CompareParms parms)
         {
-            Type t1 = parms.Object1.GetType();
-            Type t2 = parms.Object2.GetType();
+            var oldObject1 = parms.Object1;
+            var oldObject2 = parms.Object2;
+            try
+            {
+                parms.Result.AddParent(parms.Object1);
+                parms.Result.AddParent(parms.Object2);
 
-            var l1 = TypeHelper.IsEnumerable(t1) ? ConvertEnumerableToList(parms.Object1) : parms.Object1;
-            var l2 = TypeHelper.IsEnumerable(t2) ? ConvertEnumerableToList(parms.Object2) : parms.Object2;
+                Type t1 = parms.Object1.GetType();
+                Type t2 = parms.Object2.GetType();
 
-            parms.Object1 = l1;
-            parms.Object2 = l2;
+                var l1 = TypeHelper.IsEnumerable(t1) ? ConvertEnumerableToList(parms.Object1) : parms.Object1;
+                var l2 = TypeHelper.IsEnumerable(t2) ? ConvertEnumerableToList(parms.Object2) : parms.Object2;
 
-            _compareIList.CompareType(parms);
+                parms.Object1 = l1;
+                parms.Object2 = l2;
+
+                _compareIList.CompareType(parms);
+            }
+            finally
+            {
+                parms.Result.RemoveParent(oldObject1);
+                parms.Result.RemoveParent(oldObject2);
+            }
         }
 
         private object ConvertEnumerableToList(object source)
