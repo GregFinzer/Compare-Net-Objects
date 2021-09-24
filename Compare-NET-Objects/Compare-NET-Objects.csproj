@@ -20,16 +20,21 @@
     <PackageTags>compare comparison equality equal deep objects difference compareobjects deepequal deepequals</PackageTags>
     <Description>What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.</Description>
     <Authors>gfinzer</Authors>
-    <Version>4.73.0</Version>
-    <AssemblyVersion>4.73.0.0</AssemblyVersion>
+    <Version>4.74.0</Version>
+    <AssemblyVersion>4.74.0.0</AssemblyVersion>
     <NeutralLanguage>en-US</NeutralLanguage>    
     <Company>Kellerman Software</Company>
-    <PackageReleaseNotes>Fix for nested dictionaries and nested lists.
-https://github.com/GregFinzer/Compare-Net-Objects/issues/222 
+    <PackageReleaseNotes>Support for Nullable DateTimeOffset by goyzhang https://github.com/GregFinzer/Compare-Net-Objects/issues/230
 
-https://github.com/GregFinzer/Compare-Net-Objects/issues/223</PackageReleaseNotes>
+New config option to IgnoreConcreteTypes by goyzhang  https://github.com/GregFinzer/Compare-Net-Objects/issues/232
+
+Fix for circular references in EnumerableComparer by idealist1508 https://github.com/GregFinzer/Compare-Net-Objects/issues/237</PackageReleaseNotes>
     <Copyright>Copyright © 2021 Kellerman Software</Copyright>
-    <FileVersion>4.73.0.0</FileVersion>
+    <FileVersion>4.74.0.0</FileVersion>
+    
+    <PackageLicenseFile>License.txt</PackageLicenseFile>
+    <PackageIcon>NuGetIcon.png</PackageIcon>
+    
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
@@ -99,6 +104,14 @@ https://github.com/GregFinzer/Compare-Net-Objects/issues/223</PackageReleaseNote
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <None Include="..\License.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\NuGetIcon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
   
   <ItemGroup Condition="$(IsNetStandard)">
