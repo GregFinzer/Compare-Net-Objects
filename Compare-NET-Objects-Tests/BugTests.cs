@@ -647,6 +647,27 @@ namespace KellermanSoftware.CompareNetObjectsTests
             Assert.IsFalse(result.AreEqual);
         }
 
+        [Test]
+        public void CircularReferencesEnumerable()
+        {
+
+            var o1 = new ClassWithOverriddenHashCode();
+            o1.Name = "1";
+
+            var o2 = new ClassWithOverriddenHashCode();
+            o2.Name = "1";
+
+            IEnumerable<ClassWithOverriddenHashCode> e1 =(new [] {o1}).Where(_ => true);
+            o1.MyCircularReference = e1;
+            IEnumerable<ClassWithOverriddenHashCode> e2 =(new [] {o2}).Where(_ => true);
+            o2.MyCircularReference = e2;
+
+            CompareLogic logic = new CompareLogic();
+
+            ComparisonResult result = logic.Compare(e1, e2);
+            Assert.IsTrue(result.AreEqual, result.DifferencesString);
+        }
+
         public class Foo
         {
         }
