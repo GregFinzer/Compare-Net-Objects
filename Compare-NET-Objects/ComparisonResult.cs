@@ -112,7 +112,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// Add parent, handle references count
         /// </summary>
         /// <param name="objectReference"></param>
-        protected internal void AddParent(object objectReference)
+        public void AddParent(object objectReference)
         {
             if (objectReference == null)
                 return;
@@ -158,7 +158,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// Remove parent, handle references count
         /// </summary>
         /// <param name="objectReference"></param>
-        protected internal void RemoveParent(object objectReference)
+        public void RemoveParent(object objectReference)
         {
             if (objectReference == null)
                 return;
