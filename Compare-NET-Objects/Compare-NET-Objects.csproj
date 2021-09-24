@@ -35,6 +35,7 @@ Fix for circular references in EnumerableComparer by idealist1508 https://github
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <PackageIcon>NuGetIcon.png</PackageIcon>
     
+    
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
