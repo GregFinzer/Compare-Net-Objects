@@ -52,6 +52,18 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
         #region Tests
 
+        [Test]
+        public void CompareDynamicStructWithinAStruct()
+        {
+            var a = (1, new List<(string first, (string, int) second)> { ("foo", ("bar", 2)) });
+            var b = (1, new List<(string first, (string, int) second)> { ("foo", ("foo", 2)) });
+            CompareLogic compareLogic = new CompareLogic();
+            compareLogic.Config.MaxStructDepth = 4;
+            var result = compareLogic.Compare(a, b);
+            Console.WriteLine(result.DifferencesString);
+            Assert.IsFalse(result.AreEqual);
+        }
+
 #nullable enable
 
         //Failed comparison of objects with complex dictionary key
