@@ -548,6 +548,16 @@ namespace KellermanSoftware.CompareNetObjects
 #endif
         public bool IgnoreConcreteTypes { get; set; }
 
+        /// <summary>
+        /// If true, properties that are defined in the actual object but missing in the expected object will not be flagged as differences. Default is true.
+        /// </summary>
+        public bool IgnoreMissingProperties { get; set; }
+
+        /// <summary>
+        /// If true, fields that are defined in the actual object but missing in the expected object will not be flagged as differences. Default is true.
+        /// </summary>
+        public bool IgnoreMissingFields { get; set; }
+
         #endregion
 
         #region Methods
@@ -631,6 +641,8 @@ namespace KellermanSoftware.CompareNetObjects
             MaxStructDepth = 2;
             CaseSensitive = true;
             IgnoreStringLeadingTrailingWhitespace = false;
+            IgnoreMissingProperties = true;
+            IgnoreMissingFields = true;
         }
 #endregion
     }

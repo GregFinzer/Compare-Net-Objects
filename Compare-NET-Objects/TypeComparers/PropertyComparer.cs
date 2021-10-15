@@ -75,8 +75,8 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             //If we ignore types then we must get correct PropertyInfo object
             PropertyEntity secondObjectInfo = GetSecondObjectInfo(info, object2Properties);
 
-            //If the property does not exist, and we are ignoring the object types, skip it
-            if ((parms.Config.IgnoreObjectTypes || parms.Config.IgnoreConcreteTypes) && secondObjectInfo == null)
+            //If the property does not exist, and we are ignoring the object types, skip it - unless we have set IgnoreMissingProperties = true
+            if ((parms.Config.IgnoreObjectTypes || parms.Config.IgnoreConcreteTypes) && secondObjectInfo == null && parms.Config.IgnoreMissingProperties)
                 return;
 
             //Check if we have custom function to validate property

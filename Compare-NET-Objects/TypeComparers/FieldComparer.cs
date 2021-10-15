@@ -50,8 +50,8 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             //If we ignore types then we must get correct FieldInfo object
             FieldInfo secondFieldInfo = GetSecondFieldInfo(parms, item);
 
-            //If the field does not exist, and we are ignoring the object types, skip it
-            if ((parms.Config.IgnoreObjectTypes || parms.Config.IgnoreConcreteTypes) && secondFieldInfo == null)
+            //If the field does not exist, and we are ignoring the object types, skip it - unless we have set IgnoreMissingFields = true
+            if ((parms.Config.IgnoreObjectTypes || parms.Config.IgnoreConcreteTypes) && secondFieldInfo == null && parms.Config.IgnoreMissingFields)
                 return;
 
             object objectValue1 = item.GetValue(parms.Object1);
