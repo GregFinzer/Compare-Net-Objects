@@ -29,7 +29,7 @@
 New config option to IgnoreConcreteTypes by goyzhang  https://github.com/GregFinzer/Compare-Net-Objects/issues/232
 
 Fix for circular references in EnumerableComparer by idealist1508 https://github.com/GregFinzer/Compare-Net-Objects/issues/237</PackageReleaseNotes>
-    <Copyright>Copyright © 2021 Kellerman Software</Copyright>
+    <Copyright>Copyright © 2022</Copyright>
     <FileVersion>4.74.0.0</FileVersion>
     
     <PackageLicenseFile>License.txt</PackageLicenseFile>
