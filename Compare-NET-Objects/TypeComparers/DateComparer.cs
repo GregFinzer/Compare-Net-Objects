@@ -39,6 +39,12 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             DateTime date1 = (DateTime) parms.Object1;
             DateTime date2 = (DateTime) parms.Object2;
 
+            if (date1.Kind != date2.Kind)
+            {
+                date1 = date1.ToUniversalTime();
+                date2 = date2.ToUniversalTime();
+            }
+
             if (Math.Abs(date1.Subtract(date2).TotalMilliseconds) > parms.Config.MaxMillisecondsDateDifference)
                 AddDifference(parms);
 
