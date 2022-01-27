@@ -60,6 +60,18 @@ namespace KellermanSoftware.CompareNetObjectsTests
             if (!result.AreEqual)
                 throw new Exception(result.DifferencesString);
         }
+
+        [Test]
+        public void TestUtcvsLocalDates()
+        {
+            var dateTimeUtcNow = DateTime.UtcNow;
+            var dateTimeNow = dateTimeUtcNow.ToLocalTime();
+            CompareLogic compareLogic = new CompareLogic();
+
+            ComparisonResult result = compareLogic.Compare(dateTimeNow, dateTimeUtcNow);
+
+            Assert.IsTrue(result.AreEqual);
+        }
         #endregion
     }
 }

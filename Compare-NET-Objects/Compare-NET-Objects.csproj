@@ -20,8 +20,8 @@
     <PackageTags>compare comparison equality equal deep objects difference compareobjects deepequal deepequals</PackageTags>
     <Description>What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.</Description>
     <Authors>gfinzer</Authors>
-    <Version>4.74.0</Version>
-    <AssemblyVersion>4.74.0.0</AssemblyVersion>
+    <Version>4.75.0</Version>
+    <AssemblyVersion>4.75.0.0</AssemblyVersion>
     <NeutralLanguage>en-US</NeutralLanguage>    
     <Company>Kellerman Software</Company>
     <PackageReleaseNotes>Support for Nullable DateTimeOffset by goyzhang https://github.com/GregFinzer/Compare-Net-Objects/issues/230
@@ -30,7 +30,7 @@ New config option to IgnoreConcreteTypes by goyzhang  https://github.com/GregFin
 
 Fix for circular references in EnumerableComparer by idealist1508 https://github.com/GregFinzer/Compare-Net-Objects/issues/237</PackageReleaseNotes>
     <Copyright>Copyright © 2022</Copyright>
-    <FileVersion>4.74.0.0</FileVersion>
+    <FileVersion>4.75.0.0</FileVersion>
     
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <PackageIcon>NuGetIcon.png</PackageIcon>
