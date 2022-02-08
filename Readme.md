@@ -109,7 +109,7 @@ dotnet add package CompareNETObjects
 * Custom Collections with Non-Integer Indexers cannot be compared.
 * Private properties and fields cannot be compared for .NET Core 1.3.  They are allowed to be compared in .NET Core 2.0 and higher.
 * When ignoring the collection order, the collection matching spec must be a property on the class.  It cannot be a field or a property  on a child or parent class.  The property has to be a simple type.
-* COM Objects are not compared.  To compare COM objects wrap their properties in a .NET Object.  See:  https://stackoverflow.com/questions/9735394/reflection-on-com-interop-objects
+* COM Objects are not compared.  To compare COM objects wrap their properties in a .NET Object or create a <a href="https://github.com/GregFinzer/Compare-Net-Objects/wiki/Custom-Comparers">custom comparer</a>.  Also See:  https://stackoverflow.com/questions/9735394/reflection-on-com-interop-objects
 
 
 # Getting Started
