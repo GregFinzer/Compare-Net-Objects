@@ -516,6 +516,38 @@ namespace KellermanSoftware.CompareNetObjectsTests
         }
 
         [Test]
+        public void BaseClassCollectionWithIgnoreCollectionOrderTest()
+        {
+            var list1 = new List<Officer>();
+            var list2 = new List<Officer>();
+
+            var officer1 = new DeriveFromOfficer()
+            {
+                ID = 1,
+                Name = "John",
+                Type = Deck.Engineering,
+                HomeAddress = "Address",
+            };
+
+            var officer2 = new Derive2FromOfficer()
+            {
+                ID = 2,
+                Name = "Jill",
+                Type = Deck.AstroPhysics,
+                Email = "a@a.com",
+            };
+
+            list1.Add(officer1);
+            list1.Add(officer2);
+            list2.Add(officer2);
+            list2.Add(officer1);
+
+            _compare.Config.IgnoreCollectionOrder = true;
+
+            Assert.IsTrue(_compare.Compare(list1, list2).AreEqual);
+        }
+
+        [Test]
         public void HashSetsMultipleItemsWithIgnoreCollectionOrderTest()
         {
             HashSetWrapper hashSet1 = new HashSetWrapper
