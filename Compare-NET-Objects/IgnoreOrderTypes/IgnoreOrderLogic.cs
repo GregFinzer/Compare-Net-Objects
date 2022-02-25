@@ -54,13 +54,13 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
 
             IEnumerator enumerator1;
             IEnumerator enumerator2;
-            List<string> matchingSpec1 = null;
-            List<string> matchingSpec2 = null;
 
             var list1 = new Dictionary<string, InstanceCounter>();
             var list2 = new Dictionary<string, InstanceCounter>();
-            Type dataType1 = null;
-            Type dataType2 = null;
+
+            // Store matching spec for each type.
+            var matchingSpec1 = new Dictionary<Type, List<string>>();
+            var matchingSpec2 = new Dictionary<Type, List<string>>();
 
             // Determine an explicit fallback to be used if the first element in an enumerable is null.
             Type fallbackType1 = parms.Object1Type != null ? (TypeHelper.IsGenericType(parms.Object1Type) ? parms.Object1Type.GetGenericArguments()[0] : parms.Object1Type.GetElementType()) : null;
@@ -86,9 +86,11 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                     continue;
                 }
 
-                dataType1 = dataType1 ?? data?.GetType() ?? fallbackType1;
-                matchingSpec1 = matchingSpec1 ?? GetMatchingSpec(parms.Result, dataType1);
-                var matchingIndex = GetMatchIndex(parms.Result, matchingSpec1, data);
+                var dataType1 = data?.GetType() ?? fallbackType1;
+                if (!matchingSpec1.ContainsKey(dataType1))
+                    matchingSpec1.Add(dataType1, GetMatchingSpec(parms.Result, dataType1));
+
+                var matchingIndex = GetMatchIndex(parms.Result, matchingSpec1[dataType1], data);
                 if (!list1.ContainsKey(matchingIndex))
                     list1.Add(matchingIndex, new InstanceCounter(data, 1));
                 else
@@ -106,9 +108,11 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                     continue;
                 }
 
-                dataType2 = dataType2 ?? data?.GetType() ?? fallbackType2;
-                matchingSpec2 = matchingSpec2 ?? GetMatchingSpec(parms.Result, dataType2);
-                var matchingIndex = GetMatchIndex(parms.Result, matchingSpec2, data);
+                var dataType2 = data?.GetType() ?? fallbackType2;
+                if (!matchingSpec2.ContainsKey(dataType2))
+                    matchingSpec2.Add(dataType2, GetMatchingSpec(parms.Result, dataType2));
+
+                var matchingIndex = GetMatchIndex(parms.Result, matchingSpec2[dataType2], data);
                 if (!list2.ContainsKey(matchingIndex))
                     list2.Add(matchingIndex, new InstanceCounter(data, 1));
                 else
