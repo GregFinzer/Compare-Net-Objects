@@ -24,7 +24,12 @@
     <AssemblyVersion>4.76.0.0</AssemblyVersion>
     <NeutralLanguage>en-US</NeutralLanguage>    
     <Company>Kellerman Software</Company>
-    <PackageReleaseNotes>Support for DateTime Kinds:  https://github.com/GregFinzer/Compare-Net-Objects/issues/116</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixes for Compare Double Nan, IgnoreDateTimeOffsetTimezones, and CompareReadOnly == false.
+
+https://github.com/GregFinzer/Compare-Net-Objects/issues/244
+https://github.com/GregFinzer/Compare-Net-Objects/issues/245
+https://github.com/GregFinzer/Compare-Net-Objects/issues/246
+</PackageReleaseNotes>
     <Copyright>Copyright © 2022</Copyright>
     <FileVersion>4.76.0.0</FileVersion>
     
