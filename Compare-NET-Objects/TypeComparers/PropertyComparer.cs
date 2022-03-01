@@ -162,6 +162,9 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 if (ExcludeLogic.ShouldExcludeMember(parms.Config, property, objectType))
                     continue;
 
+                if (!property.CanRead && !parms.Config.CompareReadOnly)
+                    continue;
+
                 PropertyEntity propertyEntity = new PropertyEntity();
                 propertyEntity.IsDynamic = false;
                 propertyEntity.Name = property.Name;
