@@ -475,6 +475,7 @@ namespace KellermanSoftware.CompareNetObjects
         }
 
         /// <summary>
+        /// This property is used when IgnoreCollectionOrder is set to true, otherwise it has no effect.
         /// Sometimes one wants to match items between collections by some key first, and then
         /// compare the matched objects.  Without this, the comparer basically says there is no 
         /// match in collection B for any given item in collection A that doesn't Compare with a result of true.  
@@ -487,7 +488,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// You can use complex type properties, too, as part of the key to match.  To match on all props/fields on 
         /// such a matching key, Don't set this property (default comparer behavior)
         /// NOTE: types are looked up as exact.  e.g. if foo is an entry in the dictionary and bar is a 
-        /// sub-class of foo, upon encountering a bar type, the comparer will not find the entry of foo
+        /// sub-class of foo, upon encountering a bar type, the comparer will not find the entry of foo        
         /// </summary>
 #if !NETSTANDARD
         [DataMember]
