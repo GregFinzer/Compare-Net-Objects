@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Dynamic;
+using System.Linq;
 using KellermanSoftware.CompareNetObjects;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses.IgnoreExample;
@@ -137,5 +139,46 @@ namespace KellermanSoftware.CompareNetObjectsTests
 			result = compare.Compare(derive2FromOfficer1, derive2FromOfficer2);
 			Assert.IsFalse(result.AreEqual);
 		}
-	}
+
+
+        [Test]
+        public void IgnoreCollectionCount()
+        {
+            var coll1 = new List<int>
+            {
+                1, 2, 3, 4, 5
+            };
+            var coll2 = new List<int>
+            {
+                1, 2, 3, 4, 5, 6
+            };
+            var compareLogic = new CompareLogic
+            {
+                Config = new ComparisonConfig
+                {
+                    MaxDifferences = int.MaxValue,
+                    IgnoreCollectionCount = true
+                }
+            };
+
+            var result = compareLogic.Compare(coll1, coll2);
+            Assert.IsFalse(result.Differences.Any(difference => difference.ChildPropertyName == "Count"));
+            Assert.AreEqual(result.Differences.Count, 0);
+
+            var obj1 = new
+            {
+                Name = "test",
+                Collection = coll1
+            };
+            var obj2 = new
+            {
+                Name = "test",
+                Collection = coll2
+            };
+
+            result = compareLogic.Compare(obj1, obj2);
+            Assert.IsFalse(result.Differences.Any(difference => difference.ChildPropertyName == "Count"));
+            Assert.AreEqual(result.Differences.Count, 0);
+        }
+    }
 }

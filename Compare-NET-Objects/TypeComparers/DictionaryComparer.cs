@@ -42,7 +42,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 parms.Result.AddParent(parms.Object2);
 
                 //Objects must be the same length
-                bool countsDifferent = DictionaryCountsDifferent(parms);
+                bool countsDifferent = !parms.Config.IgnoreCollectionCount && DictionaryCountsDifferent(parms);
 
                 if (countsDifferent && parms.Result.ExceededDifferences)
                     return;
@@ -213,7 +213,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             int iDict1Count = (iDict1 == null) ? 0 : iDict1.Count;
             int iDict2Count = (iDict2 == null) ? 0 : iDict2.Count;
 
-            if (iDict1Count == iDict2Count)
+            if (iDict1Count == iDict2Count || parms.Config.IgnoreCollectionCount)
                 return false;
 
             Difference difference = new Difference

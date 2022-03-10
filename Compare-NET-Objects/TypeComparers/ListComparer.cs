@@ -63,7 +63,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 if (parms.Result.ExceededDifferences)
                     return;
 
-                bool countsDifferent = ListsHaveDifferentCounts(parms);
+                bool countsDifferent = !parms.Config.IgnoreCollectionCount && ListsHaveDifferentCounts(parms);
 
                 // If items is collections, need to use default compare logic, not ignore order logic.
                 // We cannot ignore order for nested collections because we will get an reflection exception.

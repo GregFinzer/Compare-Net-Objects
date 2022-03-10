@@ -559,6 +559,11 @@ namespace KellermanSoftware.CompareNetObjects
         /// </summary>
         public bool IgnoreMissingFields { get; set; }
 
+        /// <summary>
+        /// If true, a change in collection count will be ignored. Default is false.
+        /// </summary>
+        public bool IgnoreCollectionCount { get; set; }
+
         #endregion
 
         #region Methods
@@ -644,6 +649,7 @@ namespace KellermanSoftware.CompareNetObjects
             IgnoreStringLeadingTrailingWhitespace = false;
             IgnoreMissingProperties = true;
             IgnoreMissingFields = true;
+            IgnoreCollectionCount = false;
         }
 #endregion
     }
