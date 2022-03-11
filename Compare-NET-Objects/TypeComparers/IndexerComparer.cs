@@ -41,7 +41,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             int indexerCount1 = (int)type.GetProperty("Count").GetGetMethod().Invoke(parms.Object1, new object[] { });
             int indexerCount2 = (int)type2.GetProperty("Count").GetGetMethod().Invoke(parms.Object2, new object[] { });
 
-            bool differentCounts = IndexersHaveDifferentLength(parms, info, indexerCount1, indexerCount2);
+            bool differentCounts =  !parms.Config.IgnoreCollectionCount && IndexersHaveDifferentLength(parms, info, indexerCount1, indexerCount2);
 
             if (parms.Result.ExceededDifferences)
                 return;

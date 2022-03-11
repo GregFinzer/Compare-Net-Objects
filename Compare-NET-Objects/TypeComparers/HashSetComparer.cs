@@ -46,7 +46,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 Type t2 = parms.Object2.GetType();
                 parms.Object2Type = t2;
 
-                bool countsDifferent = HashSetsDifferentCount(parms);
+                bool countsDifferent = !parms.Config.IgnoreCollectionCount && HashSetsDifferentCount(parms);
 
                 if (parms.Result.ExceededDifferences)
                     return;
