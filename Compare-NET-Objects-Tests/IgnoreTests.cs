@@ -142,7 +142,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
 
         [Test]
-        public void IgnoreReadonlyCollectionCount()
+        public void IgnoreReadonlyCollection()
         {
             var coll1 = new List<int>
             {

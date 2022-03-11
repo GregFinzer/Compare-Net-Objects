@@ -38,6 +38,9 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         /// </summary>
         public override void CompareType(CompareParms parms)
         {
+            if (!parms.Config.CompareReadOnly)
+                return;
+
             try
             {
                 parms.Result.AddParent(parms.Object1);
@@ -53,7 +56,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 parms.Object1Type = t1;
                 parms.Object2Type = t2;
 
-                bool countsDifferent = parms.Config.CompareReadOnly && CollectionsDifferentCount(parms);
+                bool countsDifferent = CollectionsDifferentCount(parms);
 
                 if (parms.Result.ExceededDifferences)
                     return;
