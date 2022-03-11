@@ -162,7 +162,6 @@ namespace KellermanSoftware.CompareNetObjectsTests
             };
 
             var result = compareLogic.Compare(coll1, coll2);
-            Assert.IsFalse(result.Differences.Any(difference => difference.ChildPropertyName == "Count"));
             Assert.AreEqual(result.Differences.Count, 0);
 
             var obj1 = new
@@ -177,7 +176,6 @@ namespace KellermanSoftware.CompareNetObjectsTests
             };
 
             result = compareLogic.Compare(obj1, obj2);
-            Assert.IsFalse(result.Differences.Any(difference => difference.ChildPropertyName == "Count"));
             Assert.AreEqual(result.Differences.Count, 0);
 
             compareLogic = new CompareLogic
@@ -190,7 +188,6 @@ namespace KellermanSoftware.CompareNetObjectsTests
             };
 
             result = compareLogic.Compare(obj1, obj2);
-            Assert.IsTrue(result.Differences.Any(difference => difference.ChildPropertyName == "Count"));
             Assert.AreEqual(result.Differences.Count, 1);
         }
     }
