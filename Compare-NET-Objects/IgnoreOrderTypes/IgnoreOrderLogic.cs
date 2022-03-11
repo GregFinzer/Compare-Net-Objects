@@ -202,7 +202,7 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
             }
 
             //This use case one of the lists has a duplicate value
-            if (!differenceDetected && list1Count != list2Count && !parms.Config.IgnoreCollectionCount)
+            if (!differenceDetected && list1Count != list2Count)
             {
                 Difference difference = new Difference
                 {
