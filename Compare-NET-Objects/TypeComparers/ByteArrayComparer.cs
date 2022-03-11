@@ -38,7 +38,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             if (parms == null || parms.Object1 == null || parms.Object2 == null)
                 return;
 
-            if (!parms.Config.IgnoreCollectionCount && ListsHaveDifferentCounts(parms)) 
+            if (ListsHaveDifferentCounts(parms)) 
                 return;
                 
             CompareItems(parms);                

@@ -49,7 +49,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 parms.Object1Type = t1;
                 parms.Object2Type = t2;
 
-                bool countsDifferent = !parms.Config.IgnoreCollectionCount && CollectionsDifferentCount(parms);
+                bool countsDifferent = CollectionsDifferentCount(parms);
 
                 if (parms.Result.ExceededDifferences)
                     return;
@@ -109,7 +109,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             int count2 = ((ICollection)parms.Object2).Count;
 
             //Objects must be the same length
-            if (count1 != count2 && !parms.Config.IgnoreCollectionCount)
+            if (count1 != count2)
             {
                 Difference difference = new Difference
                 {
