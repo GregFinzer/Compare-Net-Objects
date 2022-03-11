@@ -11,6 +11,7 @@ using System.Dynamic;
 #if !NETSTANDARD
 using System.Data;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 #endif
 
 namespace KellermanSoftware.CompareNetObjects
@@ -115,6 +116,20 @@ namespace KellermanSoftware.CompareNetObjects
 
             return type.Namespace == "System.Collections.Immutable" 
                    && type.Name == "ImmutableArray`1";
+        }
+
+        /// <summary>
+        /// True if the type is a System.Collections.ObjectModel.ReadOnlyCollection
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool IsReadOnlyCollection(Type type)
+        {
+            if (type == null)
+                return false;
+
+            return (type.Namespace == "System.Collections.ObjectModel"
+                && type.Name == "ReadOnlyCollection`1");
         }
 
         /// <summary>
