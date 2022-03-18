@@ -41,6 +41,7 @@ namespace KellermanSoftware.CompareNetObjects
             _rootComparer.TypeComparers.Add(new DoubleComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new PointerComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new SimpleTypeComparer(_rootComparer));
+            _rootComparer.TypeComparers.Add(new ReadOnlyCollectionComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new ListComparer(_rootComparer));
 
 #if NETFULL || NETSTANDARD2_0 || NETSTANDARD2_1
