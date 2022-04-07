@@ -41,6 +41,12 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
 
             if (date1.Kind != date2.Kind)
             {
+                if (date1.Kind == DateTimeKind.Unspecified && parms.Config.DateTimeKindToUseWhenUnspecified != null)
+                    date1 = DateTime.SpecifyKind(date1, parms.Config.DateTimeKindToUseWhenUnspecified.Value);
+
+                if (date2.Kind == DateTimeKind.Unspecified && parms.Config.DateTimeKindToUseWhenUnspecified != null)
+                    date2 = DateTime.SpecifyKind(date2, parms.Config.DateTimeKindToUseWhenUnspecified.Value);
+
                 date1 = date1.ToUniversalTime();
                 date2 = date2.ToUniversalTime();
             }

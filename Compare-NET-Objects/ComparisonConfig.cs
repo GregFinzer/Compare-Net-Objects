@@ -544,21 +544,38 @@ namespace KellermanSoftware.CompareNetObjects
 #endif
         public decimal DecimalPrecision { get; set; }
 
+        /// <summary>
+        /// When comparing Fields and Properties the types have to be the same.  If IgnoreConcretTypes is true then they will be ignored.  The default is false.
+        /// </summary>
 #if !NETSTANDARD
         [DataMember]
 #endif
         public bool IgnoreConcreteTypes { get; set; }
 
+
         /// <summary>
         /// If true, properties that are defined in the actual object but missing in the expected object will not be flagged as differences. Default is true.
         /// </summary>
+#if !NETSTANDARD
+        [DataMember]
+#endif        
         public bool IgnoreMissingProperties { get; set; }
 
         /// <summary>
         /// If true, fields that are defined in the actual object but missing in the expected object will not be flagged as differences. Default is true.
         /// </summary>
+#if !NETSTANDARD
+        [DataMember]
+#endif
         public bool IgnoreMissingFields { get; set; }
 
+        /// <summary>
+        /// Specify a DateTimeKind to use when it is unspecified.  The default is DateTimeKind.Utc.  If null is specified it will not be defaulted.
+        /// </summary>
+#if !NETSTANDARD
+        [DataMember]
+#endif
+        public DateTimeKind? DateTimeKindToUseWhenUnspecified { get; set; }
         #endregion
 
         #region Methods
@@ -644,6 +661,7 @@ namespace KellermanSoftware.CompareNetObjects
             IgnoreStringLeadingTrailingWhitespace = false;
             IgnoreMissingProperties = true;
             IgnoreMissingFields = true;
+            DateTimeKindToUseWhenUnspecified = DateTimeKind.Utc; 
         }
 #endregion
     }

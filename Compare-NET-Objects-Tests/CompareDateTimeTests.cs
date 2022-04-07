@@ -64,12 +64,25 @@ namespace KellermanSoftware.CompareNetObjectsTests
         [Test]
         public void TestUtcvsLocalDates()
         {
-            var dateTimeUtcNow = DateTime.UtcNow;
-            var dateTimeNow = dateTimeUtcNow.ToLocalTime();
+            DateTime dateTimeUtcNow = DateTime.UtcNow;
+            DateTime dateTimeNow = dateTimeUtcNow.ToLocalTime();
             CompareLogic compareLogic = new CompareLogic();
 
             ComparisonResult result = compareLogic.Compare(dateTimeNow, dateTimeUtcNow);
 
+            Assert.IsTrue(result.AreEqual);
+        }
+
+        [Test]
+        public void DateTimeKindUnspecifiedDifferent()
+        {
+            DateTime nowUtc = DateTime.UtcNow.Date;
+            DateTime nowUtcParsed;
+            DateTime.TryParse(nowUtc.ToString("yyyy-MM-dd"), out nowUtcParsed);
+
+            CompareLogic compareLogic = new CompareLogic();
+            var result = compareLogic.Compare(nowUtc, nowUtcParsed);
+            Console.WriteLine(result.DifferencesString);
             Assert.IsTrue(result.AreEqual);
         }
         #endregion
