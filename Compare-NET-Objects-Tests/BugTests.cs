@@ -53,6 +53,18 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
+        public void PositiveInfinityAndNegativeInfinityShouldBeDifferent()
+        {
+            double positiveInfinity = Double.PositiveInfinity;
+            double negativeInfinity = Double.NegativeInfinity;
+
+            CompareLogic compareLogic = new CompareLogic();
+            var result = compareLogic.Compare(positiveInfinity, negativeInfinity);
+            Console.WriteLine(result.DifferencesString);
+            Assert.IsFalse(result.AreEqual);
+        }
+
+        [Test]
         public void CompareDoubleNan()
         {
             CompareLogic compareLogic = new CompareLogic();
