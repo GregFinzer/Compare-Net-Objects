@@ -39,6 +39,12 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             Double double1 = (Double)parms.Object1;
             Double double2 = (Double)parms.Object2;
 
+            if (Double.IsPositiveInfinity(double1) && Double.IsPositiveInfinity(double2))
+                return;
+
+            if (Double.IsNegativeInfinity(double1) && Double.IsNegativeInfinity(double2))
+                return;
+
             double diff = double1 - double2;
             if ((Math.Abs(diff) > parms.Config.DoublePrecision)
                 || (Double.IsNaN(diff) && (!Double.IsNaN(double1) || !Double.IsNaN(double2))))
