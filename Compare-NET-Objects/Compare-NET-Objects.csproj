@@ -20,18 +20,17 @@
     <PackageTags>compare comparison equality equal deep objects difference compareobjects deepequal deepequals</PackageTags>
     <Description>What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.</Description>
     <Authors>gfinzer</Authors>
-    <Version>4.76.0</Version>
-    <AssemblyVersion>4.76.0.0</AssemblyVersion>
+    <Version>4.77.0</Version>
+    <AssemblyVersion>4.77.0.0</AssemblyVersion>
     <NeutralLanguage>en-US</NeutralLanguage>    
     <Company>Kellerman Software</Company>
-    <PackageReleaseNotes>Fixes for Compare Double Nan, IgnoreDateTimeOffsetTimezones, and CompareReadOnly == false.
+    <PackageReleaseNotes>Fix for comparing positive and negative infinity for a double.  https://github.com/GregFinzer/Compare-Net-Objects/issues/260
+Fix for default DateTime.Kind. https://github.com/GregFinzer/Compare-Net-Objects/issues/259
+Option to Ignore Collection Count when Read Only. https://github.com/GregFinzer/Compare-Net-Objects/pull/256
 
-https://github.com/GregFinzer/Compare-Net-Objects/issues/244
-https://github.com/GregFinzer/Compare-Net-Objects/issues/245
-https://github.com/GregFinzer/Compare-Net-Objects/issues/246
 </PackageReleaseNotes>
     <Copyright>Copyright © 2022</Copyright>
-    <FileVersion>4.76.0.0</FileVersion>
+    <FileVersion>4.77.0.0</FileVersion>
     
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <PackageIcon>NuGetIcon.png</PackageIcon>
