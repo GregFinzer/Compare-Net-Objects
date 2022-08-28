@@ -119,4 +119,8 @@ https://github.com/GregFinzer/Compare-Net-Objects/wiki/Getting-Started
 https://github.com/GregFinzer/Compare-Net-Objects/blob/master/Compare-NET-Objects-Help/Compare-NET-Objects-Help.chm?raw=true
 
 # Licensing
+Compare .NET Objects is an open source project with an Ms-PL license with no commercial support.  It is free to use and distribute for commercial and non-commercial purposes.  Below is a link to the licensing.  
 https://github.com/GregFinzer/Compare-Net-Objects/wiki/Licensing
+
+If you would like a perpetual MIT license with commercial support for a period of one year for all developers at your organization, purchase this option:
+https://kellermansoftware.com/products/compare-net-objects
