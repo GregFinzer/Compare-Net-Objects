@@ -366,6 +366,14 @@ namespace KellermanSoftware.CompareNetObjects
         public bool IgnoreCollectionOrder { get; set; }
 
         /// <summary>
+        /// If true, breadcrumb shows the name of the key for each item in a collection. If false, will only show the key value. Default is true.
+        /// </summary>
+#if !NETSTANDARD
+        [DataMember]
+#endif
+        public bool ShowCollectionKeyName { get; set; }
+
+        /// <summary>
         /// If true, compare properties of a class (see also CompareFields).  The default is true.
         /// </summary>
 #if !NETSTANDARD
@@ -643,6 +651,7 @@ namespace KellermanSoftware.CompareNetObjects
             CompareDateTimeOffsetWithOffsets = false;
             IgnoreCollectionOrder = false;
             CompareProperties = true;
+            ShowCollectionKeyName= true;
             Caching = true;
             AutoClearCache = true;
             IgnoreObjectTypes = false;
