@@ -337,6 +337,40 @@ namespace KellermanSoftware.CompareNetObjects
         }
 
         /// <summary>
+        /// Return true if the type is a DateTime
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool IsDateOnly(Type type)
+        {
+#if NET6_0_OR_GREATER
+            if (type == null)
+                return false;
+
+            return type == typeof(DateOnly);
+#else
+            return false;
+#endif
+        }
+
+        /// <summary>
+        /// Return true if the type is a TimeOnly
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool IsTimeOnly(Type type)
+        {
+#if NET6_0_OR_GREATER
+            if (type == null)
+                return false;
+
+            return type == typeof(TimeOnly);
+#else
+            return false;
+#endif
+        }
+
+        /// <summary>
         /// Return true if the type is a DateTimeOffset
         /// </summary>
         /// <param name="type"></param>
