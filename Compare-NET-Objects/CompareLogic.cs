@@ -47,9 +47,6 @@ using System.IO;
 
 #if !NETSTANDARD
 using System.Runtime.Serialization.Json;
-#endif
-
-#if !NETSTANDARD
 using KellermanSoftware.CompareNetObjects.Properties;
 #endif
 
