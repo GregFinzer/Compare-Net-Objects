@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CS1570 // XML comment has badly formed XML
+
+using System;
 using KellermanSoftware.CompareNetObjects.TypeComparers;
 
 namespace KellermanSoftware.CompareNetObjects
@@ -69,3 +71,5 @@ namespace KellermanSoftware.CompareNetObjects
         public BaseTypeComparer CustomPropertyComparer { get; set; }
     }
 }
+
+#pragma warning restore CS1570 // XML comment has badly formed XML
