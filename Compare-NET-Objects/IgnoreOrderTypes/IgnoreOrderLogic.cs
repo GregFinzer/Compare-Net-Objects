@@ -258,16 +258,33 @@ namespace KellermanSoftware.CompareNetObjects.IgnoreOrderTypes
                     propertyValue = ((string)propertyValue).ToLowerInvariant();
                 }
 
-                if (propertyValue == null)
+                if (result.Config.ShowCollectionKeyName)
                 {
-                    sb.AppendFormat("{0}:(null),", item);
+                    if (propertyValue == null)
+                    {
+                        sb.AppendFormat("{0}:(null),", item);
+                    }
+                    else
+                    {
+                        var decimals = BitConverter.GetBytes(decimal.GetBits(result.Config.DecimalPrecision)[3])[2];
+                        var formatString = $"{{0}}:{{1{(TypeHelper.IsDecimal(propertyValue) ? $":N{decimals}" : string.Empty)}}},";
+
+                        sb.Append(string.Format(formatString, item, propertyValue));
+                    }
                 }
                 else
                 {
-                    var decimals = BitConverter.GetBytes(decimal.GetBits(result.Config.DecimalPrecision)[3])[2];
-                    var formatString = $"{{0}}:{{1{(TypeHelper.IsDecimal(propertyValue) ? $":N{decimals}" : string.Empty)}}},";
+                    if (propertyValue == null)
+                    {
+                        sb.Append("(null),");
+                    }
+                    else
+                    {
+                        var decimals = BitConverter.GetBytes(decimal.GetBits(result.Config.DecimalPrecision)[3])[2];
+                        var formatString = $"{{0{(TypeHelper.IsDecimal(propertyValue) ? $":N{decimals}" : string.Empty)}}},";
 
-                    sb.Append(string.Format(formatString, item, propertyValue));
+                        sb.Append(string.Format(formatString, propertyValue));
+                    }
                 }
             }
 
