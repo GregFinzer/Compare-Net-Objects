@@ -68,35 +68,46 @@ namespace KellermanSoftware.CompareNetObjects
                 FieldInfo[] currentFields;
 
 #if !NETSTANDARD1_3
-                //All the implementation examples that I have seen for dynamic objects use private fields or properties
-                if (( config.ComparePrivateFields || isDynamicType) && !config.CompareStaticFields)
+                BindingFlags flags = BindingFlags.Public | BindingFlags.Instance;
+                if (config.ComparePrivateFields || isDynamicType)
                 {
-                    List<FieldInfo> list = new List<FieldInfo>();
-                    Type t = type;
-                    do
-                    {
-                        list.AddRange(t.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance));
-                        t = t.BaseType;
-                    } while (t != null);
-                    currentFields = list.ToArray();
+                    flags |= BindingFlags.NonPublic;
                 }
-                else if ((config.ComparePrivateFields || isDynamicType) && config.CompareStaticFields)
+                if (config.CompareStaticFields)
                 {
-                    List<FieldInfo> list = new List<FieldInfo>();
-                    Type t = type;
-                    do
-                    {
-                        list.AddRange(
-                            t.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic |
-                                        BindingFlags.Static));
-                        t = t.BaseType;
-                    } while (t != null);
-                    currentFields = list.ToArray();
+                    flags |= BindingFlags.Static;
                 }
-                else
-#endif
-                    currentFields = type.GetFields(); //Default is public instance and static
 
+                Func<FieldInfo, bool> fieldIsBacking = field => field.Name.Contains("k__BackingField");
+                List<FieldInfo> list = new List<FieldInfo>();
+                Type t = type;
+                do
+                {
+                    foreach (var field in t.GetFields(flags))
+                    {
+                        if (!config.ComparePrivateFields)
+                        {
+                            list.Add(field);
+                        }
+                        else if (config.ComparePrivateFields && !config.CompareBackingFields && !fieldIsBacking(field))
+                        {
+                            list.Add(field);
+                        }
+                        else if (config.ComparePrivateFields && config.CompareBackingFields)
+                        {
+                            list.Add(field);
+                        }
+                        else if (isDynamicType)
+                        {
+                            list.Add(field);
+                        }
+                    }
+                    t = t.BaseType;
+                } while (t != null);
+                currentFields = list.ToArray();
+#else
+                currentFields = type.GetFields(); //Default is public instance and static
+#endif
                 if (config.Caching)
                     _fieldCache.Add(type, currentFields);
 

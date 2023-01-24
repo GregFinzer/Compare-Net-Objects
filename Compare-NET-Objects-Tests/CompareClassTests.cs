@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using KellermanSoftware.CompareNetObjects;
 using KellermanSoftware.CompareNetObjectsTests.TestClasses;
 using NUnit.Framework;
@@ -215,6 +216,44 @@ namespace KellermanSoftware.CompareNetObjectsTests
             _compare.Config.ComparePrivateFields = false;
         }
         #endregion
+
+        #region Backing Field Tests
+        [Test]
+        public void BackingFieldPositive()
+        {
+            RecipeDetail detail1 = new RecipeDetail(true, "Toffee");
+            detail1.Ingredient = "Crunchy Chocolate";
+
+            RecipeDetail detail2 = new RecipeDetail(true, "Crunchy Frogs");
+            detail2.Ingredient = "Crunchy Chocolate";
+
+            _compare.Config.ComparePrivateFields = true;
+            _compare.Config.CompareBackingFields = false;
+            var result = _compare.Compare(detail1, detail2);
+            Assert.IsTrue(result.AreEqual);
+            Assert.IsTrue(result.Differences.Count == 0);
+            _compare.Config.ComparePrivateFields = false;
+            _compare.Config.CompareBackingFields = true;
+        }
+
+        [Test]
+        public void BackingFieldNegative()
+        {
+            RecipeDetail detail1 = new RecipeDetail(true, "Toffee");
+            detail1.Ingredient = "Crunchy Chocolate";
+
+            RecipeDetail detail2 = new RecipeDetail(true, "Crunchy Frogs");
+            detail2.Ingredient = "Crunchy Chocolate";
+
+            _compare.Config.ComparePrivateFields = true;
+            _compare.Config.CompareBackingFields = true;
+            var result = _compare.Compare(detail1, detail2);
+            Assert.IsFalse(result.AreEqual);
+            Assert.IsTrue(result.Differences.Any(dif => dif.PropertyName == "<SecretIngredient>k__BackingField"));
+            _compare.Config.ComparePrivateFields = false;
+            _compare.Config.CompareBackingFields = true;
+        }
+        #endregion 
 
         #endif
 
