@@ -316,6 +316,16 @@ namespace KellermanSoftware.CompareNetObjects
         public bool ComparePrivateFields { get; set; }
 #endif
 
+#if !NETSTANDARD1_3
+        /// <summary>
+        /// If true and <see cref="ComparePrivateFields"/> true, then backing fields will be compared. The default is true.  Silverlight and WinRT restricts access to private variables.
+        /// </summary>
+#if !NETSTANDARD
+        [DataMember]
+#endif
+        public bool CompareBackingFields { get; set; }
+#endif
+
         /// <summary>
         /// If true, static properties will be compared.  The default is true.
         /// </summary>
@@ -643,6 +653,7 @@ namespace KellermanSoftware.CompareNetObjects
 #if !NETSTANDARD1_3
             ComparePrivateProperties = false;
             ComparePrivateFields = false;
+            CompareBackingFields = true;
 #endif
             CustomPropertyComparers = new Dictionary<string, BaseTypeComparer>();
             CompareChildren = true;
