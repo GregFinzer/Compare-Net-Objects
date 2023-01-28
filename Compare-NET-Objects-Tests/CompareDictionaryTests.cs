@@ -51,6 +51,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             Dictionary<string, Person> dict2 = Common.CloneWithSerialization(dict1);
 
+            _compare.Config.DateTimeKindToUseWhenUnspecified = DateTimeKind.Local;
             ComparisonResult result = _compare.Compare(dict1, dict2);
 
             if (!result.AreEqual)
@@ -75,6 +76,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             dict2["1002"].DateCreated = DateTime.Now.AddDays(1);
 
+            _compare.Config.DateTimeKindToUseWhenUnspecified = DateTimeKind.Local;
             var result = _compare.Compare(dict1, dict2);
 
             Assert.IsFalse(result.AreEqual);

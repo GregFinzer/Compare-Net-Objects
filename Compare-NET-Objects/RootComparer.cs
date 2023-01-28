@@ -50,22 +50,7 @@ namespace KellermanSoftware.CompareNetObjects
                 }
                 else
                 {
-                    BaseTypeComparer typeComparer = TypeComparers.FirstOrDefault(o => o.IsTypeMatch(t1, t2));
-
-                    if (typeComparer != null)
-                    {
-                        if (parms.Config.IgnoreObjectTypes || !TypesDifferent(parms, t1, t2))
-                        {
-                            typeComparer.CompareType(parms);
-                        }
-                    }
-                    else
-                    {
-                        if (EitherObjectIsNull(parms)) return false;
-
-                        if (!parms.Config.IgnoreObjectTypes && t1 != null)
-                            throw new NotSupportedException("Cannot compare object of type " + t1.Name);
-                    }
+                    if (!PerformBaseTypeComparison(parms, t1, t2)) return false;
                 }
 
             }
@@ -78,6 +63,28 @@ namespace KellermanSoftware.CompareNetObjects
             }
 
             return parms.Result.AreEqual;
+        }
+
+        private bool PerformBaseTypeComparison(CompareParms parms, Type t1, Type t2)
+        {
+            BaseTypeComparer typeComparer = TypeComparers.FirstOrDefault(o => o.IsTypeMatch(t1, t2));
+
+            if (typeComparer != null)
+            {
+                if (parms.Config.IgnoreObjectTypes || !TypesDifferent(parms, t1, t2))
+                {
+                    typeComparer.CompareType(parms);
+                }
+            }
+            else
+            {
+                if (EitherObjectIsNull(parms)) return false;
+
+                if (!parms.Config.IgnoreObjectTypes && t1 != null)
+                    throw new NotSupportedException("Cannot compare object of type " + t1.Name);
+            }
+
+            return true;
         }
 
         private bool TypesDifferent(CompareParms parms, Type t1, Type t2)

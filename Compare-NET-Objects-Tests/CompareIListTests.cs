@@ -162,6 +162,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
             array2[0] = Common.CloneWithSerialization(p1);
             array2[1] = Common.CloneWithSerialization(p2);
 
+            _compare.Config.DateTimeKindToUseWhenUnspecified = DateTimeKind.Local;
             ComparisonResult result = _compare.Compare(array1, array2);
 
             if (!result.AreEqual)
@@ -190,6 +191,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
             array2[1] = Common.CloneWithSerialization(p2);
             array2[1].Name = "Bob";
 
+            _compare.Config.DateTimeKindToUseWhenUnspecified = DateTimeKind.Local;
             Assert.IsFalse(_compare.Compare(array1, array2).AreEqual);
         }
 
