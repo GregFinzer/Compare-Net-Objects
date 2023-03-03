@@ -59,10 +59,10 @@ namespace KellermanSoftware.CompareNetObjects
         public static bool IsByteArray(Type type)
         {
             return IsIList(type) && (
-                                     typeof(IEnumerable<byte>).IsAssignableFrom(type) ||
-                                     typeof(IEnumerable<byte?>).IsAssignableFrom(type)
-                                 )
-                                 && type != typeof(sbyte[]);
+                typeof(IEnumerable<byte>).IsAssignableFrom(type) ||
+                typeof(IEnumerable<byte?>).IsAssignableFrom(type)
+                )
+                && type != typeof(sbyte[]);
         }
 
         /// <summary>
@@ -76,19 +76,19 @@ namespace KellermanSoftware.CompareNetObjects
                 return false;
 
             return !IsSimpleType(type)
-                   && !IsTimespan(type)
-                   && !IsDateTimeOffset(type)
-                   && !IsEnum(type)
-                   && !IsPointer(type)
-                   && !IsStringBuilder(type)
-                   && (IsClass(type)
-                       || IsInterface(type)
-                       || IsArray(type)
-                       || IsIDictionary(type)
-                       || IsIList(type)
-                       || IsStruct(type)
-                       || IsHashSet(type)
-                   );
+                && !IsTimespan(type)
+                && !IsDateTimeOffset(type)
+                && !IsEnum(type)
+                && !IsPointer(type)
+                && !IsStringBuilder(type)
+                && (IsClass(type)
+                    || IsInterface(type)
+                    || IsArray(type)
+                    || IsIDictionary(type)
+                    || IsIList(type)
+                    || IsStruct(type)
+                    || IsHashSet(type)
+                    );
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace KellermanSoftware.CompareNetObjects
             if (type == null)
                 return false;
 
-            return type.Namespace == "System.Collections.Immutable"
+            return type.Namespace == "System.Collections.Immutable" 
                    && type.Name == "ImmutableArray`1";
         }
 
@@ -129,7 +129,7 @@ namespace KellermanSoftware.CompareNetObjects
                 return false;
 
             return (type.Namespace == "System.Collections.ObjectModel"
-                    && type.Name == "ReadOnlyCollection`1");
+                && type.Name == "ReadOnlyCollection`1");
         }
 
         /// <summary>
@@ -251,7 +251,7 @@ namespace KellermanSoftware.CompareNetObjects
                 return false;
 
             return type.GetTypeInfo().IsGenericType
-                   && type.GetTypeInfo().GetGenericTypeDefinition() == typeof(HashSet<>);
+                && type.GetTypeInfo().GetGenericTypeDefinition() == typeof(HashSet<>);
         }
 
         /// <summary>
@@ -395,6 +395,7 @@ namespace KellermanSoftware.CompareNetObjects
                    || type == typeof(Guid)
                    || type == typeof(Decimal)
                    || type.GetTypeInfo().IsEnum;
+
         }
 
         /// <summary>
@@ -556,5 +557,6 @@ namespace KellermanSoftware.CompareNetObjects
             return result;
         }
 #endif
+
     }
 }
