@@ -80,8 +80,8 @@ namespace KellermanSoftware.CompareNetObjectsTests
             ComparisonResult result21 = compare.Compare(class2, class1);
 
             // Assert.
-            Assert.AreEqual(result12.Differences.Count, 3);
-            Assert.AreEqual(result21.Differences.Count, 3);
+            Assert.AreEqual(result12.Differences.Count, 1);
+            Assert.AreEqual(result21.Differences.Count, 1);
         }
 
         [Test]

@@ -706,5 +706,28 @@ namespace KellermanSoftware.CompareNetObjectsTests
             Assert.That(comparison.DifferencesString, Does.Contain("Types [Int32,null], Item Expected[3].Item != Actual[3].Item, Values (3,(null))"));
         }
         #endregion
+
+        #region Enumerable Tests
+
+        [Test]
+        public void CompareListsTwoDifferentTypesWithIEnumerable()
+        {
+            List<Person> list1 = new List<Person>();
+            list1.Add(new Person() { Name = "Other name" });
+            list1.Add(new Person() { Name = "Francis 7" });
+
+            HashSet<Officer> list2 = new HashSet<Officer>();
+            list2.Add(new Officer() { Name = "Logan 5" });
+            list2.Add(new Officer() { Name = "Francis 7" });
+
+            ComparisonConfig config = new ComparisonConfig();
+            config.IgnoreObjectTypes = true;
+
+            CompareLogic compareLogic = new CompareLogic(config);
+            var result = compareLogic.Compare(list1, list2);
+            Assert.IsFalse(result.AreEqual);
+        }
+
+        #endregion 
     }
 }

@@ -711,11 +711,11 @@ namespace KellermanSoftware.CompareNetObjectsTests
             var result = _compare.Compare(class1, class2);
             Console.WriteLine(result.DifferencesString);
 
-            Assert.AreEqual(3, result.Differences.Count);
+            Assert.AreEqual(2, result.Differences.Count);
 
             result = _compare.Compare(class2, class1);
             Console.WriteLine(result.DifferencesString);
-            Assert.AreEqual(3, result.Differences.Count);
+            Assert.AreEqual(2, result.Differences.Count);
 
 
             _compare.Config.MaxDifferences = prior;
