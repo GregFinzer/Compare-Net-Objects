@@ -281,7 +281,7 @@ namespace KellermanSoftware.CompareNetObjects
 #else
             var toCheck = type.DeclaringType;
 #endif
-            return toCheck != null && toCheck == typeof(Enumerable);
+            return typeof(IEnumerable).IsAssignableFrom(type) && type != typeof(string) && type.Name != "ExpandoObject";
         }
 
         /// <summary>

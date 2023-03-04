@@ -57,18 +57,19 @@ namespace KellermanSoftware.CompareNetObjects
             _rootComparer.TypeComparers.Add(new DataRowComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new DataColumnComparer(_rootComparer));
 #endif
-            _rootComparer.TypeComparers.Add(new EnumerableComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new ByteArrayComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new DictionaryComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new HashSetComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new CollectionComparer(_rootComparer));
+            _rootComparer.TypeComparers.Add(new ImmutableArrayComparer(_rootComparer));
+            _rootComparer.TypeComparers.Add(new EnumerableComparer(_rootComparer));
+
             _rootComparer.TypeComparers.Add(new UriComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new StringBuilderComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new ClassComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new DateTimeOffSetComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new TimespanComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new StructComparer(_rootComparer));
-            _rootComparer.TypeComparers.Add(new ImmutableArrayComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new EnumComparer(_rootComparer));
             return _rootComparer;
         }
