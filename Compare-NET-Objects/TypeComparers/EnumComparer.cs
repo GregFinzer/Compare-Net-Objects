@@ -23,7 +23,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         /// <returns></returns>
         public override bool IsTypeMatch(Type type1, Type type2)
         {
-            return TypeHelper.IsEnum(type1) && TypeHelper.IsEnum(type2);
+            return TypeHelper.IsEnum(type1) || TypeHelper.IsEnum(type2);
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
         /// </summary>
         public override void CompareType(CompareParms parms)
         {
-            if (parms.Object1.ToString() != parms.Object2.ToString())
+            if (parms.Object1?.ToString() != parms.Object2?.ToString())
             {
                 AddDifference(parms);
             }
