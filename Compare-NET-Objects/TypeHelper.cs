@@ -63,7 +63,7 @@ namespace KellermanSoftware.CompareNetObjects
                 typeof(IEnumerable<byte?>).IsAssignableFrom(type)
                 )
                 && type != typeof(sbyte[]);
-}
+        }
 
         /// <summary>
         /// Returns true if the type can have children
