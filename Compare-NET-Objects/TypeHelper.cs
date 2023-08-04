@@ -142,7 +142,7 @@ namespace KellermanSoftware.CompareNetObjects
             if (type == null)
                 return false;
 
-            return type.GetTypeInfo().IsValueType && !IsSimpleType(type) && !IsImmutableArray(type);
+            return type.GetTypeInfo().IsValueType && !IsSimpleType(type) && !IsImmutableArray(type) || !IsEnum((type));
         }
 
         /// <summary>
@@ -223,6 +223,11 @@ namespace KellermanSoftware.CompareNetObjects
         {
             if (type == null)
                 return false;
+
+            if (type.GetTypeInfo().IsGenericType && type.GetTypeInfo().GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                type = Nullable.GetUnderlyingType(type);
+            }
 
             return type.GetTypeInfo().IsEnum;
         }
@@ -393,9 +398,7 @@ namespace KellermanSoftware.CompareNetObjects
                    || type == typeof(DateTime)
                    || type == typeof(string)
                    || type == typeof(Guid)
-                   || type == typeof(Decimal)
-                   || type.GetTypeInfo().IsEnum;
-
+                   || type == typeof(Decimal);
         }
 
         /// <summary>
@@ -557,6 +560,5 @@ namespace KellermanSoftware.CompareNetObjects
             return result;
         }
 #endif
-
     }
 }

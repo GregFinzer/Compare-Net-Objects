@@ -181,6 +181,45 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             Assert.That(_compare.Compare(item1, item2).AreEqual, Is.False);
         }
+
+
+        [Test]
+        public void EnumsOfDifferentTypesTest()
+        {
+            Officer officer1 = new Officer();
+            officer1.Name = "Greg";
+            officer1.Type = Deck.Engineering;
+
+            Officer2 officer2 = new Officer2();
+            officer2.Name = "Greg";
+            officer2.Type = Deck2.Engineering;
+
+            _compare.Config.MaxDifferences = 2;
+            _compare.Config.IgnoreObjectTypes = true;
+
+            ComparisonResult result = _compare.Compare(officer1, officer2);
+
+            Assert.IsTrue(result.AreEqual, result.DifferencesString);
+        }
+
+        [Test]
+        public void EnumsWithOneStringTest()
+        {
+            Officer officer1 = new Officer();
+            officer1.Name = "Greg";
+            officer1.Type = Deck.Engineering;
+
+            Officer3 officer3 = new Officer3();
+            officer3.Name = "Greg";
+            officer3.Type = Deck2.Engineering.ToString();
+
+            _compare.Config.MaxDifferences = 2;
+            _compare.Config.IgnoreObjectTypes = true;
+
+            ComparisonResult result = _compare.Compare(officer1, officer3);
+            Assert.IsTrue(result.AreEqual, result.DifferencesString);
+        }
+
         #endregion
     }
 }
