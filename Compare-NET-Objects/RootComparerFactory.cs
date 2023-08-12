@@ -36,7 +36,7 @@ namespace KellermanSoftware.CompareNetObjects
             _rootComparer.TypeComparers = new List<BaseTypeComparer>();
 
             _rootComparer.TypeComparers.Add(new StringComparer(_rootComparer));
-            _rootComparer.TypeComparers.Add(new DateComparer(_rootComparer));
+            _rootComparer.TypeComparers.Add(new DateTimeComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new DecimalComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new DoubleComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new PointerComparer(_rootComparer));
@@ -71,6 +71,11 @@ namespace KellermanSoftware.CompareNetObjects
             _rootComparer.TypeComparers.Add(new TimespanComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new EnumComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new StructComparer(_rootComparer));
+
+#if NET6_0_OR_GREATER
+            _rootComparer.TypeComparers.Add(new DateOnlyComparer(_rootComparer));
+            _rootComparer.TypeComparers.Add(new TimeOnlyComparer(_rootComparer));
+#endif
             return _rootComparer;
         }
         #endregion

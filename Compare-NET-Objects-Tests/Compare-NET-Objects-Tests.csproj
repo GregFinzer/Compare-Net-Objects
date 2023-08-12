@@ -1,13 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>net461;netcoreapp2.0;net6.0</TargetFrameworks>
     <AssemblyName>Compare-NET-Objects-Tests</AssemblyName>
     <RootNamespace>KellermanSoftware.CompareNetObjectsTests</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="KellermanSoftware.Serialization" Version="3.13.0" />
     <PackageReference Include="Microsoft.AspNet.OData" Version="6.0.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
@@ -30,7 +31,16 @@
     <IsNetCore>true</IsNetCore>
     <DefineConstants>$(DefineConstants);DNCORE;NETSTANDARD;NETCORE</DefineConstants>
   </PropertyGroup>
-  
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net6.0'">
+    <DefineConstants>$(DefineConstants);NET6_0;NETFULL</DefineConstants>
+  </PropertyGroup>
+
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net7.0'">
+    <DefineConstants>$(DefineConstants);NET7_0;NETFULL</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup Condition="!$(IsNetCore)">
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
