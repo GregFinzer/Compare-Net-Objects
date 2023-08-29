@@ -53,6 +53,14 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
+        public void OverrideEqualsShouldNotCauseStackOverflow()
+        {
+            ClassThatOverridesEquals class1 = new ClassThatOverridesEquals() { Id = 1 };
+            ClassThatOverridesEquals class2 = new ClassThatOverridesEquals() { Id = 2 };
+            Assert.IsFalse(class1.Equals(class2));
+        }
+        
+        [Test]
         public void ShouldNotAccessReadOnlyProperty()
         {
             ClassWithReadOnly object1 = new ClassWithReadOnly { Name = "Greg" };
