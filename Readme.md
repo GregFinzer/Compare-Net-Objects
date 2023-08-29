@@ -110,6 +110,7 @@ dotnet add package CompareNETObjects
 * Private properties and fields cannot be compared for .NET Core 1.3.  They are allowed to be compared in .NET Core 2.0 and higher.
 * When ignoring the collection order, the collection matching spec must be a property on the class.  It cannot be a field or a property  on a child or parent class.  The property has to be a simple type.
 * COM Objects are not compared.  To compare COM objects wrap their properties in a .NET Object or create a <a href="https://github.com/GregFinzer/Compare-Net-Objects/wiki/Custom-Comparers">custom comparer</a>.  Also See:  https://stackoverflow.com/questions/9735394/reflection-on-com-interop-objects
+* Version 4.62 and earlier used the hash code to identify objects to keep track of parents and children. In later versions the object reference is used.  The reason for this change is that developers were overriding the GetHashCode.  If you are overriding equals in your project with Compare .NET Objects inside, you will need to set *Config.UseHashCodeIdentifier = true* or it will cause a stack overflow.  See this issue:  https://github.com/GregFinzer/Compare-Net-Objects/issues/282.
 
 
 # Getting Started
