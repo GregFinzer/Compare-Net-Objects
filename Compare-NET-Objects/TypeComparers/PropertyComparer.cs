@@ -73,7 +73,19 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                 return;
 
             //If we ignore types then we must get correct PropertyInfo object
-            PropertyEntity secondObjectInfo = GetSecondObjectInfo(info, object2Properties);
+            PropertyEntity secondObjectInfo;
+
+            if (parms.Config.IgnoreObjectTypes)
+            {
+                secondObjectInfo =
+                    object2Properties.FirstOrDefault(x => x.Name == info.Name && x.PropertyType == info.PropertyType)
+                    ?? object2Properties.FirstOrDefault(x => x.Name == info.Name);
+            }
+            else
+            {
+                secondObjectInfo =
+                    object2Properties.FirstOrDefault(x => x.Name == info.Name && x.PropertyType == info.PropertyType);
+            }
 
             //If the property does not exist, and we are ignoring the object types, skip it - unless we have set IgnoreMissingProperties = true
             if ((parms.Config.IgnoreObjectTypes || parms.Config.IgnoreConcreteTypes) && secondObjectInfo == null && parms.Config.IgnoreMissingProperties)
@@ -127,16 +139,6 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
             _rootComparer.Compare(childParms);
         }
 
-        private static PropertyEntity GetSecondObjectInfo(PropertyEntity info, List<PropertyEntity> object2Properties)
-        {
-            foreach (var object2Property in object2Properties)
-            {
-                if (info.Name == object2Property.Name)
-                    return object2Property;
-            }
-
-            return null;
-        }
 
         private static List<PropertyEntity> GetCurrentProperties(CompareParms parms, object objectValue, Type objectType)
         {
