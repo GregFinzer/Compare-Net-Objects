@@ -339,3 +339,9 @@ documentation/stylesheets/
 
 # Kellerman Software .Net Automated Builds Specific Directories
 Assemblies/
+/Compare-NET-Objects/documentation/designtime
+/Compare-NET-Objects/documentation/flash
+/Compare-NET-Objects/documentation/images
+/Compare-NET-Objects/documentation/script
+/Compare-NET-Objects/documentation/scripts
+/Compare-NET-Objects/documentation/stylesheets
