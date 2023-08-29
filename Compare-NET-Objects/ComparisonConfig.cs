@@ -507,7 +507,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// such a matching key, Don't set this property (default comparer behavior)
         /// NOTE: types are looked up as exact.  e.g. if foo is an entry in the dictionary and bar is a 
         /// sub-class of foo, upon encountering a bar type, the comparer will not find the entry of foo.
-        /// It can use derrived types:  https://github.com/GregFinzer/Compare-Net-Objects/issues/280 
+        /// It can use derived types:  https://github.com/GregFinzer/Compare-Net-Objects/issues/280 
         /// </summary>
 #if !NETSTANDARD
         [DataMember]
