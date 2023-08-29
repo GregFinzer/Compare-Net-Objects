@@ -53,6 +53,17 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
+        public void ShouldNotAccessReadOnlyProperty()
+        {
+            ClassWithReadOnly object1 = new ClassWithReadOnly { Name = "Greg" };
+            ClassWithReadOnly object2 = new ClassWithReadOnly { Name = "Greg" };
+            CompareLogic compareLogic = new CompareLogic();
+            compareLogic.Config.CompareReadOnly = false;
+            var result = compareLogic.Compare(object1, object2);
+            Assert.IsTrue(result.AreEqual);
+        }
+        
+        [Test]
         public void PositiveInfinityShouldBeTheSame()
         {
             double positiveInfinity = Double.PositiveInfinity;
