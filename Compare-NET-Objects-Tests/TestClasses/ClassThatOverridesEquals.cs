@@ -1,15 +1,9 @@
-﻿using System.Collections.Generic;
-using KellermanSoftware.CompareNetObjects;
+﻿using KellermanSoftware.CompareNetObjects;
 
 namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
 {
     public class ClassThatOverridesEquals
     {
-        public ClassThatOverridesEquals()
-        {
-            Name = string.Empty;
-        }
-
         public int Id { get; set; }
         public string Name { get; set; }
 
@@ -29,24 +23,12 @@ namespace KellermanSoftware.CompareNetObjectsTests.TestClasses
         private bool Compare(object object1, object object2)
         {
             CompareLogic compareLogic = new CompareLogic();
-            compareLogic.Config = new ComparisonConfig();
-            compareLogic.Config.AutoClearCache = true;
-            compareLogic.Config.Caching = false;
-            compareLogic.Config.UseHashCodeIdentifier = true;
-            compareLogic.Config.MembersToIgnore = new List<string>();
 
-            compareLogic.Config.CompareProperties = true;
-            ComparisonResult result = null;
-            try
-            {
-                if (compareLogic != null)
-                    result = compareLogic.Compare(object1, object2);
-            }
-            catch
-            {
-                return false;
-            }
-            return result?.AreEqual ?? false;
+            //THIS IS WHAT PREVENTS THE STACK OVERFLOW
+            compareLogic.Config.UseHashCodeIdentifier = true;
+            
+            ComparisonResult result = compareLogic.Compare(object1, object2);
+            return result.AreEqual;
         }
     }
 }

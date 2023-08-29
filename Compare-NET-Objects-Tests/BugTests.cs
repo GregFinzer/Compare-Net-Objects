@@ -53,6 +53,18 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Tests
 
         [Test]
+        public void OverrideNewTypeShouldBeEqual()
+        {
+            OverrideNewType a = new OverrideNewType() { MyProperty1 = "1" };
+            OverrideNewType b = new OverrideNewType() { MyProperty1 = "1" };
+
+            CompareLogic compareLogic = new CompareLogic();
+            ComparisonResult result = compareLogic.Compare(a, b);
+            Console.WriteLine(result.DifferencesString);
+            Assert.IsTrue(result.AreEqual);
+        }
+        
+        [Test]
         public void OverrideEqualsShouldNotCauseStackOverflow()
         {
             ClassThatOverridesEquals class1 = new ClassThatOverridesEquals() { Id = 1 };
