@@ -20,16 +20,13 @@
     <PackageTags>compare comparison equality equal deep objects difference compareobjects deepequal deepequals</PackageTags>
     <Description>What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.</Description>
     <Authors>gfinzer</Authors>
-    <Version>4.79.0</Version>
-    <AssemblyVersion>4.79.0.0</AssemblyVersion>
+    <Version>4.80.0</Version>
+    <AssemblyVersion>4.80.0.0</AssemblyVersion>
     <NeutralLanguage>en-US</NeutralLanguage>    
     <Company>Kellerman Software</Company>
-    <PackageReleaseNotes>ShowCollectionKeyName Config option by gordon-matt  https://github.com/GregFinzer/Compare-Net-Objects/pull/275
-CompareBackingFields config option by Mch-Kuzyk https://github.com/GregFinzer/Compare-Net-Objects/pull/279
-
-</PackageReleaseNotes>
+    <PackageReleaseNotes>Changes. Ability to compare DateOnly and TimeOnly for .NET Core 6.0 and higher. Update XML Doc for CollectionMatchingSpec. Fix hidden type bug. Fix for compare IEnumerable from killergege.  Handle different enum types from killergege.</PackageReleaseNotes>
     <Copyright>Copyright © 2023</Copyright>
-    <FileVersion>4.79.0.0</FileVersion>
+    <FileVersion>4.80.0.0</FileVersion>
     
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <PackageIcon>NuGetIcon.png</PackageIcon>
