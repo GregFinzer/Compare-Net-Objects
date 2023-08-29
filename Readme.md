@@ -9,7 +9,7 @@ What you have been waiting for. Perform a deep compare of any two .NET objects u
 * Compatible with .NET Framework 4.0 and higher.  
 * .NET Standard 1.3 Build Compatible with .NET Core 1.0, Mono 4.6, Xamarin.iOS 10.0, Xamarin.Mac 3.0, Xamarin.Android 7.0, Universal Windows Platform 10.0
 * .NET Standard 2.0 Build Compatible with .NET Core 2.0, Mono 5.4, Xamarin.iOS 10.14, Xamarin.Mac 3.8, Xamarin.Android 8.0, Universal Windows Platform 10.0.16299, Unity 2018.1
-* .NET Standard 2.1 Build Compatible with .NET 5, .NET 6, Mono 6.4, Xamarin.iOS 12.16, Xamarin.Mac 5.16, Xamarin.Android 10.0
+* .NET Standard 2.1 Build Compatible with .NET 5, .NET 6, .NET 7, Mono 6.4, Xamarin.iOS 12.16, Xamarin.Mac 5.16, Xamarin.Android 10.0
 
 # NuGet Package
 
@@ -79,31 +79,41 @@ dotnet add package CompareNETObjects
 * Precision for double or decimal values
 
 ## Supported Types
-* Classes
-* Dynamic (Expando objects and Dynamic objects are supported)
 * Anonymous Types
-* Primitive Types (String, Int, Boolean, etc.)
-* Structs
-* IList Objects
+* Arrays (Single, Multi-Dimensional, and Immutable)
+* Classes
 * Collections
-* Single and Multi-Dimensional Arrays
-* Immutable Arrays
-* IDictionary Objects
-* Enums
-* Timespans
-* Guids
-* Classes that Implement IList with Integer Indexers
-* DataSet Data
-* DataTable Data
-* DataRow Data
-* DataColumn Differences
-* LinearGradient
+* DataColumn
+* DataRow
+* DataSet
+* DataTable
+* DateOnly (.NET Core 6.0 or highter)
+* DateTime
+* DateTimeOffset
+* Dictionary
+* Dynamic (Expando objects and Dynamic objects are supported)
+* Enum
+* Fields
+* Font (Windows Only)
+* Guid
 * HashSet
-* URI
+* IDictionary
+* IList
+* IntPtr
 * IPEndPoint (Supported for everything except .NET Standard 1.0)
-* Types of Type (RuntimeType)
-* StringBuilder
+* LinearGradient
+* List
+* Primitive Types (String, Int, Boolean, etc.)
+* Properties
 * SByte
+* StringBuilder
+* Struct
+* Timespans
+* HashSet
+* TimeOnly (.NET Core 6.0 or highter)
+* Timespan
+* Types of Type (RuntimeType)
+* URI
 
 # Limitations
 * Custom Collections with Non-Integer Indexers cannot be compared.
