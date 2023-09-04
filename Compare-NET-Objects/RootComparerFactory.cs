@@ -70,12 +70,14 @@ namespace KellermanSoftware.CompareNetObjects
             _rootComparer.TypeComparers.Add(new DateTimeOffSetComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new TimespanComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new EnumComparer(_rootComparer));
-            _rootComparer.TypeComparers.Add(new StructComparer(_rootComparer));
-
+            
 #if NET6_0_OR_GREATER
             _rootComparer.TypeComparers.Add(new DateOnlyComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new TimeOnlyComparer(_rootComparer));
 #endif
+            
+            _rootComparer.TypeComparers.Add(new StructComparer(_rootComparer));
+
             return _rootComparer;
         }
         #endregion
