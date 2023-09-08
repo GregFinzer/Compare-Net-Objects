@@ -2,7 +2,7 @@
 
 namespace KellermanSoftware.CompareNetObjects
 {
-#if !NETSTANDARD
+#if !NETSTANDARD && !NET
     /// <summary>
     /// Extensions for Type to provide backward compatibility between latest and older .net Framework APIs.
     /// </summary>
