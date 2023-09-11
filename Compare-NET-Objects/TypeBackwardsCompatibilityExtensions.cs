@@ -6,7 +6,7 @@ namespace KellermanSoftware.CompareNetObjects
     /// <summary>
     /// Extensions for Type to provide backward compatibility between latest and older .net Framework APIs.
     /// </summary>
-    public static class TypeBackwardsCompatibilityExtensions
+    internal static class TypeBackwardsCompatibilityExtensions
     {
         /// <summary>
         /// Function to provide compilation compatibility between older code and newer style.
