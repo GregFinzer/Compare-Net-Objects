@@ -20,13 +20,13 @@
     <PackageTags>compare comparison equality equal deep objects difference compareobjects deepequal deepequals</PackageTags>
     <Description>What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.</Description>
     <Authors>gfinzer</Authors>
-    <Version>4.81.0</Version>
-    <AssemblyVersion>4.81.0.0</AssemblyVersion>
+    <Version>4.82.0</Version>
+    <AssemblyVersion>4.82.0.0</AssemblyVersion>
     <NeutralLanguage>en-US</NeutralLanguage>    
     <Company>Kellerman Software</Company>
-    <PackageReleaseNotes>Fix for DateOnly and TimeOnly comparison when also using structs.</PackageReleaseNotes>
+    <PackageReleaseNotes>Make GetTypeInfo internal.</PackageReleaseNotes>
     <Copyright>Copyright © 2023</Copyright>
-    <FileVersion>4.81.0.0</FileVersion>
+    <FileVersion>4.82.0.0</FileVersion>
     
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <PackageIcon>NuGetIcon.png</PackageIcon>
