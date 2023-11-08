@@ -454,9 +454,9 @@ namespace KellermanSoftware.CompareNetObjects
         }
 #endif
 
-		/// <summary>
-		/// A list of type comparers to ignore
-		/// </summary>
+        /// <summary>
+        /// A list of type comparers to ignore
+        /// </summary>
         public List<Type> TypeComparerTypesToIgnore { get; set; }
 #if !NETSTANDARD
         [DataMember(Name = "TypeComparerTypesToIgnore")]
