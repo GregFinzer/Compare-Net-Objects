@@ -226,22 +226,22 @@ namespace KellermanSoftware.CompareNetObjects
         public static bool ShouldExcludeTypeComparer(ComparisonConfig config, BaseTypeComparer comparer)
             => ShouldExcludeTypeComparerType(config, comparer.GetType());
 
-		/// <summary>
-		/// Check if the type comparer type should be exluded
-		/// </summary>
-		/// <param name="config"></param>
-		/// <param name="comparerType"></param>
-		/// <returns></returns>
-		public static bool ShouldExcludeTypeComparerType(ComparisonConfig config, Type comparerType)
-		{
-			if (config.TypeComparerTypesToIgnoreSet.Count > 0
-				&& config.TypeComparerTypesToIgnoreSet.Contains(comparerType))
-			{
-				return true;
-			}
+        /// <summary>
+        /// Check if the type comparer type should be exluded
+        /// </summary>
+        /// <param name="config"></param>
+        /// <param name="comparerType"></param>
+        /// <returns></returns>
+        public static bool ShouldExcludeTypeComparerType(ComparisonConfig config, Type comparerType)
+        {
+	        if (config.TypeComparerTypesToIgnoreSet.Count > 0
+		        && config.TypeComparerTypesToIgnoreSet.Contains(comparerType))
+	        {
+		        return true;
+	        }
 
-			return false;
-		}
+	        return false;
+        }
 
 	}
 }
