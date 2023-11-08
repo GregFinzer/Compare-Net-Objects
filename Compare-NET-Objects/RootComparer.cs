@@ -67,9 +67,11 @@ namespace KellermanSoftware.CompareNetObjects
 
         private bool PerformBaseTypeComparison(CompareParms parms, Type t1, Type t2)
         {
-            BaseTypeComparer typeComparer = TypeComparers.FirstOrDefault(o => o.IsTypeMatch(t1, t2));
+			BaseTypeComparer typeComparer = TypeComparers
+				.Where(x => !ExcludeLogic.ShouldExcludeTypeComparer(parms.Config, x))
+				.FirstOrDefault(o => o.IsTypeMatch(t1, t2));
 
-            if (typeComparer != null)
+			if (typeComparer != null)
             {
                 if (parms.Config.IgnoreObjectTypes || !TypesDifferent(parms, t1, t2))
                 {

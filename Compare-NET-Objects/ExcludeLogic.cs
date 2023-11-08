@@ -1,4 +1,5 @@
 ﻿
+using KellermanSoftware.CompareNetObjects.TypeComparers;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -216,5 +217,31 @@ namespace KellermanSoftware.CompareNetObjects
             return !attributes.Any(a => config.RequiredAttributesToCompareSet.Contains(a.GetType()));
         }
 
-    }
+        /// <summary>
+        /// Check if the type comparer should be exluded
+        /// </summary>
+        /// <param name="config"></param>
+        /// <param name="comparer"></param>
+        /// <returns></returns>
+        public static bool ShouldExcludeTypeComparer(ComparisonConfig config, BaseTypeComparer comparer)
+            => ShouldExcludeTypeComparerType(config, comparer.GetType());
+
+		/// <summary>
+		/// Check if the type comparer type should be exluded
+		/// </summary>
+		/// <param name="config"></param>
+		/// <param name="comparerType"></param>
+		/// <returns></returns>
+		public static bool ShouldExcludeTypeComparerType(ComparisonConfig config, Type comparerType)
+		{
+			if (config.TypeComparerTypesToIgnoreSet.Count > 0
+				&& config.TypeComparerTypesToIgnoreSet.Contains(comparerType))
+			{
+				return true;
+			}
+
+			return false;
+		}
+
+	}
 }

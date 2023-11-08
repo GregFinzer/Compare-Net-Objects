@@ -43,13 +43,14 @@ namespace KellermanSoftware.CompareNetObjects
         internal HashSet<Type> TypesToIgnoreSet { get; set; }
         internal HashSet<Type> TypesToIncludeSet { get; set; }
         internal HashSet<Type> RequiredAttributesToCompareSet { get; set; }
+		internal HashSet<Type> TypeComparerTypesToIgnoreSet { get; set; }
 
-        /// <summary>
-        /// By default Compare .NET Objects uses reference equal to identify objects.
-        /// Versions 4.61 and older used the hash code.  Setting this to true will identify objects by hash code instead of reference equals.
-        /// The default is false
-        /// </summary>
-        public bool UseHashCodeIdentifier { get; set; }
+		/// <summary>
+		/// By default Compare .NET Objects uses reference equal to identify objects.
+		/// Versions 4.61 and older used the hash code.  Setting this to true will identify objects by hash code instead of reference equals.
+		/// The default is false
+		/// </summary>
+		public bool UseHashCodeIdentifier { get; set; }
 
         /// <summary>
         /// When comparing strings or StringBuilder types, perform a case sensitive comparison.  The default is true.
@@ -453,11 +454,24 @@ namespace KellermanSoftware.CompareNetObjects
         }
 #endif
 
-        /// <summary>
-        /// If true, objects will be compared ignore their type diferences.  The default is false.
-        /// </summary>
+		/// <summary>
+		/// A list of type comparers to ignore
+		/// </summary>
+		public List<Type> TypeComparerTypesToIgnore { get; set; }
 #if !NETSTANDARD
-        [DataMember]
+		[DataMember(Name = "TypeComparerTypesToIgnore")]
+		private List<string> TypeComparerTypesToIgnoreSerializer
+		{
+			get { return TypeHelper.ListOfTypesSerializer(TypeComparerTypesToIgnore); }
+			set { TypeComparerTypesToIgnore = TypeHelper.ListOfTypesDeserializer(value); }
+		}
+#endif
+
+		/// <summary>
+		/// If true, objects will be compared ignore their type diferences.  The default is false.
+		/// </summary>
+#if !NETSTANDARD
+		[DataMember]
 #endif
         public bool IgnoreObjectTypes { get; set; }
 
@@ -610,7 +624,8 @@ namespace KellermanSoftware.CompareNetObjects
             TypesToIgnoreSet = new HashSet<Type>((TypesToIgnore ?? new List<Type>()).Distinct());
             TypesToIncludeSet = new HashSet<Type>((TypesToInclude ?? new List<Type>()).Distinct());
             RequiredAttributesToCompareSet = new HashSet<Type>((RequiredAttributesToCompare ?? new List<Type>()).Distinct());
-        }
+            TypeComparerTypesToIgnoreSet = new HashSet<Type>((TypeComparerTypesToIgnore ?? new List<Type>()).Distinct());
+		}
 
         /// <summary>
         /// Backing member that supports <see cref="HasWildcardMembersToExclude"/>
@@ -648,6 +663,7 @@ namespace KellermanSoftware.CompareNetObjects
             ClassTypesToInclude = new List<Type>();
             TypesToIgnore = new List<Type>();
             TypesToInclude = new List<Type>();
+            TypeComparerTypesToIgnore = new List<Type>();
 
             CompareStaticFields = true;
             CompareStaticProperties = true;
