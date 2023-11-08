@@ -243,5 +243,5 @@ namespace KellermanSoftware.CompareNetObjects
 	        return false;
         }
 
-	}
+    }
 }

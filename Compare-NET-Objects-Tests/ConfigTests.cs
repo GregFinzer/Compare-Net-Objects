@@ -404,7 +404,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
             //Assert
             Assert.IsTrue(result.AreEqual, result.DifferencesString);
         }
-		#endregion
+        #endregion
 
         #region Type Comparer Type Ignore Tests
 
@@ -442,11 +442,11 @@ namespace KellermanSoftware.CompareNetObjectsTests
             Assert.IsFalse(result.AreEqual, result.DifferencesString);
         }
 
-		#endregion
+        #endregion
 
-		#region Verify Config Tests
+        #region Verify Config Tests
 
-		[Test]
+        [Test]
         public void InvalidConfigShouldBeIgnored()
         {
             // Arrange.
