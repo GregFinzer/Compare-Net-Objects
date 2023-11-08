@@ -471,7 +471,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// If true, objects will be compared ignore their type diferences.  The default is false.
         /// </summary>
 #if !NETSTANDARD
-		[DataMember]
+        [DataMember]
 #endif
         public bool IgnoreObjectTypes { get; set; }
 
