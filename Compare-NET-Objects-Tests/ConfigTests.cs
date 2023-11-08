@@ -417,13 +417,13 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             // Should realy use InternalsVisibleTo attribute in the Compare-NET-Object project
             // but because that project is signed, I couldn't for the life of me work out how to
-            // get the PublicKey for the test project
+            // get the PublicKey for the test project, sorry
             var typeComparersProp = rootComparer.GetType().GetProperty("TypeComparers", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
             var typeComparers = typeComparersProp.GetValue(rootComparer) as List<BaseTypeComparer>;
             typeComparers.Insert(0, testTypeComparer);
 
             Person p1 = new Person();
-            p1.Name = "Greg";
+            p1.Name = "Greg"; 
             p1.DateCreated = DateTime.Now;
 
             Person p2 = new Person();
