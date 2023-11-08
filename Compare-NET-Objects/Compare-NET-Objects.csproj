@@ -33,11 +33,7 @@
     <Title>Compare .NET Objects</Title>
     
     
-  </PropertyGroup>
-
-  <ItemGroup>
-    <InternalsVisibleTo Include="Compare-NET-Objects-Tests" Key="0024000004800000940000000602000000240000525341310004000001000100ad52329013bf7f618ce497aad53a9fb80f837691104246cc83c42c09a2e9c177ae14027cf07f3dec8a55981b03eb9aad49baaae6565e8c0454fa0bffed46cb2a6d794b9371b313a030147a5a5ab532c410d69258e7f442318a58edaa70585d7518da5faf2074d6c17e2feb2c5b48552041b15328b70878a73a60fb3c934a6fed"/>
-  </ItemGroup>
+  </PropertyGroup>  
   
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
     <IsNetStandard>true</IsNetStandard>
