@@ -409,9 +409,11 @@ namespace KellermanSoftware.CompareNetObjectsTests
         #region Type Comparer Type Ignore Tests
 
         [Test]
-        public void TypeComparerTypeIgnorePositive()
+        public void TypeComparerTypeIgnoreTest()
         {
-            _compare.Config.TypeComparerTypesToIgnore.Add(typeof(StringComparer));
+            var rootComparer = RootComparerFactory.GetRootComparer();
+            var testTypeComparer = new TestTypeComparer(rootComparer);
+            rootComparer.TypeComparers.Insert(0, testTypeComparer);
 
             Person p1 = new Person();
             p1.Name = "Greg";
@@ -421,25 +423,17 @@ namespace KellermanSoftware.CompareNetObjectsTests
             p2.Name = "Leyla";
             p2.DateCreated = DateTime.Now;
 
-            var result = _compare.Compare(p1, p2);
-            Assert.IsTrue(result.AreEqual, result.DifferencesString);
-        }
+            _compare.Compare(p1, p2);
 
-        [Test]
-        public void TypeComparerTypeIgnoreNegative()
-        {
+            Assert.IsTrue(testTypeComparer.IsTypeMatchCalled);
+
+            testTypeComparer.Reset();
+            
             _compare.Config.TypeComparerTypesToIgnore.Add(typeof(StringComparer));
 
-            Person p1 = new Person();
-            p1.Name = "Greg";
-            p1.DateCreated = DateTime.Now;
+            _compare.Compare(p1, p2);
 
-            Person p2 = new Person();
-            p2.Name = "Leyla";
-            p2.DateCreated = DateTime.Now;
-
-            var result = _compare.Compare(p1, p2);
-            Assert.IsFalse(result.AreEqual, result.DifferencesString);
+            Assert.IsFalse(testTypeComparer.IsTypeMatchCalled);
         }
 
         #endregion

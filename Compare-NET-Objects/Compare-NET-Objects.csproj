@@ -34,6 +34,12 @@
     
     
   </PropertyGroup>
+
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+            <_Parameter1>Compare-NET-Objects-Tests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
   
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
     <IsNetStandard>true</IsNetStandard>
