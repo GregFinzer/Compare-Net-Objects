@@ -436,7 +436,7 @@ namespace KellermanSoftware.CompareNetObjectsTests
 
             testTypeComparer.Reset();
 
-            _compare.Config.TypeComparerTypesToIgnore.Add(typeof(StringComparer));
+            _compare.Config.TypeComparerTypesToIgnore.Add(typeof(TestTypeComparer));
 
             _compare.Compare(p1, p2);
 
