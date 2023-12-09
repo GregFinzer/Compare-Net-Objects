@@ -1,10 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net461;netcoreapp2.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net461;net6.0;net7.0;net8.0</TargetFrameworks>
     <AssemblyName>Compare-NET-Objects-Tests</AssemblyName>
     <RootNamespace>KellermanSoftware.CompareNetObjectsTests</RootNamespace>
     <IsPackable>false</IsPackable>
+
+    <!-- Binary Formatter should not be used any more. If this setting is omitted, the compile error SYSLIB0011 is raised,
+         see https://learn.microsoft.com/en-us/dotnet/core/compatibility/serialization/7.0/binaryformatter-apis-produce-errors#recommended-action -->
+    <EnableUnsafeBinaryFormatterSerialization>true</EnableUnsafeBinaryFormatterSerialization>
   </PropertyGroup>
 
   <ItemGroup>
@@ -36,9 +40,12 @@
     <DefineConstants>$(DefineConstants);NET6_0;NETFULL</DefineConstants>
   </PropertyGroup>
 
-
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net7.0'">
+	<PropertyGroup Condition=" '$(TargetFramework)' == 'net7.0'">
     <DefineConstants>$(DefineConstants);NET7_0;NETFULL</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net8.0'">
+    <DefineConstants>$(DefineConstants);NET8_0;NETFULL</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup Condition="!$(IsNetCore)">
