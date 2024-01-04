@@ -21,7 +21,9 @@ Romans 6:23 For the wages of sin is death, but the free gift of God is eternal l
 Romans 10:9-10 If you confess with your mouth Jesus as Lord, and believe in your heart that God raised Him from the dead, you will be saved; for with the heart a person believes, resulting in righteousness, and with the mouth he confesses, resulting in salvation.
 
 Sincerely,
+
 Greg Finzer
+
 CEO, Kellerman Software
 
 # Project Description
