@@ -2,29 +2,8 @@
 
 [<img src="https://github.com/GregFinzer/comparenetobjects/blob/master/PoweredByNDepend.png">](http://www.ndepend.com)
 
-# Kellerman Software Closing as of February 29th, 2024
-As of February 29th, 2024, Kellerman Software will be closing up shop. We sincerely appreciate every purchase and kind word. The sales have allowed us to fund many cool products.  This repository will no longer be maintained.
-
-The reason for the closure is simply this; the current manager for the Bed Brigade Grove City chapter is moving and God has put it on my heart to fill that position. Bed Brigade is a charity that builds and delivers beds for people that don't have them. 80% of the beds go to children that do not have a bed; the rest is mostly single mothers.
-
-More information about Bed Brigade.
-https://www.bedbrigadecolumbus.org/
-
-Questions you may have:
-1. Will Kellerman Software be sold to a third party? We tried to sell Kellerman Software several years ago and no-one was interested except for one low ball offer that was less than the profit for a single month. If you are interested in making an offer let us know.
-2. Will the products on Kellerman Software become open source? No. Open source software requires more support than commercial software as there are significantly more users.
-3. How do I get to heaven?
-
-Romans 3:23 For all have sinned and fall short of the glory of God.
-Romans 5:8 But God demonstrates His own love toward us, in that while we were yet sinners, Christ died for us.
-Romans 6:23 For the wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord.
-Romans 10:9-10 If you confess with your mouth Jesus as Lord, and believe in your heart that God raised Him from the dead, you will be saved; for with the heart a person believes, resulting in righteousness, and with the mouth he confesses, resulting in salvation.
-
-Sincerely,
-
-Greg Finzer
-
-CEO, Kellerman Software
+# Kellerman Software in the process of being sold
+An interested party is purchasing the business.  They will be supporting this open source project.
 
 # Project Description
 What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.
