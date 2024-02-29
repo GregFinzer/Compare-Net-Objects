@@ -3,7 +3,7 @@
 [<img src="https://github.com/GregFinzer/comparenetobjects/blob/master/PoweredByNDepend.png">](http://www.ndepend.com)
 
 # Kellerman Software has been purchased by 4Penny.net
-The repository is now maintained here:  https://github.com/sgray128/Compare-Net-Objects
+The Compare .NET Objects repository is now maintained here:  https://github.com/sgray128/Compare-Net-Objects
 
 # Project Description
 What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.
