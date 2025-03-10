@@ -2,9 +2,6 @@
 
 [<img src="https://github.com/GregFinzer/comparenetobjects/blob/master/PoweredByNDepend.png">](http://www.ndepend.com)
 
-# Kellerman Software has been purchased by 4Penny.net
-The Compare .NET Objects repository is now maintained here:  https://github.com/sgray128/Compare-Net-Objects
-
 # Project Description
 What you have been waiting for. Perform a deep compare of any two .NET objects using reflection. Shows the differences between the two objects.
 
@@ -138,3 +135,6 @@ https://github.com/GregFinzer/Compare-Net-Objects/wiki/Licensing
 
 If you would like a perpetual MIT license with commercial support for a period of one year for all developers at your organization, purchase this option:
 https://kellermansoftware.com/products/compare-net-objects
+
+# Support
+Any support questions please contact support@kellermansoftware.com
