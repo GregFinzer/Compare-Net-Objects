@@ -93,7 +93,7 @@ namespace KellermanSoftware.CompareNetObjects.TypeComparers
                     var enumerator1 = ((IDictionary) parms.Object1).GetEnumerator();
                     enumerator1.MoveNext();
                     shouldCompareByKeys =
-                        enumerator1.Key != null && TypeHelper.IsSimpleType(enumerator1.Key.GetType());
+                        enumerator1.Key != null && (TypeHelper.IsSimpleType(enumerator1.Key.GetType()) || TypeHelper.IsEnum(enumerator1.Key.GetType()));
                 }
             }
 
