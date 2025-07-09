@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using KellermanSoftware.CompareNetObjects.TypeComparers;
 
 
@@ -51,7 +52,8 @@ namespace KellermanSoftware.CompareNetObjects
             _rootComparer.TypeComparers.Add(new RuntimeTypeComparer(_rootComparer));
 
 #if !NETSTANDARD
-            _rootComparer.TypeComparers.Add(new FontComparer(_rootComparer));
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                _rootComparer.TypeComparers.Add(new FontComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new DatasetComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new DataTableComparer(_rootComparer));
             _rootComparer.TypeComparers.Add(new DataRowComparer(_rootComparer));
