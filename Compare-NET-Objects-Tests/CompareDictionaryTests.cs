@@ -141,6 +141,58 @@ namespace KellermanSoftware.CompareNetObjectsTests
             if (!result.AreEqual)
                 throw new Exception(result.DifferencesString);
         }
+
+        // Enum for use as dictionary key
+        private enum PersonType
+        {
+            Employee,
+            Manager,
+            Contractor
+        }
+
+        [Test]
+        public void TestDictionaryWithEnumKey_Positive()
+        {
+            Person p1 = new Person { Name = "Alice", DateCreated = DateTime.Now };
+            Person p2 = new Person { Name = "Bob", DateCreated = DateTime.Now.AddDays(-1) };
+
+            var dict1 = new Dictionary<PersonType, Person>
+            {
+                { PersonType.Employee, p1 },
+                { PersonType.Manager, p2 }
+            };
+            var dict2 = new Dictionary<PersonType, Person>
+            {
+                { PersonType.Employee, p1 },
+                { PersonType.Manager, p2 }
+            };
+
+            var result = _compare.Compare(dict1, dict2);
+            if (!result.AreEqual)
+                throw new Exception(result.DifferencesString);
+        }
+
+        [Test]
+        public void TestDictionaryWithEnumKey_Negative()
+        {
+            Person p1 = new Person { Name = "Alice", DateCreated = DateTime.Now };
+            Person p2 = new Person { Name = "Bob", DateCreated = DateTime.Now.AddDays(-1) };
+            Person p3 = new Person { Name = "Charlie", DateCreated = DateTime.Now.AddDays(-2) };
+
+            var dict1 = new Dictionary<PersonType, Person>
+            {
+                { PersonType.Employee, p1 },
+                { PersonType.Manager, p2 }
+            };
+            var dict2 = new Dictionary<PersonType, Person>
+            {
+                { PersonType.Employee, p1 },
+                { PersonType.Manager, p3 }
+            };
+
+            var result = _compare.Compare(dict1, dict2);
+            Assert.IsFalse(result.AreEqual);
+        }
         #endregion
     }
 }
